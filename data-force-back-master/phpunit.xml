@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Application">
+            <directory suffix="Test.php">./tests/Application</directory>
+        </testsuite>
+        <testsuite name="Domain">
+            <directory suffix="Test.php">./tests/Domain</directory>
+        </testsuite>
+    </testsuites>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+    </coverage>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
+        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+
+        <env name="STRIPE_KEY" value="pk_test_51P8YVWDpKF9ov5RdZgXbsavUyonzgtuvQP4EaeSrRLjiNslCrq4p0GC2htJlxjZSWPgo1UxUvEmQhmzpOUjJkzyi00QUwQY2sj"/>
+        <env name="STRIPE_SECRET" value="sk_test_51P8YVWDpKF9ov5RdfaWD4GNuAdvEkaH4rqPDQvTdr5TWNdK5Q6zvMJEf0MBFNuVNeeyO8iKMB723AxERNK5bKudR00SJdJ7kKB"/>
+        <env name="STRIPE_WEBHOOK_SECRET" value="whsec_2EttIyzv5Ldgo3hfjP8QCh9zMH2EK5bk"/>
+        <env name="STRIPE_PRICE_ID" value="price_1P9CDvDpKF9ov5Rdmsj1T9Lx"/>
+    </php>
+</phpunit>

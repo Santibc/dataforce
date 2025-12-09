@@ -1,0 +1,123 @@
+We develop applications with React.
+To create a form we use react hook forms and yup form validation.
+We use react-query to fetch data from the backend.
+We use mui-datagrid to display data in a table.
+We use react-router-dom to navigate between pages.
+To create a form we use our own custom inputs base on material-ui.
+This field are the following:
+- For a string type we use the HitTextField component.
+- For an array type we use the HitAutocompleteField or HitMultiAutocompleteField component.
+- For a Moment type we use the HitDatePickerField component.
+- For a boolean type we use the HitCheckboxField component.
+- for a File type we use the HitImageField component.
+This is an example of a form for the following type:
+Type: 
+{
+  email: string;
+  roles: string[];
+  password: string;
+  password_confirmation: string;
+};
+Form:
+import * as Yup from 'yup';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Controller, useForm } from 'react-hook-form';
+// @mui
+import { Moment } from 'moment';
+import { HitDatepickerField, HitImageField, HitMultiAutocompleteField, HitTextField } from 'src/components/form';
+import { HitForm } from 'src/components/form/HitForm';
+import { HitFormActions, HitFormSubmitButton } from 'src/components/form/HitFormActions';
+import { HitPasswordField } from 'src/components/form/HitPasswordField';
+import moment from 'moment';
+
+export type CreateUserFormType = {
+  email: string;
+  roles: string[];
+  file: { file: File | string | null };
+  date: Moment;
+};
+
+const CreateUserSchema: Yup.SchemaOf<CreateUserFormType> = Yup.object().shape({
+  email: Yup.string().label('Email').required().email(),
+  roles: Yup.array().label('Roles').required().min(1),
+  file: Yup.mixed().test({
+    name: 'fileSize',
+    message: 'El archivo es muy grande',
+    test: (value) => {
+      if (value?.file instanceof File) {
+        return value.file.size <= 1000000;
+      }
+      return true;
+    },
+  }) as any,
+  date: Yup.mixed().label('Date').required() as any,
+});
+
+const defaultValues: CreateUserFormType = {
+  email: '1',
+  roles: [],
+  file: {file: null},
+  date: moment(),
+};
+
+type Props = {
+  onSubmit: (value: CreateUserFormType) => Promise<any>;
+  values?: CreateUserFormType 
+};
+
+export default function AdminUserCreateForm({ onSubmit, values }: Props) {
+  const hf = useForm<CreateUserFormType>({
+    resolver: yupResolver(CreateUserSchema),
+    values,
+    defaultValues,
+    mode: 'onBlur',
+  });
+
+  return (
+    <HitForm hf={hf} onSubmit={onSubmit}>
+      <Controller
+        name="email"
+        control={hf.control}
+        render={(field) => <HitTextField {...field} label="Email" placeholder="Carlos" />}
+      />
+      <Controller
+        name="file"
+        control={hf.control}
+        render={(field) => <HitImageField {...field} label="File" />}
+      />
+      <Controller
+        name="date"
+        control={hf.control}
+        render={(field) => <HitDatepickerField {...field} label="Date" />}
+      />
+      <Controller
+        name="roles"
+        control={hf.control}
+        render={(field) => (
+          <HitMultiAutocompleteField
+            {...field}
+            label="Roles"
+            options={[
+              { value: 'admin', label: 'admin' },
+              { value: 'otroAdmin', label: 'otroAdmin' },
+              { value: 'otrotroAdmin', label: 'otrotroAdmin' },
+            ]}
+          />
+        )}
+      />
+
+      <HitFormActions>
+        <HitFormSubmitButton>Crear</HitFormSubmitButton>
+      </HitFormActions>
+    </HitForm>
+  );
+}
+
+You Are a coding AI Assistant that need to generate a form for a product with the following type:
+{
+  name: string; // required
+  price: string; // minimum 0
+  categories: string[]; // minimum 1
+  avatar: File | string | null; // max size 1mb
+}

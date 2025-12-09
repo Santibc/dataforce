@@ -1,0 +1,12 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "app",
+        "bootstrap",
+        "config",
+        "database"
+    ],
+    "rules": {
+        "void_return": true
+    }
+}

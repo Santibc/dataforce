@@ -1,0 +1,159 @@
+A user has the following type: 
+{
+  id: number;
+  email: string;
+  roles: UserRoles[];
+}
+
+This is a page that uses the DataGrid component. It is a simple page that displays a list of users and allows you to delete them.
+
+
+import { Helmet } from 'react-helmet-async';
+import { Link, Link as RouterLink } from 'react-router-dom';
+import { Box, Button, Card, Container, IconButton, MenuItem, Stack, Typography } from '@mui/material';
+import { PATHS } from 'src/routes/paths';
+import { useAllUsersQuery, useDeleteUserMutation } from 'src/api/userRepository';
+import { useConfirm } from 'src/components/confirm-action/ConfirmAction';
+import CustomBreadcrumbs from '../../components/custom-breadcrumbs';
+import Iconify from '../../components/iconify';
+import { useSettingsContext } from '../../components/settings';
+import { useColumns } from 'src/components/datagrid';
+import { UserRoles } from 'src/models/User';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { useState, useRef } from 'react';
+import MenuPopover from 'src/components/menu-popover';
+import noresults from 'src/assets/noresults.png';
+
+export function AdminUserListPage() {
+  const { themeStretch } = useSettingsContext();
+  const confirm = useConfirm();
+  const usersQuery = useAllUsersQuery();
+  const deleteUserMutation = useDeleteUserMutation();
+  const [openPopover, setOpenPopover] = useState<HTMLElement | null>(null);
+  const selectedIdRef = useRef<number | undefined>();
+
+  const data = usersQuery.data ?? [];
+
+  const columns = useColumns<typeof data[0]>([
+    {
+      field: 'carlos',
+      headerName: 'Nombre',
+      type: 'string',
+    },
+    {
+      field: 'email',
+      headerName: 'Email',
+      type: 'string',
+    },
+    {
+      field: 'roles',
+      headerName: 'Roles',
+      valueOptions: [UserRoles.ADMIN, UserRoles.USER, UserRoles.SUPERADMIN],
+      type: 'array',
+    },
+    {
+      field: 'action',
+      headerName: 'Actions',
+      type: 'actions',
+      renderCell: (params) => (
+        <>
+          <IconButton
+            onClick={(e) => {
+              selectedIdRef.current = Number(params.id);
+              setOpenPopover(e.currentTarget);
+            }}
+          >
+            <Iconify icon="eva:more-vertical-fill" />
+          </IconButton>
+        </>
+      ),
+    },
+  ]);
+
+  return (
+    <>
+      <Helmet>
+        <title> Panel Administrativo | TheGelatina </title>
+      </Helmet>
+
+      <Container maxWidth={themeStretch ? false : 'lg'}>
+        <CustomBreadcrumbs
+          heading="Listado - Administradores"
+          links={[{ name: 'Listado' }]}
+          action={
+            <Button
+              to={PATHS.dashboard.adminUsers.create}
+              component={RouterLink}
+              variant="contained"
+              startIcon={<Iconify icon="eva:plus-fill" />}
+            >
+              Nuevo Usuario
+            </Button>
+          }
+        />
+
+        <Card
+          sx={{
+            height: 600,
+          }}
+        >
+          <Box sx={{ height: 600 }}>
+      <DataGrid
+        disableSelectionOnClick
+        rows={data}
+        columns={columns}
+        loading={usersQuery.isLoading}
+        components={{
+          Toolbar: GridToolbar,
+          NoResultsOverlay: () => (
+            <Stack height="100%" alignItems="center" justifyContent="center">
+              <img src={noresults} alt="Sin Resultados" />
+              <Typography>No hay resultados para tu búsqueda</Typography>
+            </Stack>
+          ),
+        }}
+      />
+
+      <MenuPopover
+        open={openPopover}
+        onClose={() => {
+          setOpenPopover(null);
+          selectedIdRef.current = undefined;
+        }}
+        arrow="right-top"
+      >
+        <MenuItem
+          onClick={() => {
+            setOpenPopover(null);
+            confirm({action: () => deleteUserMutation.mutateAsync(selectedIdRef.current!)})
+            
+          }}
+          sx={{ color: 'error.main' }}
+        >
+          <Iconify icon="eva:trash-2-outline" />
+          Delete
+        </MenuItem>
+
+        <MenuItem component={Link} to={PATHS.dashboard.adminUsers.edit(selectedIdRef.current!)}>
+          <Iconify icon="eva:edit-fill" />
+          Edit
+        </MenuItem>
+      </MenuPopover>
+    </Box>
+        </Card>
+      </Container>
+    </>
+  );
+}
+
+export default AdminUserListPage;
+
+You Are a coding AI Assistant that need to generate a page for the following case:
+A page with a datagrid for a product with the following type:
+{
+  name: string;
+  categories: string[];
+  price: number;
+  description: string;
+  image: File | string | null;
+}

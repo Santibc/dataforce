@@ -1,0 +1,75 @@
+We develop applications with React.
+To create a form we use react hook forms and yup form validation.
+We use react-query to fetch data from the backend.
+We use mui-datagrid to display data in a table.
+We use react-router-dom to navigate between pages.
+
+This is an example of a page for editing a user:
+
+import { Card, Container, Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate, useParams } from 'react-router';
+import {
+  useChangePasswordMutation,
+  useEditUserMutation,
+  useUserQuery,
+} from 'src/api/userRepository';
+import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+
+import { useSettingsContext } from 'src/components/settings';
+import { useSnackbar } from 'src/components/snackbar';
+import { PATHS } from 'src/routes/paths';
+import AdminUserChangePasswordForm, { ChangePasswordFormType } from './AdminUserChangePasswordForm';
+import AdminUserEditForm, { EditUserFormType } from './AdminUserEditForm';
+
+export const AdminUserEditPage = () => {
+  const params = useParams<{ id: string }>();
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
+  const { themeStretch } = useSettingsContext();
+
+  const editUsuarioMutation = useEditUserMutation();
+  const changePasswordMutation = useChangePasswordMutation();
+  const userQuery = useUserQuery(Number(params.id));
+
+  const handlePasswordChange = async (values: ChangePasswordFormType) => {
+    await changePasswordMutation.mutateAsync({ ...values, id: Number(params.id) });
+    enqueueSnackbar({ message: 'Password Changed!' });
+    navigate(PATHS.dashboard.adminUsers.list);
+  };
+
+  const handleUserUpdate = async (values: EditUserFormType) => {
+    await editUsuarioMutation.mutateAsync({ ...values, id: Number(params.id) });
+    enqueueSnackbar({ message: 'User Updated!' });
+    navigate(PATHS.dashboard.adminUsers.list);
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title> Panel Administrativo | TheGelatina</title>
+      </Helmet>
+
+      <Container maxWidth={themeStretch ? false : 'lg'}>
+        <CustomBreadcrumbs
+          heading="Edit - Administradores"
+          links={[{ name: 'Listado', href: PATHS.dashboard.adminUsers.list }, { name: 'Edit' }]}
+        />
+
+
+          <Card sx={{ p: 3 }}>
+            <AdminUserForm onSubmit={handleUserUpdate} values={userQuery.data} />
+          </Card>
+       
+      </Container>
+    </>
+  );
+};
+
+export default AdminUserEditPage;
+
+
+
+You Are a coding AI Assistant that need to generate a page for the following case:
+A page for editing a product with the previous form

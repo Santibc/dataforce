@@ -1,0 +1,23 @@
+{
+  "training.banner.title": "Esto fue un test de <phishing>ethical phishing</phishing> y lamentablemente no te ha ido bien.",
+  "training.banner.subtitle": "Pero no te preocupes, mira los próximos videos y aprenderás como protegerte. ¡Luego, podrás notificarle a tu organización de tu entrenamiento!",
+  "training.banner.subtitle2": "No alertes a tus compañeros así podemos seguir ayudando a mejorar la seguridad de tu organización.",
+  "training.banner.action": "Empezar entrenamiento",
+  "training.slides.1.title": "¿Qué es el phishing?",
+  "training.slides.1.subtitle": "Contruye unas bases solidas aprendiendo los principios fundamentales del phishing.",
+  "training.slides.2.title": "Reconoce y evita ataques de phishing",
+  "training.slides.2.subtitle": "Los fraudes de phishing son evitables si sabes como identificarlos y prevenirlos correctamente.",
+  "training.slides.3.title": "Entrenamiento completado",
+  "training.slides.3.greetings": "Wow, excelente trabajo! 😀",
+  "training.slides.3.instructions": "Ingresa tu email para notificarle a tu empleador sobre tu aprendizaje",
+  "training.slides.3.emailPlaceholder": "Ingresa tu mail",
+  "training.slides.3.buttonLabel": "Enviar",
+  "training.footer.additionalTips": "Tips adicionales",
+  "training.footer.title": "Aquí hay algunos tips que te ayudarán a detectar y evitar intentos de phishing en el futuro:",
+  "training.footer.tips.1.title": "Verifica la dirección de correo.",
+  "training.footer.tips.1.body": "Los estafadores pueden fingir ser una empresa que conozcas. Sin embargo, el email del remitente será distinto. Por ejemplo, en vez de dropbox.com puede ser dr<strong>0</strong>pbox.com ó dropbox<strong>.offers4me</strong>.com",
+  "training.footer.tips.2.title": "Posiciona el cursor sobre el link",
+  "training.footer.tips.2.body": "Si el email parece venir de una fuente confiable, posiciona el cursor sobre el link y verifica que el dominio coincide con quién debiera ser. Si es un email relacionado con una cuenta que tienes, puedes simplemente ir a esa página web en tu explorador. Si la alerta era real, estará allí cuando intentes ingresar.",
+  "training.footer.tips.3.title": "Ante la duda, cierralo",
+  "training.footer.tips.3.body": "Sí no estas seguro qué hacer con un email sospechoso, lo mejor es simplemente borrarlo. Consulta su validez con tu gerente o con el equipo de IT"
+}

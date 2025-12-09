@@ -1,0 +1,20 @@
+{
+    "folder": "Cafetera",
+    "name": "UpdateProductCategory",
+    "controllerTest": true,
+    "actionTest": true,
+    "routeName": "product-categories/{id}",
+    "routeMethod": "put",
+    "roles": [],
+    "attributes": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "unit",
+            "type": "string"
+        }
+    ]
+}
+

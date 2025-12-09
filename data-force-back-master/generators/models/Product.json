@@ -1,0 +1,32 @@
+{
+    "modelName": "Cafetera",
+    "folder": "Cafetera",
+    "tableName": "cafeteras",
+    "abm": true,
+    "attributes": [
+        {
+            "name": "category_id",
+            "type": "int"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "type": "float"
+        },
+        {
+            "name": "code",
+            "type": "string"
+        },
+        {
+            "name": "weight",
+            "type": "float"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "training.banner.title": "This was a test of <phishing>ethical phishing</phishing> and sadly you did not do well.",
+  "training.banner.subtitle": "But don't worry, see the following videos and you will learn how to protect yourself. Then, you can notify your oganization of your training!",
+  "training.banner.subtitle2": "Don't alert your team so we can keep improving your organization's security",
+  "training.banner.action": "Start training",
+  "training.slides.1.title": "What is phishing?",
+  "training.slides.1.subtitle": "Build your foundation by learning the fundamentals of phishing attacks.",
+  "training.slides.2.title": "Recognize and Avoid Phishing Attacks",
+  "training.slides.2.subtitle": "Phishing scams are avoidable if you know how to correctly identify and prevent them.",
+  "training.slides.3.title": "Training completed",
+  "training.slides.3.greetings": "Wow, excellent job! 😀",
+  "training.slides.3.instructions": "Enter your email to notify your employer of your awesome work",
+  "training.slides.3.emailPlaceholder": "Enter your email",
+  "training.slides.3.buttonLabel": "Send",
+  "training.footer.additionalTips": "Additional tips",
+  "training.footer.title": "Here are a few tips to help you spot and avoid phishing attempts in the future:",
+  "training.footer.tips.1.title": "Inspect the email sender address.",
+  "training.footer.tips.1.body": "Scammers will pretend to be a company you may know. However, the sender address will be different. For example, instead of dropbox.com they could be using dr<strong>0</strong>pbox.com or dropbox<strong>.offers4me</strong>.com",
+  "training.footer.tips.2.title": "Hover over the link",
+  "training.footer.tips.2.body": "If the email seems to be comming from a trusted source, hover over the link and verify that the domain matches who it should be. If it's an email regarding an account you have, you can simply go to that website in your browser. If the alert was real, it'll be there too when you login.",
+  "training.footer.tips.3.title": "When in doubt, close it",
+  "training.footer.tips.3.body": "If you're not sure what to do with a suspicious email, the best thing is to just delete it. Consult with your manager or IT staff to inquire about its validity."
+}

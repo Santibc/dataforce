@@ -1,0 +1,19 @@
+{
+    "actionToText": "Si estás teniendo problemas para clickear el botón :actionText, copia y pega la URL que está debajo en tu navegador:\n",
+    "rights": "Todos los derechos reservados",
+    "regards": "Saludos",
+    "hello": "Hola",
+    "verificationMessage": "Hacé un click en el botón que esta debajo para verificar tu email.",
+    "verifyEmailSubject": "Verificá tu email",
+    "verifyEmailButton": "Verificá tu email",
+    "passwordResetSubject": "Notificación de reinicio de contraseña",
+    "passwordResetButton": "Reiniciar contraseña",
+    "passwordResetWarning": "Si no solicitaste un reinicio de contraseña, no es requerida ninguna accion.",
+    "passwordResetExpiration": "Este reinicio de contraseña expirará en :minutos minutos.",
+    "passwordResetMessage": "Estás recibiendo este email porque se solicitó un cambio de contraseña para tu cuenta.",
+    "filament-fortify::register.or": " ",
+    "filament-fortify::register.login-link": "¿No tienes cuenta? Registrate",
+    "filament-fortify::password-reset.buttons.request.label": "¿Olvidaste tu contraseña?",
+    "filament-fortify::register.heading": "Registrá una cuenta"
+
+}

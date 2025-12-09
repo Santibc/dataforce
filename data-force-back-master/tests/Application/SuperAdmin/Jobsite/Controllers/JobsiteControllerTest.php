@@ -1,0 +1,102 @@
+<?php
+
+namespace Tests\Application\SuperAdmin\Jobsite\Controllers;
+
+use Src\Application\SuperAdmin\Jobsite\Controllers\JobsiteController;
+use Src\Domain\Jobsite\Models\Jobsite;
+use Src\Domain\Shift\Models\Shift;
+use Src\Domain\User\Enums\Roles;
+use Src\Domain\User\Models\User;
+use Tests\TestCase;
+
+class JobsiteControllerTest extends TestCase
+{
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $user = User::factory()->withRole(Roles::SUPER_ADMIN)->create();
+        $this->user_logged = $user;
+        $this->actingAs($user);
+    }
+
+    /** @test */
+    public function update(): void
+    {
+        $jobsite = Jobsite::factory()->hasUsers()->create();
+        $user_1 = User::factory()->create();
+
+        $jobsiteData = [
+            'id' => $jobsite->id,
+            'name' => 'Nuevo nombre',
+            'address_street' => 'Segurola',
+            'state' => 'Buenos Aires',
+            'city' => 'CABA',
+            'zip_code' => '1405',
+            'users_id' => [$user_1->id],
+        ];
+        $this->put(action([JobsiteController::class, 'update'], ['jobsite' => $jobsite->id]), $jobsiteData)
+            ->assertStatus(200);
+
+        $this->assertDatabaseHas('jobsites', [
+            'id' => $jobsite->id,
+            'name' => 'Nuevo nombre',
+            'address_street' => 'Segurola',
+            'state' => 'Buenos Aires',
+            'city' => 'CABA',
+            'zip_code' => '1405',
+        ]);
+    }
+
+    /** @test */
+    public function show(): void
+    {
+        $this->withoutExceptionHandling();
+        $jobsite = Jobsite::factory()->hasUsers()->create();
+        Jobsite::factory()->hasUsers()->create();
+
+        $this->get(action([JobsiteController::class, 'show'], ['jobsite' => $jobsite->id]))
+            ->assertOk()
+            ->assertExactJson([
+                'id' => $jobsite->id,
+                'name' => $jobsite->name,
+                'address_street' => $jobsite->address_street,
+                'state' => $jobsite->state,
+                'city' => $jobsite->city,
+                'zip_code' => $jobsite->zip_code,
+                'users' => $jobsite->users->map(fn ($user) => [
+                    'id' => $user->id,
+                    'firstname' => $user->firstname,
+                    'lastname' => $user->lastname,
+                    'email' => $user->email,
+                    'phone_number' => $user->phone_number,
+                    'driver_amazon_id' => $user->driver_amazon_id,
+                    'positions' => $user->positions->map(fn ($position) => [
+                        'name' => $position->name,
+                        'color' => $position->color,
+                        'from' => $position->from,
+                        'to' => $position->to,
+                    ]),
+                ])->toArray(),
+            ]);
+
+    }
+
+    /** @test */
+    public function destroy(): void
+    {
+        $this->withoutExceptionHandling();
+        $jobsite = Jobsite::factory()->create();
+        $user = User::factory()
+            ->hasShifts(1, ['jobsite_id' => $jobsite->id])
+            ->create();
+
+        $user->jobsites()->attach($jobsite->id);
+
+        $this->delete(action([JobsiteController::class, 'destroy'], ['jobsite' => $jobsite->id]))
+            ->assertOk();
+
+        $this->assertDatabaseMissing(Jobsite::class, ['id' => $jobsite->id]);
+        $this->assertCount(0, Shift::all());
+    }
+}

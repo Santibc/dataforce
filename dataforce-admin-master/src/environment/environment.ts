@@ -1,13 +1,13 @@
 const prod = window.location.href.includes('app.bosmetrics.com');
 const dev = {
-  backEnd: 'https://dataforce-back.vadiun.net/api',
-  backEndStripe: 'https://dataforce-back.vadiun.net',
+  backEnd: 'https://app.bosmetrics.com/api',
+  backEndStripe: 'https://app.bosmetrics.com',
   production: false,
 };
 
 const _prod = {
-  backEnd: 'https://back.bosmetrics.com/api',
-  backEndStripe: 'https://back.bosmetrics.com',
+  backEnd: 'https://app.bosmetrics.com/api',
+  backEndStripe: 'https://app.bosmetrics.com/,
   production: true,
 };
 

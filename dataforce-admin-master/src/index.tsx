@@ -39,11 +39,22 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false, retry: false } },
   mutationCache: new MutationCache({
     onError: (error, mutation) => {
-      const { messages } = (error as AxiosError).response?.data as { messages: string[] };
+      const responseData = (error as AxiosError).response?.data as {
+        messages?: string[];
+        message?: string;
+        errors?: Record<string, string[]>;
+      };
       let errorMsg = 'Something went wrong';
-      if (messages) {
-        errorMsg = messages.join('\n');
+
+      if (responseData?.messages) {
+        errorMsg = responseData.messages.join('\n');
+      } else if (responseData?.errors) {
+        // Laravel validation error format
+        errorMsg = Object.values(responseData.errors).flat().join('\n');
+      } else if (responseData?.message) {
+        errorMsg = responseData.message;
       }
+
       enqueueSnackbar({
         variant: 'error',
         message: errorMsg,

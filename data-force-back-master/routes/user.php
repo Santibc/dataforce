@@ -10,7 +10,7 @@ Route::post('verify/resend', [ResendVerificationEmailAction::class, 'asControlle
 Route::post('forgot-password', [\Src\Application\Auth\Controllers\AuthController::class, 'forgotPassword'])->name('password.email');
 Route::post('reset-password', [\Src\Application\Auth\Controllers\AuthController::class, 'resetPassword'])->name('password.reset');
 
-Route::middleware(['auth:sanctum', 'verified', 'role:user|admin|manager'])->group(function (): void {
+Route::middleware(['auth:sanctum', 'verified', 'role:user|admin|manager|super_admin'])->group(function (): void {
 
     // ------------------------------ USER -----------------------------
     Route::get('user/{user_id}', [\Src\Application\Admin\User\Controllers\UserController::class, 'show']);

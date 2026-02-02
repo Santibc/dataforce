@@ -18,8 +18,10 @@ class UserController
     {
         \DB::transaction(function () use ($data): void {
             $user_search = User::currentCompany()->where('driver_amazon_id', $data->driver_amazon_id)->first();
-            if ($user_search == null) {
-                $user = User::create(
+            if ($user_search != null) {
+                abort(422, 'The Driver Amazon ID has already been taken.');
+            }
+            $user = User::create(
                     [
                         'firstname' => $data->firstname,
                         'lastname' => $data->lastname,
@@ -47,8 +49,6 @@ class UserController
                 $user->assignRole($data->roles);
 
                 \SubscriptionService::updateSeats($user->company, User::currentCompany()->whereIsNotBosmetricUser()->count());
-
-            }
         });
     }
 

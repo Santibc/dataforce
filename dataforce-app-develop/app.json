@@ -1,0 +1,29 @@
+{
+  "name": "Bosmetrics",
+  "displayName": "Bosmetrics",
+  "expo": {
+    "name": "Bosmetrics",
+    "slug": "bosmetrics",
+    "scheme": "bosmetrics",
+    "splash": {
+      "image": "./src/assets/logo2.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.bosmetrics"
+    },
+    "ios": {
+      "associatedDomains": [
+        "applinks:dataforce-back.vadiun.net/"
+      ],
+      "bundleIdentifier": "com.bosmetrics.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d38bf493-9ef1-4a19-a773-1b60d1d31192"
+      }
+    },
+    "owner": "vadiun"
+  }
+}

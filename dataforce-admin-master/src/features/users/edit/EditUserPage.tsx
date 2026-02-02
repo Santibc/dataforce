@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useGetLoggedUserQuery } from 'src/api/AuthRepository';
 import { useFindUserQuery, useUpdateUserMutation } from 'src/api/usersRepository';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+import { useSnackbar } from 'src/components/snackbar';
 import { APP_NAME } from 'src/config';
 import { PATHS } from 'src/routes/paths';
 import { LoadingComponent } from 'src/utils/LoadingComponent';
@@ -14,6 +15,7 @@ interface EditUserPageProps {}
 
 export const EditUserPage: FC<EditUserPageProps> = (props) => {
   const { mutateAsync: updateUser } = useUpdateUserMutation();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const { data: user } = useGetLoggedUserQuery();
   const { id } = useParams<{ id: string }>();
@@ -45,8 +47,17 @@ export const EditUserPage: FC<EditUserPageProps> = (props) => {
                         }
                   }
                   onSubmit={async (vals) => {
-                    await updateUser({ ...vals, company_id, id: Number(id) });
-                    navigate(PATHS.dashboard.users.list);
+                    try {
+                      await updateUser({ ...vals, company_id, id: Number(id) });
+                      enqueueSnackbar('User updated successfully!', { variant: 'success' });
+                      navigate(PATHS.dashboard.users.list);
+                    } catch (error: any) {
+                      const message =
+                        error?.response?.data?.messages?.[0] ||
+                        error?.response?.data?.message ||
+                        'Error updating user';
+                      enqueueSnackbar(message, { variant: 'error' });
+                    }
                   }}
                   edit
                 />

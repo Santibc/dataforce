@@ -1,0 +1,4 @@
+{
+  "expo.jsEngine": "hermes",
+  "ios.flipper": "0.252.0"
+}

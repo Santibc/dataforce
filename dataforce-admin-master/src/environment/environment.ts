@@ -1,13 +1,13 @@
 const prod = window.location.href.includes('app.bosmetrics.com');
 const dev = {
-  backEnd: 'https://app.bosmetrics.com/api',
+  backEnd: '/api',
   backEndStripe: 'https://app.bosmetrics.com',
   production: false,
 };
 
 const _prod = {
-  backEnd: 'https://app.bosmetrics.com/api',
-  backEndStripe: 'https://app.bosmetrics.com/,
+  backEnd: 'https://back.bosmetrics.com/api',
+  backEndStripe: 'https://app.bosmetrics.com',
   production: true,
 };
 

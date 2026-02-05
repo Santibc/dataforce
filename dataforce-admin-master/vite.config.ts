@@ -8,4 +8,13 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths(), VitePWA(), svgrPlugin()],
   assetsInclude: ['**/*.xlsx'],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://back.bosmetrics.com',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
 });

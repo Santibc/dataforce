@@ -42,6 +42,7 @@ import { EditUserPage } from 'src/features/users/edit/EditUserPage';
 import { UsersPage } from 'src/features/users/UsersPage';
 import ErrorPage from 'src/pages/ErrorPage';
 import NotAllowedPage from 'src/pages/NotAllowedPage';
+import { DeleteAccountPage } from 'src/pages/DeleteAccountPage';
 import { PrivacyPolicyPage } from 'src/pages/PrivacyPolicyPage';
 
 /**
@@ -100,6 +101,7 @@ const ROUTES: RouteObject[] = [
     children: [
       { element: <Navigate to={PATH_AFTER_LOGIN} replace />, index: true },
       { path: 'privacy-policy', element: <PrivacyPolicyPage /> },
+      { path: 'delete-account', element: <DeleteAccountPage /> },
 
       { path: 'set-password/:id', element: <SetPasswordPage /> },
       { path: 'successfully-set-password', element: <SuccessSetPasswordPage /> },

@@ -11,7 +11,7 @@ class SubscriptionResource extends Data
         public int $id,
         public ?string $status,
         public ?string $ends_at,
-        public int $seats,
+        public ?int $seats,
     ) {}
 
     public static function fromModel(Subscription $subscription): self

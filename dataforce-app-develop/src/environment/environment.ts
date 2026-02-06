@@ -6,7 +6,7 @@ const develop = {
 };
 
 const production = {
-  backEnd: 'https://back.bosmetrics.com/api/',
+  backEnd: 'https://back.app.bosmetrics.com/api/',
 };
 
 const environment = PRODUCTION === 'true' ? production : develop;

@@ -6,25 +6,27 @@ use Src\Domain\Company\Models\Company;
 
 class SubscriptionService
 {
-    private function checkSubscription(Company $company): void
-    {
-        if ($this->getSubscription($company) === null) {
-            throw new \RuntimeException('Company does not have a subscription');
-        }
-    }
-
     public function increaseSeats(Company $company, int $amount): void
     {
         $subscription = $this->getSubscription($company);
         if ($subscription !== null) {
-            $subscription->incrementQuantity($amount);
+            if ($this->isManualSubscription($subscription)) {
+                $subscription->increment('quantity', $amount);
+            } else {
+                $subscription->incrementQuantity($amount);
+            }
         }
     }
+
     public function decrementSeats(Company $company, int $amount): void
     {
         $subscription = $this->getSubscription($company);
         if ($subscription !== null) {
-            $subscription->decrementQuantity($amount);
+            if ($this->isManualSubscription($subscription)) {
+                $subscription->decrement('quantity', $amount);
+            } else {
+                $subscription->decrementQuantity($amount);
+            }
         }
     }
 
@@ -32,14 +34,25 @@ class SubscriptionService
     {
         $subscription = $this->getSubscription($company);
         if ($subscription !== null) {
-            $subscription->updateQuantity($amount);
+            if ($this->isManualSubscription($subscription)) {
+                $subscription->update(['quantity' => $amount]);
+            } else {
+                $subscription->updateQuantity($amount);
+            }
         }
     }
 
     public function cancelSubscription(Company $company): void
     {
-        $this->checkSubscription($company);
-        $company->subscription('default')->cancel();
+        $subscription = $this->getSubscription($company);
+        if ($subscription === null) {
+            throw new \RuntimeException('Company does not have a subscription');
+        }
+        if ($this->isManualSubscription($subscription)) {
+            $subscription->update(['stripe_status' => 'canceled', 'ends_at' => now()]);
+        } else {
+            $subscription->cancel();
+        }
     }
 
     public function getSubscription(Company $company): ?\Laravel\Cashier\Subscription
@@ -50,5 +63,10 @@ class SubscriptionService
     public function isSubscribed(Company $company): bool
     {
         return $company->subscribed('default');
+    }
+
+    private function isManualSubscription(\Laravel\Cashier\Subscription $subscription): bool
+    {
+        return str_starts_with($subscription->stripe_id, 'manual_');
     }
 }

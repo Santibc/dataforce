@@ -48,7 +48,19 @@
       "Bash(cmd.exe /c dir \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\\\\bin\\\\keytool.exe\")",
       "Bash(\"/f/Android/jbr/bin/keytool.exe\" -genkeypair -v -keystore bosmetrics-release.keystore -alias bosmetrics -keyalg RSA -keysize 2048 -validity 10000 -storepass \"Bosmetrics2024!\" -keypass \"Bosmetrics2024!\" -dname \"CN=Bosmetrics, OU=Bosmetrics, O=Bosmetrics, L=Miami, ST=Florida, C=US\")",
       "Bash(./gradlew clean:*)",
-      "Bash(./gradlew bundleRelease:*)"
+      "Bash(./gradlew bundleRelease:*)",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe devices)",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe:*)",
+      "Bash(tr:*)",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe pull:*)",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe shell \"uiautomator dump /sdcard/ui.xml && cat /sdcard/ui.xml\")",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe shell am start:*)",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe shell \"uiautomator dump /sdcard/ui2.xml && cat /sdcard/ui2.xml\")",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe shell:*)",
+      "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe exec-out screencap:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew:*)"
     ]
   }
 }

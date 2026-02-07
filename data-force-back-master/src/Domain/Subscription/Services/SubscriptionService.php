@@ -15,20 +15,26 @@ class SubscriptionService
 
     public function increaseSeats(Company $company, int $amount): void
     {
-        $this->checkSubscription($company);
-        $company->subscription('default')->incrementQuantity($amount);
+        $subscription = $this->getSubscription($company);
+        if ($subscription !== null) {
+            $subscription->incrementQuantity($amount);
+        }
     }
 
-    public function decrementSeats(Company $company, int $amount): void
-    {
+    publisubscription = $this->getSubscription($company);
+        if ($subscription !== null) {
+            $subscription->decrementQuantity($amount);
+        }
         $this->checkSubscription($company);
         $company->subscription('default')->decrementQuantity($amount);
     }
 
     public function updateSeats(Company $company, int $amount): void
     {
-        $this->checkSubscription($company);
-        $company->subscription('default')->updateQuantity($amount);
+        $subscription = $this->getSubscription($company);
+        if ($subscription !== null) {
+            $subscription->updateQuantity($amount);
+        }
     }
 
     public function cancelSubscription(Company $company): void

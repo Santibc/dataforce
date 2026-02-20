@@ -174,6 +174,17 @@ export const NavVerticalMenuContent = () => {
                     sx={{ paddingY: 1, justifyContent: 'flex-start', paddingX: 3 }}
                 />
             </Box>
+            <Box>
+                <NavVerticalMenuButton
+                    icon={<MessageIcon style={{ transform: 'scale(1.5)', width: 24, height: 24 }} />}
+                    text="Chat"
+                    selected={false}
+                    onClick={() => {
+                        navigate(PATHS.dashboard.chat.root);
+                    }}
+                    sx={{ paddingY: 1, justifyContent: 'flex-start', paddingX: 3 }}
+                />
+            </Box>
         </Box>
     );
 };

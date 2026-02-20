@@ -75,6 +75,19 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin|admin|owner|man
     Route::get('coaching', [\Src\Application\Admin\Coaching\Controllers\CoachingController::class, 'get_coaching']);
     Route::post('coaching', [\Src\Application\Admin\Coaching\Controllers\CoachingController::class, 'store']);
 
+    // ------------------------------ CHAT --------------------------------
+    Route::get('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'index']);
+    Route::post('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'store']);
+    Route::get('chat-groups/unread-counts', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'unreadCounts']);
+    Route::get('chat-groups/{id}', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'show']);
+    Route::put('chat-groups/{id}', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'update']);
+    Route::delete('chat-groups/{id}', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'destroy']);
+    Route::post('chat-groups/{id}/members', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'addMembers']);
+    Route::delete('chat-groups/{id}/members', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'removeMembers']);
+    Route::get('chat-groups/{id}/messages', [\Src\Application\Admin\Chat\Controllers\ChatMessageController::class, 'index']);
+    Route::post('chat-groups/{id}/messages', [\Src\Application\Admin\Chat\Controllers\ChatMessageController::class, 'store']);
+    Route::put('chat-groups/{id}/messages/read', [\Src\Application\Admin\Chat\Controllers\ChatMessageController::class, 'markAsRead']);
+
     Route::get('companies/me/subscription', [\Src\Application\Admin\Subscription\Controller\SubscriptionController::class, 'getSuscriptionInformation']);
 
     Route::get('companies/me/stripe-checkout-url', [

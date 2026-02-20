@@ -15,6 +15,7 @@ use Src\Domain\Performance\Models\Performance;
 use Src\Domain\Position\Models\Position;
 use Src\Domain\Preferences\Models\Preference;
 use Src\Domain\Shift\Models\Shift;
+use Src\Domain\Chat\Models\ChatGroup;
 use Src\Domain\User\QueryBuilders\UserQueryBuilder;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
@@ -84,5 +85,12 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function performance()
     {
         return $this->hasMany(Performance::class, 'driver_amazon_id', 'driver_amazon_id');
+    }
+
+    public function chatGroups()
+    {
+        return $this->belongsToMany(ChatGroup::class, 'chat_group_members')
+            ->wherePivotNull('left_at')
+            ->withPivot('joined_at');
     }
 }

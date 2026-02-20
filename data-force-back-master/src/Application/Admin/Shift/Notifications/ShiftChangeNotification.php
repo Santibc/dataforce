@@ -12,6 +12,12 @@ class ShiftChangeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public int $tries = 5;
+
+    public array $backoff = [10, 30, 60, 120, 300];
+
+    public int $maxExceptions = 3;
+
     protected string $subject;
 
     protected TypeShift $type;

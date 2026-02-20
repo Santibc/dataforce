@@ -51,6 +51,16 @@ const navConfig: NavConfig[] = [
         },
       ],
     }, */
+  {
+    subheader: 'communication',
+    items: [
+      {
+        title: 'Chat',
+        path: PATHS.dashboard.chat.root,
+        icon: iconifyIcon('eva:message-circle-outline'),
+      },
+    ],
+  },
 ];
 
 const useNavConfig = () => {

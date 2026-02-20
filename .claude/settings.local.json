@@ -60,7 +60,19 @@
       "Bash(MSYS_NO_PATHCONV=1 /c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe exec-out screencap:*)",
       "Bash(pip install:*)",
       "Bash(python:*)",
-      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew:*)"
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew:*)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew bundleRelease:*)",
+      "Bash(\"/f/Android/jbr/bin/java\" -jar bundletool.jar build-apks:*)",
+      "Bash(\"/f/Android/jbr/bin/java\" -jar bundletool.jar dump manifest --bundle=bosmetrics-v1.0.0-release.aab)",
+      "Bash(\"/c/Users/santi/AppData/Local/Android/Sdk/cmdline-tools/latest/bin/sdkmanager.bat\" --install \"platforms;android-35\" \"build-tools;35.0.0\")",
+      "Bash(xargs cat:*)",
+      "Bash(python3:*)",
+      "Bash(findstr:*)",
+      "Bash(test:*)",
+      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\":*)",
+      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"SELECT * FROM model_has_roles;\")",
+      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"UPDATE model_has_roles SET model_type = ''Src\\\\Domain\\\\User\\\\Models\\\\User''; SELECT * FROM model_has_roles;\")",
+      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"\nCREATE TABLE IF NOT EXISTS position_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  position_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(position_id\\) REFERENCES positions\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nCREATE TABLE IF NOT EXISTS jobsite_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  jobsite_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(jobsite_id\\) REFERENCES jobsites\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nSHOW TABLES;\n\")"
     ]
   }
 }

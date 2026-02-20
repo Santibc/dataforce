@@ -155,6 +155,16 @@ const NavMenuCompany = () => {
           }}
         />
       </Box>
+      <Box>
+        <NavMenuButton
+          icon={<MessageIcon />}
+          text="Chat"
+          selected={false}
+          onClick={() => {
+            navigate(PATHS.dashboard.chat.root);
+          }}
+        />
+      </Box>
     </Box>
   );
 };
@@ -177,6 +187,16 @@ const NavMenuSuperAdmin = () => {
           selected
           onClick={(e) => {
             navigation(PATHS.superAdmin.root);
+          }}
+        />
+      </Box>
+      <Box>
+        <NavMenuButton
+          icon={<MessageIcon />}
+          text="Chat"
+          selected={false}
+          onClick={() => {
+            navigation(PATHS.dashboard.chat.root);
           }}
         />
       </Box>

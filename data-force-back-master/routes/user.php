@@ -37,4 +37,11 @@ Route::middleware(['auth:sanctum', 'verified', 'role:user|admin|manager|super_ad
     Route::get('coaching', [\Src\Application\Driver\Coaching\Controllers\CoachingController::class, 'get_coaching']);
     Route::post('coaching/{coaching_id}', [\Src\Application\Driver\Coaching\Controllers\CoachingController::class, 'read']);
 
+    // ------------------------------ CHAT ---------------------------
+    Route::get('chat-groups', [\Src\Application\User\Chat\Controllers\UserChatGroupController::class, 'index']);
+    Route::get('chat-groups/unread-counts', [\Src\Application\User\Chat\Controllers\UserChatGroupController::class, 'unreadCounts']);
+    Route::get('chat-groups/{id}/messages', [\Src\Application\User\Chat\Controllers\UserChatMessageController::class, 'index']);
+    Route::post('chat-groups/{id}/messages', [\Src\Application\User\Chat\Controllers\UserChatMessageController::class, 'store']);
+    Route::put('chat-groups/{id}/messages/read', [\Src\Application\User\Chat\Controllers\UserChatMessageController::class, 'markAsRead']);
+
 });

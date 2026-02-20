@@ -79,6 +79,9 @@ export const PATHS = {
     documents: {
       root: '/dashboard/documents',
     },
+    chat: {
+      root: '/dashboard/chat',
+    },
   },
 } as const;
 
@@ -90,6 +93,7 @@ export const PATHS_PER_ROLE = [
     role: 'super_admin',
     paths: [
       PATHS.dashboard.root,
+      PATHS.dashboard.chat.root,
       PATHS['set-password'].root,
       PATHS['set-password'].set(':id'),
       PATHS.config.root,
@@ -128,12 +132,32 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.performance.peek(':id'),
       PATHS.dashboard.dashboardPerformance.root,
       PATHS.dashboard.documents.root,
+      PATHS.dashboard.chat.root,
       PATHS['set-password'].root,
       PATHS['set-password'].set(':id'),
       PATHS['successfully-set-password'].root,
       PATHS.config.root,
       PATHS.config.company.root,
       PATHS.config.company.plan,
+    ],
+  },
+  {
+    role: 'owner',
+    paths: [
+      PATHS.dashboard.root,
+      PATHS.dashboard.chat.root,
+      PATHS.dashboard.schedule.root,
+      PATHS.dashboard.positions.root,
+      PATHS.dashboard.jobsites.root,
+      PATHS.dashboard.jobsites.list,
+      PATHS.dashboard.users.root,
+      PATHS.dashboard.users.list,
+      PATHS.dashboard.coaching.root,
+      PATHS.dashboard.performance.root,
+      PATHS.dashboard.performance.list,
+      PATHS.dashboard.documents.root,
+      PATHS.config.root,
+      PATHS.config.company.root,
     ],
   },
 ];

@@ -72,7 +72,28 @@
       "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\":*)",
       "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"SELECT * FROM model_has_roles;\")",
       "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"UPDATE model_has_roles SET model_type = ''Src\\\\Domain\\\\User\\\\Models\\\\User''; SELECT * FROM model_has_roles;\")",
-      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"\nCREATE TABLE IF NOT EXISTS position_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  position_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(position_id\\) REFERENCES positions\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nCREATE TABLE IF NOT EXISTS jobsite_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  jobsite_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(jobsite_id\\) REFERENCES jobsites\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nSHOW TABLES;\n\")"
+      "Bash(\"f:/xamppPro80/mysql/bin/mysql.exe\" -u root data_prod -e \"\nCREATE TABLE IF NOT EXISTS position_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  position_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(position_id\\) REFERENCES positions\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nCREATE TABLE IF NOT EXISTS jobsite_user \\(\n  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n  jobsite_id BIGINT UNSIGNED NOT NULL,\n  user_id BIGINT UNSIGNED NOT NULL,\n  FOREIGN KEY \\(jobsite_id\\) REFERENCES jobsites\\(id\\) ON DELETE CASCADE,\n  FOREIGN KEY \\(user_id\\) REFERENCES users\\(id\\) ON DELETE CASCADE\n\\) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\nSHOW TABLES;\n\")",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/emulator/emulator\" -list-avds)",
+      "Bash(\"$HOME/AppData/Local/Android/Sdk/emulator/emulator\" -list-avds)",
+      "Bash(emulator -list-avds)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb\" devices)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb\" wait-for-device)",
+      "Bash(\"$LOCALAPPDATA/Android/Sdk/platform-tools/adb\" shell getprop sys.boot_completed)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" shell pm trim-caches 500M)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" shell df -h /data)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" install f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/build/outputs/apk/debug/app-debug.apk)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" uninstall com.bosmetrics)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" shell am start -n com.dataforce.bosmetrics/com.dataforce.bosmetrics.MainActivity)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" logcat -d -s ReactNativeJS)",
+      "Bash(\"$ANDROID_HOME/platform-tools/adb\" logcat -d)",
+      "Bash(ADB=\"/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb\")",
+      "Bash(\"$ADB\" logcat -d)",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb logcat -d -t 50)",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb logcat -d -t 100)",
+      "Bash(TOKEN=\"1164|64d1syTqF1dwEeD5BggfxONuGXC7oKgFPyixz58sf13b5615\")",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb shell am force-stop com.dataforce.bosmetrics)",
+      "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb shell am start -n com.dataforce.bosmetrics/com.dataforce.bosmetrics.MainActivity)",
+      "Bash(./gradlew assembleRelease)"
     ]
   }
 }

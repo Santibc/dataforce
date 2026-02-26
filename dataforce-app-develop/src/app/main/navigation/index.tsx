@@ -4,6 +4,7 @@ import { HomeNavigation } from 'app/home/navigation';
 import { useTheme } from '@vadiun/react-native-eevee';
 import { PerformanceNavigation } from 'app/performance/navigation';
 import { CoachingNavigation } from 'app/coaching/navigation';
+import { ChatNavigation } from 'app/chat/navigation';
 import * as Notifications from 'expo-notifications';
 import { httpClient } from '../services/httpClient';
 import { usePushNotificationNavigation } from 'app/hooks/usePushNotificationNavigation';
@@ -13,6 +14,7 @@ export type RootNavigationType = {
   home: undefined;
   performanceRoot: undefined;
   coachingRoot: undefined;
+  chatRoot: undefined;
   profileRoot: undefined;
 };
 
@@ -61,6 +63,11 @@ export const MainNavigation = () => {
         name="coachingRoot"
         component={CoachingNavigation}
         options={{ tabBarIcon: 'chat', tabBarLabel: 'Coaching' }}
+      />
+      <Tab.Screen
+        name="chatRoot"
+        component={ChatNavigation}
+        options={{ tabBarIcon: 'message-text-outline', tabBarLabel: 'Chat' }}
       />
       <Tab.Screen
         name="profileRoot"

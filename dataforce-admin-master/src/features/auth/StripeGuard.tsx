@@ -4,7 +4,11 @@ import { StripeSubscriptionStatus } from 'src/api/companyPlanInfoRepository';
 import { useAuthContext } from './useAuthContext';
 
 const StripeGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { stripeSubscriptionStatus } = useAuthContext();
+  const { stripeSubscriptionStatus, isSuperAdmin } = useAuthContext();
+
+  if (isSuperAdmin()) {
+    return <>{children}</>;
+  }
 
   if (stripeSubscriptionStatus !== StripeSubscriptionStatus.active) {
     return <Navigate to="/warning-payment" />;

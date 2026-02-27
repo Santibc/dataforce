@@ -35,6 +35,7 @@ export const PATHS = {
     jobsite: (id: number | string) => `/super-admin/jobsite/${id}` as const,
     user: (id: number | string) => `/super-admin/user/${id}` as const,
     companyinfo: (id: number | string) => `/super-admin/companyinfo/${id}` as const,
+    chat: '/super-admin/chat',
   },
   dashboard: {
     root: '/dashboard',
@@ -105,6 +106,7 @@ export const PATHS_PER_ROLE = [
       PATHS.superAdmin.jobsite(':id'),
       PATHS.superAdmin.user(':id'),
       PATHS.superAdmin.companyinfo(':id'),
+      PATHS.superAdmin.chat,
     ],
   },
   {

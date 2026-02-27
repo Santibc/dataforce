@@ -40,4 +40,18 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin'])->group(funct
 
     Route::get('companies/{company_id}/token', [\Src\Application\SuperAdmin\Company\Controllers\CompanyController::class, 'getBosmetricsCompanyUserToken']);
 
+    // ------------------------------ CHAT --------------------------------
+    Route::get('chat-groups', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'index']);
+    Route::post('chat-groups', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'store']);
+    Route::get('chat-groups/unread-counts', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'unreadCounts']);
+    Route::get('chat-groups/owners', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'getOwners']);
+    Route::get('chat-groups/{id}', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'show']);
+    Route::put('chat-groups/{id}', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'update']);
+    Route::delete('chat-groups/{id}', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'destroy']);
+    Route::post('chat-groups/{id}/members', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'addMembers']);
+    Route::delete('chat-groups/{id}/members', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatGroupController::class, 'removeMembers']);
+    Route::get('chat-groups/{id}/messages', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatMessageController::class, 'index']);
+    Route::post('chat-groups/{id}/messages', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatMessageController::class, 'store']);
+    Route::put('chat-groups/{id}/messages/read', [\Src\Application\SuperAdmin\Chat\Controllers\SuperAdminChatMessageController::class, 'markAsRead']);
+
 });

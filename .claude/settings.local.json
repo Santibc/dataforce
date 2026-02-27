@@ -93,7 +93,9 @@
       "Bash(TOKEN=\"1164|64d1syTqF1dwEeD5BggfxONuGXC7oKgFPyixz58sf13b5615\")",
       "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb shell am force-stop com.dataforce.bosmetrics)",
       "Bash(/c/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb shell am start -n com.dataforce.bosmetrics/com.dataforce.bosmetrics.MainActivity)",
-      "Bash(./gradlew assembleRelease)"
+      "Bash(./gradlew assembleRelease)",
+      "Bash(reg.exe query \"HKLM\\\\SOFTWARE\\\\JavaSoft\\\\Java Development Kit\" /s)",
+      "Bash(reg.exe query \"HKLM\\\\SOFTWARE\\\\JavaSoft\\\\JDK\" /s)"
     ]
   }
 }

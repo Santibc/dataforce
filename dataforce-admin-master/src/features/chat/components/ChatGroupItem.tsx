@@ -54,6 +54,14 @@ export function ChatGroupItem({ group, selected, onClick }: ChatGroupItemProps) 
         </Stack>
 
         <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5 }}>
+          {group.is_super_admin_group && (
+            <Chip
+              label="BosMetrics"
+              size="small"
+              color="secondary"
+              sx={{ height: 18, fontSize: 10, fontWeight: 'bold' }}
+            />
+          )}
           <Chip
             label={group.type === 'global' ? 'Global' : 'Custom'}
             size="small"

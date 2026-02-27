@@ -11,9 +11,29 @@ use Src\Domain\Chat\Models\ChatMessageRead;
 
 class ChatMessageController
 {
+    /**
+     * Resolve a chat group: first try company-scoped, then for owners try super admin groups.
+     */
+    private function resolveGroup(int $id): ChatGroup
+    {
+        $group = ChatGroup::currentCompany()->find($id);
+
+        if (! $group && auth()->user()->hasRole('owner')) {
+            $group = ChatGroup::whereNull('company_id')
+                ->forUser(auth()->id())
+                ->find($id);
+        }
+
+        if (! $group) {
+            abort(404, 'Group not found.');
+        }
+
+        return $group;
+    }
+
     public function index(int $id): AnonymousResourceCollection
     {
-        $group = ChatGroup::currentCompany()->findOrFail($id);
+        $group = $this->resolveGroup($id);
 
         $query = ChatMessage::forGroup($group->id)
             ->recent()
@@ -34,13 +54,20 @@ class ChatMessageController
 
     public function store(int $id, SendMessageData $data): ChatMessageResource
     {
-        $group = ChatGroup::currentCompany()->findOrFail($id);
+        $group = $this->resolveGroup($id);
+
+        // In super admin groups with unilateral mode, only super_admin can write
+        if ($group->company_id === null && $group->isUnilateral()) {
+            if (! auth()->user()->hasRole('super_admin')) {
+                abort(403, 'Only administrators can send messages in this group.');
+            }
+        }
 
         $message = ChatMessage::create([
             'chat_group_id' => $group->id,
             'user_id' => auth()->id(),
             'body' => $data->body,
-            'company_id' => auth()->user()->company_id,
+            'company_id' => $group->company_id,
         ]);
 
         $message->load('sender');
@@ -56,7 +83,7 @@ class ChatMessageController
 
     public function markAsRead(int $id): void
     {
-        $group = ChatGroup::currentCompany()->findOrFail($id);
+        $group = $this->resolveGroup($id);
 
         $lastMessage = ChatMessage::forGroup($group->id)
             ->orderBy('id', 'desc')

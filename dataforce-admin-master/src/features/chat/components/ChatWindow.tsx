@@ -37,7 +37,13 @@ export function ChatWindow({
   const markReadMutation = useMarkAsReadMutation();
 
   const userIsAdmin = (roles ?? []).some((r: string) => ADMIN_ROLES.includes(r));
-  const canWrite = group.mode === 'bidirectional' || userIsAdmin;
+  const isSuperAdminGroup = group.is_super_admin_group === true;
+  // In super admin groups, owners can write only if bidirectional (super_admin is the "admin" here)
+  const canWrite = isSuperAdminGroup
+    ? group.mode === 'bidirectional' || (roles ?? []).includes('super_admin')
+    : group.mode === 'bidirectional' || userIsAdmin;
+  // Owners can't manage super admin groups
+  const showAdminButtons = isAdmin && !isSuperAdminGroup;
 
   // Mark as read when opening
   useEffect(() => {
@@ -70,6 +76,14 @@ export function ChatWindow({
             <Typography variant="subtitle1" fontWeight="bold">
               {group.name}
             </Typography>
+            {isSuperAdminGroup && (
+              <Chip
+                label="BosMetrics"
+                size="small"
+                color="secondary"
+                sx={{ height: 20, fontSize: 11, fontWeight: 'bold' }}
+              />
+            )}
             <Chip
               label={group.type === 'global' ? 'Global' : 'Custom'}
               size="small"
@@ -90,7 +104,7 @@ export function ChatWindow({
           </Typography>
         </Box>
 
-        {isAdmin && (
+        {showAdminButtons && (
           <Stack direction="row" spacing={0.5}>
             <IconButton size="small" onClick={onManageMembers} title="Manage members">
               <Iconify icon="eva:people-outline" />

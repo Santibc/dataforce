@@ -23,20 +23,32 @@ class ChatGroupController
         $groups = ChatGroup::currentCompany()
             ->with(['latestMessage.sender', 'activeMembers'])
             ->withCount('activeMembers')
-            ->get()
-            ->map(function ($group) use ($userId) {
-                $readRecord = ChatMessageRead::where('chat_group_id', $group->id)
-                    ->where('user_id', $userId)
-                    ->first();
+            ->get();
 
-                $lastReadId = $readRecord?->last_read_message_id ?? 0;
+        // If the user is an owner, also include super admin groups they belong to
+        if (auth()->user()->hasRole('owner')) {
+            $saGroups = ChatGroup::whereNull('company_id')
+                ->forUser($userId)
+                ->with(['latestMessage.sender', 'activeMembers'])
+                ->withCount('activeMembers')
+                ->get();
 
-                $group->unread_count = $group->messages()
-                    ->where('id', '>', $lastReadId)
-                    ->count();
+            $groups = $groups->merge($saGroups);
+        }
 
-                return $group;
-            });
+        $groups = $groups->map(function ($group) use ($userId) {
+            $readRecord = ChatMessageRead::where('chat_group_id', $group->id)
+                ->where('user_id', $userId)
+                ->first();
+
+            $lastReadId = $readRecord?->last_read_message_id ?? 0;
+
+            $group->unread_count = $group->messages()
+                ->where('id', '>', $lastReadId)
+                ->count();
+
+            return $group;
+        });
 
         return ChatGroupResource::collection($groups);
     }
@@ -169,12 +181,20 @@ class ChatGroupController
         $userId = auth()->id();
         $companyId = auth()->user()->company_id;
 
-        $groups = ChatGroup::where('company_id', $companyId)->pluck('id');
+        $groupIds = ChatGroup::where('company_id', $companyId)->pluck('id');
+
+        // If owner, also include super admin groups they belong to
+        if (auth()->user()->hasRole('owner')) {
+            $saGroupIds = ChatGroup::whereNull('company_id')
+                ->forUser($userId)
+                ->pluck('id');
+            $groupIds = $groupIds->merge($saGroupIds);
+        }
 
         $unreadData = [];
         $totalUnread = 0;
 
-        foreach ($groups as $groupId) {
+        foreach ($groupIds as $groupId) {
             $readRecord = ChatMessageRead::where('chat_group_id', $groupId)
                 ->where('user_id', $userId)
                 ->first();

@@ -70,6 +70,9 @@ const withLoadingSpinner = (Component: ElementType) => (props: any) =>
 const LazyChatPage = withLoadingSpinner(
   lazy(() => import('src/features/chat/ChatPage'))
 );
+const LazySuperAdminChatPage = withLoadingSpinner(
+  lazy(() => import('src/features/super-admin-chat/SuperAdminChatPage'))
+);
 const LazyPage404 = withLoadingScreen(lazy(() => import('../pages/Page404')));
 const LazyLoginPage = withLoadingScreen(lazy(() => import('src/features/auth/login/LoginPage')));
 const LazySuccessPaymentPage = withLoadingScreen(
@@ -155,6 +158,7 @@ const ROUTES: RouteObject[] = [
           { path: 'jobsite/:id', element: <SuperAdminEditJobsitePage /> },
           { path: 'user/:id', element: <SuperAdminEditUserPage /> },
           { path: 'companyinfo/:id', element: <SuperAdminInfoUpdatePage /> },
+          { path: 'chat', element: <LazySuperAdminChatPage /> },
         ],
       },
 

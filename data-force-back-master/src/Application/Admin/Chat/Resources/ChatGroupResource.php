@@ -25,6 +25,7 @@ class ChatGroupResource extends JsonResource
                 'created_at' => $latestMessage->created_at,
             ] : null,
             'unread_count' => $this->unread_count ?? 0,
+            'is_super_admin_group' => $this->company_id === null,
             'created_at' => $this->created_at,
         ];
     }

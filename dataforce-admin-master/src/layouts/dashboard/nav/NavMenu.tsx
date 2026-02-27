@@ -1,6 +1,8 @@
-import { Box, Popover, Typography } from '@mui/material';
+import { Badge, Box, Popover, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router';
+import { useUnreadCountsQuery } from 'src/api/chatRepository';
+import { useSAUnreadCountsQuery } from 'src/api/superAdminChatRepository';
 import { useAuthContext } from 'src/features/auth/useAuthContext';
 import AnalyticsIcon from 'src/features/icons/AnalyticsIcon';
 import Calendar from 'src/features/icons/Calendar';
@@ -30,6 +32,7 @@ const NavMenuCompany = () => {
   const [open, setOpen] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const navigate = useNavigate();
+  const { data: unreadData } = useUnreadCountsQuery();
   return (
     <Box
       sx={{
@@ -157,7 +160,11 @@ const NavMenuCompany = () => {
       </Box>
       <Box>
         <NavMenuButton
-          icon={<MessageIcon />}
+          icon={
+            <Badge badgeContent={unreadData?.total_unread || 0} color="error">
+              <MessageIcon />
+            </Badge>
+          }
           text="Chat"
           selected={false}
           onClick={() => {
@@ -171,6 +178,7 @@ const NavMenuCompany = () => {
 
 const NavMenuSuperAdmin = () => {
   const navigation = useNavigate();
+  const { data: saUnreadData } = useSAUnreadCountsQuery();
   return (
     <Box
       sx={{
@@ -192,11 +200,15 @@ const NavMenuSuperAdmin = () => {
       </Box>
       <Box>
         <NavMenuButton
-          icon={<MessageIcon />}
+          icon={
+            <Badge badgeContent={saUnreadData?.total_unread || 0} color="error">
+              <MessageIcon />
+            </Badge>
+          }
           text="Chat"
           selected={false}
           onClick={() => {
-            navigation(PATHS.dashboard.chat.root);
+            navigation(PATHS.superAdmin.chat);
           }}
         />
       </Box>

@@ -27,6 +27,7 @@ export interface IChatGroup {
   members_count: number;
   last_message: IChatLastMessage | null;
   unread_count: number;
+  is_super_admin_group?: boolean;
   created_at: string;
 }
 

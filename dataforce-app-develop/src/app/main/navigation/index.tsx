@@ -5,6 +5,7 @@ import { useTheme } from '@vadiun/react-native-eevee';
 import { PerformanceNavigation } from 'app/performance/navigation';
 import { CoachingNavigation } from 'app/coaching/navigation';
 import { ChatNavigation } from 'app/chat/navigation';
+import { useUnreadCountsQuery } from 'app/api/chatRepository';
 import * as Notifications from 'expo-notifications';
 import { httpClient } from '../services/httpClient';
 import { usePushNotificationNavigation } from 'app/hooks/usePushNotificationNavigation';
@@ -22,6 +23,7 @@ const Tab = createMaterialBottomTabNavigator<RootNavigationType>();
 
 export const MainNavigation = () => {
   const theme = useTheme();
+  const { data: unreadData } = useUnreadCountsQuery();
   usePushNotificationNavigation();
 
   useEffect(() => {
@@ -67,7 +69,11 @@ export const MainNavigation = () => {
       <Tab.Screen
         name="chatRoot"
         component={ChatNavigation}
-        options={{ tabBarIcon: 'message-text-outline', tabBarLabel: 'Chat' }}
+        options={{
+          tabBarIcon: 'message-text-outline',
+          tabBarLabel: 'Chat',
+          tabBarBadge: unreadData?.total_unread ? unreadData.total_unread : undefined,
+        }}
       />
       <Tab.Screen
         name="profileRoot"

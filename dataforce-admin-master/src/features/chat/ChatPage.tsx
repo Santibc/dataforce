@@ -13,6 +13,7 @@ import { ChatGroupCreateDialog } from './components/ChatGroupCreateDialog';
 import { ChatGroupDeleteDialog } from './components/ChatGroupDeleteDialog';
 import { ChatGroupEditDialog } from './components/ChatGroupEditDialog';
 import { ChatGroupMembersDialog } from './components/ChatGroupMembersDialog';
+import { ChatContactAdminDialog } from './components/ChatContactAdminDialog';
 import { ChatSidebar } from './components/ChatSidebar';
 import { ChatWindow } from './components/ChatWindow';
 
@@ -26,6 +27,7 @@ export function ChatPage() {
 
   // Dialogs
   const [createOpen, setCreateOpen] = useState(false);
+  const [contactAdminOpen, setContactAdminOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [membersOpen, setMembersOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -62,6 +64,7 @@ export function ChatPage() {
           selectedGroupId={selectedGroupId}
           onSelectGroup={handleSelectGroup}
           onCreateGroup={() => setCreateOpen(true)}
+          onContactAdmin={() => setContactAdminOpen(true)}
           isAdmin={isAdmin}
           loading={groupsLoading}
         />
@@ -86,6 +89,12 @@ export function ChatPage() {
 
       {/* Dialogs */}
       <ChatGroupCreateDialog open={createOpen} onClose={() => setCreateOpen(false)} />
+
+      <ChatContactAdminDialog
+        open={contactAdminOpen}
+        onClose={() => setContactAdminOpen(false)}
+        onCreated={(id) => setSelectedGroupId(id)}
+      />
 
       <ChatGroupEditDialog
         open={editOpen}

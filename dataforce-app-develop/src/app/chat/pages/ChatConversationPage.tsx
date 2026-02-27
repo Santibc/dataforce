@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  KeyboardAvoidingView,
+  Keyboard,
   Platform,
   StyleSheet,
   View,
@@ -100,6 +100,17 @@ const ChatConversationPage: React.FC = () => {
     prevLengthRef.current = messages?.length ?? 0;
   }, [messages?.length]);
 
+  // On Android, scroll to end when keyboard opens so input stays visible
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = Keyboard.addListener('keyboardDidShow', () => {
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({ animated: true });
+      }, 150);
+    });
+    return () => sub.remove();
+  }, []);
+
   const handleSend = (body: string) => {
     sendMutation.mutate({ groupId, body });
   };
@@ -132,11 +143,7 @@ const ChatConversationPage: React.FC = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="padding"
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
-    >
+    <View style={styles.container}>
       {isLoading && !messages ? (
         <View style={styles.center}>
           <ActivityIndicator size="large" color="#4478C1" />
@@ -154,6 +161,8 @@ const ChatConversationPage: React.FC = () => {
           keyExtractor={(item) => item.key}
           renderItem={renderItem}
           contentContainerStyle={{ paddingVertical: 8 }}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="interactive"
           onContentSizeChange={() => {
             flatListRef.current?.scrollToEnd({ animated: false });
           }}
@@ -165,7 +174,7 @@ const ChatConversationPage: React.FC = () => {
         disabled={isUnilateral}
         loading={sendMutation.isPending}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 

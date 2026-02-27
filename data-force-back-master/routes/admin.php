@@ -78,6 +78,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin|admin|owner|man
     // ------------------------------ CHAT --------------------------------
     Route::get('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'index']);
     Route::post('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'store']);
+    Route::post('chat-groups/contact-admin', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'contactAdmin']);
     Route::get('chat-groups/unread-counts', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'unreadCounts']);
     Route::get('chat-groups/{id}', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'show']);
     Route::put('chat-groups/{id}', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'update']);

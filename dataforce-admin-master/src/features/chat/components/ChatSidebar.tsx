@@ -3,6 +3,7 @@ import {
   Button,
   Chip,
   Divider,
+  IconButton,
   InputAdornment,
   List,
   Stack,
@@ -19,6 +20,7 @@ interface ChatSidebarProps {
   selectedGroupId: number | null;
   onSelectGroup: (id: number) => void;
   onCreateGroup: () => void;
+  onContactAdmin?: () => void;
   isAdmin: boolean;
   loading?: boolean;
 }
@@ -28,6 +30,7 @@ export function ChatSidebar({
   selectedGroupId,
   onSelectGroup,
   onCreateGroup,
+  onContactAdmin,
   isAdmin,
   loading,
 }: ChatSidebarProps) {
@@ -52,7 +55,7 @@ export function ChatSidebar({
     return { saGroups: sa, companyGroups: company };
   }, [groups, search]);
 
-  const hasSaGroups = saGroups.length > 0;
+  const showSaSection = saGroups.length > 0 || !!onContactAdmin;
 
   return (
     <Stack
@@ -114,7 +117,7 @@ export function ChatSidebar({
         )}
 
         {/* Super Admin Groups Section */}
-        {hasSaGroups && (
+        {showSaSection && (
           <>
             <Stack
               direction="row"
@@ -123,9 +126,14 @@ export function ChatSidebar({
               sx={{ px: 1, pt: 1.5, pb: 0.5 }}
             >
               <Iconify icon="mdi:shield-crown-outline" sx={{ color: 'primary.main', width: 18 }} />
-              <Typography variant="caption" fontWeight="bold" color="primary.main">
+              <Typography variant="caption" fontWeight="bold" color="primary.main" sx={{ flexGrow: 1 }}>
                 BosMetrics Admin
               </Typography>
+              {onContactAdmin && (
+                <IconButton size="small" onClick={onContactAdmin} title="Contact BosMetrics Admin" sx={{ color: 'primary.main' }}>
+                  <Iconify icon="mdi:message-plus-outline" width={18} />
+                </IconButton>
+              )}
             </Stack>
 
             {saGroups.map((group) => (

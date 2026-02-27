@@ -10,8 +10,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "icon": "./src/assets/logo2.png",
     "android": {
-      "package": "com.dataforce.bosmetrics"
+      "package": "com.dataforce.bosmetrics",
+      "softwareKeyboardLayoutMode": "resize",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/logo2.png",
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "ios": {
       "associatedDomains": [

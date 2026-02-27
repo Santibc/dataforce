@@ -4,6 +4,7 @@ namespace Src\Application\Admin\Chat\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Src\Application\Admin\Chat\Data\AddMembersData;
+use Src\Application\Admin\Chat\Data\ContactAdminData;
 use Src\Application\Admin\Chat\Data\RemoveMembersData;
 use Src\Application\Admin\Chat\Data\StoreChatGroupData;
 use Src\Application\Admin\Chat\Data\UpdateChatGroupData;
@@ -103,6 +104,34 @@ class ChatGroupController
                     ]);
                 }
             }
+        });
+
+        $group->load(['users', 'creator']);
+
+        return new ChatGroupDetailResource($group);
+    }
+
+    public function contactAdmin(ContactAdminData $data): ChatGroupDetailResource
+    {
+        $group = null;
+
+        \DB::transaction(function () use ($data, &$group): void {
+            $group = ChatGroup::create([
+                'name' => $data->name,
+                'type' => 'custom',
+                'mode' => 'bidirectional',
+                'auto_add_new_members' => false,
+                'show_history_to_new_members' => true,
+                'company_id' => null,
+                'created_by' => auth()->id(),
+            ]);
+
+            // Add the creator (owner) as a member
+            ChatGroupMember::create([
+                'chat_group_id' => $group->id,
+                'user_id' => auth()->id(),
+                'joined_at' => now(),
+            ]);
         });
 
         $group->load(['users', 'creator']);

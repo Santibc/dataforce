@@ -141,6 +141,11 @@ export class ChatRepository {
     const { data } = await httpClient.get<IUnreadCounts>('admin/chat-groups/unread-counts');
     return data;
   };
+
+  contactAdmin = async (name: string) => {
+    const { data } = await httpClient.post<IChatGroupDetail>('admin/chat-groups/contact-admin', { name });
+    return data;
+  };
 }
 
 const repo = new ChatRepository();
@@ -239,6 +244,16 @@ export const useSendMessageMutation = () => {
     onSuccess: (_, variables) => {
       qc.invalidateQueries(repo.keys.messages(variables.groupId));
       qc.invalidateQueries(repo.keys.unreadCounts());
+      qc.invalidateQueries(repo.keys.groups());
+    },
+  });
+};
+
+export const useContactAdminMutation = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: repo.contactAdmin,
+    onSuccess: () => {
       qc.invalidateQueries(repo.keys.groups());
     },
   });

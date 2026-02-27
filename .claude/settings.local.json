@@ -101,7 +101,11 @@
       "WebFetch(domain:kirillzyusko.github.io)",
       "Bash(JAVA_HOME=\"$HOME/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew bundleRelease)",
       "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew bundleRelease)",
-      "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew assembleRelease)"
+      "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew assembleRelease)",
+      "Bash(grep -A 20 \"INSERT INTO \\\\`model_has_roles\\\\`\" data_force.sql)",
+      "Bash(grep -o \"3,''Src\\\\\\\\Domain\\\\\\\\User\\\\\\\\Models\\\\\\\\User'',[0-9]*\" data_force.sql)",
+      "Bash(grep \"INSERT INTO \\\\`users\\\\`\" data_force.sql)",
+      "Read(//tmp/**)"
     ]
   }
 }

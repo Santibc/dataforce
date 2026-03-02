@@ -105,7 +105,22 @@
       "Bash(grep -A 20 \"INSERT INTO \\\\`model_has_roles\\\\`\" data_force.sql)",
       "Bash(grep -o \"3,''Src\\\\\\\\Domain\\\\\\\\User\\\\\\\\Models\\\\\\\\User'',[0-9]*\" data_force.sql)",
       "Bash(grep \"INSERT INTO \\\\`users\\\\`\" data_force.sql)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(ANDROID_HOME=\"C:/Users/santi/AppData/Local/Android/Sdk\" \"$ANDROID_HOME/emulator/emulator\" -list-avds)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/emulator/emulator.exe\" -list-avds)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe\" install -r f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/app-release.apk)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell getprop sys.boot_completed)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe\" uninstall com.dataforce.bosmetrics)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe\" install f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/app-release.apk)",
+      "Bash(\"C:/Users/santi/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell am start -n com.dataforce.bosmetrics/.MainActivity)",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -list -v -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -storepass 'Bosmetrics2024!' -alias bosmetrics)",
+      "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew --stop)",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -genkeypair -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass 'Bosmetrics2024!' -keypass 'Bosmetrics2024!' -alias bosmetrics -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -dname \"CN=BosMetrics, OU=BosMetrics, O=BosMetrics, L=Unknown, ST=Unknown, C=US\")",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -list -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -storepass 'Bosmetrics2024!')",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -genkeypair -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass Bosmetrics2024 -keypass Bosmetrics2024 -alias bosmetrics -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -dname \"CN=BosMetrics, OU=BosMetrics, O=BosMetrics, L=Unknown, ST=Unknown, C=US\")",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -list -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -storepass Bosmetrics2024)",
+      "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew bundleRelease assembleRelease)",
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -export -rfc -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -alias bosmetrics -storepass Bosmetrics2024 -file \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/upload_certificate.pem\")"
     ]
   }
 }

@@ -120,7 +120,10 @@
       "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -genkeypair -v -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -storepass Bosmetrics2024 -keypass Bosmetrics2024 -alias bosmetrics -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -dname \"CN=BosMetrics, OU=BosMetrics, O=BosMetrics, L=Unknown, ST=Unknown, C=US\")",
       "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -list -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -storepass Bosmetrics2024)",
       "Bash(JAVA_HOME=\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10\" ./gradlew bundleRelease assembleRelease)",
-      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -export -rfc -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -alias bosmetrics -storepass Bosmetrics2024 -file \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/upload_certificate.pem\")"
+      "Bash(\"C:/Users/santi/.gradle/jdks/eclipse_adoptium-17-amd64-windows/jdk-17.0.17+10/bin/keytool.exe\" -export -rfc -keystore \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/bosmetrics-release.keystore\" -alias bosmetrics -storepass Bosmetrics2024 -file \"f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/upload_certificate.pem\")",
+      "Bash(xargs grep -l \"users.*create\\\\|create.*user\")",
+      "Bash(xargs grep -l \"PATH_AFTER_LOGIN\")",
+      "Bash(xargs grep -l \"subscription\\\\|plan.*user\\\\|create.*user.*permission\\\\|owner.*create\")"
     ]
   }
 }

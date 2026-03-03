@@ -154,6 +154,8 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.jobsites.list,
       PATHS.dashboard.users.root,
       PATHS.dashboard.users.list,
+      PATHS.dashboard.users.create,
+      PATHS.dashboard.users.edit(':id'),
       PATHS.dashboard.coaching.root,
       PATHS.dashboard.performance.root,
       PATHS.dashboard.performance.list,

@@ -1,0 +1,231 @@
+[    1029ms] [WARNING] [MSW] Found a redundant "worker.stop()" call. Note that stopping the worker while mocking already stopped has no effect. Consider removing this "worker.stop()" call. @ http://localhost:5173/node_modules/.vite/deps/msw.js?v=1c387dd4:25303
+[    6792ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s%s <div> tbody   
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at tbody
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableBody2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10725:17)
+    at table
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Table2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10610:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableContainer2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10809:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at SchedulerPage (http://localhost:5173/src/features/scheduler/SchedulerPage.tsx?t=1772666556359:79:3)
+    at SchedulerMain (http://localhost:5173/src/features/scheduler/SchedulerMain.tsx?t=1772666556359:29:25)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at Main (http://localhost:5173/src/layouts/dashboard/Main.tsx:23:3)
+    at DashboardLayout (http://localhost:5173/src/layouts/dashboard/DashboardLayout.tsx:31:7)
+    at StripeGuard (http://localhost:5173/src/features/auth/StripeGuard.tsx:21:3)
+    at RoleBasedGuard (http://localhost:5173/src/features/auth/RoleBasedGuard.tsx:23:3)
+    at AuthGuard (http://localhost:5173/src/features/auth/AuthGuard.tsx:23:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at ConfirmActionProvider (http://localhost:5173/src/components/confirm-action/ConfirmAction.tsx:23:3)
+    at SnackbarProvider2 (http://localhost:5173/node_modules/.vite/deps/notistack.js?v=1c387dd4:1233:24)
+    at SnackbarProvider (http://localhost:5173/src/components/snackbar/SnackbarProvider.tsx:25:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeLocalization (http://localhost:5173/src/locales/ThemeLocalization.tsx:20:3)
+    at ThemeRtlLayout (http://localhost:5173/src/components/settings/ThemeRtlLayout.tsx:24:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeContrast (http://localhost:5173/src/components/settings/ThemeContrast.tsx:23:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeColorPresets (http://localhost:5173/src/components/settings/ThemeColorPresets.tsx:22:3)
+    at ThemeSettings (http://localhost:5173/src/components/settings/ThemeSettings.tsx:20:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at StyledEngineProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:977:5)
+    at ThemeProvider (http://localhost:5173/src/theme/index.tsx:28:3)
+    at div
+    at VisualElementHandler (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:290:28)
+    at MotionComponent (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:319:40)
+    at LazyMotion (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:6847:23)
+    at MotionLazyContainer (http://localhost:5173/src/components/animate/MotionLazyContainer.tsx:19:3)
+    at IntlProvider3 (http://localhost:5173/node_modules/.vite/deps/react-intl.js?v=1c387dd4:4259:45)
+    at AuthProvider (http://localhost:5173/src/features/auth/JwtContext.tsx:38:3)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at App
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:535:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3988:15)
+    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:352:5)
+    at SettingsProvider (http://localhost:5173/src/components/settings/SettingsContext.tsx:69:3)
+    at r2 (http://localhost:5173/node_modules/.vite/deps/react-helmet-async.js?v=1c387dd4:418:21)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=1c387dd4:2847:3) @ http://localhost:5173/node_modules/.vite/deps/chunk-GYWC62UC.js?v=1c387dd4:520
+[   51784ms] [WARNING] [MSW] Found a redundant "worker.stop()" call. Note that stopping the worker while mocking already stopped has no effect. Consider removing this "worker.stop()" call. @ http://localhost:5173/node_modules/.vite/deps/msw.js?v=1c387dd4:25303
+[   57874ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s%s <div> tbody   
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at tbody
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableBody2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10725:17)
+    at table
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Table2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10610:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableContainer2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10809:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at SchedulerPage (http://localhost:5173/src/features/scheduler/SchedulerPage.tsx?t=1772666659414:79:3)
+    at SchedulerMain (http://localhost:5173/src/features/scheduler/SchedulerMain.tsx?t=1772666659414:29:25)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at Main (http://localhost:5173/src/layouts/dashboard/Main.tsx:23:3)
+    at DashboardLayout (http://localhost:5173/src/layouts/dashboard/DashboardLayout.tsx:31:7)
+    at StripeGuard (http://localhost:5173/src/features/auth/StripeGuard.tsx:21:3)
+    at RoleBasedGuard (http://localhost:5173/src/features/auth/RoleBasedGuard.tsx:23:3)
+    at AuthGuard (http://localhost:5173/src/features/auth/AuthGuard.tsx:23:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at ConfirmActionProvider (http://localhost:5173/src/components/confirm-action/ConfirmAction.tsx:23:3)
+    at SnackbarProvider2 (http://localhost:5173/node_modules/.vite/deps/notistack.js?v=1c387dd4:1233:24)
+    at SnackbarProvider (http://localhost:5173/src/components/snackbar/SnackbarProvider.tsx:25:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeLocalization (http://localhost:5173/src/locales/ThemeLocalization.tsx:20:3)
+    at ThemeRtlLayout (http://localhost:5173/src/components/settings/ThemeRtlLayout.tsx:24:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeContrast (http://localhost:5173/src/components/settings/ThemeContrast.tsx:23:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeColorPresets (http://localhost:5173/src/components/settings/ThemeColorPresets.tsx:22:3)
+    at ThemeSettings (http://localhost:5173/src/components/settings/ThemeSettings.tsx:20:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at StyledEngineProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:977:5)
+    at ThemeProvider (http://localhost:5173/src/theme/index.tsx:28:3)
+    at div
+    at VisualElementHandler (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:290:28)
+    at MotionComponent (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:319:40)
+    at LazyMotion (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:6847:23)
+    at MotionLazyContainer (http://localhost:5173/src/components/animate/MotionLazyContainer.tsx:19:3)
+    at IntlProvider3 (http://localhost:5173/node_modules/.vite/deps/react-intl.js?v=1c387dd4:4259:45)
+    at AuthProvider (http://localhost:5173/src/features/auth/JwtContext.tsx:38:3)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at App
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:535:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3988:15)
+    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:352:5)
+    at SettingsProvider (http://localhost:5173/src/components/settings/SettingsContext.tsx:69:3)
+    at r2 (http://localhost:5173/node_modules/.vite/deps/react-helmet-async.js?v=1c387dd4:418:21)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=1c387dd4:2847:3) @ http://localhost:5173/node_modules/.vite/deps/chunk-GYWC62UC.js?v=1c387dd4:520
+[  213261ms] [WARNING] [MSW] Found a redundant "worker.stop()" call. Note that stopping the worker while mocking already stopped has no effect. Consider removing this "worker.stop()" call. @ http://localhost:5173/node_modules/.vite/deps/msw.js?v=1c387dd4:25303
+[  219363ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s%s <div> tbody   
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at tbody
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableBody2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10725:17)
+    at table
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Table2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10610:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at TableContainer2 (http://localhost:5173/node_modules/.vite/deps/@mui_material.js?v=1c387dd4:10809:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Paper2 (http://localhost:5173/node_modules/.vite/deps/chunk-7W2A4ODB.js?v=1c387dd4:336:17)
+    at div
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at SchedulerPage (http://localhost:5173/src/features/scheduler/SchedulerPage.tsx?t=1772666793260:79:3)
+    at SchedulerMain (http://localhost:5173/src/features/scheduler/SchedulerMain.tsx?t=1772666793260:29:25)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at main
+    at http://localhost:5173/node_modules/.vite/deps/chunk-3J7BVSSO.js?v=1c387dd4:437:45
+    at Box3 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:2988:19)
+    at Main (http://localhost:5173/src/layouts/dashboard/Main.tsx:23:3)
+    at DashboardLayout (http://localhost:5173/src/layouts/dashboard/DashboardLayout.tsx:31:7)
+    at StripeGuard (http://localhost:5173/src/features/auth/StripeGuard.tsx:21:3)
+    at RoleBasedGuard (http://localhost:5173/src/features/auth/RoleBasedGuard.tsx:23:3)
+    at AuthGuard (http://localhost:5173/src/features/auth/AuthGuard.tsx:23:3)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at Outlet (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3981:26)
+    at ConfirmActionProvider (http://localhost:5173/src/components/confirm-action/ConfirmAction.tsx:23:3)
+    at SnackbarProvider2 (http://localhost:5173/node_modules/.vite/deps/notistack.js?v=1c387dd4:1233:24)
+    at SnackbarProvider (http://localhost:5173/src/components/snackbar/SnackbarProvider.tsx:25:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeLocalization (http://localhost:5173/src/locales/ThemeLocalization.tsx:20:3)
+    at ThemeRtlLayout (http://localhost:5173/src/components/settings/ThemeRtlLayout.tsx:24:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeContrast (http://localhost:5173/src/components/settings/ThemeContrast.tsx:23:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at ThemeColorPresets (http://localhost:5173/src/components/settings/ThemeColorPresets.tsx:22:3)
+    at ThemeSettings (http://localhost:5173/src/components/settings/ThemeSettings.tsx:20:3)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3405:5)
+    at ThemeProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:3464:5)
+    at ThemeProvider (http://localhost:5173/node_modules/.vite/deps/chunk-ZLLQJHZF.js?v=1c387dd4:304:12)
+    at StyledEngineProvider (http://localhost:5173/node_modules/.vite/deps/chunk-WMEZNR7D.js?v=1c387dd4:977:5)
+    at ThemeProvider (http://localhost:5173/src/theme/index.tsx:28:3)
+    at div
+    at VisualElementHandler (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:290:28)
+    at MotionComponent (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:319:40)
+    at LazyMotion (http://localhost:5173/node_modules/.vite/deps/framer-motion.js?v=1c387dd4:6847:23)
+    at MotionLazyContainer (http://localhost:5173/src/components/animate/MotionLazyContainer.tsx:19:3)
+    at IntlProvider3 (http://localhost:5173/node_modules/.vite/deps/react-intl.js?v=1c387dd4:4259:45)
+    at AuthProvider (http://localhost:5173/src/features/auth/JwtContext.tsx:38:3)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at App
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3547:5)
+    at RenderErrorBoundary (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3507:5)
+    at DataRoutes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:535:5)
+    at Router (http://localhost:5173/node_modules/.vite/deps/chunk-PB2LIAU6.js?v=1c387dd4:3988:15)
+    at RouterProvider (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1c387dd4:352:5)
+    at SettingsProvider (http://localhost:5173/src/components/settings/SettingsContext.tsx:69:3)
+    at r2 (http://localhost:5173/node_modules/.vite/deps/react-helmet-async.js?v=1c387dd4:418:21)
+    at LocalizationProvider2 (http://localhost:5173/node_modules/.vite/deps/chunk-OIUZHPCY.js?v=1c387dd4:35:17)
+    at QueryClientProvider (http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=1c387dd4:2847:3) @ http://localhost:5173/node_modules/.vite/deps/chunk-GYWC62UC.js?v=1c387dd4:520

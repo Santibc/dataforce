@@ -610,10 +610,10 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
           </Box>
         </Box>
         <TableContainer component={Paper} sx={{ maxHeight: 700 }}>
-          <Table sx={{ minWidth: 650 }}>
-            <TableHead sx={{ position: 'sticky', top: 0, zIndex: 2 }}>
+          <Table stickyHeader sx={{ minWidth: 650 }}>
+            <TableHead>
               <TableRow>
-                <TableCell sx={{ borderBottom: '1px solid #e0e0e0', background: '#fff' }} width={'100px'}>
+                <TableCell sx={{ borderBottom: '1px solid #e0e0e0', backgroundColor: '#fff' }} width={'100px'}>
                   Custom
                 </TableCell>
                 {timelineHeaders.map((header, index: number) => (
@@ -621,8 +621,8 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                     align="left"
                     sx={{
                       borderBottom: '1px solid #e5e8eb',
-                      background: moment(header).format('ddd D') == moment().format('ddd D')
-                        ? '#e5e8ef'
+                      backgroundColor: moment(header).format('ddd D') == moment().format('ddd D')
+                        ? '#e5e8ef !important'
                         : '#fff',
                     }}
                     key={index}
@@ -820,13 +820,13 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                 ))}
               <Box sx={{ display: 'flex', paddingTop: isScheduleJobsitesDataLoading ? `${67.6 * usersInJobsite.length}px` : ' 0px' }} />
             </TableBody>
-            <TableFooter sx={{ position: 'sticky', bottom: 0, zIndex: 2, '& td, & th': { background: '#f4f6f8' } }}>
+            <TableFooter>
               <TableRow key={1}>
                 <TableCell
                   component="th"
                   scope="row"
                   width={'170px'}
-                  sx={{ background: '#f4f6f8' }}
+                  sx={{ position: 'sticky', bottom: 0, zIndex: 2, backgroundColor: '#f4f6f8' }}
                 >
 
                   <Box
@@ -855,10 +855,13 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                       key={index}
                       align="center"
                       sx={{
+                        position: 'sticky',
+                        bottom: 0,
+                        zIndex: 2,
                         border: '1px solid #e5e8eb',
                         fontSize: '1rem',
                         borderTop: 'none',
-                        background: '#f4f6f8',
+                        backgroundColor: '#f4f6f8',
                       }}
                     >
                       {getCantidadHorasByColumn(data.map(x => x?.completedShifts), index)}

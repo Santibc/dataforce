@@ -391,7 +391,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
           </Box>
         </Paper>
       )}
-      <Paper elevation={11} sx={{ borderRadius: '1rem' }} id='printable-content'>
+      <Paper elevation={11} sx={{ borderRadius: '1rem', overflow: 'hidden' }} id='printable-content'>
         <Box
           sx={{
             display: 'flex',
@@ -609,11 +609,11 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
             </Popover>
           </Box>
         </Box>
-        <TableContainer component={Paper} sx={{ maxHeight: 700 }}>
+        <TableContainer sx={{ maxHeight: 700, overflow: 'auto' }}>
           <Table stickyHeader sx={{ minWidth: 650 }}>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ borderBottom: '1px solid #e0e0e0', backgroundColor: '#fff' }} width={'100px'}>
+                <TableCell sx={{ borderBottom: '1px solid #e0e0e0', backgroundColor: '#fff', backgroundImage: 'none', zIndex: 11 }} width={'100px'}>
                   Custom
                 </TableCell>
                 {timelineHeaders.map((header, index: number) => (
@@ -621,8 +621,10 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                     align="left"
                     sx={{
                       borderBottom: '1px solid #e5e8eb',
+                      backgroundImage: 'none',
+                      zIndex: 11,
                       backgroundColor: moment(header).format('ddd D') == moment().format('ddd D')
-                        ? '#e5e8ef !important'
+                        ? '#e5e8ef'
                         : '#fff',
                     }}
                     key={index}

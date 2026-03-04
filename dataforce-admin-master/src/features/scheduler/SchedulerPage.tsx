@@ -820,7 +820,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                 ))}
               <Box sx={{ display: 'flex', paddingTop: isScheduleJobsitesDataLoading ? `${67.6 * usersInJobsite.length}px` : ' 0px' }} />
             </TableBody>
-            <TableFooter sx={{ position: 'sticky', bottom: 0, zIndex: 2 }}>
+            <TableFooter sx={{ position: 'sticky', bottom: 0, zIndex: 2, '& td, & th': { background: '#f4f6f8' } }}>
               <TableRow key={1}>
                 <TableCell
                   component="th"

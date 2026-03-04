@@ -43,7 +43,7 @@
     "react-native-gesture-handler": "~2.24.0",
     "react-native-modal": "^13.0.1",
     "react-native-modalfy": "^2.1.2",
-    "react-native-pager-view": "6.5.1",
+    "react-native-pager-view": "^6.9.1",
     "react-native-paper": "^4.10.1",
     "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "5.4.0",

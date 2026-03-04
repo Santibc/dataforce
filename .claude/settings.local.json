@@ -144,7 +144,9 @@
       "Bash(\"$READELF\" -l /tmp/aab_check/aab_extracted/base/lib/arm64-v8a/libreactnative.so)",
       "Bash(\"$READELF\" -l /tmp/aab_check/aab_extracted/base/lib/arm64-v8a/libexpo-modules-core.so)",
       "Bash(JAVA_HOME=\"/f/Android/jbr\" ANDROID_HOME=\"$LOCALAPPDATA/Android/Sdk\" ./gradlew dependencies --configuration releaseRuntimeClasspath)",
-      "WebFetch(domain:www.creolestudios.com)"
+      "WebFetch(domain:www.creolestudios.com)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ANDROID_HOME=\"$LOCALAPPDATA/Android/Sdk\" ./gradlew clean bundleRelease)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew assembleRelease)"
     ]
   }
 }

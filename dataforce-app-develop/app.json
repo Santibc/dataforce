@@ -13,6 +13,7 @@
     "icon": "./src/assets/logo2.png",
     "android": {
       "package": "com.dataforce.bosmetrics",
+      "versionCode": 5,
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo2.png",

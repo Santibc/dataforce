@@ -146,7 +146,23 @@
       "Bash(JAVA_HOME=\"/f/Android/jbr\" ANDROID_HOME=\"$LOCALAPPDATA/Android/Sdk\" ./gradlew dependencies --configuration releaseRuntimeClasspath)",
       "WebFetch(domain:www.creolestudios.com)",
       "Bash(JAVA_HOME=\"/f/Android/jbr\" ANDROID_HOME=\"$LOCALAPPDATA/Android/Sdk\" ./gradlew clean bundleRelease)",
-      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew assembleRelease)"
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew assembleRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew assembleRelease -x lint -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe logcat -d -s ReactNativeJS:* ReactNative:* AndroidRuntime:*)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe logcat -c)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe logcat -s ReactNativeJS:* ReactNative:* AndroidRuntime:*)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/../../../.local/bin/python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d[''version'']\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/node_modules/react-native-tab-view/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/node_modules/react-native-modal/package.json''\\).version\\)\")",
+      "Bash(node -e \"const p = require\\(''f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/node_modules/@react-navigation/material-top-tabs/package.json''\\); console.log\\(''version:'', p.version\\); console.log\\(''deps:'', JSON.stringify\\(p.dependencies, null, 2\\)\\)\")",
+      "Bash(node -e \":*)",
+      "Bash(node -e \"const v=JSON.parse\\(require\\(''fs''\\).readFileSync\\(0,''utf8''\\)\\); const stable=v.filter\\(x=>!x.includes\\(''rc''\\)&&!x.includes\\(''alpha''\\)&&!x.includes\\(''beta''\\)\\); console.log\\(''Latest stable:'', stable[stable.length-1]\\)\")",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe install -r f:/xamppPro80/htdocs/dataforce/dataforce-app-develop/android/app/build/outputs/apk/release/app-release.apk)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe shell am force-stop com.dataforce.bosmetrics)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe shell am start -n com.dataforce.bosmetrics/.MainActivity)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe logcat -d -s ReactNativeJS:E ReactNative:E AndroidRuntime:E)",
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew bundleRelease assembleRelease -x lint -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease)"
     ]
   }
 }

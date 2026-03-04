@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  IconButton,
   MenuItem,
   Modal,
   Paper,
@@ -26,6 +27,7 @@ import {
   IoChevronBackOutline,
   IoChevronDownOutline,
   IoChevronForward,
+  IoClose,
   IoFilter,
   IoWarning,
 } from 'react-icons/io5';
@@ -118,6 +120,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
   users
 }) => {
   const theme = useTheme();
+  const [showFilters, setShowFilters] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [openCopyPrevWeek, setOpenCopyPrevWeek] = React.useState(false);
@@ -316,61 +319,78 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingBottom: '2.5rem',
+          paddingBottom: '0.75rem',
         }}
       >
-        <Typography variant="h4">Schedule</Typography>
-        <Button
-          variant="contained"
-          disabled={haveNotPublished()}
-          sx={{
-            ':hover': { color: 'none', boxShadow: 'none' },
-            color: 'white',
-            fontSize: '14px',
-          }}
-          onClick={async () => {
-            confirm({
-              actionLabel: 'Publish',
-              color: 'primary',
-              action: async () => {
-                const positions = searchParams.get(PARAM_KEYS.FILTERS_POSITION);
-                const user = searchParams.get(PARAM_KEYS.FILTERS_USER);
-                const notUser = user === null || user === '' || user === 'All'
-                const notPosition = positions === null || positions === '' || positions === 'All'
-                const date = searchParams.get(PARAM_KEYS.DATE);
-                const isDay = searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === 'day'
-                await publishAllMutation.mutateAsync({
-                  from: isDay
-                    ? moment(date).set({ hour: 0, minute: 0, second: 0 }).format('YYYY-MM-DD HH:MM:SS')
-                    : getStartOfWeek(moment(date).set({ hour: 0, minute: 0, second: 0 })),
-                  to: isDay
-                    ? moment(date).set({ hour: 23, minute: 59, second: 59 }).format('YYYY-MM-DD HH:MM:SS')
-                    : getEndOfWeek(
-                      moment(date).set({ hour: 23, minute: 59, second: 59 }),
-                      searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === 'two weeks'
-                        ? 1
-                        : 0
-                    ),
-                  jobsite_id: filtersJobsite === null ? jobsites[0].id : Number(filtersJobsite),
-                  names: notPosition ? undefined : searchParams.get(PARAM_KEYS.FILTERS_POSITION)!.split(','),
-                  user_id: notUser ? undefined : Number(user)
-                })
-              },
-              content: 'Are you sure you want to publish all of this shift?',
-            })
-          }}
-        >
-          Publish & Notify
-        </Button>
-      </Box>
-      <Paper elevation={11} sx={{ p: '24px', mb: '1.25rem', borderRadius: '1rem' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Typography fontWeight={600} fontSize={'16px'} variant="subtitle1">
+        <Typography variant="h5">Schedule</Typography>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Button
+            variant={showFilters ? 'contained' : 'outlined'}
+            onClick={() => setShowFilters((prev) => !prev)}
+            startIcon={<IoFilter />}
+            sx={{ fontSize: '14px' }}
+          >
             Filters
-          </Typography>
-          <ScheduleFilters setSearchParams={setSearchParams} hf={hf} />
+          </Button>
+          <Button
+            variant="contained"
+            disabled={haveNotPublished()}
+            sx={{
+              ':hover': { color: 'none', boxShadow: 'none' },
+              color: 'white',
+              fontSize: '14px',
+            }}
+            onClick={async () => {
+              confirm({
+                actionLabel: 'Publish',
+                color: 'primary',
+                action: async () => {
+                  const positions = searchParams.get(PARAM_KEYS.FILTERS_POSITION);
+                  const user = searchParams.get(PARAM_KEYS.FILTERS_USER);
+                  const notUser = user === null || user === '' || user === 'All'
+                  const notPosition = positions === null || positions === '' || positions === 'All'
+                  const date = searchParams.get(PARAM_KEYS.DATE);
+                  const isDay = searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === 'day'
+                  await publishAllMutation.mutateAsync({
+                    from: isDay
+                      ? moment(date).set({ hour: 0, minute: 0, second: 0 }).format('YYYY-MM-DD HH:MM:SS')
+                      : getStartOfWeek(moment(date).set({ hour: 0, minute: 0, second: 0 })),
+                    to: isDay
+                      ? moment(date).set({ hour: 23, minute: 59, second: 59 }).format('YYYY-MM-DD HH:MM:SS')
+                      : getEndOfWeek(
+                        moment(date).set({ hour: 23, minute: 59, second: 59 }),
+                        searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === 'two weeks'
+                          ? 1
+                          : 0
+                      ),
+                    jobsite_id: filtersJobsite === null ? jobsites[0].id : Number(filtersJobsite),
+                    names: notPosition ? undefined : searchParams.get(PARAM_KEYS.FILTERS_POSITION)!.split(','),
+                    user_id: notUser ? undefined : Number(user)
+                  })
+                },
+                content: 'Are you sure you want to publish all of this shift?',
+              })
+            }}
+          >
+            Publish & Notify
+          </Button>
         </Box>
-      </Paper>
+      </Box>
+      {showFilters && (
+        <Paper elevation={11} sx={{ p: '16px', mb: '0.75rem', borderRadius: '1rem' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography fontWeight={600} fontSize={'16px'} variant="subtitle1">
+                Filters
+              </Typography>
+              <IconButton size="small" onClick={() => setShowFilters(false)}>
+                <IoClose />
+              </IconButton>
+            </Box>
+            <ScheduleFilters setSearchParams={setSearchParams} hf={hf} />
+          </Box>
+        </Paper>
+      )}
       <Paper elevation={11} sx={{ borderRadius: '1rem' }} id='printable-content'>
         <Box
           sx={{
@@ -800,7 +820,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                 ))}
               <Box sx={{ display: 'flex', paddingTop: isScheduleJobsitesDataLoading ? `${67.6 * usersInJobsite.length}px` : ' 0px' }} />
             </TableBody>
-            <TableFooter>
+            <TableFooter sx={{ position: 'sticky', bottom: 0, zIndex: 2 }}>
               <TableRow key={1}>
                 <TableCell
                   component="th"

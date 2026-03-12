@@ -162,7 +162,10 @@
       "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe shell am force-stop com.dataforce.bosmetrics)",
       "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe shell am start -n com.dataforce.bosmetrics/.MainActivity)",
       "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe logcat -d -s ReactNativeJS:E ReactNative:E AndroidRuntime:E)",
-      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew bundleRelease assembleRelease -x lint -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease)"
+      "Bash(JAVA_HOME=\"/f/Android/jbr\" ./gradlew bundleRelease assembleRelease -x lint -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease)",
+      "Bash(eas login)",
+      "Bash(eas build --platform ios --profile production --non-interactive)",
+      "Bash(eas init)"
     ]
   }
 }

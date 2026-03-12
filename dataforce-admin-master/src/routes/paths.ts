@@ -159,6 +159,8 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.coaching.root,
       PATHS.dashboard.performance.root,
       PATHS.dashboard.performance.list,
+      PATHS.dashboard.performance.peek(':id'),
+      PATHS.dashboard.dashboardPerformance.root,
       PATHS.dashboard.documents.root,
       PATHS.config.root,
       PATHS.config.company.root,

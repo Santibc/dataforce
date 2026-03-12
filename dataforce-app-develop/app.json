@@ -24,13 +24,14 @@
       "associatedDomains": [
         "applinks:dataforce-back.vadiun.net/"
       ],
-      "bundleIdentifier": "com.bosmetrics.app"
+      "bundleIdentifier": "com.bosmetrics.app",
+      "buildNumber": "7"
     },
     "extra": {
       "eas": {
-        "projectId": "d38bf493-9ef1-4a19-a773-1b60d1d31192"
+        "projectId": "50debfd6-90d8-46d0-bc64-55b464cca00b"
       }
     },
-    "owner": "vadiun"
+    "owner": "michcardenas"
   }
 }

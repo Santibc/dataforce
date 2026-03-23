@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep '\"\"laravel/framework\"\"' composer.json)",
+      "WebFetch(domain:job-logs.eascdn.net)",
+      "Bash(eas build:list --platform ios --limit 1 --json --non-interactive)",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);j[0].logFiles.forEach\\(u=>console.log\\(u\\)\\)}\\)\")",
+      "Bash(node -e \"const p=require\\(''./package.json''\\); console.log\\(''cli-platform-ios:'', p.dependencies[''@react-native-community/cli-platform-ios''] || p.devDependencies?.[''@react-native-community/cli-platform-ios''] || ''NOT FOUND''\\)\")",
+      "Bash(node -e \"const p = require.resolve\\(''@react-native-community/cli-platform-ios/package.json''\\); const dir = require\\(''path''\\).dirname\\(p\\); const fs = require\\(''fs''\\); console.log\\(''Files:'', fs.readdirSync\\(dir\\).join\\('', ''\\)\\); console.log\\(''Has native_modules:'', fs.existsSync\\(dir + ''/native_modules.rb''\\) || fs.existsSync\\(dir + ''/native_modules''\\)\\);\")",
+      "Bash(node -e \"try { const p = require.resolve\\(''react-native/scripts/react_native_pods''\\); console.log\\(''react_native_pods:'', p\\); } catch\\(e\\) { console.log\\(''not found''\\) }\")",
+      "Bash(node -e \"try { const dir = require\\(''path''\\).dirname\\(require.resolve\\(''expo/package.json''\\)\\); const fs = require\\(''fs''\\); const scripts = dir + ''/scripts''; if\\(fs.existsSync\\(scripts\\)\\) { console.log\\(''expo/scripts:'', fs.readdirSync\\(scripts\\).filter\\(f => f.includes\\(''native''\\) || f.includes\\(''autolink''\\)\\).join\\('', ''\\)\\); } } catch\\(e\\) { console.log\\(e.message\\) }\")",
+      "Bash(node -e \"const dir = require\\(''path''\\).dirname\\(require.resolve\\(''react-native/package.json''\\)\\); const fs = require\\(''fs''\\); const scripts = dir + ''/scripts''; if\\(fs.existsSync\\(scripts\\)\\) { console.log\\(fs.readdirSync\\(scripts\\).join\\('', ''\\)\\); }\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);const b=j[0];console.log\\(''''Status:'''', b.status\\);console.log\\(''''Error:'''', JSON.stringify\\(b.error\\)\\);console.log\\(''''Created:'''', b.createdAt\\)}\\)\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);const logs=j[0].logFiles;console.log\\(logs[logs.length-1]\\)}\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''path''\\).dirname\\(require.resolve\\(''react-native/package.json''\\)\\)\\)\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(JSON.stringify\\(j,null,2\\)\\)}\\)\")",
+      "Bash(eas build:list --platform ios --limit 1)",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);j[0].logFiles.forEach\\(\\(u,i\\)=>console.log\\(i\\)\\)}\\)\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(j[0].logFiles[2]\\)}\\)\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(j[0].logFiles[1]\\)}\\)\")",
+      "Bash(eas build:*)",
+      "Bash(eas submit:*)"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+# Git
+.git/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Testing
+__tests__/
+coverage/
+
+# Android build cache
+android/app/build/
+android/.gradle/
+
+# iOS - let EAS generate via expo prebuild on macOS
+ios/
+DerivedData/
+
+# Misc
+buck-out/
+.buckd/

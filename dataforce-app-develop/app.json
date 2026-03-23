@@ -21,9 +21,6 @@
       }
     },
     "ios": {
-      "associatedDomains": [
-        "applinks:dataforce-back.vadiun.net/"
-      ],
       "bundleIdentifier": "com.bosmetrics.app",
       "buildNumber": "7"
     },

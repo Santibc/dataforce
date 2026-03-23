@@ -8,8 +8,12 @@
       "distribution": "internal"
     },
     "production": {
+      "node": "18.18.0",
       "ios": {
         "buildConfiguration": "Release"
+      },
+      "env": {
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
       }
     }
   },

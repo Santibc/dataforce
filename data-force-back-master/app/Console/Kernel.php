@@ -23,6 +23,12 @@ class Kernel extends ConsoleKernel
     {
         // Send shift reminders daily at 3:00 PM
         $schedule->command('shifts:send-reminders')->dailyAt('15:00');
+
+        // Process pending shift publish notifications every 2 minutes
+        $schedule->command('shifts:send-publish-notifications --limit=20')
+            ->everyTwoMinutes()
+            ->withoutOverlapping()
+            ->runInBackground();
     }
 
     /**

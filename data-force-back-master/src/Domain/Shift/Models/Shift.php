@@ -25,12 +25,15 @@ class Shift extends Model
         'published',
         'confirmed',
         'delete_after_published',
+        'notified',
+        'published_by',
     ];
 
     protected $casts = [
         'from' => 'datetime',
         'to' => 'datetime',
         'confirmed' => 'boolean',
+        'notified' => 'boolean',
     ];
 
     public function newEloquentBuilder($query)
@@ -51,5 +54,10 @@ class Shift extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function publishedByUser()
+    {
+        return $this->belongsTo(User::class, 'published_by');
     }
 }

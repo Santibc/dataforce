@@ -19,7 +19,9 @@
       "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(j[0].logFiles[2]\\)}\\)\")",
       "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(j[0].logFiles[1]\\)}\\)\")",
       "Bash(eas build:*)",
-      "Bash(eas submit:*)"
+      "Bash(eas submit:*)",
+      "Bash(xargs grep:*)",
+      "Read(//f/xamppPro80/apache/conf/extra/**)"
     ]
   }
 }

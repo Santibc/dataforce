@@ -4,13 +4,9 @@ namespace Src\Application\Admin\Shift\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Src\Application\Admin\Shift\Data\PublishShiftData;
-use Src\Application\Admin\Shift\Notifications\ShiftChangeNotification;
-use Src\Application\Admin\Shift\Notifications\TypeShift;
-use Src\Domain\Company\Models\Company;
 use Src\Domain\Jobsite\Models\Jobsite;
 use Src\Domain\Shift\Models\Shift;
 use Src\Domain\User\Models\User;
-use Src\Shared\Tasks\SendNotificationTask;
 
 class ShiftPublishController
 {
@@ -27,23 +23,10 @@ class ShiftPublishController
 
         \DB::transaction(function () use ($shift_id): void {
             $shift = Shift::findOrFail($shift_id);
-            $shift->update(['published' => true]);
-            SendNotificationTask::notifyPublish($shift->user_id, $shift->from, $shift->name);
-            $user_find = User::findOrFail($shift->user_id);
-            $user_find->notify(new ShiftChangeNotification(
-                'Your Updated Schedule for week '.$shift->from->weekOfYear,
-                TypeShift::CREATE,
-                $user_find->firstname.' '.$user_find->lastname,
-                Company::findOrFail(auth()->user()->company_id)->name,
-                $shift->from->format('m/d/Y'),
-                $shift->from->format('H:i'),
-                auth()->user()->firstname.' '.auth()->user()->lastname,
-                $shift->name,
-                null,
-                null,
-                null,
-                $shift->to->format('H:i')
-            ));
+            $shift->update([
+                'published' => true,
+                'published_by' => auth()->id(),
+            ]);
         });
     }
 
@@ -75,35 +58,14 @@ class ShiftPublishController
             ->where('published', '=', false)
             ->get();
 
-        // 1. Publicar todos los turnos en una sola transacción
         DB::transaction(function () use ($shifts): void {
             foreach ($shifts as $shift) {
-                $shift->update(['published' => true]);
+                $shift->update([
+                    'published' => true,
+                    'published_by' => auth()->id(),
+                ]);
             }
         });
-
-        // 2. Enviar notificaciones DESPUÉS del commit exitoso
-        $companyName = Company::findOrFail($userCompanyId)->name;
-        $adminName = auth()->user()->firstname.' '.auth()->user()->lastname;
-
-        foreach ($shifts as $shift) {
-            SendNotificationTask::notifyPublish($shift->user_id, $shift->from, $shift->name);
-            $user_find = User::findOrFail($shift->user_id);
-            $user_find->notify(new ShiftChangeNotification(
-                'Your Updated Schedule for week '.$shift->from->weekOfYear,
-                TypeShift::CREATE,
-                $user_find->firstname.' '.$user_find->lastname,
-                $companyName,
-                $shift->from->format('m/d/Y'),
-                $shift->from->format('H:i'),
-                $adminName,
-                $shift->name,
-                null,
-                null,
-                null,
-                $shift->to->format('H:i')
-            ));
-        }
 
     }
 }

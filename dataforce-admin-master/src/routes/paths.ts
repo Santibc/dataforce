@@ -83,6 +83,9 @@ export const PATHS = {
     chat: {
       root: '/dashboard/chat',
     },
+    dailyLog: {
+      root: '/dashboard/daily-log',
+    },
   },
 } as const;
 
@@ -135,6 +138,7 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.dashboardPerformance.root,
       PATHS.dashboard.documents.root,
       PATHS.dashboard.chat.root,
+      PATHS.dashboard.dailyLog.root,
       PATHS['set-password'].root,
       PATHS['set-password'].set(':id'),
       PATHS['successfully-set-password'].root,
@@ -148,6 +152,7 @@ export const PATHS_PER_ROLE = [
     paths: [
       PATHS.dashboard.root,
       PATHS.dashboard.chat.root,
+      PATHS.dashboard.dailyLog.root,
       PATHS.dashboard.schedule.root,
       PATHS.dashboard.positions.root,
       PATHS.dashboard.jobsites.root,

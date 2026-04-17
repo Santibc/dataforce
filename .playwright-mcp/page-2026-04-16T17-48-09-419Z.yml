@@ -1,0 +1,196 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e205] [cursor=pointer]
+        - button [ref=e206] [cursor=pointer]:
+          - generic [ref=e11]: P
+    - navigation [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+          - paragraph [ref=e20]: Scheduler
+          - img [ref=e21]
+        - generic [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - paragraph [ref=e29]: Performance
+          - img [ref=e30]
+        - generic [ref=e33] [cursor=pointer]:
+          - img [ref=e34]
+          - paragraph [ref=e37]: Users
+        - generic [ref=e39] [cursor=pointer]:
+          - img [ref=e41]
+          - paragraph [ref=e44]: Chat
+        - generic [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+          - paragraph [ref=e51]: Daily Log
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading [level=3] [ref=e207]: Daily Log
+          - button [ref=e208] [cursor=pointer]:
+            - img [ref=e59]
+            - text: New Log
+        - grid [ref=e64]:
+          - generic [ref=e65]:
+            - button [ref=e210] [cursor=pointer]:
+              - img [ref=e68]
+              - text: Filter
+            - button [ref=e212] [cursor=pointer]:
+              - img [ref=e72]
+              - text: Columns
+            - button [ref=e213] [cursor=pointer]:
+              - img [ref=e76]
+              - text: Density
+            - button [ref=e214] [cursor=pointer]:
+              - img [ref=e80]
+              - text: Export
+          - generic [ref=e82]:
+            - rowgroup [ref=e83]:
+              - row [ref=e215]:
+                - columnheader [ref=e216] [cursor=pointer]:
+                  - generic [ref=e87]: Date
+                - columnheader [ref=e217] [cursor=pointer]:
+                  - generic [ref=e90]: Driver
+                - columnheader [ref=e218] [cursor=pointer]:
+                  - generic [ref=e93]: Event Type
+                - columnheader [ref=e219] [cursor=pointer]:
+                  - generic [ref=e96]: Severity
+                - columnheader [ref=e220] [cursor=pointer]:
+                  - generic [ref=e99]: Status
+                - columnheader [ref=e221] [cursor=pointer]:
+                  - generic [ref=e102]: Admin
+                - columnheader [ref=e222]:
+                  - generic [ref=e105]: Actions
+            - rowgroup [ref=e106]:
+              - row [ref=e223]:
+                - cell [ref=e224]: 04/16/2026
+                - cell [ref=e225]: Santi Bellaizan
+                - cell [ref=e226]:
+                  - generic [ref=e111]: Coaching
+                - cell [ref=e227]:
+                  - generic [ref=e113]: Low
+                - cell [ref=e228]:
+                  - generic [ref=e115]: Submitted
+                - cell [ref=e229]: Bos Metrics Admin LLC
+                - cell [ref=e117]:
+                  - img [ref=e118]
+              - row [ref=e232]:
+                - cell [ref=e233]: 04/16/2026
+                - cell [ref=e234]: Santi Bellaizan
+                - cell [ref=e235]:
+                  - generic [ref=e126]: No Call No Show
+                - cell [ref=e236]:
+                  - generic [ref=e128]: Low
+                - cell [ref=e237]:
+                  - generic [ref=e130]: Submitted
+                - cell [ref=e238]: Bos Metrics Admin LLC
+                - cell [ref=e132]:
+                  - img [ref=e133]
+              - row [ref=e241]:
+                - cell [ref=e242]: 04/16/2026
+                - cell [ref=e243]: Santi Bellaizan
+                - cell [ref=e244]:
+                  - generic [ref=e141]: Absence
+                - cell [ref=e245]:
+                  - generic [ref=e143]: Low
+                - cell [ref=e246]:
+                  - generic [ref=e145]: Submitted
+                - cell [ref=e247]: Bos Metrics Admin LLC
+                - cell [ref=e147]:
+                  - img [ref=e148]
+              - row [ref=e250]:
+                - cell [ref=e251]: 04/16/2026
+                - cell [ref=e252]: Santi Bellaizan
+                - cell [ref=e253]:
+                  - generic [ref=e156]: Coaching
+                - cell [ref=e254]:
+                  - generic [ref=e158]: Medium
+                - cell [ref=e255]:
+                  - generic [ref=e160]: Submitted
+                - cell [ref=e256]: Bos Metrics Admin LLC
+                - cell [ref=e162]:
+                  - img [ref=e163]
+              - row [ref=e259]:
+                - cell [ref=e260]: 04/16/2026
+                - cell [ref=e261]: Santi Bellaizan
+                - cell [ref=e262]:
+                  - generic [ref=e171]: Coaching
+                - cell [ref=e263]:
+                  - generic [ref=e173]: Medium
+                - cell [ref=e264]:
+                  - generic [ref=e175]: Submitted
+                - cell [ref=e265]: Bos Metrics Admin LLC
+                - cell [ref=e177]:
+                  - img [ref=e178]
+              - row [ref=e268]:
+                - cell [ref=e269]: 04/16/2026
+                - cell [ref=e270]: Santi Bellaizan
+                - cell [ref=e271]:
+                  - generic [ref=e186]: Suspension
+                - cell [ref=e272]:
+                  - generic [ref=e188]: High
+                - cell [ref=e273]:
+                  - generic [ref=e190]: Submitted
+                - cell [ref=e274]: Bos Metrics Admin LLC
+                - cell [ref=e192]:
+                  - img [ref=e193]
+          - generic [ref=e199]:
+            - paragraph [ref=e200]: "Rows per page:"
+            - generic [ref=e201]:
+              - combobox [ref=e277] [cursor=pointer]: "100"
+              - textbox: "100"
+              - img
+            - paragraph [ref=e203]: 1–6 of 6
+            - generic [ref=e204]:
+              - button [disabled]:
+                - img
+              - button [disabled]:
+                - img
+  - generic [ref=e283]:
+    - generic [ref=e284]:
+      - heading [level=5] [ref=e371]: New Daily Log
+      - img [ref=e286] [cursor=pointer]
+    - generic [ref=e289]:
+      - generic [ref=e290]: Driver *
+      - generic [ref=e293]:
+        - combobox [ref=e372]: Santi Bellaizan
+        - button [ref=e373] [cursor=pointer]:
+          - img [ref=e297]
+        - group
+    - generic [ref=e299]:
+      - generic [ref=e301]:
+        - generic [ref=e302]: Event Type *
+        - generic [ref=e304]:
+          - combobox [ref=e374] [cursor=pointer]: Late Arrival
+          - textbox: late_arrival
+          - img
+          - group
+      - generic [ref=e307]:
+        - generic [ref=e308]: Severity *
+        - generic [ref=e310]:
+          - combobox [expanded] [ref=e375] [cursor=pointer]: Select severity
+          - textbox
+          - img
+          - group
+    - generic [ref=e313]:
+      - generic [ref=e314]: Description
+      - generic [ref=e316]:
+        - textbox [ref=e376]:
+          - /placeholder: Describe the incident...
+        - group
+    - generic [ref=e319]:
+      - generic [ref=e320]: Action Taken
+      - generic [ref=e322]:
+        - textbox [ref=e377]:
+          - /placeholder: Describe the action taken...
+        - group
+    - generic [ref=e325]:
+      - button [ref=e378] [cursor=pointer]: Save as Draft
+      - button [ref=e379] [cursor=pointer]: Submit & Send Email
+  - listbox "Severity *" [ref=e382]:
+    - option "Select severity" [disabled] [selected]:
+      - generic: Select severity
+    - option "Low" [active] [ref=e383] [cursor=pointer]: Low
+    - option "Medium" [ref=e384] [cursor=pointer]: Medium
+    - option "High" [ref=e385] [cursor=pointer]: High

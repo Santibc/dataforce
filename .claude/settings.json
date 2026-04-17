@@ -21,7 +21,10 @@
       "Bash(eas build:*)",
       "Bash(eas submit:*)",
       "Bash(xargs grep:*)",
-      "Read(//f/xamppPro80/apache/conf/extra/**)"
+      "Read(//f/xamppPro80/apache/conf/extra/**)",
+      "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
+      "Read(//f/f/xamppPro80/htdocs/dataforce/data-force-back-master/storage/logs/**)",
+      "Bash(awk -F'[][]' '{print $2}')"
     ]
   }
 }

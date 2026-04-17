@@ -1,0 +1,172 @@
+- generic [ref=e3]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - img "logo" [ref=e13] [cursor=pointer]
+      - button "V" [ref=e16] [cursor=pointer]:
+        - generic [ref=e17]: V
+  - navigation [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - paragraph [ref=e25]: Companies
+      - generic [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - generic: "0"
+        - paragraph [ref=e32]: Chat
+  - main [ref=e34]:
+    - generic [ref=e229]:
+      - generic [ref=e230]:
+        - generic [ref=e231]:
+          - heading "Company panel" [level=3] [ref=e232]
+          - button "Inspect company" [ref=e233] [cursor=pointer]
+        - 'heading "Current company: Loading..." [level=5] [ref=e234]'
+        - navigation [ref=e238]:
+          - list [ref=e239]:
+            - listitem [ref=e240]:
+              - link "Superadmin Panel" [ref=e241] [cursor=pointer]:
+                - /url: "#/super-admin"
+            - listitem [ref=e242]
+            - listitem [ref=e244]:
+              - generic: Company Panel
+      - generic [ref=e246]:
+        - generic [ref=e249]:
+          - generic [ref=e250]:
+            - heading "Jobsites" [level=4] [ref=e251]
+            - heading "Loading..." [level=5] [ref=e252]
+          - img [ref=e255]
+        - generic [ref=e275]:
+          - generic [ref=e276]:
+            - heading "Positions" [level=4] [ref=e277]
+            - heading "Loading..." [level=5] [ref=e278]
+          - img [ref=e281]
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - heading "Users" [level=4] [ref=e290]
+            - heading "Loading..." [level=5] [ref=e291]
+          - img [ref=e294]
+      - generic [ref=e318]:
+        - generic [ref=e319]:
+          - heading "Company Jobsites" [level=4] [ref=e320]
+          - grid [ref=e323]:
+            - generic [ref=e324]:
+              - button "Filter" [ref=e325] [cursor=pointer]:
+                - img [ref=e327]
+                - text: Filter
+              - button "Select columns" [ref=e329] [cursor=pointer]:
+                - img [ref=e331]
+                - text: Columns
+              - button "Density" [ref=e333] [cursor=pointer]:
+                - img [ref=e335]
+                - text: Density
+              - button "Export" [ref=e337] [cursor=pointer]:
+                - img [ref=e339]
+                - text: Export
+            - generic [ref=e341]:
+              - rowgroup [ref=e342]:
+                - row "Name Address State City Zip Code" [ref=e343]:
+                  - columnheader "Name" [ref=e344] [cursor=pointer]:
+                    - generic [ref=e346]: Name
+                  - columnheader "Address" [ref=e347] [cursor=pointer]:
+                    - generic [ref=e349]: Address
+                  - columnheader "State" [ref=e350] [cursor=pointer]:
+                    - generic [ref=e352]: State
+                  - columnheader "City" [ref=e353] [cursor=pointer]:
+                    - generic [ref=e355]: City
+                  - columnheader "Zip Code" [ref=e356] [cursor=pointer]:
+                    - generic [ref=e358]: Zip Code
+                  - columnheader [ref=e359]
+              - generic [ref=e361]: No rows
+              - rowgroup
+            - generic [ref=e364]:
+              - paragraph [ref=e365]: "Rows per page:"
+              - generic [ref=e366]:
+                - 'combobox "Rows per page: 100" [ref=e367] [cursor=pointer]': "100"
+                - textbox: "100"
+                - img
+              - paragraph [ref=e368]: 0–0 of 0
+              - generic [ref=e369]:
+                - button "Go to previous page" [disabled]:
+                  - img
+                - button "Go to next page" [disabled]:
+                  - img
+        - generic [ref=e370]:
+          - heading "Company Positions" [level=4] [ref=e371]
+          - grid [ref=e374]:
+            - generic [ref=e375]:
+              - button "Filter" [ref=e376] [cursor=pointer]:
+                - img [ref=e378]
+                - text: Filter
+              - button "Select columns" [ref=e380] [cursor=pointer]:
+                - img [ref=e382]
+                - text: Columns
+              - button "Density" [ref=e384] [cursor=pointer]:
+                - img [ref=e386]
+                - text: Density
+              - button "Export" [ref=e388] [cursor=pointer]:
+                - img [ref=e390]
+                - text: Export
+            - generic [ref=e392]:
+              - rowgroup [ref=e393]:
+                - row "Name Time" [ref=e394]:
+                  - columnheader "Name" [ref=e395] [cursor=pointer]:
+                    - generic [ref=e397]: Name
+                  - columnheader "Time" [ref=e398] [cursor=pointer]:
+                    - generic [ref=e400]: Time
+                  - columnheader [ref=e401]
+              - generic [ref=e403]: No rows
+              - rowgroup
+            - generic [ref=e406]:
+              - paragraph [ref=e407]: "Rows per page:"
+              - generic [ref=e408]:
+                - 'combobox "Rows per page: 100" [ref=e409] [cursor=pointer]': "100"
+                - textbox: "100"
+                - img
+              - paragraph [ref=e410]: 0–0 of 0
+              - generic [ref=e411]:
+                - button "Go to previous page" [disabled]:
+                  - img
+                - button "Go to next page" [disabled]:
+                  - img
+        - generic [ref=e412]:
+          - heading "Company Users" [level=4] [ref=e413]
+          - grid [ref=e416]:
+            - generic [ref=e417]:
+              - button "Filter" [ref=e418] [cursor=pointer]:
+                - img [ref=e420]
+                - text: Filter
+              - button "Select columns" [ref=e422] [cursor=pointer]:
+                - img [ref=e424]
+                - text: Columns
+              - button "Density" [ref=e426] [cursor=pointer]:
+                - img [ref=e428]
+                - text: Density
+              - button "Export" [ref=e430] [cursor=pointer]:
+                - img [ref=e432]
+                - text: Export
+            - generic [ref=e434]:
+              - rowgroup [ref=e435]:
+                - row "Name Surname Email Phone number" [ref=e436]:
+                  - columnheader "Name" [ref=e437] [cursor=pointer]:
+                    - generic [ref=e439]: Name
+                  - columnheader "Surname" [ref=e440] [cursor=pointer]:
+                    - generic [ref=e442]: Surname
+                  - columnheader "Email" [ref=e443] [cursor=pointer]:
+                    - generic [ref=e445]: Email
+                  - columnheader "Phone number" [ref=e446] [cursor=pointer]:
+                    - generic [ref=e448]: Phone number
+                  - columnheader [ref=e449]
+              - generic [ref=e451]: No rows
+              - rowgroup
+            - generic [ref=e454]:
+              - paragraph [ref=e455]: "Rows per page:"
+              - generic [ref=e456]:
+                - 'combobox "Rows per page: 100" [ref=e457] [cursor=pointer]': "100"
+                - textbox: "100"
+                - img
+              - paragraph [ref=e458]: 0–0 of 0
+              - generic [ref=e459]:
+                - button "Go to previous page" [disabled]:
+                  - img
+                - button "Go to next page" [disabled]:
+                  - img

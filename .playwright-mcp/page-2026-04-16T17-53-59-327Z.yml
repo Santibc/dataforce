@@ -1,0 +1,206 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - img [ref=e220] [cursor=pointer]
+        - button [ref=e221] [cursor=pointer]:
+          - generic [ref=e11]: P
+    - navigation [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+          - paragraph [ref=e20]: Scheduler
+          - img [ref=e21]
+        - generic [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - paragraph [ref=e29]: Performance
+          - img [ref=e30]
+        - generic [ref=e33] [cursor=pointer]:
+          - img [ref=e34]
+          - paragraph [ref=e37]: Users
+        - generic [ref=e39] [cursor=pointer]:
+          - img [ref=e41]
+          - paragraph [ref=e44]: Chat
+        - generic [ref=e46] [cursor=pointer]:
+          - img [ref=e47]
+          - paragraph [ref=e51]: Daily Log
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - heading [level=3] [ref=e222]: Daily Log
+          - button [ref=e223] [cursor=pointer]:
+            - img [ref=e59]
+            - text: New Log
+        - grid [ref=e64]:
+          - generic [ref=e65]:
+            - button [ref=e225] [cursor=pointer]:
+              - img [ref=e68]
+              - text: Filter
+            - button [ref=e227] [cursor=pointer]:
+              - img [ref=e72]
+              - text: Columns
+            - button [ref=e228] [cursor=pointer]:
+              - img [ref=e76]
+              - text: Density
+            - button [ref=e229] [cursor=pointer]:
+              - img [ref=e80]
+              - text: Export
+          - generic [ref=e82]:
+            - rowgroup [ref=e83]:
+              - row [ref=e230]:
+                - columnheader [ref=e231] [cursor=pointer]:
+                  - generic [ref=e87]: Date
+                - columnheader [ref=e232] [cursor=pointer]:
+                  - generic [ref=e90]: Driver
+                - columnheader [ref=e233] [cursor=pointer]:
+                  - generic [ref=e93]: Event Type
+                - columnheader [ref=e234] [cursor=pointer]:
+                  - generic [ref=e96]: Severity
+                - columnheader [ref=e235] [cursor=pointer]:
+                  - generic [ref=e99]: Status
+                - columnheader [ref=e236] [cursor=pointer]:
+                  - generic [ref=e102]: Admin
+                - columnheader [ref=e237]:
+                  - generic [ref=e105]: Actions
+            - rowgroup [ref=e106]:
+              - row [ref=e238]:
+                - cell [ref=e239]: 04/16/2026
+                - cell [ref=e240]: Santi Bellaizan
+                - cell [ref=e241]:
+                  - generic [ref=e111]: Late Arrival
+                - cell [ref=e242]:
+                  - generic [ref=e113]: Medium
+                - cell [ref=e243]:
+                  - generic [ref=e115]: Submitted
+                - cell [ref=e244]: Bos Metrics Admin LLC
+                - cell [ref=e117]:
+                  - img [ref=e118]
+              - row [ref=e247]:
+                - cell [ref=e248]: 04/16/2026
+                - cell [ref=e249]: Santi Bellaizan
+                - cell [ref=e250]:
+                  - generic [ref=e126]: Coaching
+                - cell [ref=e251]:
+                  - generic [ref=e128]: Low
+                - cell [ref=e252]:
+                  - generic [ref=e130]: Submitted
+                - cell [ref=e253]: Bos Metrics Admin LLC
+                - cell [ref=e132]:
+                  - img [ref=e133]
+              - row [ref=e256]:
+                - cell [ref=e257]: 04/16/2026
+                - cell [ref=e258]: Santi Bellaizan
+                - cell [ref=e259]:
+                  - generic [ref=e141]: No Call No Show
+                - cell [ref=e260]:
+                  - generic [ref=e143]: Low
+                - cell [ref=e261]:
+                  - generic [ref=e145]: Submitted
+                - cell [ref=e262]: Bos Metrics Admin LLC
+                - cell [ref=e147]:
+                  - img [ref=e148]
+              - row [ref=e265]:
+                - cell [ref=e266]: 04/16/2026
+                - cell [ref=e267]: Santi Bellaizan
+                - cell [ref=e268]:
+                  - generic [ref=e156]: Absence
+                - cell [ref=e269]:
+                  - generic [ref=e158]: Low
+                - cell [ref=e270]:
+                  - generic [ref=e160]: Submitted
+                - cell [ref=e271]: Bos Metrics Admin LLC
+                - cell [ref=e162]:
+                  - img [ref=e163]
+              - row [ref=e274]:
+                - cell [ref=e275]: 04/16/2026
+                - cell [ref=e276]: Santi Bellaizan
+                - cell [ref=e277]:
+                  - generic [ref=e171]: Coaching
+                - cell [ref=e278]:
+                  - generic [ref=e173]: Medium
+                - cell [ref=e279]:
+                  - generic [ref=e175]: Submitted
+                - cell [ref=e280]: Bos Metrics Admin LLC
+                - cell [ref=e177]:
+                  - img [ref=e178]
+              - row [ref=e283]:
+                - cell [ref=e284]: 04/16/2026
+                - cell [ref=e285]: Santi Bellaizan
+                - cell [ref=e286]:
+                  - generic [ref=e186]: Coaching
+                - cell [ref=e287]:
+                  - generic [ref=e188]: Medium
+                - cell [ref=e288]:
+                  - generic [ref=e190]: Submitted
+                - cell [ref=e289]: Bos Metrics Admin LLC
+                - cell [ref=e192]:
+                  - img [ref=e193]
+              - row [ref=e292]:
+                - cell [ref=e293]: 04/16/2026
+                - cell [ref=e294]: Santi Bellaizan
+                - cell [ref=e295]:
+                  - generic [ref=e201]: Suspension
+                - cell [ref=e296]:
+                  - generic [ref=e203]: High
+                - cell [ref=e297]:
+                  - generic [ref=e205]: Submitted
+                - cell [ref=e298]: Bos Metrics Admin LLC
+                - cell [ref=e207]:
+                  - img [ref=e208]
+          - generic [ref=e214]:
+            - paragraph [ref=e215]: "Rows per page:"
+            - generic [ref=e216]:
+              - combobox [ref=e301] [cursor=pointer]: "100"
+              - textbox: "100"
+              - img
+            - paragraph [ref=e218]: 1–7 of 7
+            - generic [ref=e219]:
+              - button [disabled]:
+                - img
+              - button [disabled]:
+                - img
+  - generic [ref=e307]:
+    - generic [ref=e308]:
+      - heading "New Daily Log" [level=5] [ref=e309]
+      - img [ref=e310] [cursor=pointer]
+    - generic [ref=e313]:
+      - generic [ref=e314]: Driver *
+      - generic [ref=e317]:
+        - combobox "Driver *" [ref=e318]
+        - button "Open" [ref=e320] [cursor=pointer]:
+          - img [ref=e321]
+        - group
+    - generic [ref=e323]:
+      - generic [ref=e325]:
+        - generic [ref=e326]: Event Type *
+        - generic [ref=e327]:
+          - generic [ref=e328]:
+            - combobox "Event Type * Select event type" [ref=e329] [cursor=pointer]: Select event type
+            - textbox
+            - img
+            - group
+          - paragraph
+      - generic [ref=e331]:
+        - generic [ref=e332]: Severity *
+        - generic [ref=e333]:
+          - generic [ref=e334]:
+            - combobox "Severity * Select severity" [ref=e335] [cursor=pointer]: Select severity
+            - textbox
+            - img
+            - group
+          - paragraph
+    - generic [ref=e337]:
+      - generic [ref=e338]: Description
+      - generic [ref=e340]:
+        - textbox "Description" [ref=e341]:
+          - /placeholder: Describe the incident...
+        - group
+    - generic [ref=e343]:
+      - generic [ref=e344]: Action Taken
+      - generic [ref=e346]:
+        - textbox "Action Taken" [ref=e347]:
+          - /placeholder: Describe the action taken...
+        - group
+    - generic [ref=e349]:
+      - button "Save as Draft" [ref=e350] [cursor=pointer]: Save as Draft
+      - button "Submit & Send Email" [ref=e351] [cursor=pointer]: Submit & Send Email

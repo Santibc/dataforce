@@ -70,6 +70,9 @@ const withLoadingSpinner = (Component: ElementType) => (props: any) =>
 const LazyChatPage = withLoadingSpinner(
   lazy(() => import('src/features/chat/ChatPage'))
 );
+const LazyDailyLogPage = withLoadingSpinner(
+  lazy(() => import('src/features/daily-log/DailyLogPage'))
+);
 const LazySuperAdminChatPage = withLoadingSpinner(
   lazy(() => import('src/features/super-admin-chat/SuperAdminChatPage'))
 );
@@ -235,6 +238,10 @@ const ROUTES: RouteObject[] = [
           {
             path: 'chat',
             element: <LazyChatPage />,
+          },
+          {
+            path: 'daily-log',
+            element: <LazyDailyLogPage />,
           },
         ],
       },

@@ -1,0 +1,161 @@
+- generic [ref=e3]:
+  - banner [ref=e10]:
+    - generic [ref=e11]:
+      - img "logo" [ref=e13] [cursor=pointer]
+      - button "V" [ref=e16] [cursor=pointer]:
+        - generic [ref=e17]: V
+  - navigation [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - paragraph [ref=e25]: Companies
+      - generic [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]:
+          - img [ref=e29]
+          - generic: "0"
+        - paragraph [ref=e32]: Chat
+  - main [ref=e34]:
+    - generic [ref=e35]:
+      - heading "Super admin panel" [level=3] [ref=e37]
+      - generic [ref=e38]:
+        - heading "Companies" [level=4] [ref=e39]
+        - grid [ref=e42]:
+          - generic [ref=e43]:
+            - button "Filter" [ref=e44] [cursor=pointer]:
+              - img [ref=e46]
+              - text: Filter
+            - button "Select columns" [ref=e48] [cursor=pointer]:
+              - img [ref=e50]
+              - text: Columns
+            - button "Density" [ref=e52] [cursor=pointer]:
+              - img [ref=e54]
+              - text: Density
+            - button "Export" [ref=e56] [cursor=pointer]:
+              - img [ref=e58]
+              - text: Export
+          - generic [ref=e60]:
+            - rowgroup [ref=e61]:
+              - row "Name Address Driver Amount Fleat Size Payroll" [ref=e62]:
+                - columnheader "Name" [ref=e63] [cursor=pointer]:
+                  - generic [ref=e65]: Name
+                - columnheader "Address" [ref=e66] [cursor=pointer]:
+                  - generic [ref=e68]: Address
+                - columnheader "Driver Amount" [ref=e69] [cursor=pointer]:
+                  - generic [ref=e71]: Driver Amount
+                - columnheader "Fleat Size" [ref=e72] [cursor=pointer]:
+                  - generic [ref=e74]: Fleat Size
+                - columnheader "Payroll" [ref=e75] [cursor=pointer]:
+                  - generic [ref=e77]: Payroll
+                - columnheader [ref=e78]
+            - rowgroup [ref=e79]:
+              - row "Prueba Prueba 1234 12 12 ADP" [ref=e80]:
+                - cell "Prueba" [ref=e81]
+                - cell "Prueba 1234" [ref=e82]
+                - cell "12" [ref=e83]
+                - cell "12" [ref=e84]
+                - cell "ADP" [ref=e85]
+                - cell [ref=e86]:
+                  - button [active] [ref=e87] [cursor=pointer]:
+                    - img [ref=e88]
+              - row "Riman Logistics 8270 Logistics DR, Fort Myers, Florida, 33928 70 30 ADP" [ref=e92]:
+                - cell "Riman Logistics" [ref=e93]
+                - cell "8270 Logistics DR, Fort Myers, Florida, 33928" [ref=e94]
+                - cell "70" [ref=e95]
+                - cell "30" [ref=e96]
+                - cell "ADP" [ref=e97]
+                - cell [ref=e98]:
+                  - button [ref=e99] [cursor=pointer]:
+                    - img [ref=e100]
+              - row "Galo Logistics LLC 700 Banyan St 100 50 ADP" [ref=e104]:
+                - cell "Galo Logistics LLC" [ref=e105]
+                - cell "700 Banyan St" [ref=e106]
+                - cell "100" [ref=e107]
+                - cell "50" [ref=e108]
+                - cell "ADP" [ref=e109]
+                - cell [ref=e110]:
+                  - button [ref=e111] [cursor=pointer]:
+                    - img [ref=e112]
+              - row "Galo Logistics 700 Banyan St 120 60 ADP" [ref=e116]:
+                - cell "Galo Logistics" [ref=e117]
+                - cell "700 Banyan St" [ref=e118]
+                - cell "120" [ref=e119]
+                - cell "60" [ref=e120]
+                - cell "ADP" [ref=e121]
+                - cell [ref=e122]:
+                  - button [ref=e123] [cursor=pointer]:
+                    - img [ref=e124]
+              - row "ZipZone Logistics LLC 309 Court Ave Ste 820, Des Moines, IA 50309 100 20 ADP" [ref=e128]:
+                - cell "ZipZone Logistics LLC" [ref=e129]
+                - cell "309 Court Ave Ste 820, Des Moines, IA 50309" [ref=e130]
+                - cell "100" [ref=e131]
+                - cell "20" [ref=e132]
+                - cell "ADP" [ref=e133]
+                - cell [ref=e134]:
+                  - button [ref=e135] [cursor=pointer]:
+                    - img [ref=e136]
+              - row "MKL Logistics and Transportation LLC 3656 S Irby St, Florence, SC 29505 50 20 ADP" [ref=e140]:
+                - cell "MKL Logistics and Transportation LLC" [ref=e141]
+                - cell "3656 S Irby St, Florence, SC 29505" [ref=e142]
+                - cell "50" [ref=e143]
+                - cell "20" [ref=e144]
+                - cell "ADP" [ref=e145]
+                - cell [ref=e146]:
+                  - button [ref=e147] [cursor=pointer]:
+                    - img [ref=e148]
+              - row "Gold Star Logistics 3980 Premier Dr Suite 110 PMB 1015 High Point, NC 27265 53 24 ADP" [ref=e152]:
+                - cell "Gold Star Logistics" [ref=e153]
+                - cell "3980 Premier Dr Suite 110 PMB 1015 High Point, NC 27265" [ref=e154]
+                - cell "53" [ref=e155]
+                - cell "24" [ref=e156]
+                - cell "ADP" [ref=e157]
+                - cell [ref=e158]:
+                  - button [ref=e159] [cursor=pointer]:
+                    - img [ref=e160]
+              - row "Zipzone logistics 715 100 125 ADP" [ref=e164]:
+                - cell "Zipzone logistics" [ref=e165]
+                - cell "715" [ref=e166]
+                - cell "100" [ref=e167]
+                - cell "125" [ref=e168]
+                - cell "ADP" [ref=e169]
+                - cell [ref=e170]:
+                  - button [ref=e171] [cursor=pointer]:
+                    - img [ref=e172]
+              - row "Zip zone logistics Burlington 70 70 ADP" [ref=e176]:
+                - cell "Zip zone logistics" [ref=e177]
+                - cell "Burlington" [ref=e178]
+                - cell "70" [ref=e179]
+                - cell "70" [ref=e180]
+                - cell "ADP" [ref=e181]
+                - cell [ref=e182]:
+                  - button [ref=e183] [cursor=pointer]:
+                    - img [ref=e184]
+              - row "google 1600 Amphitheatre Parkway, California 100 200 adp" [ref=e188]:
+                - cell "google" [ref=e189]
+                - cell "1600 Amphitheatre Parkway, California" [ref=e190]
+                - cell "100" [ref=e191]
+                - cell "200" [ref=e192]
+                - cell "adp" [ref=e193]
+                - cell [ref=e194]:
+                  - button [ref=e195] [cursor=pointer]:
+                    - img [ref=e196]
+              - 'row "GUILLEN Calle 69 #10-15 13 200 ADP" [ref=e200]':
+                - cell "GUILLEN" [ref=e201]
+                - 'cell "Calle 69 #10-15" [ref=e202]'
+                - cell "13" [ref=e203]
+                - cell "200" [ref=e204]
+                - cell "ADP" [ref=e205]
+                - cell [ref=e206]:
+                  - button [ref=e207] [cursor=pointer]:
+                    - img [ref=e208]
+          - generic [ref=e214]:
+            - paragraph [ref=e215]: "Rows per page:"
+            - generic [ref=e216]:
+              - 'combobox "Rows per page: 100" [ref=e217] [cursor=pointer]': "100"
+              - textbox: "100"
+              - img
+            - paragraph [ref=e218]: 1–11 of 11
+            - generic [ref=e219]:
+              - button "Go to previous page" [disabled]:
+                - img
+              - button "Go to next page" [disabled]:
+                - img

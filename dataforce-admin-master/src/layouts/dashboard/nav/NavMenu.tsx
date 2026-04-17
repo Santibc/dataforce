@@ -6,6 +6,7 @@ import { useSAUnreadCountsQuery } from 'src/api/superAdminChatRepository';
 import { useAuthContext } from 'src/features/auth/useAuthContext';
 import AnalyticsIcon from 'src/features/icons/AnalyticsIcon';
 import Calendar from 'src/features/icons/Calendar';
+import ClipboardIcon from 'src/features/icons/ClipboardIcon';
 import DashboardIcon from 'src/features/icons/DashboardIcon';
 import FileIcon from 'src/features/icons/FileIcon';
 import JobsitesIcon from 'src/features/icons/JobsitesIcon';
@@ -169,6 +170,16 @@ const NavMenuCompany = () => {
           selected={false}
           onClick={() => {
             navigate(PATHS.dashboard.chat.root);
+          }}
+        />
+      </Box>
+      <Box>
+        <NavMenuButton
+          icon={<ClipboardIcon />}
+          text="Daily Log"
+          selected={false}
+          onClick={() => {
+            navigate(PATHS.dashboard.dailyLog.root);
           }}
         />
       </Box>

@@ -59,6 +59,11 @@ const navConfig: NavConfig[] = [
         path: PATHS.dashboard.chat.root,
         icon: iconifyIcon('eva:message-circle-outline'),
       },
+      {
+        title: 'Daily Log',
+        path: PATHS.dashboard.dailyLog.root,
+        icon: iconifyIcon('eva:clipboard-outline'),
+      },
     ],
   },
 ];

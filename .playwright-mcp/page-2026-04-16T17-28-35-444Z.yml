@@ -1,0 +1,15 @@
+- generic [ref=e3]:
+  - banner [ref=e470]:
+    - generic [ref=e471]:
+      - img "logo" [ref=e473] [cursor=pointer]
+      - button "V" [ref=e476] [cursor=pointer]:
+        - generic [ref=e477]: V
+  - navigation [ref=e478]:
+    - generic [ref=e479]:
+      - generic [ref=e481] [cursor=pointer]:
+        - img [ref=e482]
+        - paragraph [ref=e485]: Companies
+      - generic [ref=e487] [cursor=pointer]:
+        - img [ref=e489]
+        - paragraph [ref=e492]: Chat
+  - main [ref=e494]

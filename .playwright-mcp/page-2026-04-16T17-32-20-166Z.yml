@@ -1,0 +1,153 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img "logo" [ref=e7] [cursor=pointer]
+      - button "P" [ref=e10] [cursor=pointer]:
+        - generic [ref=e11]: P
+  - navigation [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e15] [cursor=pointer]:
+        - img [ref=e16]
+        - paragraph [ref=e20]: Scheduler
+        - img [ref=e21]
+      - generic [ref=e24] [cursor=pointer]:
+        - img [ref=e25]
+        - paragraph [ref=e29]: Performance
+        - img [ref=e30]
+      - generic [ref=e33] [cursor=pointer]:
+        - img [ref=e34]
+        - paragraph [ref=e37]: Users
+      - generic [ref=e39] [cursor=pointer]:
+        - generic [ref=e40]:
+          - img [ref=e41]
+          - generic: "0"
+        - paragraph [ref=e44]: Chat
+      - generic [ref=e46] [cursor=pointer]:
+        - img [ref=e47]
+        - paragraph [ref=e51]: Daily Log
+  - main [ref=e53]:
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - heading "Daily Log" [level=3] [ref=e134]
+        - button "New Log" [ref=e135] [cursor=pointer]:
+          - img [ref=e137]
+          - text: New Log
+      - grid [ref=e142]:
+        - generic [ref=e143]:
+          - button "Filter" [ref=e144] [cursor=pointer]:
+            - img [ref=e146]
+            - text: Filter
+          - button "Select columns" [ref=e148] [cursor=pointer]:
+            - img [ref=e150]
+            - text: Columns
+          - button "Density" [ref=e152] [cursor=pointer]:
+            - img [ref=e154]
+            - text: Density
+          - button "Export" [ref=e156] [cursor=pointer]:
+            - img [ref=e158]
+            - text: Export
+        - generic [ref=e160]:
+          - rowgroup [ref=e161]:
+            - row "Date Driver Event Type Severity Status Admin Actions" [ref=e162]:
+              - columnheader "Date" [ref=e163] [cursor=pointer]:
+                - generic [ref=e165]: Date
+              - columnheader "Driver" [ref=e166] [cursor=pointer]:
+                - generic [ref=e168]: Driver
+              - columnheader "Event Type" [ref=e169] [cursor=pointer]:
+                - generic [ref=e171]: Event Type
+              - columnheader "Severity" [ref=e172] [cursor=pointer]:
+                - generic [ref=e174]: Severity
+              - columnheader "Status" [ref=e175] [cursor=pointer]:
+                - generic [ref=e177]: Status
+              - columnheader "Admin" [ref=e178] [cursor=pointer]:
+                - generic [ref=e180]: Admin
+              - columnheader "Actions" [ref=e181]:
+                - generic [ref=e183]: Actions
+          - rowgroup [ref=e184]:
+            - row "04/16/2026 Santi Bellaizan Coaching Low Submitted Bos Metrics Admin LLC" [ref=e185]:
+              - cell "04/16/2026" [ref=e186]
+              - cell "Santi Bellaizan" [ref=e187]
+              - cell "Coaching" [ref=e188]:
+                - generic [ref=e189]: Coaching
+              - cell "Low" [ref=e190]:
+                - generic [ref=e191]: Low
+              - cell "Submitted" [ref=e192]:
+                - generic [ref=e193]: Submitted
+              - cell "Bos Metrics Admin LLC" [ref=e194]
+              - cell [ref=e195]:
+                - img [ref=e196]
+            - row "04/16/2026 Santi Bellaizan No Call No Show Low Draft Bos Metrics Admin LLC" [ref=e200]:
+              - cell "04/16/2026" [ref=e201]
+              - cell "Santi Bellaizan" [ref=e202]
+              - cell "No Call No Show" [ref=e203]:
+                - generic [ref=e204]: No Call No Show
+              - cell "Low" [ref=e205]:
+                - generic [ref=e206]: Low
+              - cell "Draft" [ref=e207]:
+                - generic [ref=e208]: Draft
+              - cell "Bos Metrics Admin LLC" [ref=e209]
+              - cell [ref=e210]:
+                - button [ref=e211] [cursor=pointer]:
+                  - img [ref=e212]
+            - row "04/16/2026 Santi Bellaizan Absence Low Draft Bos Metrics Admin LLC" [ref=e217]:
+              - cell "04/16/2026" [ref=e218]
+              - cell "Santi Bellaizan" [ref=e219]
+              - cell "Absence" [ref=e220]:
+                - generic [ref=e221]: Absence
+              - cell "Low" [ref=e222]:
+                - generic [ref=e223]: Low
+              - cell "Draft" [ref=e224]:
+                - generic [ref=e225]: Draft
+              - cell "Bos Metrics Admin LLC" [ref=e226]
+              - cell [ref=e227]:
+                - button [active] [ref=e228] [cursor=pointer]:
+                  - img [ref=e229]
+            - row "04/16/2026 Santi Bellaizan Coaching Medium Draft Bos Metrics Admin LLC" [ref=e234]:
+              - cell "04/16/2026" [ref=e235]
+              - cell "Santi Bellaizan" [ref=e236]
+              - cell "Coaching" [ref=e237]:
+                - generic [ref=e238]: Coaching
+              - cell "Medium" [ref=e239]:
+                - generic [ref=e240]: Medium
+              - cell "Draft" [ref=e241]:
+                - generic [ref=e242]: Draft
+              - cell "Bos Metrics Admin LLC" [ref=e243]
+              - cell [ref=e244]:
+                - button [ref=e245] [cursor=pointer]:
+                  - img [ref=e246]
+            - row "04/16/2026 Santi Bellaizan Coaching Medium Submitted Bos Metrics Admin LLC" [ref=e251]:
+              - cell "04/16/2026" [ref=e252]
+              - cell "Santi Bellaizan" [ref=e253]
+              - cell "Coaching" [ref=e254]:
+                - generic [ref=e255]: Coaching
+              - cell "Medium" [ref=e256]:
+                - generic [ref=e257]: Medium
+              - cell "Submitted" [ref=e258]:
+                - generic [ref=e259]: Submitted
+              - cell "Bos Metrics Admin LLC" [ref=e260]
+              - cell [ref=e261]:
+                - img [ref=e262]
+            - row "04/16/2026 Santi Bellaizan Suspension High Submitted Bos Metrics Admin LLC" [ref=e266]:
+              - cell "04/16/2026" [ref=e267]
+              - cell "Santi Bellaizan" [ref=e268]
+              - cell "Suspension" [ref=e269]:
+                - generic [ref=e270]: Suspension
+              - cell "High" [ref=e271]:
+                - generic [ref=e272]: High
+              - cell "Submitted" [ref=e273]:
+                - generic [ref=e274]: Submitted
+              - cell "Bos Metrics Admin LLC" [ref=e275]
+              - cell [ref=e276]:
+                - img [ref=e277]
+        - generic [ref=e283]:
+          - paragraph [ref=e284]: "Rows per page:"
+          - generic [ref=e285]:
+            - 'combobox "Rows per page: 100" [ref=e286] [cursor=pointer]': "100"
+            - textbox: "100"
+            - img
+          - paragraph [ref=e287]: 1–6 of 6
+          - generic [ref=e288]:
+            - button "Go to previous page" [disabled]:
+              - img
+            - button "Go to next page" [disabled]:
+              - img

@@ -21,6 +21,7 @@ interface Props {
   isLoading: boolean;
   onDelete: (id: number) => any;
   onEdit: (id: number) => any;
+  onView?: (id: number) => any;
   onSelectedModels: (models: any[]) => any;
   selectedRowIds?: number[];
   hideActions?: boolean;
@@ -33,12 +34,15 @@ export const UsersTable: React.FC<Props> = ({
   hideActions,
   onDelete,
   onEdit,
+  onView,
   onSelectedModels,
 }) => {
   console.log('🚀 ~ file: UsersTable.tsx:35 ~ selectedRowIds:', selectedRowIds);
   const hf = useForm();
   const [openPopover, setOpenPopover] = useState<HTMLElement | null>(null);
   const selectedIdRef = useRef<number | undefined>();
+  const onViewRef = useRef(onView);
+  onViewRef.current = onView;
   const confirm = useConfirm();
   const location = useLocation();
   console.log(location)
@@ -95,6 +99,11 @@ export const UsersTable: React.FC<Props> = ({
           type: 'actions',
           renderCell: (params) => (
             <>
+              <IconButton
+                onClick={() => onViewRef.current?.(Number(params.id))}
+              >
+                <Iconify icon="eva:eye-fill" />
+              </IconButton>
               <IconButton
                 onClick={(e) => {
                   selectedIdRef.current = Number(params.id);

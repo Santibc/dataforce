@@ -39,6 +39,7 @@ import { SuperAdminEditUserPage } from 'src/features/super-admin-companies/super
 import { SuperAdminCompaniesPage } from 'src/features/super-admin-companies/SuperAdminCompaniesPage';
 import { CreateUserPage } from 'src/features/users/create/CreateUserPage';
 import { EditUserPage } from 'src/features/users/edit/EditUserPage';
+import { UserProfilePage } from 'src/features/users/profile/UserProfilePage';
 import { UsersPage } from 'src/features/users/UsersPage';
 import ErrorPage from 'src/pages/ErrorPage';
 import NotAllowedPage from 'src/pages/NotAllowedPage';
@@ -195,6 +196,7 @@ const ROUTES: RouteObject[] = [
               { path: 'list', element: <UsersPage /> },
               { path: 'create', element: <CreateUserPage /> },
               { path: 'edit/:id', element: <EditUserPage /> },
+              { path: 'profile/:id', element: <UserProfilePage /> },
             ],
           },
           {

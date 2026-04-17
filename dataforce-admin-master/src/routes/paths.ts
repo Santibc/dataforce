@@ -50,6 +50,7 @@ export const PATHS = {
       list: '/dashboard/users/list',
       create: '/dashboard/users/create',
       edit: (id: number | string) => `/dashboard/users/edit/${id}` as const,
+      profile: (id: number | string) => `/dashboard/users/profile/${id}` as const,
     },
     schedule: {
       root: '/dashboard/schedule',
@@ -130,6 +131,7 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.users.list,
       PATHS.dashboard.users.create,
       PATHS.dashboard.users.edit(':id'),
+      PATHS.dashboard.users.profile(':id'),
       PATHS.dashboard.requestTimeOff.root,
       PATHS.dashboard.coaching.root,
       PATHS.dashboard.performance.root,
@@ -161,6 +163,7 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.users.list,
       PATHS.dashboard.users.create,
       PATHS.dashboard.users.edit(':id'),
+      PATHS.dashboard.users.profile(':id'),
       PATHS.dashboard.coaching.root,
       PATHS.dashboard.performance.root,
       PATHS.dashboard.performance.list,

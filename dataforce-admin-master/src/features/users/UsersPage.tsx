@@ -83,6 +83,9 @@ export const UsersPage: FC<UsersPageProps> = (props) => {
         onEdit={(id) => {
           navigate(PATHS.dashboard.users.edit(`${id}`));
         }}
+        onView={(id) => {
+          navigate(PATHS.dashboard.users.profile(`${id}`));
+        }}
         onSelectedModels={() => {}}
       />
       <IslandModal onClose={() => setImportOpen(false)} open={importOpen}>

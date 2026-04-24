@@ -1,4 +1,4 @@
-import { Box, Button, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import { Box, Button, IconButton, ToggleButton, ToggleButtonGroup, Tooltip, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -18,6 +18,7 @@ import { DailyLogDashboard } from './DailyLogDashboard';
 import { DailyLogForm, DailyLogFormFields } from './DailyLogForm';
 import { DailyLogTable } from './DailyLogTable';
 import { DailyLogView } from './DailyLogView';
+import { EventTypeSettingsModal } from './settings/EventTypeSettingsModal';
 
 const DailyLogPage = () => {
   const { data: dailyLogsData, isFetching } = useAllDailyLogsQuery();
@@ -35,6 +36,7 @@ const DailyLogPage = () => {
   const closeView = () => setViewingData(null);
 
   const [view, setView] = useState<'list' | 'dashboard'>('list');
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   // Filter users with role "user" (drivers) for the driver select
   const driverOptions =
@@ -112,13 +114,27 @@ const DailyLogPage = () => {
               </ToggleButton>
             </ToggleButtonGroup>
             {view === 'list' && (
-              <Button
-                variant="contained"
-                onClick={create}
-                startIcon={<Iconify icon="eva:plus-fill" />}
-              >
-                New Log
-              </Button>
+              <>
+                <Tooltip title="Event type settings">
+                  <IconButton
+                    onClick={() => setSettingsOpen(true)}
+                    sx={{
+                      bgcolor: 'background.paper',
+                      border: (theme) => `1px solid ${theme.palette.divider}`,
+                      borderRadius: 1,
+                    }}
+                  >
+                    <Iconify icon="eva:settings-2-outline" />
+                  </IconButton>
+                </Tooltip>
+                <Button
+                  variant="contained"
+                  onClick={create}
+                  startIcon={<Iconify icon="eva:plus-fill" />}
+                >
+                  New Log
+                </Button>
+              </>
             )}
           </Box>
         </Box>
@@ -180,6 +196,16 @@ const DailyLogPage = () => {
       {viewingData && (
         <IslandModal open onClose={closeView} maxWidth="700px">
           <DailyLogView data={viewingData} onClose={closeView} />
+        </IslandModal>
+      )}
+
+      {settingsOpen && (
+        <IslandModal
+          open={settingsOpen}
+          onClose={() => setSettingsOpen(false)}
+          maxWidth="720px"
+        >
+          <EventTypeSettingsModal onClose={() => setSettingsOpen(false)} />
         </IslandModal>
       )}
     </>

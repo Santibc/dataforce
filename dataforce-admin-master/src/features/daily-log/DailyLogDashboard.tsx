@@ -2,9 +2,10 @@ import { Box, Grid, Paper, Stack, Typography, useTheme } from '@mui/material';
 import moment from 'moment';
 import { FC, useMemo } from 'react';
 import { IDailyLog } from 'src/api/dailyLogRepository';
+import { useAllEventTypesQuery } from 'src/api/eventTypeRepository';
 import Chart, { useChart } from 'src/components/chart';
 import Iconify from 'src/components/iconify';
-import { EVENT_TYPE_LABEL_MAP } from './dailyLogConstants';
+import { prettifySlug } from './dailyLogConstants';
 
 interface DailyLogDashboardProps {
   data: IDailyLog[];
@@ -98,6 +99,15 @@ const EmptyState: FC = () => (
 
 export const DailyLogDashboard: FC<DailyLogDashboardProps> = ({ data }) => {
   const theme = useTheme();
+  const { data: eventTypes } = useAllEventTypesQuery(true);
+
+  const eventTypeLabelMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    (eventTypes || []).forEach((t) => {
+      map[t.slug] = t.name;
+    });
+    return map;
+  }, [eventTypes]);
 
   const metrics = useMemo(() => {
     const total = data.length;
@@ -132,7 +142,7 @@ export const DailyLogDashboard: FC<DailyLogDashboardProps> = ({ data }) => {
 
     const eventTypeCount: Record<string, number> = {};
     data.forEach((d) => {
-      const label = EVENT_TYPE_LABEL_MAP[d.event_type] || d.event_type;
+      const label = eventTypeLabelMap[d.event_type] || prettifySlug(d.event_type);
       eventTypeCount[label] = (eventTypeCount[label] || 0) + 1;
     });
     const eventTypeSorted = Object.entries(eventTypeCount).sort(([, a], [, b]) => b - a);
@@ -174,7 +184,7 @@ export const DailyLogDashboard: FC<DailyLogDashboardProps> = ({ data }) => {
       topDrivers,
       trend,
     };
-  }, [data]);
+  }, [data, eventTypeLabelMap]);
 
   const severityColors = [
     theme.palette.success.main,

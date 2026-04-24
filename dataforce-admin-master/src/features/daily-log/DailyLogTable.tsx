@@ -1,7 +1,7 @@
 import { IconButton, MenuItem, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import moment from 'moment';
-import { FC, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   HitDataGridFilterResetButton,
@@ -15,13 +15,13 @@ import Label from 'src/components/label';
 import MenuPopover from 'src/components/menu-popover';
 import { useConfirm } from 'src/components/confirm-action/ConfirmAction';
 import { IDailyLog } from 'src/api/dailyLogRepository';
+import { useAllEventTypesQuery } from 'src/api/eventTypeRepository';
 import {
-  EVENT_TYPE_LABEL_MAP,
-  EVENT_TYPE_OPTIONS,
   SEVERITY_COLOR_MAP,
   SEVERITY_LABEL_MAP,
   SEVERITY_OPTIONS,
   STATUS_COLOR_MAP,
+  prettifySlug,
 } from './dailyLogConstants';
 
 interface DailyLogTableProps {
@@ -50,10 +50,25 @@ export const DailyLogTable: FC<DailyLogTableProps> = ({
   onViewRef.current = onView;
   const confirm = useConfirm();
 
+  const { data: eventTypes } = useAllEventTypesQuery(true);
+
+  const eventTypeLabelMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    (eventTypes || []).forEach((t) => {
+      map[t.slug] = t.name;
+    });
+    return map;
+  }, [eventTypes]);
+
+  const eventTypeFilterOptions = useMemo(
+    () => (eventTypes || []).filter((t) => t.is_active).map((t) => ({ slug: t.slug, label: t.name })),
+    [eventTypes],
+  );
+
   const tableData = data.map((row) => ({
     ...row,
     date_formatted: moment(row.date).format('MM/DD/YYYY'),
-    event_type_label: EVENT_TYPE_LABEL_MAP[row.event_type] || row.event_type,
+    event_type_label: eventTypeLabelMap[row.event_type] || prettifySlug(row.event_type),
     severity_label: SEVERITY_LABEL_MAP[row.severity] || row.severity,
     status_label: row.status === 'submitted' ? 'Submitted' : 'Draft',
   }));
@@ -167,8 +182,8 @@ export const DailyLogTable: FC<DailyLogTableProps> = ({
                     size="small"
                   >
                     <MenuItem value="">All</MenuItem>
-                    {EVENT_TYPE_OPTIONS.map((opt) => (
-                      <MenuItem key={opt.value} value={opt.label}>
+                    {eventTypeFilterOptions.map((opt) => (
+                      <MenuItem key={opt.slug} value={opt.label}>
                         {opt.label}
                       </MenuItem>
                     ))}

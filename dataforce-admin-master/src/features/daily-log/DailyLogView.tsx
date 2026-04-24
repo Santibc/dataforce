@@ -1,14 +1,15 @@
 import { Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
 import moment from 'moment';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { IDailyLog } from 'src/api/dailyLogRepository';
+import { useAllEventTypesQuery } from 'src/api/eventTypeRepository';
 import Iconify from 'src/components/iconify';
 import Label from 'src/components/label';
 import {
-  EVENT_TYPE_LABEL_MAP,
   SEVERITY_COLOR_MAP,
   SEVERITY_LABEL_MAP,
   STATUS_COLOR_MAP,
+  prettifySlug,
 } from './dailyLogConstants';
 
 interface DailyLogViewProps {
@@ -25,7 +26,14 @@ const Field: FC<{ label: string; children: ReactNode }> = ({ label, children }) 
   </Box>
 );
 
-export const DailyLogView: FC<DailyLogViewProps> = ({ data, onClose }) => (
+export const DailyLogView: FC<DailyLogViewProps> = ({ data, onClose }) => {
+  const { data: eventTypes } = useAllEventTypesQuery(true);
+  const eventTypeLabel = useMemo(() => {
+    const match = (eventTypes || []).find((t) => t.slug === data.event_type);
+    return match?.name || prettifySlug(data.event_type);
+  }, [eventTypes, data.event_type]);
+
+  return (
   <Stack spacing={2}>
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Typography variant="h5">Daily Log Details</Typography>
@@ -51,7 +59,7 @@ export const DailyLogView: FC<DailyLogViewProps> = ({ data, onClose }) => (
     <Stack direction="row" spacing={2} flexWrap="wrap">
       <Field label="Event Type">
         <Label variant="soft" color="primary">
-          {EVENT_TYPE_LABEL_MAP[data.event_type] || data.event_type}
+          {eventTypeLabel}
         </Label>
       </Field>
       <Field label="Severity">
@@ -90,4 +98,5 @@ export const DailyLogView: FC<DailyLogViewProps> = ({ data, onClose }) => (
       </Button>
     </Stack>
   </Stack>
-);
+  );
+};

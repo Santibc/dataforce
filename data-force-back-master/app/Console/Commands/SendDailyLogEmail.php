@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Src\Domain\DailyLog\Models\DailyLog;
+use Src\Domain\DailyLog\Models\EventType;
 use Src\Shared\Notifications\DailyLogNotification;
 
 class SendDailyLogEmail extends Command
@@ -21,15 +23,14 @@ class SendDailyLogEmail extends Command
             return;
         }
 
-        $eventTypeLabels = [
-            'absence' => 'Absence',
-            'no_call_no_show' => 'No Call No Show',
-            'late_arrival' => 'Late Arrival',
-            'uniform' => 'Uniform',
-            'coaching' => 'Coaching',
-            'suspension' => 'Suspension',
-            'other' => 'Other',
-        ];
+        $eventType = EventType::withTrashed()
+            ->where('company_id', $log->company_id)
+            ->where('slug', $log->event_type)
+            ->first();
+
+        $eventTypeLabel = $eventType
+            ? $eventType->name
+            : Str::headline(str_replace('_', ' ', (string) $log->event_type));
 
         $severityLabels = [
             'low' => 'Low',
@@ -42,7 +43,7 @@ class SendDailyLogEmail extends Command
 
         $notification = new DailyLogNotification(
             driverName: $driverName,
-            eventType: $eventTypeLabels[$log->event_type] ?? $log->event_type,
+            eventType: $eventTypeLabel,
             severity: $severityLabels[$log->severity] ?? $log->severity,
             description: $log->description ?? 'N/A',
             actionTaken: $log->action_taken ?? 'N/A',

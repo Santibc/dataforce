@@ -14,6 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { useAllDailyLogsQuery } from 'src/api/dailyLogRepository';
+import { useAllEventTypesQuery } from 'src/api/eventTypeRepository';
 import { useFindUserQuery } from 'src/api/usersRepository';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import { useColumns } from 'src/components/datagrid';
@@ -22,10 +23,10 @@ import Label from 'src/components/label';
 import { APP_NAME } from 'src/config';
 import { DailyLogDashboard } from 'src/features/daily-log/DailyLogDashboard';
 import {
-  EVENT_TYPE_LABEL_MAP,
   SEVERITY_COLOR_MAP,
   SEVERITY_LABEL_MAP,
   STATUS_COLOR_MAP,
+  prettifySlug,
 } from 'src/features/daily-log/dailyLogConstants';
 import { PATHS } from 'src/routes/paths';
 import { LoadingComponent } from 'src/utils/LoadingComponent';
@@ -53,6 +54,15 @@ export const UserProfilePage: FC = () => {
 
   const { data: userData, isFetching: isUserFetching } = useFindUserQuery(userId);
   const { data: allLogs, isFetching: isLogsFetching } = useAllDailyLogsQuery();
+  const { data: eventTypes } = useAllEventTypesQuery(true);
+
+  const eventTypeLabelMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    (eventTypes || []).forEach((t) => {
+      map[t.slug] = t.name;
+    });
+    return map;
+  }, [eventTypes]);
 
   const userLogs = useMemo(
     () => (allLogs || []).filter((log) => log.driver_id === userId),
@@ -66,11 +76,11 @@ export const UserProfilePage: FC = () => {
         .map((log) => ({
           ...log,
           date_formatted: moment(log.date).format('MM/DD/YYYY'),
-          event_type_label: EVENT_TYPE_LABEL_MAP[log.event_type] || log.event_type,
+          event_type_label: eventTypeLabelMap[log.event_type] || prettifySlug(log.event_type),
           severity_label: SEVERITY_LABEL_MAP[log.severity] || log.severity,
           status_label: log.status === 'submitted' ? 'Submitted' : 'Draft',
         })),
-    [userLogs]
+    [userLogs, eventTypeLabelMap]
   );
 
   const historyColumns = useColumns<(typeof historyRows)[0]>([

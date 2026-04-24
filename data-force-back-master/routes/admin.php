@@ -79,6 +79,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin|admin|owner|man
     Route::resource('daily-logs', \Src\Application\Admin\DailyLog\Controllers\DailyLogController::class)->except(['edit', 'create']);
     Route::put('daily-logs/{id}/submit', [\Src\Application\Admin\DailyLog\Controllers\DailyLogController::class, 'submit']);
 
+    // ------------------------------ EVENT TYPES -----------------------------
+    Route::resource('event-types', \Src\Application\Admin\DailyLog\Controllers\EventTypeController::class)->except(['show', 'edit', 'create']);
+
     // ------------------------------ CHAT --------------------------------
     Route::get('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'index']);
     Route::post('chat-groups', [\Src\Application\Admin\Chat\Controllers\ChatGroupController::class, 'store']);

@@ -38,6 +38,10 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole(['super_admin']);
 
+        $this->call([
+            EventTypeSeeder::class,
+        ]);
+
 //        $this->addPermissionToRole($admin, 'user');
     }
 

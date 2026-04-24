@@ -1,7 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button } from '@mui/material';
-import { FC } from 'react';
+import { FC, useEffect, useMemo, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useAllEventTypesQuery } from 'src/api/eventTypeRepository';
 import {
   HitForm,
   HitFormActions,
@@ -12,7 +13,7 @@ import {
 } from 'src/components/form';
 import { ModalTitleHeader } from 'src/components/modal-header-with-close-button/ModalTitleHeader';
 import * as Yup from 'yup';
-import { EVENT_TYPE_OPTIONS, SEVERITY_OPTIONS } from './dailyLogConstants';
+import { SEVERITY_OPTIONS } from './dailyLogConstants';
 
 export interface DailyLogFormFields {
   driver_id: number | '';
@@ -61,6 +62,53 @@ export const DailyLogForm: FC<DailyLogFormProps> = ({
     mode: 'onBlur',
     resolver: yupResolver(dailyLogSchema) as any,
   });
+
+  const { data: eventTypes } = useAllEventTypesQuery(false);
+
+  const eventTypeOptions = useMemo(() => {
+    const fromApi = (eventTypes || []).map((e) => ({ value: e.slug, label: e.name }));
+    // When editing a log whose event_type is inactive/deleted, keep the option visible.
+    const selected = initialValues?.event_type;
+    if (selected && !fromApi.some((o) => o.value === selected)) {
+      fromApi.push({ value: selected, label: selected });
+    }
+    return fromApi;
+  }, [eventTypes, initialValues?.event_type]);
+
+  const watchedEventType = hf.watch('event_type');
+  const prevEventTypeRef = useRef<string>(initialValues?.event_type || '');
+
+  useEffect(() => {
+    // Auto-fill only when the user actively changes the event type (not on initial mount).
+    if (watchedEventType === prevEventTypeRef.current) return;
+
+    const preset = (eventTypes || []).find((e) => e.slug === watchedEventType);
+    const previousPreset = (eventTypes || []).find((e) => e.slug === prevEventTypeRef.current);
+
+    if (preset) {
+      const current = hf.getValues();
+
+      // Only overwrite fields that are empty OR still match the previous preset's default
+      // (so we never clobber text the user has actually typed).
+      const shouldWrite = (
+        currentValue: string | null | undefined,
+        previousDefault: string | null | undefined,
+      ) => !currentValue || currentValue === (previousDefault || '');
+
+      if (preset.default_severity && shouldWrite(current.severity, previousPreset?.default_severity)) {
+        hf.setValue('severity', preset.default_severity, { shouldValidate: true });
+      }
+      if (preset.default_description != null && shouldWrite(current.description, previousPreset?.default_description)) {
+        hf.setValue('description', preset.default_description || '');
+      }
+      if (preset.default_action_taken != null && shouldWrite(current.action_taken, previousPreset?.default_action_taken)) {
+        hf.setValue('action_taken', preset.default_action_taken || '');
+      }
+    }
+
+    prevEventTypeRef.current = watchedEventType;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedEventType, eventTypes]);
 
   const handleSaveAsDraft = async () => {
     const isValid = await hf.trigger();
@@ -119,7 +167,7 @@ export const DailyLogForm: FC<DailyLogFormProps> = ({
                     label="Event Type *"
                     floatingLabel={false}
                     placeholder="Select event type"
-                    options={[...EVENT_TYPE_OPTIONS]}
+                    options={eventTypeOptions}
                   />
                 )}
               />

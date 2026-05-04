@@ -53,9 +53,9 @@ export function SuperAdminChatPage() {
     }
   }, [selectedGroupId]);
 
-  const handleSend = (body: string) => {
+  const handleSend = (payload: { body?: string; attachment?: File | null }) => {
     if (!selectedGroupId) return;
-    sendMutation.mutate({ groupId: selectedGroupId, body });
+    sendMutation.mutate({ groupId: selectedGroupId, ...payload });
   };
 
   const handleGroupDeleted = () => {

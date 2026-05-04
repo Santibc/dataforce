@@ -17,6 +17,17 @@ export interface IChatLastMessage {
   created_at: string;
 }
 
+export type ChatAttachmentKind = 'image' | 'document';
+
+export interface IChatAttachment {
+  url: string;
+  name: string;
+  file_name?: string;
+  mime_type: string;
+  size: number;
+  kind: ChatAttachmentKind;
+}
+
 export interface IChatGroup {
   id: number;
   name: string;
@@ -46,10 +57,11 @@ export interface IChatGroupMember {
 
 export interface IChatMessage {
   id: number;
-  body: string;
+  body: string | null;
   sender: IChatGroupSender;
   chat_group_id: number;
   created_at: string;
+  attachment: IChatAttachment | null;
 }
 
 export interface ICreateChatGroup {
@@ -126,10 +138,22 @@ export class ChatRepository {
     return data;
   };
 
-  sendMessage = async ({ groupId, body }: { groupId: number; body: string }) => {
+  sendMessage = async ({
+    groupId,
+    body,
+    attachment,
+  }: {
+    groupId: number;
+    body?: string | null;
+    attachment?: File | null;
+  }) => {
+    const fd = new FormData();
+    if (body && body.trim() !== '') fd.append('body', body);
+    if (attachment) fd.append('attachment', attachment);
     const { data } = await httpClient.post<IChatMessage>(
       `admin/chat-groups/${groupId}/messages`,
-      { body }
+      fd,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     return data;
   };

@@ -75,10 +75,22 @@ export class SuperAdminChatRepository {
     return data;
   };
 
-  sendMessage = async ({ groupId, body }: { groupId: number; body: string }) => {
+  sendMessage = async ({
+    groupId,
+    body,
+    attachment,
+  }: {
+    groupId: number;
+    body?: string | null;
+    attachment?: File | null;
+  }) => {
+    const fd = new FormData();
+    if (body && body.trim() !== '') fd.append('body', body);
+    if (attachment) fd.append('attachment', attachment);
     const { data } = await httpClient.post<IChatMessage>(
       `super/chat-groups/${groupId}/messages`,
-      { body }
+      fd,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     return data;
   };

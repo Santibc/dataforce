@@ -52,8 +52,8 @@ export function ChatWindow({
     }
   }, [group.id]);
 
-  const handleSend = (body: string) => {
-    sendMutation.mutate({ groupId: group.id, body });
+  const handleSend = (payload: { body?: string; attachment?: File | null }) => {
+    sendMutation.mutate({ groupId: group.id, ...payload });
   };
 
   return (

@@ -55,7 +55,17 @@ class ChatMessage extends Model implements HasMedia
 
     public function addAttachment(UploadedFile $file): Media
     {
+        $originalBase = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = strtolower($file->getClientOriginalExtension() ?: 'bin');
+        $slug = Str::slug($originalBase);
+        if ($slug === '') {
+            $slug = 'file';
+        }
+        $safeFileName = $slug . '-' . Str::random(6) . '.' . $extension;
+
         return $this->addMedia($file)
+            ->usingFileName($safeFileName)
+            ->usingName($originalBase !== '' ? $originalBase : $safeFileName)
             ->toMediaCollection(self::ATTACHMENT_COLLECTION, self::ATTACHMENT_DISK);
     }
 

@@ -24,7 +24,18 @@
       "Read(//f/xamppPro80/apache/conf/extra/**)",
       "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
       "Read(//f/f/xamppPro80/htdocs/dataforce/data-force-back-master/storage/logs/**)",
-      "Bash(awk -F'[][]' '{print $2}')"
+      "Bash(awk -F'[][]' '{print $2}')",
+      "Bash(grep -E \"\\\\.\\(php|sql\\)$\")",
+      "Bash(grep -r \"axios\\\\|fetch\\\\|upload\\\\|file\" /f/xamppPro80/htdocs/dataforce/dataforce-app-develop/src/app -type f --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -r \"expo-image-picker\\\\|image-picker\\\\|document-picker\" /f/xamppPro80/htdocs/dataforce/dataforce-app-develop/src -type f --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -r \"attachments\\\\|media\\\\|files\\\\|documents\" /f/xamppPro80/htdocs/dataforce/data-force-back-master/src/Domain/Chat -type f)",
+      "Bash(xargs wc *)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files/Android/Android Studio/**)",
+      "Read(//c//**)",
+      "PowerShell(Get-ChildItem 'C:\\\\Users\\\\santi' -Directory -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'jdk|jre|java|.android' } | Select-Object FullName; Get-ChildItem 'C:\\\\Users\\\\santi\\\\AppData\\\\Local' -Directory -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'Android|JetBrains|Programs' } | Select-Object FullName)",
+      "Read(//c/Users/santi/AppData/Local/Android/**)",
+      "Read(//c/Users/santi/**)"
     ]
   }
 }

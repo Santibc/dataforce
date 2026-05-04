@@ -3,6 +3,7 @@
 namespace Src\Application\SuperAdmin\Chat\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Src\Domain\Chat\Models\ChatMessage;
 
 class SuperAdminChatGroupResource extends JsonResource
 {
@@ -20,7 +21,7 @@ class SuperAdminChatGroupResource extends JsonResource
             'members_count' => $this->active_members_count ?? $this->activeMembers()->count(),
             'last_message' => $latestMessage ? [
                 'id' => $latestMessage->id,
-                'body' => $latestMessage->body,
+                'body' => self::resolveLastMessagePreview($latestMessage),
                 'sender_name' => $latestMessage->sender?->firstname . ' ' . $latestMessage->sender?->lastname,
                 'created_at' => $latestMessage->created_at,
             ] : null,
@@ -28,5 +29,23 @@ class SuperAdminChatGroupResource extends JsonResource
             'is_super_admin_group' => true,
             'created_at' => $this->created_at,
         ];
+    }
+
+    private static function resolveLastMessagePreview(ChatMessage $message): string
+    {
+        if (is_string($message->body) && trim($message->body) !== '') {
+            return $message->body;
+        }
+
+        if ($message->relationLoaded('media')) {
+            $media = $message->getFirstMedia(ChatMessage::ATTACHMENT_COLLECTION);
+            if ($media) {
+                return ChatMessage::attachmentKindFor($media) === 'image'
+                    ? '📎 Imagen'
+                    : '📄 Documento';
+            }
+        }
+
+        return '';
     }
 }

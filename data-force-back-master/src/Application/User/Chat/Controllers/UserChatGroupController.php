@@ -15,7 +15,7 @@ class UserChatGroupController
 
         $groups = ChatGroup::currentCompany()
             ->forUser($userId)
-            ->with(['latestMessage.sender', 'activeMembers'])
+            ->with(['latestMessage.sender', 'latestMessage.media', 'activeMembers'])
             ->withCount('activeMembers')
             ->get()
             ->map(function ($group) use ($userId) {

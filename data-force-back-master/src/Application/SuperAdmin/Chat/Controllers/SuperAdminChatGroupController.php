@@ -21,7 +21,7 @@ class SuperAdminChatGroupController
         $userId = auth()->id();
 
         $groups = ChatGroup::whereNull('company_id')
-            ->with(['latestMessage.sender', 'activeMembers'])
+            ->with(['latestMessage.sender', 'latestMessage.media', 'activeMembers'])
             ->withCount('activeMembers')
             ->get()
             ->map(function ($group) use ($userId) {

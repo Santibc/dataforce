@@ -15,6 +15,7 @@ import {
   useMarkAsReadMutation,
   useSendMessageMutation,
   IChatMessage,
+  IAttachmentInput,
 } from 'app/api/chatRepository';
 import { ChatNavigationType } from '../navigation';
 import ChatMessageItem from '../components/ChatMessageItem';
@@ -111,8 +112,11 @@ const ChatConversationPage: React.FC = () => {
     return () => sub.remove();
   }, []);
 
-  const handleSend = (body: string) => {
-    sendMutation.mutate({ groupId, body });
+  const handleSend = (payload: {
+    body?: string;
+    attachment?: IAttachmentInput | null;
+  }) => {
+    sendMutation.mutate({ groupId, ...payload });
   };
 
   const listData = buildMessageList(messages ?? []);

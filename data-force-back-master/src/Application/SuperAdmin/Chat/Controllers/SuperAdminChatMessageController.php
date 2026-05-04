@@ -17,7 +17,7 @@ class SuperAdminChatMessageController
 
         $query = ChatMessage::forGroup($group->id)
             ->recent()
-            ->with('sender')
+            ->with(['sender', 'media'])
             ->orderBy('created_at', 'asc');
 
         $afterId = request()->input('after_id');
@@ -42,7 +42,11 @@ class SuperAdminChatMessageController
             'company_id' => null,
         ]);
 
-        $message->load('sender');
+        if ($data->attachment) {
+            $message->addAttachment($data->attachment);
+        }
+
+        $message->load(['sender', 'media']);
 
         ChatMessageRead::updateOrCreate(
             ['chat_group_id' => $group->id, 'user_id' => auth()->id()],

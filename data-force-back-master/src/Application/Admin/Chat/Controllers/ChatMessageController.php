@@ -37,7 +37,7 @@ class ChatMessageController
 
         $query = ChatMessage::forGroup($group->id)
             ->recent()
-            ->with('sender')
+            ->with(['sender', 'media'])
             ->orderBy('created_at', 'asc');
 
         // Support cursor-based pagination for polling
@@ -70,7 +70,11 @@ class ChatMessageController
             'company_id' => $group->company_id,
         ]);
 
-        $message->load('sender');
+        if ($data->attachment) {
+            $message->addAttachment($data->attachment);
+        }
+
+        $message->load(['sender', 'media']);
 
         // Auto mark as read for sender
         ChatMessageRead::updateOrCreate(

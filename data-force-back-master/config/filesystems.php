@@ -44,6 +44,14 @@ return [
             'throw' => false,
         ],
 
+        'chat_uploads' => [
+            'driver' => 'local',
+            'root' => public_path('chat-attachments'),
+            'url' => env('APP_URL').'/chat-attachments',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

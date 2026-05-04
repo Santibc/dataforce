@@ -30,12 +30,31 @@ export interface IChatGroup {
   created_at: string;
 }
 
+export type ChatAttachmentKind = 'image' | 'document';
+
+export interface IChatAttachment {
+  url: string;
+  name: string;
+  file_name?: string;
+  mime_type: string;
+  size: number;
+  kind: ChatAttachmentKind;
+}
+
 export interface IChatMessage {
   id: number;
-  body: string;
+  body: string | null;
   sender: IChatGroupSender;
   chat_group_id: number;
   created_at: string;
+  attachment: IChatAttachment | null;
+}
+
+export interface IAttachmentInput {
+  uri: string;
+  name: string;
+  mime_type: string;
+  size?: number;
 }
 
 export interface IUnreadCounts {
@@ -62,10 +81,26 @@ export class ChatRepository {
     );
   };
 
-  sendMessage = async (groupId: number, body: string) =>
-    httpClient.post<IChatMessage>(`user/chat-groups/${groupId}/messages`, {
-      body,
-    });
+  sendMessage = async (
+    groupId: number,
+    payload: { body?: string | null; attachment?: IAttachmentInput | null },
+  ) => {
+    const fd = new FormData();
+    if (payload.body && payload.body.trim() !== '') {
+      fd.append('body', payload.body);
+    }
+    if (payload.attachment) {
+      fd.append('attachment', {
+        uri: payload.attachment.uri,
+        name: payload.attachment.name,
+        type: payload.attachment.mime_type,
+      } as any);
+    }
+    return httpClient.post<IChatMessage>(
+      `user/chat-groups/${groupId}/messages`,
+      fd,
+    );
+  };
 
   markAsRead = async (groupId: number) =>
     httpClient.put(`user/chat-groups/${groupId}/messages/read`);
@@ -102,11 +137,17 @@ export const useUnreadCountsQuery = () =>
 
 // ────────────────────────────── Mutation Hooks ──────────────────────────────
 
+interface SendMessageVars {
+  groupId: number;
+  body?: string | null;
+  attachment?: IAttachmentInput | null;
+}
+
 export const useSendMessageMutation = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ groupId, body }: { groupId: number; body: string }) =>
-      repo.sendMessage(groupId, body),
+    mutationFn: ({ groupId, body, attachment }: SendMessageVars) =>
+      repo.sendMessage(groupId, { body, attachment }),
     onSuccess: (_, variables) => {
       qc.invalidateQueries({ queryKey: repo.keys.messages(variables.groupId) });
       qc.invalidateQueries({ queryKey: repo.keys.unreadCounts() });

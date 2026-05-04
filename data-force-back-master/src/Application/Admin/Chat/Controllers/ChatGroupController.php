@@ -22,7 +22,7 @@ class ChatGroupController
         $userId = auth()->id();
 
         $groups = ChatGroup::currentCompany()
-            ->with(['latestMessage.sender', 'activeMembers'])
+            ->with(['latestMessage.sender', 'latestMessage.media', 'activeMembers'])
             ->withCount('activeMembers')
             ->get();
 
@@ -30,7 +30,7 @@ class ChatGroupController
         if (auth()->user()->hasRole('owner')) {
             $saGroups = ChatGroup::whereNull('company_id')
                 ->forUser($userId)
-                ->with(['latestMessage.sender', 'activeMembers'])
+                ->with(['latestMessage.sender', 'latestMessage.media', 'activeMembers'])
                 ->withCount('activeMembers')
                 ->get();
 

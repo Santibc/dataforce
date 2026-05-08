@@ -13,7 +13,7 @@
     "icon": "./src/assets/logo2.png",
     "android": {
       "package": "com.dataforce.bosmetrics",
-      "versionCode": 7,
+      "versionCode": 8,
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo2.png",
@@ -22,7 +22,12 @@
     },
     "ios": {
       "bundleIdentifier": "com.bosmetrics.app",
-      "buildNumber": "7"
+      "buildNumber": "8",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Bosmetrics necesita acceso a tu galería para que puedas adjuntar imágenes en el chat.",
+        "NSCameraUsageDescription": "Bosmetrics necesita acceso a la cámara para que puedas adjuntar fotos en el chat.",
+        "NSDocumentsFolderUsageDescription": "Bosmetrics necesita acceso a tus documentos para que puedas adjuntar archivos en el chat."
+      }
     },
     "extra": {
       "eas": {

@@ -1,0 +1,68 @@
+★ eas-cli@18.11.0 is now available.
+To upgrade, run:
+npm install -g eas-cli
+Proceeding with outdated version.
+
+Using EAS CLI without version control system is not recommended, use this mode only if you know what you are doing.
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+Resolved "production" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+No environment variables with visibility "Plain text" and "Sensitive" found for the "production" environment on EAS.
+Environment variables loaded from the "production" build profile "env" configuration: NPM_CONFIG_LEGACY_PEER_DEPS.
+
+app.json is missing ios.infoPlist.ITSAppUsesNonExemptEncryption boolean. Manual configuration is required in App Store Connect before the app can be tested.
+
+
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+✔ Using remote iOS credentials (Expo server)
+
+Distribution Certificate is not validated for non-interactive builds.
+Skipping Provisioning Profile validation on Apple Servers because we aren't authenticated.
+
+Project Credentials Configuration
+
+Project                   @michcardenas/bosmetrics
+Bundle Identifier         com.bosmetrics.app
+                          
+App Store Configuration   
+                          
+Distribution Certificate  
+Serial Number             7D30A7FDFEE493CAA9C2E2C055874505
+Expiration Date           Wed, 17 Mar 2027 14:04:25 GMT-0500
+Apple Team                2CCYK8Q34Q (Bos Metrics LLC (Company/Organization))
+Updated                   1 month ago
+                          
+Provisioning Profile      
+Developer Portal ID       9HCVAP584X
+Status                    active
+Expiration                Wed, 17 Mar 2027 14:04:25 GMT-0500
+Apple Team                2CCYK8Q34Q (Bos Metrics LLC (Company/Organization))
+Updated                   1 month ago
+                          
+All credentials are ready to build @michcardenas/bosmetrics (com.bosmetrics.app)
+
+
+Compressing project files and uploading to EAS Build. Learn more: https://expo.fyi/eas-build-archive
+- Compressing project files
+Your project archive is 830 MB. You can reduce its size and the time it takes to upload by excluding files that are unnecessary for the build process in .easignore file. Learn more: https://expo.fyi/eas-build-archive
+- Uploading to EAS Build (0 / 830 MB)
+✔ Uploaded to EAS 3m 27s
+- Computing project fingerprint
+⌛️ Computing the project fingerprint is taking longer than expected...
+⏩ To skip this step, set the environment variable: EAS_SKIP_AUTO_FINGERPRINT=1
+✔ Computed project fingerprint
+
+See logs: https://expo.dev/accounts/michcardenas/projects/bosmetrics/builds/f0648005-9672-492c-b6f5-2d027c41ab64
+
+Waiting for build to complete. You can press Ctrl+C to exit.
+- Waiting for build to complete.
+  Build queued...
+
+Start builds sooner in the priority queue.
+Sign up for a paid plan at https://expo.dev/accounts/michcardenas/settings/billing
+
+Waiting in Free tier queue
+
+- Build is about to start
+✔ Build finished
+🍏 iOS app:
+https://expo.dev/artifacts/eas/vFHkgKAGiY6qLmHzhYdTZN.ipa

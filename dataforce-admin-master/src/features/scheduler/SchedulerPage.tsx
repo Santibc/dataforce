@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  IconButton,
   MenuItem,
   Modal,
   Paper,
@@ -27,7 +26,6 @@ import {
   IoChevronBackOutline,
   IoChevronDownOutline,
   IoChevronForward,
-  IoClose,
   IoFilter,
   IoWarning,
 } from 'react-icons/io5';
@@ -120,7 +118,6 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
   users
 }) => {
   const theme = useTheme();
-  const [showFilters, setShowFilters] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [openCopyPrevWeek, setOpenCopyPrevWeek] = React.useState(false);
@@ -325,14 +322,6 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
         <Typography variant="h5">Schedule</Typography>
         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
           <Button
-            variant={showFilters ? 'contained' : 'outlined'}
-            onClick={() => setShowFilters((prev) => !prev)}
-            startIcon={<IoFilter />}
-            sx={{ fontSize: '14px' }}
-          >
-            Filters
-          </Button>
-          <Button
             variant="contained"
             disabled={haveNotPublished()}
             sx={{
@@ -376,33 +365,20 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
           </Button>
         </Box>
       </Box>
-      {showFilters && (
-        <Paper elevation={11} sx={{ p: '16px', mb: '0.75rem', borderRadius: '1rem' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography fontWeight={600} fontSize={'16px'} variant="subtitle1">
-                Filters
-              </Typography>
-              <IconButton size="small" onClick={() => setShowFilters(false)}>
-                <IoClose />
-              </IconButton>
-            </Box>
-            <ScheduleFilters setSearchParams={setSearchParams} hf={hf} />
-          </Box>
-        </Paper>
-      )}
       <Paper elevation={11} sx={{ borderRadius: '1rem', overflow: 'hidden' }} id='printable-content'>
         <Box
           sx={{
             display: 'flex',
             justifyContent: { xs: '', lg: 'space-between' },
             flexDirection: { xs: 'column', lg: 'row' },
+            flexWrap: 'wrap',
             alignItems: 'center',
+            gap: 1,
             px: '1.5rem',
-            py: { xs: '1.25rem', lg: '0' },
+            py: { xs: '1rem', lg: '0.75rem' },
           }}
         >
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
             <Select
               value={searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME)}
               onChange={(e) =>
@@ -414,7 +390,8 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                   { replace: true }
                 )
               }
-              sx={{ height: '43px' }}
+              size="small"
+              sx={{ height: '40px' }}
             >
               <MenuItem value={SCHEDULE_TIMEFRAME.DAY}>Day</MenuItem>
               <MenuItem value={SCHEDULE_TIMEFRAME.WEEK}>Week</MenuItem>
@@ -453,11 +430,12 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }}>
-                Selected Drivers
+                Selected
               </Typography>
             </Button>
+            <ScheduleFilters compact setSearchParams={setSearchParams} hf={hf} />
           </Box>
-          <Box sx={{ paddingY: '1.25rem' }}>
+          <Box sx={{ paddingY: '0.5rem' }}>
             <Box
               sx={{
                 display: 'flex',

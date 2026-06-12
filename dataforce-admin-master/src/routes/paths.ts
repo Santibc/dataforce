@@ -87,6 +87,11 @@ export const PATHS = {
     dailyLog: {
       root: '/dashboard/daily-log',
     },
+    adp: {
+      root: '/dashboard/adp',
+      sync: '/dashboard/adp/sync',
+      settings: '/dashboard/adp/settings',
+    },
   },
 } as const;
 
@@ -141,6 +146,9 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.documents.root,
       PATHS.dashboard.chat.root,
       PATHS.dashboard.dailyLog.root,
+      PATHS.dashboard.adp.root,
+      PATHS.dashboard.adp.sync,
+      PATHS.dashboard.adp.settings,
       PATHS['set-password'].root,
       PATHS['set-password'].set(':id'),
       PATHS['successfully-set-password'].root,
@@ -170,6 +178,9 @@ export const PATHS_PER_ROLE = [
       PATHS.dashboard.performance.peek(':id'),
       PATHS.dashboard.dashboardPerformance.root,
       PATHS.dashboard.documents.root,
+      PATHS.dashboard.adp.root,
+      PATHS.dashboard.adp.sync,
+      PATHS.dashboard.adp.settings,
       PATHS.config.root,
       PATHS.config.company.root,
     ],

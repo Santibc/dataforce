@@ -29,6 +29,18 @@ class Kernel extends ConsoleKernel
             ->everyTwoMinutes()
             ->withoutOverlapping()
             ->runInBackground();
+
+        // Sync ADP workers daily: refresh linked drivers and stage new candidates for review
+        $schedule->command('adp:sync-workers')
+            ->dailyAt('04:00')
+            ->withoutOverlapping()
+            ->runInBackground();
+
+        // Sync ADP worked hours (time cards) daily after the worker sync
+        $schedule->command('adp:sync-time-cards')
+            ->dailyAt('05:00')
+            ->withoutOverlapping()
+            ->runInBackground();
     }
 
     /**

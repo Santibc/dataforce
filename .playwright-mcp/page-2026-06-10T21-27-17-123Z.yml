@@ -1,0 +1,2146 @@
+- generic [active] [ref=e7]:
+  - generic [ref=e9]:
+    - navigation "Skip to main content":
+      - link "Skip to main content" [ref=e10] [cursor=pointer]:
+        - /url: "javascript: void(0)"
+    - banner [ref=e11] [cursor=pointer]:
+      - img "ADP Logo" [ref=e13]:
+        - img [ref=e14]
+      - generic [ref=e20]: Developer Resources
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - img [ref=e25]
+          - combobox "App Bar Search" [ref=e28]
+        - dialog "App Bar Search"
+      - list [ref=e29]:
+        - generic [ref=e30]:
+          - generic:
+            - listitem [ref=e31]:
+              - button "Feedback" [ref=e32]:
+                - img [ref=e35]
+                - generic [ref=e38]: Feedback
+            - listitem [ref=e39]:
+              - button "Help" [ref=e40]:
+                - img [ref=e43]
+                - generic [ref=e46]: Help
+            - listitem [ref=e47]:
+              - link "Sign in" [ref=e48]:
+                - /url: "#"
+                - generic [ref=e49]:
+                  - generic: Sign in
+        - listitem
+    - navigation [ref=e50]:
+      - list [ref=e51]:
+        - listitem [ref=e52]:
+          - link "Home" [ref=e53] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e55]:
+          - button "Getting started" [ref=e56] [cursor=pointer]:
+            - text: Getting started
+            - img [ref=e58]
+        - listitem [ref=e62]:
+          - button "APIs" [ref=e63] [cursor=pointer]:
+            - text: APIs
+            - img [ref=e65]
+        - listitem [ref=e69]:
+          - button "Guides" [expanded] [ref=e70] [cursor=pointer]:
+            - text: Guides
+            - img [ref=e72]
+        - listitem [ref=e76]:
+          - button "Solutions" [ref=e77] [cursor=pointer]:
+            - text: Solutions
+            - img [ref=e79]
+        - listitem [ref=e83]:
+          - link "Support" [ref=e84] [cursor=pointer]:
+            - /url: /support/help-center
+    - generic [ref=e86]:
+      - generic:
+        - main [ref=e87]:
+          - generic [ref=e89]:
+            - generic [ref=e91]:
+              - img [ref=e93]
+              - generic [ref=e96]:
+                - link "Home" [ref=e97] [cursor=pointer]:
+                  - /url: /
+                - text: /
+              - generic [ref=e98]: Guides /
+              - generic [ref=e99]:
+                - link "API Guides" [ref=e100] [cursor=pointer]:
+                  - /url: /guides/api-guides
+                - text: /
+              - generic [ref=e101]: Workers Data Collection
+            - generic [ref=e103]:
+              - generic [ref=e106]:
+                - generic [ref=e107]: Workers Data Collection
+                - generic [ref=e109]:
+                  - generic:
+                    - img "documents" [ref=e112]
+                    - generic [ref=e122]:
+                      - generic [ref=e123]: Summary
+                      - generic [ref=e124]: The worker API is used to retrieve employee details. Updated data dictionary
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - generic [ref=e128]: CHAPTER 1
+                    - generic [ref=e129]:
+                      - heading "About this API" [level=2] [ref=e130]
+                      - button [ref=e133]:
+                        - img [ref=e135] [cursor=pointer]
+                    - generic [ref=e139]:
+                      - heading "Summary" [level=3] [ref=e140]:
+                        - strong [ref=e141]: Summary
+                      - paragraph [ref=e142]: The Worker Management Application Programming Interface (API) supports the management of workers in an organization. It can be used to obtain a list of all workers in an organization and to get information about work assignments.
+                      - paragraph [ref=e143]: A worker is defined as a person who performs duties and responsibilities for an organization. In that capacity, a worker fills one or more positions through a work assignment. For a given work assignment, a worker is related to the organization as an employee or contractor.
+                      - paragraph [ref=e144]:
+                        - text: The Worker Management API Guide for Enterprise HR describes how your application can access and manage information about workers in the application. It helps you to determine which use case best meets your business needs. It also guides you through the implementation of each use case.
+                        - strong [ref=e145]: What's New in this Guide?
+                      - paragraph [ref=e146]: "Following new fields are added to GET hr/v2/workers/{AOID} API . Updated Data Dictionary and examples."
+                      - table [ref=e148]:
+                        - rowgroup [ref=e149]:
+                          - row "Alternate Name" [ref=e150]:
+                            - cell "Alternate Name" [ref=e151]
+                          - row "Action Date" [ref=e152]:
+                            - cell "Action Date" [ref=e153]
+                          - row "Action" [ref=e154]:
+                            - cell "Action" [ref=e155]
+                          - row "Action Description" [ref=e156]:
+                            - cell "Action Description" [ref=e157]
+                          - row "Reason Code" [ref=e158]:
+                            - cell "Reason Code" [ref=e159]
+                          - row "Reason Code Description" [ref=e160]:
+                            - cell "Reason Code Description" [ref=e161]
+                          - row "FLSA Overtime" [ref=e162]:
+                            - cell "FLSA Overtime" [ref=e163]
+                          - row "Autolink Pay Group 2" [ref=e164]:
+                            - cell "Autolink Pay Group 2" [ref=e165]
+                      - heading "Supported Product Version and Customer Base" [level=3] [ref=e166]:
+                        - strong [ref=e167]: Supported Product Version and Customer Base
+                      - paragraph [ref=e168]: The Workers API is supported for all bundles within the Enterprise HR.
+                      - heading "Process Overview" [level=3] [ref=e169]:
+                        - strong [ref=e170]: Process Overview
+                      - paragraph [ref=e171]: The following table shows an illustration of how your data connector application would be used by a client.
+                      - table [ref=e173]:
+                        - rowgroup [ref=e174]:
+                          - row "Actor Task Description" [ref=e175]:
+                            - cell [ref=e176]
+                            - cell "Actor" [ref=e177]:
+                              - strong [ref=e178]: Actor
+                            - cell "Task Description" [ref=e179]:
+                              - strong [ref=e180]: Task Description
+                          - row "1. Client Practitioner Triggers the API-based data exchange between your application and RUN Powered by ADP." [ref=e181]:
+                            - cell "1." [ref=e182]
+                            - cell "Client Practitioner" [ref=e183]
+                            - cell "Triggers the API-based data exchange between your application and RUN Powered by ADP." [ref=e184]
+                          - row "2. Your application Retrieves worker information details based on your needs." [ref=e185]:
+                            - cell "2." [ref=e186]
+                            - cell "Your application" [ref=e187]
+                            - cell "Retrieves worker information details based on your needs." [ref=e188]
+                      - paragraph [ref=e189]
+                      - heading "Before You Begin" [level=3] [ref=e190]:
+                        - strong [ref=e191]: Before You Begin
+                      - paragraph [ref=e192]: "ADP provides a comprehensive set of Worker APIs to stay in synch with Enterprise HR and do the following:"
+                      - list [ref=e193]:
+                        - listitem [ref=e194]: Retrieve worker information
+                        - listitem [ref=e195]: Retrieve worker information change notifications
+                      - heading "About Basic Worker Demographic Information" [level=4] [ref=e196]
+                      - paragraph [ref=e197]: "If your application requires basic worker demographic information without Personally Identifiable Information (PII) and Sensitive Personal Information (SPI) data listed in the following tables, ADP provides APIs you can implement to access that information. Worker demographic information commonly requested includes the following:"
+                      - list [ref=e198]:
+                        - listitem [ref=e199]: Name
+                        - listitem [ref=e200]: Address
+                        - listitem [ref=e201]: Communication profile
+                        - listitem [ref=e202]: Hire date
+                        - listitem [ref=e203]: Work status
+                        - listitem [ref=e204]: Work assignment information (such as job title, manager/reports to information, and custom fields)
+                      - heading "About Full Worker Information" [level=4] [ref=e205]
+                      - paragraph [ref=e206]: If your application requires Personally Identifiable Information (PII) and Sensitive Personal Information (SPI) data, in addition to the information included in Basic Worker Demographic Information, then ADP provides a separate set of APIs you can leverage.
+                      - paragraph [ref=e207]: About Personally Identifiable Information
+                      - table [ref=e209]:
+                        - rowgroup [ref=e210]:
+                          - row "Field Name Schema Location Description" [ref=e211]:
+                            - cell "Field Name" [ref=e212]:
+                              - strong [ref=e213]: Field Name
+                            - cell "Schema Location" [ref=e214]:
+                              - strong [ref=e215]: Schema Location
+                            - cell "Description" [ref=e216]:
+                              - strong [ref=e217]: Description
+                          - row "Birth Date /workers/person/birthDate Specifies the birth date of the person. Follows the ISO-8601:2000 format." [ref=e218]:
+                            - cell "Birth Date" [ref=e219]:
+                              - strong [ref=e220]: Birth Date
+                            - cell "/workers/person/birthDate" [ref=e221]
+                            - cell "Specifies the birth date of the person. Follows the ISO-8601:2000 format." [ref=e222]
+                          - row "Government ID /workers/person/governmentIDs Provides a list of government identifiers, such as a national identity number or a Social Security Number (SSN)." [ref=e223]:
+                            - cell "Government ID" [ref=e224]:
+                              - strong [ref=e225]: Government ID
+                            - cell "/workers/person/governmentIDs" [ref=e226]
+                            - cell "Provides a list of government identifiers, such as a national identity number or a Social Security Number (SSN)." [ref=e227]
+                      - paragraph [ref=e228]: About Sensitive Personal Information
+                      - table [ref=e230]:
+                        - rowgroup [ref=e231]:
+                          - row "Field Name Schema Location Description" [ref=e232]:
+                            - cell "Field Name" [ref=e233]:
+                              - strong [ref=e234]: Field Name
+                            - cell "Schema Location" [ref=e235]:
+                              - strong [ref=e236]: Schema Location
+                            - cell "Description" [ref=e237]:
+                              - strong [ref=e238]: Description
+                          - row "Additional Remunerations /workers/workAssignments/additionalRemunerations Provides a list of pay compensations associated to a given work assignment. Additional remuneration includes all other forms of compensation beyond the base pay associated to a given work assignment." [ref=e239]:
+                            - cell "Additional Remunerations" [ref=e240]:
+                              - strong [ref=e241]: Additional Remunerations
+                            - cell "/workers/workAssignments/additionalRemunerations" [ref=e242]
+                            - cell "Provides a list of pay compensations associated to a given work assignment. Additional remuneration includes all other forms of compensation beyond the base pay associated to a given work assignment." [ref=e243]
+                          - row "Base Remuneration /workers/workAssignments/baseRemuneration Specifies base or primary pay, such as salary or wage, associated to a work assignment." [ref=e244]:
+                            - cell "Base Remuneration" [ref=e245]:
+                              - strong [ref=e246]: Base Remuneration
+                            - cell "/workers/workAssignments/baseRemuneration" [ref=e247]
+                            - cell "Specifies base or primary pay, such as salary or wage, associated to a work assignment." [ref=e248]
+                      - paragraph [ref=e249]
+                  - generic [ref=e250]:
+                    - generic [ref=e251]: CHAPTER 2
+                    - generic [ref=e252]:
+                      - heading "Request information of employees with Worker API" [level=2] [ref=e253]
+                      - button [ref=e256]:
+                        - img [ref=e258] [cursor=pointer]
+                    - generic [ref=e262]:
+                      - heading "Use Case Description" [level=3] [ref=e263]:
+                        - strong [ref=e264]: Use Case Description
+                      - paragraph [ref=e265]: This use case retrieves a single worker or a collection of workers with PII or SPI data.
+                      - paragraph [ref=e266]:
+                        - link "WORKERS" [ref=e267] [cursor=pointer]:
+                          - /url: https://developers.adp.com/articles/api/hcm-offrg-ent/hcm-offrg-ent-hr-workers-v2-workers/apiexplorer
+                      - paragraph [ref=e268]:
+                        - strong [ref=e269]: API Usage
+                      - table [ref=e271]:
+                        - rowgroup [ref=e272]:
+                          - row "Method URI Description" [ref=e273]:
+                            - cell "Method" [ref=e274]:
+                              - strong [ref=e275]: Method
+                            - cell "URI" [ref=e276]:
+                              - strong [ref=e277]: URI
+                            - cell "Description" [ref=e278]:
+                              - strong [ref=e279]: Description
+                          - row "GET /hr/v2/workers Requests the list of all available workers and all the employee details in an organization." [ref=e280]:
+                            - cell "GET" [ref=e281]
+                            - cell "/hr/v2/workers" [ref=e282]
+                            - cell "Requests the list of all available workers and all the employee details in an organization." [ref=e283]
+                          - 'row "GET /hr/v2/workers/{aoid} Requests a specific worker." [ref=e284]':
+                            - cell "GET" [ref=e285]
+                            - 'cell "/hr/v2/workers/{aoid}" [ref=e286]'
+                            - cell "Requests a specific worker." [ref=e287]
+                          - row "GET /hr/v2/workers/meta Requests meta for workers." [ref=e288]:
+                            - cell "GET" [ref=e289]
+                            - cell "/hr/v2/workers/meta" [ref=e290]
+                            - cell "Requests meta for workers." [ref=e291]
+                      - heading "Application Scope" [level=3] [ref=e292]:
+                        - strong [ref=e293]: Application Scope
+                      - paragraph [ref=e294]: The canonical uniform resource identifier (URI) corresponding to the API needs to be added in the Consumer Application Registry (CAR) for the subscription following which a user can access this API and make successful API calls.
+                      - paragraph [ref=e295]: "The following canonical needs to be added to your application scope to enable this use case:"
+                      - paragraph [ref=e296]:
+                        - strong [ref=e297]: /hr/workerInformationManagement/workerManagement/workerProfileManagement/worker.read
+                      - paragraph [ref=e298]:
+                        - strong [ref=e299]: Supported Actors
+                      - table [ref=e301]:
+                        - rowgroup [ref=e302]:
+                          - row "Request Parameter roleCode Value Usage" [ref=e303]:
+                            - cell "Request Parameter roleCode Value" [ref=e304]:
+                              - strong [ref=e305]: Request Parameter roleCode Value
+                            - cell "Usage" [ref=e306]:
+                              - strong [ref=e307]: Usage
+                          - row "Practitioner Retrieves a list of all available worker information as a practitioner. A system user is considered a practitioner." [ref=e308]:
+                            - cell "Practitioner" [ref=e309]
+                            - cell "Retrieves a list of all available worker information as a practitioner. A system user is considered a practitioner." [ref=e310]
+                      - paragraph [ref=e311]:
+                        - strong [ref=e312]: Request Header Parameters
+                      - table [ref=e314]:
+                        - rowgroup [ref=e315]:
+                          - row "Parameter Name Required (Y/N) Usage Sample" [ref=e316]:
+                            - cell "Parameter Name" [ref=e317]:
+                              - strong [ref=e318]: Parameter Name
+                            - cell "Required (Y/N)" [ref=e319]:
+                              - strong [ref=e320]: Required (Y/N)
+                            - cell "Usage" [ref=e321]:
+                              - strong [ref=e322]: Usage
+                            - cell "Sample" [ref=e323]:
+                              - strong [ref=e324]: Sample
+                          - row "Accept Y To reveal masked data. application/json;masked=false" [ref=e325]:
+                            - cell "Accept" [ref=e326]
+                            - cell "Y" [ref=e327]
+                            - cell "To reveal masked data." [ref=e328]
+                            - cell "application/json;masked=false" [ref=e329]
+                      - heading "Sensitive Information Unmasking" [level=3] [ref=e330]
+                      - paragraph [ref=e331]:
+                        - text: To establish compliance with data security best-practices, our Worker V2 API only returns the month and day of the
+                        - strong [ref=e332]: Birth Date
+                        - text: and the last four numbers of the
+                        - strong [ref=e333]: SSN
+                        - text: ", unless you specify you want to see the values unmasked in your Hypertext Transfer Protocol (HTTP) request. To see these values unmasked, simply add the following header to your HTTP request:"
+                      - paragraph [ref=e334]:
+                        - strong [ref=e335]: "Accept: application/json;masked=false"
+                      - heading "Supported OData Query Options" [level=3] [ref=e336]:
+                        - strong [ref=e337]: Supported OData Query Options
+                      - paragraph [ref=e338]:
+                        - text: This use case supports Query String Options as defined by Open Data Protocol (OData). For more information about OData, see the
+                        - link "Introduction to ADP API Open Data Protocol" [ref=e339] [cursor=pointer]:
+                          - /url: https://developers.adp.com/articles/general/introduction-to-adp-api-open-data-protocol-odata
+                        - text: .
+                      - table [ref=e341]:
+                        - rowgroup [ref=e342]:
+                          - row "Query String Option Description Example" [ref=e343]:
+                            - cell "Query String Option" [ref=e344]:
+                              - strong [ref=e345]: Query String Option
+                            - cell "Description" [ref=e346]:
+                              - strong [ref=e347]: Description
+                            - cell "Example" [ref=e348]:
+                              - strong [ref=e349]: Example
+                          - row "$top Requests the number of items in the queried collection to be included in the result. hr/v2/workes?$top=100" [ref=e350]:
+                            - cell "$top" [ref=e351]:
+                              - strong [ref=e352]: $top
+                            - cell "Requests the number of items in the queried collection to be included in the result." [ref=e353]
+                            - cell "hr/v2/workes?$top=100" [ref=e354]
+                          - row "$skip Specifies the number of items in the queried collection to be skipped and not included in the result. /hr/v2/workers?$top=100&$skip=100" [ref=e355]:
+                            - cell "$skip" [ref=e356]:
+                              - strong [ref=e357]: $skip
+                            - cell "Specifies the number of items in the queried collection to be skipped and not included in the result." [ref=e358]
+                            - cell "/hr/v2/workers?$top=100&$skip=100" [ref=e359]
+                          - row "$select Selects a subset of properties to include in the response. /hr/v2/workers?$select=workers/person/legalName,workers/person/legalAddress" [ref=e360]:
+                            - cell "$select" [ref=e361]:
+                              - strong [ref=e362]: $select
+                            - cell "Selects a subset of properties to include in the response." [ref=e363]
+                            - cell "/hr/v2/workers?$select=workers/person/legalName,workers/person/legalAddress" [ref=e364]
+                          - row "$filter Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response. It also include other filters like Greater-than(gt) , Equal-to(eq) , Less-than(le) , Greater-than(gt). /hr/v2/workers?$filter=workers/workerID/idValue eq 'xxxx'" [ref=e365]:
+                            - cell "$filter" [ref=e366]:
+                              - strong [ref=e367]: $filter
+                            - cell "Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response. It also include other filters like Greater-than(gt) , Equal-to(eq) , Less-than(le) , Greater-than(gt)." [ref=e368]:
+                              - paragraph [ref=e369]: Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response.
+                              - paragraph [ref=e370]: It also include other filters like Greater-than(gt) , Equal-to(eq) , Less-than(le) , Greater-than(gt).
+                            - cell "/hr/v2/workers?$filter=workers/workerID/idValue eq 'xxxx'" [ref=e371]
+                      - paragraph [ref=e372]:
+                        - strong [ref=e373]: Filtering capabilities on GET Workers V2 collections
+                      - table [ref=e375]:
+                        - rowgroup [ref=e376]:
+                          - row "Schema Field Name API URI Example" [ref=e377]:
+                            - cell "Schema" [ref=e378]:
+                              - paragraph [ref=e379]:
+                                - strong [ref=e380]: Schema
+                            - cell "Field Name" [ref=e381]:
+                              - strong [ref=e382]: Field Name
+                            - cell "API URI Example" [ref=e383]:
+                              - paragraph [ref=e384]:
+                                - strong [ref=e385]: API URI Example
+                          - row "workers/associateOID Associate OID /hr/v2/workers?$filter=workers/associateOID eq 'xxxxxxxxxx'" [ref=e386]:
+                            - cell "workers/associateOID" [ref=e387]
+                            - cell "Associate OID" [ref=e388]:
+                              - strong [ref=e389]: Associate OID
+                            - cell "/hr/v2/workers?$filter=workers/associateOID eq 'xxxxxxxxxx'" [ref=e390]
+                          - row "workers/workerID/idValue Worker ID /hr/v2/workers?$filter=workers/workerID/idValue eq 'xxxx'" [ref=e391]:
+                            - cell "workers/workerID/idValue" [ref=e392]
+                            - cell "Worker ID" [ref=e393]:
+                              - strong [ref=e394]: Worker ID
+                            - cell "/hr/v2/workers?$filter=workers/workerID/idValue eq 'xxxx'" [ref=e395]
+                          - row "workers/workAssignments/reportsTo/associateOID ReportsToID /hr/v2/workers?$filter=workers/workAssignments/reportsTo/associateOID eq 'xxxxxx'" [ref=e396]:
+                            - cell "workers/workAssignments/reportsTo/associateOID" [ref=e397]
+                            - cell "ReportsToID" [ref=e398]:
+                              - strong [ref=e399]: ReportsToID
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/reportsTo/associateOID eq 'xxxxxx'" [ref=e400]
+                          - row "workers/workerStatus/statusCode/codeValue effectiveDate Effective Date /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate eq '2016-04-28' OR /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate gt '2016-04-28' OR /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate lt '2016-04-28'" [ref=e401]:
+                            - cell "workers/workerStatus/statusCode/codeValue effectiveDate" [ref=e402]:
+                              - text: workers/workerStatus/statusCode/codeValue
+                              - text: effectiveDate
+                            - cell "Effective Date" [ref=e403]:
+                              - strong [ref=e404]: Effective Date
+                            - cell "/hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate eq '2016-04-28' OR /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate gt '2016-04-28' OR /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue effectiveDate lt '2016-04-28'" [ref=e405]:
+                              - paragraph [ref=e406]:
+                                - text: /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue
+                                - text: effectiveDate eq '2016-04-28'
+                              - paragraph [ref=e407]: OR
+                              - paragraph [ref=e408]
+                              - paragraph [ref=e409]:
+                                - text: /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue
+                                - text: effectiveDate gt '2016-04-28'
+                              - paragraph [ref=e410]: OR
+                              - paragraph [ref=e411]:
+                                - text: /hr/v2/workers?$filter=workers/workerStatus/statusCode/codeValue
+                                - text: effectiveDate lt '2016-04-28'
+                          - row "workers/workerStatus/statusCode/codeValue Employment Status (i.e. Active, Inactive, etc.) /hr/v2/workers?$filter=workers/workerStatus/status Code/codeValue%20eq%20'xxxxxx'" [ref=e412]:
+                            - cell "workers/workerStatus/statusCode/codeValue" [ref=e413]:
+                              - paragraph [ref=e414]: workers/workerStatus/statusCode/codeValue
+                            - cell "Employment Status (i.e. Active, Inactive, etc.)" [ref=e415]:
+                              - paragraph [ref=e416]:
+                                - strong [ref=e417]: Employment Status (i.e. Active, Inactive, etc.)
+                            - cell "/hr/v2/workers?$filter=workers/workerStatus/status Code/codeValue%20eq%20'xxxxxx'" [ref=e418]:
+                              - paragraph [ref=e419]: /hr/v2/workers?$filter=workers/workerStatus/status Code/codeValue%20eq%20'xxxxxx'
+                          - row "workers/workAssignments/payrollGroupCode Paygroup /hr/v2/workers?$filter=workers/workAssignments/payrollGroupCode eq 'xxx'" [ref=e420]:
+                            - cell "workers/workAssignments/payrollGroupCode" [ref=e421]
+                            - cell "Paygroup" [ref=e422]:
+                              - strong [ref=e423]: Paygroup
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/payrollGroupCode eq 'xxx'" [ref=e424]
+                          - row "workers/workAssignments/payrollFileNumber File Number /hr/v2/workers?$filter=workers/workAssignments/payrollFileNumber eq 'xxxxxx'" [ref=e425]:
+                            - cell "workers/workAssignments/payrollFileNumber" [ref=e426]
+                            - cell "File Number" [ref=e427]:
+                              - strong [ref=e428]: File Number
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/payrollFileNumber eq 'xxxxxx'" [ref=e429]
+                          - row "workers/workAssignments/jobCode/codeValue Job Code /hr/v2/workers?$filter=workers/workAssignments/jobCode/codeValue%20eq%20'xxxxxx'" [ref=e430]:
+                            - cell "workers/workAssignments/jobCode/codeValue" [ref=e431]:
+                              - paragraph [ref=e432]: workers/workAssignments/jobCode/codeValue
+                            - cell "Job Code" [ref=e433]:
+                              - paragraph [ref=e434]:
+                                - strong [ref=e435]: Job Code
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/jobCode/codeValue%20eq%20'xxxxxx'" [ref=e436]:
+                              - paragraph [ref=e437]: /hr/v2/workers?$filter=workers/workAssignments/jobCode/codeValue%20eq%20'xxxxxx'
+                          - row "workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue Cost Number /hr/v2/workers?$filter=workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'" [ref=e438]:
+                            - cell "workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue" [ref=e439]:
+                              - paragraph [ref=e440]: workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue
+                            - cell "Cost Number" [ref=e441]:
+                              - paragraph [ref=e442]:
+                                - strong [ref=e443]: Cost Number
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'" [ref=e444]:
+                              - paragraph [ref=e445]: /hr/v2/workers?$filter=workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'
+                          - row "workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue Department ID /hr/v2/workers?$filter=workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'" [ref=e446]:
+                            - cell "workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue" [ref=e447]:
+                              - paragraph [ref=e448]: workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue
+                            - cell "Department ID" [ref=e449]:
+                              - paragraph [ref=e450]:
+                                - strong [ref=e451]: Department ID
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'" [ref=e452]:
+                              - paragraph [ref=e453]: /hr/v2/workers?$filter=workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue eq 'xxxxxx'
+                          - row "workers/workAssignments/homeWorkLocation/nameCode/codeValue Reporting Location /hr/v2/workers?$filter=workers/workAssignments/homeWorkLocation/nameCode/codeValue eq 'xxxxxx'" [ref=e454]:
+                            - cell "workers/workAssignments/homeWorkLocation/nameCode/codeValue" [ref=e455]:
+                              - paragraph [ref=e456]: workers/workAssignments/homeWorkLocation/nameCode/codeValue
+                            - cell "Reporting Location" [ref=e457]:
+                              - paragraph [ref=e458]:
+                                - strong [ref=e459]: Reporting Location
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/homeWorkLocation/nameCode/codeValue eq 'xxxxxx'" [ref=e460]:
+                              - paragraph [ref=e461]: /hr/v2/workers?$filter=workers/workAssignments/homeWorkLocation/nameCode/codeValue eq 'xxxxxx'
+                          - row "workers/workAssignments/assignedWorkLocations/nameCode/codeValue Job Location /hr/v2/workers?$filter=workers/workAssignments/assignedWorkLocations/nameCode/codeValue eq 'xxxxxx'" [ref=e462]:
+                            - cell "workers/workAssignments/assignedWorkLocations/nameCode/codeValue" [ref=e463]:
+                              - paragraph [ref=e464]: workers/workAssignments/assignedWorkLocations/nameCode/codeValue
+                            - cell "Job Location" [ref=e465]:
+                              - paragraph [ref=e466]:
+                                - strong [ref=e467]: Job Location
+                            - cell "/hr/v2/workers?$filter=workers/workAssignments/assignedWorkLocations/nameCode/codeValue eq 'xxxxxx'" [ref=e468]:
+                              - paragraph [ref=e469]: /hr/v2/workers?$filter=workers/workAssignments/assignedWorkLocations/nameCode/codeValue eq 'xxxxxx'
+                          - row "workers/workerDates/originalHireDate Employment Hire Date /hr/v2/workers?$filter=workers/workerDates/originalHireDate eq '2016-04-28' or /hr/v2/workers?$filter=workers/workerDates/originalHireDate ge '2016-04-28' or /hr/v2/workers?$filter=workers/workerDates/originalHireDate le '2016-04-28'" [ref=e470]:
+                            - cell "workers/workerDates/originalHireDate" [ref=e471]:
+                              - paragraph [ref=e472]: workers/workerDates/originalHireDate
+                            - cell "Employment Hire Date" [ref=e473]:
+                              - paragraph [ref=e474]:
+                                - strong [ref=e475]: Employment Hire Date
+                            - cell "/hr/v2/workers?$filter=workers/workerDates/originalHireDate eq '2016-04-28' or /hr/v2/workers?$filter=workers/workerDates/originalHireDate ge '2016-04-28' or /hr/v2/workers?$filter=workers/workerDates/originalHireDate le '2016-04-28'" [ref=e476]:
+                              - paragraph [ref=e477]: /hr/v2/workers?$filter=workers/workerDates/originalHireDate eq '2016-04-28'
+                              - paragraph [ref=e478]: or
+                              - paragraph [ref=e479]: /hr/v2/workers?$filter=workers/workerDates/originalHireDate ge '2016-04-28'
+                              - paragraph [ref=e480]: or
+                              - paragraph [ref=e481]: /hr/v2/workers?$filter=workers/workerDates/originalHireDate le '2016-04-28'
+                              - paragraph [ref=e482]
+                          - row "workers/workerDates/rehireDate Employment Rehire Date /hr/v2/workers?$filter=workers/workerDates/rehireDate eq '2020-06-29' /hr/v2/workers?$filter=workers/workerDates/rehireDate lt '2020-06-29' /hr/v2/workers?$filter=workers/workerDates/rehireDate gt '2020-06-29'" [ref=e483]:
+                            - cell "workers/workerDates/rehireDate" [ref=e484]:
+                              - paragraph [ref=e485]: workers/workerDates/rehireDate
+                              - paragraph [ref=e486]
+                            - cell "Employment Rehire Date" [ref=e487]:
+                              - paragraph [ref=e488]:
+                                - strong [ref=e489]: Employment Rehire Date
+                              - paragraph [ref=e490]
+                            - cell "/hr/v2/workers?$filter=workers/workerDates/rehireDate eq '2020-06-29' /hr/v2/workers?$filter=workers/workerDates/rehireDate lt '2020-06-29' /hr/v2/workers?$filter=workers/workerDates/rehireDate gt '2020-06-29'" [ref=e491]:
+                              - paragraph [ref=e492]: /hr/v2/workers?$filter=workers/workerDates/rehireDate eq '2020-06-29'
+                              - paragraph [ref=e493]: /hr/v2/workers?$filter=workers/workerDates/rehireDate lt '2020-06-29'
+                              - paragraph [ref=e494]: /hr/v2/workers?$filter=workers/workerDates/rehireDate gt '2020-06-29'
+                          - row "workers/workerDates/terminationDate Employment Termination Date /hr/v2/workers?$filter=workers/workerDates/terminationDate eq '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate lt '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate gt '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate le '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate ge '2020-06-22'" [ref=e495]:
+                            - cell "workers/workerDates/terminationDate" [ref=e496]:
+                              - paragraph [ref=e497]: workers/workerDates/terminationDate
+                              - paragraph [ref=e498]
+                            - cell "Employment Termination Date" [ref=e499]:
+                              - strong [ref=e500]: Employment Termination Date
+                            - cell "/hr/v2/workers?$filter=workers/workerDates/terminationDate eq '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate lt '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate gt '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate le '2020-06-22' /hr/v2/workers?$filter=workers/workerDates/terminationDate ge '2020-06-22'" [ref=e501]:
+                              - paragraph [ref=e502]: /hr/v2/workers?$filter=workers/workerDates/terminationDate eq '2020-06-22'
+                              - paragraph [ref=e503]: /hr/v2/workers?$filter=workers/workerDates/terminationDate lt '2020-06-22'
+                              - paragraph [ref=e504]: /hr/v2/workers?$filter=workers/workerDates/terminationDate gt '2020-06-22'
+                              - paragraph [ref=e505]: /hr/v2/workers?$filter=workers/workerDates/terminationDate le '2020-06-22'
+                              - paragraph [ref=e506]: /hr/v2/workers?$filter=workers/workerDates/terminationDate ge '2020-06-22'
+                          - row "workers/person/legalName/formattedName Former Name /hr/v2/workers?$filter=workers/person/legalName/formattedName eq 'xxxxx'" [ref=e507]:
+                            - cell "workers/person/legalName/formattedName" [ref=e508]
+                            - cell "Former Name" [ref=e509]:
+                              - paragraph [ref=e510]
+                              - paragraph [ref=e511]:
+                                - strong [ref=e512]: Former Name
+                            - cell "/hr/v2/workers?$filter=workers/person/legalName/formattedName eq 'xxxxx'" [ref=e513]
+                          - row "workers/person/legalName/familyName1 Last Name /hr/v2/workers?$filter=workers/person/legalName/familyName1 eq 'xxxxx'" [ref=e514]:
+                            - cell "workers/person/legalName/familyName1" [ref=e515]
+                            - cell "Last Name" [ref=e516]:
+                              - strong [ref=e517]: Last Name
+                            - cell "/hr/v2/workers?$filter=workers/person/legalName/familyName1 eq 'xxxxx'" [ref=e518]
+                          - row "workers/person/legalName/givenName First Name /hr/v2/workers?$filter=workers/person/legalName/givenName eq 'xxxxx'" [ref=e519]:
+                            - cell "workers/person/legalName/givenName" [ref=e520]
+                            - cell "First Name" [ref=e521]:
+                              - strong [ref=e522]: First Name
+                            - cell "/hr/v2/workers?$filter=workers/person/legalName/givenName eq 'xxxxx'" [ref=e523]
+                          - row "workers/person/preferredName/formattedName Preferred/Chosen Name /hr/v2/workers?$filter=workers/person/preferredName/formattedName eq 'xxxxxxxx'" [ref=e524]:
+                            - cell "workers/person/preferredName/formattedName" [ref=e525]
+                            - cell "Preferred/Chosen Name" [ref=e526]:
+                              - strong [ref=e527]: Preferred/Chosen Name
+                            - cell "/hr/v2/workers?$filter=workers/person/preferredName/formattedName eq 'xxxxxxxx'" [ref=e528]
+                          - row "workers/person/preferredName/familyName1 Preferred/Chosen Last Name /hr/v2/workers?$filter=workers/person/preferredName/familyName1 eq 'xxxxxxx'" [ref=e529]:
+                            - cell "workers/person/preferredName/familyName1" [ref=e530]
+                            - cell "Preferred/Chosen Last Name" [ref=e531]:
+                              - strong [ref=e532]: Preferred/Chosen Last Name
+                            - cell "/hr/v2/workers?$filter=workers/person/preferredName/familyName1 eq 'xxxxxxx'" [ref=e533]
+                          - row "workers/person/preferredName/givenName Preferred/Chosen First Name /hr/v2/workers?$filter=workers/person/preferredName/givenName eq 'xxxxxxx'" [ref=e534]:
+                            - cell "workers/person/preferredName/givenName" [ref=e535]
+                            - cell "Preferred/Chosen First Name" [ref=e536]:
+                              - paragraph [ref=e537]
+                              - paragraph [ref=e538]:
+                                - strong [ref=e539]: Preferred/Chosen First Name
+                            - cell "/hr/v2/workers?$filter=workers/person/preferredName/givenName eq 'xxxxxxx'" [ref=e540]
+                      - paragraph [ref=e541]:
+                        - strong [ref=e542]: Sequence of Interactions
+                      - paragraph [ref=e543]: "The following are the sequence of interactions to retrieve worker information for a collection of workers:"
+                      - list [ref=e544]:
+                        - listitem [ref=e545]: Your consumer application makes a request for an initial collection of workers to the ADP API endpoint.
+                        - listitem [ref=e546]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                        - listitem [ref=e547]: Your consumer application makes a request for a subsequent collection of workers to the ADP API endpoint.
+                        - listitem [ref=e548]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                      - paragraph [ref=e549]: Your consumer application repeats steps 3 and 4 until a 204 No Content HTTP response status code is returned.
+                      - paragraph [ref=e550]
+                      - heading "Responses" [level=3] [ref=e551]:
+                        - strong [ref=e552]: Responses
+                      - paragraph [ref=e553]: You may encounter exceptions outside your common success scenarios. You must account for these exceptions during your initial development.
+                      - paragraph [ref=e554]:
+                        - text: For more information, see
+                        - link "API Common Exceptions and Tips for Handling" [ref=e555] [cursor=pointer]:
+                          - /url: https://developers.adp.com/articles/general/api-common-exceptions-and-tips-for-handling
+                        - text: .
+                      - table [ref=e557]:
+                        - rowgroup [ref=e558]:
+                          - row "Response Code Condition messageTxt Tips to Handle" [ref=e559]:
+                            - cell "Response Code" [ref=e560]:
+                              - strong [ref=e561]: Response Code
+                            - cell "Condition" [ref=e562]:
+                              - strong [ref=e563]: Condition
+                            - cell "messageTxt" [ref=e564]:
+                              - strong [ref=e565]: messageTxt
+                            - cell "Tips to Handle" [ref=e566]:
+                              - strong [ref=e567]: Tips to Handle
+                          - row "200 OK Retrieves all the available workers the requester is authorized to view. NA" [ref=e568]:
+                            - cell "200 OK" [ref=e569]
+                            - cell "Retrieves all the available workers the requester is authorized to view." [ref=e570]
+                            - cell "NA" [ref=e571]
+                            - cell [ref=e572]
+                          - row "200 OK Retrieves single worker's details. NA" [ref=e573]:
+                            - cell "200 OK" [ref=e574]
+                            - cell "Retrieves single worker's details." [ref=e575]
+                            - cell "NA" [ref=e576]
+                            - cell [ref=e577]
+                          - row "200 OK Retrieves partial masked data (SSN and DOB). NA" [ref=e578]:
+                            - cell "200 OK" [ref=e579]
+                            - cell "Retrieves partial masked data (SSN and DOB)." [ref=e580]
+                            - cell "NA" [ref=e581]
+                            - cell [ref=e582]
+                          - row "200 OK Retrieves Unmasked data (SSN and DOB). NA To retrieve the unmasked data in the API response, include the header Accept:application/json;masked=false in the headers of the API Request call." [ref=e583]:
+                            - cell "200 OK" [ref=e584]
+                            - cell "Retrieves Unmasked data (SSN and DOB)." [ref=e585]
+                            - cell "NA" [ref=e586]
+                            - cell "To retrieve the unmasked data in the API response, include the header Accept:application/json;masked=false in the headers of the API Request call." [ref=e587]:
+                              - text: To retrieve the unmasked data in the API response, include the header
+                              - strong [ref=e588]: Accept:application/json;masked=false
+                              - text: in the headers of the API Request call.
+                          - row "200 OK Retrieves the top five employees. NA" [ref=e589]:
+                            - cell "200 OK" [ref=e590]
+                            - cell "Retrieves the top five employees." [ref=e591]
+                            - cell "NA" [ref=e592]
+                            - cell [ref=e593]
+                          - row "200 OK Retrieves the worker response using the top and skip parameters. NA When the end of the page is reached using top and skip, the Workers response gives a 200 status code with an empty body." [ref=e594]:
+                            - cell "200 OK" [ref=e595]
+                            - cell "Retrieves the worker response using the top and skip parameters." [ref=e596]:
+                              - text: Retrieves the worker response using the
+                              - strong [ref=e597]: top
+                              - text: and
+                              - strong [ref=e598]: skip
+                              - text: parameters.
+                            - cell "NA" [ref=e599]
+                            - cell "When the end of the page is reached using top and skip, the Workers response gives a 200 status code with an empty body." [ref=e600]:
+                              - text: When the end of the page is reached using
+                              - strong [ref=e601]: top
+                              - text: and
+                              - strong [ref=e602]: skip
+                              - text: ", the Workers response gives a 200 status code with an empty body."
+                          - 'row "200 OK Retrieves the employee details based on the select query. For example: /hr/v2/workers?$select= workers/person/legalName,workers/person/ legalAddress NA" [ref=e603]':
+                            - cell "200 OK" [ref=e604]
+                            - 'cell "Retrieves the employee details based on the select query. For example: /hr/v2/workers?$select= workers/person/legalName,workers/person/ legalAddress" [ref=e605]':
+                              - text: Retrieves the employee details based on the select query.
+                              - text: "For example:"
+                              - text: /hr/v2/workers?$select= workers/person/legalName,workers/person/ legalAddress
+                            - cell "NA" [ref=e606]
+                            - cell [ref=e607]
+                          - 'row "200 OK Retrieves the employee details based on the filter query. For example: hr/v2/workers?$filter= workerID/idValue eq ''21'' NA" [ref=e608]':
+                            - cell "200 OK" [ref=e609]
+                            - 'cell "Retrieves the employee details based on the filter query. For example: hr/v2/workers?$filter= workerID/idValue eq ''21''" [ref=e610]':
+                              - text: Retrieves the employee details based on the filter query.
+                              - text: "For example:"
+                              - text: hr/v2/workers?$filter= workerID/idValue eq '21'
+                            - cell "NA" [ref=e611]
+                            - cell [ref=e612]
+                          - 'row "400 Bad Request Incorrect query parameters in the request. \"userMessage\": {\"messageTxt\": \"Expression expected at position 0 in ''/workers/AssociateOID eq ''G4O73G9Z62SL2NFM''''.\"} User to provide valid query parameters in the request." [ref=e613]':
+                            - cell "400 Bad Request" [ref=e614]
+                            - cell "Incorrect query parameters in the request." [ref=e615]
+                            - 'cell "\"userMessage\": {\"messageTxt\": \"Expression expected at position 0 in ''/workers/AssociateOID eq ''G4O73G9Z62SL2NFM''''.\"}" [ref=e616]'
+                            - cell "User to provide valid query parameters in the request." [ref=e617]
+                          - 'row "400 Not Found Invalid Associate Object ID (AOID) in the request. \"userMessage\": {\"messageTxt\": \"The specified resource does not exist or you do not have access to it.\"} User to provide the valid AOID in the request." [ref=e618]':
+                            - cell "400 Not Found" [ref=e619]
+                            - cell "Invalid Associate Object ID (AOID) in the request." [ref=e620]
+                            - 'cell "\"userMessage\": {\"messageTxt\": \"The specified resource does not exist or you do not have access to it.\"}" [ref=e621]'
+                            - cell "User to provide the valid AOID in the request." [ref=e622]
+                      - paragraph [ref=e623]
+                  - generic [ref=e624]:
+                    - generic [ref=e625]: CHAPTER 3
+                    - generic [ref=e626]:
+                      - heading "Worker Demographics" [level=2] [ref=e627]
+                      - button [ref=e630]:
+                        - img [ref=e632] [cursor=pointer]
+                    - generic [ref=e636]:
+                      - paragraph [ref=e637]: "Use Case: Retrieving Basic Worker Demographic Information"
+                      - heading "Before You Begin" [level=3] [ref=e638]
+                      - paragraph [ref=e639]: "Commonly requested worker demographic information includes the following:"
+                      - list [ref=e640]:
+                        - listitem [ref=e641]: Name
+                        - listitem [ref=e642]: Address
+                        - listitem [ref=e643]: Communication profile
+                        - listitem [ref=e644]: Hire date
+                        - listitem [ref=e645]: Work status
+                        - listitem [ref=e646]:
+                          - text: "Work assignment information, such as the following:"
+                          - list [ref=e647]:
+                            - listitem [ref=e648]: Job title
+                            - listitem [ref=e649]: Manager/reports to information
+                            - listitem [ref=e650]: Custom fields
+                      - heading "Use Case Description" [level=3] [ref=e651]
+                      - paragraph [ref=e652]: This use case retrieves a single worker or a collection of workers without PII or SPI data.
+                      - heading "API Usage" [level=3] [ref=e653]
+                      - paragraph [ref=e654]:
+                        - text: "Link to API Explorer:"
+                        - link "Worker Demographics" [ref=e655] [cursor=pointer]:
+                          - /url: https://developers.adp.com/build/api-explorer/hcm-offrg-ent/hcm-offrg-ent-hr-workers-v2-workers
+                      - table [ref=e657]:
+                        - rowgroup [ref=e658]:
+                          - row "Method URI Description" [ref=e659]:
+                            - columnheader "Method" [ref=e660]:
+                              - paragraph [ref=e661]:
+                                - strong [ref=e662]: Method
+                            - columnheader "URI" [ref=e663]:
+                              - paragraph [ref=e664]:
+                                - strong [ref=e665]: URI
+                            - columnheader "Description" [ref=e666]:
+                              - paragraph [ref=e667]:
+                                - strong [ref=e668]: Description
+                        - rowgroup [ref=e669]:
+                          - row "GET /hr/v2/worker-demographics Requests the list of all available worker demographics that the requester is authorized to view." [ref=e670]:
+                            - cell "GET" [ref=e671]:
+                              - paragraph [ref=e672]: GET
+                            - cell "/hr/v2/worker-demographics" [ref=e673]:
+                              - paragraph [ref=e674]: /hr/v2/worker-demographics
+                            - cell "Requests the list of all available worker demographics that the requester is authorized to view." [ref=e675]:
+                              - paragraph [ref=e676]: Requests the list of all available worker demographics that the requester is authorized to view.
+                          - 'row "GET /hr/v2/worker-demographics/{associateOID} Returns a worker demographic." [ref=e677]':
+                            - cell "GET" [ref=e678]:
+                              - paragraph [ref=e679]: GET
+                            - 'cell "/hr/v2/worker-demographics/{associateOID}" [ref=e680]':
+                              - paragraph [ref=e681]: "/hr/v2/worker-demographics/{associateOID}"
+                            - cell "Returns a worker demographic." [ref=e682]:
+                              - paragraph [ref=e683]: Returns a worker demographic.
+                          - row "GET /hr/v2/worker-demographics/meta Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using $filter." [ref=e684]:
+                            - cell "GET" [ref=e685]:
+                              - paragraph [ref=e686]: GET
+                            - cell "/hr/v2/worker-demographics/meta" [ref=e687]:
+                              - paragraph [ref=e688]: /hr/v2/worker-demographics/meta
+                            - cell "Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using $filter." [ref=e689]:
+                              - paragraph [ref=e690]:
+                                - text: Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using
+                                - strong [ref=e691]: $filter
+                                - text: .
+                      - heading "Application Scope" [level=3] [ref=e692]
+                      - paragraph [ref=e693]: "The following canonical need to be added to your application scope to enable this use case:"
+                      - paragraph [ref=e694]:
+                        - strong [ref=e695]: /hr/workerInformationManagement/workerManagement/workerProfileManagement
+                        - strong [ref=e696]: /workerDemographic.read
+                      - heading "Supported Actors" [level=3] [ref=e697]
+                      - table [ref=e699]:
+                        - rowgroup [ref=e700]:
+                          - row "Request Parameter roleCode Value Usage" [ref=e701]:
+                            - columnheader "Request Parameter roleCode Value" [ref=e702]:
+                              - paragraph [ref=e703]:
+                                - strong [ref=e704]: Request Parameter roleCode Value
+                            - columnheader "Usage" [ref=e705]:
+                              - paragraph [ref=e706]: Usage
+                        - rowgroup [ref=e707]:
+                          - row "Practitioner Retrieves a list of all available worker demographics as a practitioner. A system user is considered a practitioner." [ref=e708]:
+                            - cell "Practitioner" [ref=e709]
+                            - cell "Retrieves a list of all available worker demographics as a practitioner. A system user is considered a practitioner." [ref=e710]
+                      - heading "Request Header Parameters" [level=3] [ref=e711]
+                      - paragraph [ref=e712]: There are no request header parameters.
+                      - heading "Supported OData Query Options" [level=3] [ref=e713]
+                      - paragraph [ref=e714]:
+                        - text: This use case supports Query String Options as defined by Open Data Protocol (OData). For more information about OData, see the
+                        - link "Introduction to ADP API Open Data Protocol (OData)" [ref=e715] [cursor=pointer]:
+                          - /url: https://developers.adp.com/articles/general/introduction-to-adp-api-open-data-protocol-odata
+                        - text: .
+                      - table [ref=e717]:
+                        - rowgroup [ref=e718]:
+                          - row "Query String Option Description Example" [ref=e719]:
+                            - columnheader "Query String Option" [ref=e720]:
+                              - paragraph [ref=e721]:
+                                - strong [ref=e722]: Query String Option
+                            - columnheader "Description" [ref=e723]:
+                              - paragraph [ref=e724]:
+                                - strong [ref=e725]: Description
+                            - columnheader "Example" [ref=e726]:
+                              - paragraph [ref=e727]:
+                                - strong [ref=e728]: Example
+                        - rowgroup [ref=e729]:
+                          - row [ref=e730]:
+                            - columnheader [ref=e731]:
+                              - paragraph [ref=e732]
+                            - columnheader [ref=e733]:
+                              - paragraph [ref=e734]
+                            - columnheader [ref=e735]:
+                              - paragraph [ref=e736]
+                        - rowgroup [ref=e737]:
+                          - row "$top Requests the number of items in the queried collection to be included in the result. /hr/v2/worker-demographics?$top=100" [ref=e738]:
+                            - cell "$top" [ref=e739]:
+                              - paragraph [ref=e740]:
+                                - strong [ref=e741]: $top
+                            - cell "Requests the number of items in the queried collection to be included in the result." [ref=e742]:
+                              - paragraph [ref=e743]: Requests the number of items in the queried collection to be included in the result.
+                            - cell "/hr/v2/worker-demographics?$top=100" [ref=e744]:
+                              - paragraph [ref=e745]:
+                                - strong [ref=e746]: /hr/v2/worker-demographics?$top=100
+                          - row "$skip Specifies the number of items in the queried collection to be skipped and not included in the result. /hr/v2/worker-demographics?$top=100&$skip=100" [ref=e747]:
+                            - cell "$skip" [ref=e748]:
+                              - paragraph [ref=e749]:
+                                - strong [ref=e750]: $skip
+                            - cell "Specifies the number of items in the queried collection to be skipped and not included in the result." [ref=e751]:
+                              - paragraph [ref=e752]: Specifies the number of items in the queried collection to be skipped and not included in the result.
+                            - cell "/hr/v2/worker-demographics?$top=100&$skip=100" [ref=e753]:
+                              - paragraph [ref=e754]:
+                                - strong [ref=e755]: /hr/v2/worker-demographics?$top=100&$skip=100
+                          - row "$select Selects a subset of properties to include in the response. /hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress" [ref=e756]:
+                            - cell "$select" [ref=e757]:
+                              - paragraph [ref=e758]:
+                                - strong [ref=e759]: $select
+                            - cell "Selects a subset of properties to include in the response." [ref=e760]:
+                              - paragraph [ref=e761]: Selects a subset of properties to include in the response.
+                            - cell "/hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress" [ref=e762]:
+                              - paragraph [ref=e763]:
+                                - strong [ref=e764]: /hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress
+                          - row "$filter Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response. /hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'" [ref=e765]:
+                            - cell "$filter" [ref=e766]:
+                              - paragraph [ref=e767]:
+                                - strong [ref=e768]: $filter
+                            - cell "Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response." [ref=e769]:
+                              - paragraph [ref=e770]: Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response.
+                            - cell "/hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'" [ref=e771]:
+                              - paragraph [ref=e772]:
+                                - strong [ref=e773]: /hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'
+                      - heading "Sequence of Interactions" [level=3] [ref=e774]
+                      - paragraph [ref=e775]: "The following are the sequence of interactions to retrieve worker demographic information for a collection of workers:"
+                      - list [ref=e776]:
+                        - listitem [ref=e777]: Your consumer application makes a request for an initial collection of workers to the ADP API endpoint.
+                        - listitem [ref=e778]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                        - listitem [ref=e779]: Your consumer application makes a request for a subsequent collection of workers to the ADP API endpoint.
+                        - listitem [ref=e780]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                      - paragraph [ref=e781]: Your consumer application repeats steps 3 and 4 until a 204 No Content HTTP response status code is returned.
+                      - heading "Data Dictionary" [level=3] [ref=e782]
+                      - paragraph [ref=e783]:
+                        - text: See
+                        - 'link "Appendix A: Data Dictionary" [ref=e784] [cursor=pointer]':
+                          - /url: https://developers.adp.com/build/guides/product-integration-guides/worker-management-api-guide-for-adp-workforce-now/chapter/11#appendix-a:-data-dictionary
+                        - text: for data retrieval.
+                      - paragraph [ref=e785]: All listed fields, except the ones containing PII and SPI data, are supported for this use case.
+                      - heading "Responses" [level=3] [ref=e786]
+                      - paragraph [ref=e787]: You may encounter exceptions outside your common success scenarios. You must account for these exceptions during your initial development.
+                      - paragraph [ref=e788]:
+                        - text: For more information, see
+                        - link "API Common Exceptions and Tips for Handling" [ref=e789] [cursor=pointer]:
+                          - /url: https://developers.adp.com/articles/general/api-common-exceptions-and-tips-for-handling?query=API%20Common%20Exceptions%20and
+                        - text: .
+                      - table [ref=e791]:
+                        - rowgroup [ref=e792]:
+                          - row "Response Code Condition messageTxt GitHub Sample Request Payload" [ref=e793]:
+                            - columnheader "Response Code" [ref=e794]:
+                              - paragraph [ref=e795]:
+                                - strong [ref=e796]: Response Code
+                            - columnheader "Condition" [ref=e797]:
+                              - paragraph [ref=e798]:
+                                - strong [ref=e799]: Condition
+                            - columnheader "messageTxt" [ref=e800]:
+                              - paragraph [ref=e801]:
+                                - strong [ref=e802]: messageTxt
+                            - columnheader "GitHub Sample Request Payload" [ref=e803]:
+                              - paragraph [ref=e804]:
+                                - strong [ref=e805]: GitHub Sample
+                                - strong [ref=e806]: Request Payload
+                        - rowgroup [ref=e807]:
+                          - row "200 OK Returns a successful all available worker demographics. NA NA" [ref=e808]:
+                            - cell "200 OK" [ref=e809]:
+                              - paragraph [ref=e810]: 200 OK
+                            - cell "Returns a successful all available worker demographics." [ref=e811]:
+                              - paragraph [ref=e812]: Returns a successful all available worker demographics.
+                            - cell "NA" [ref=e813]:
+                              - paragraph [ref=e814]: NA
+                            - cell "NA" [ref=e815]:
+                              - paragraph [ref=e816]: NA
+                          - row "200 OK Returns a successful worker demographic. NA NA" [ref=e817]:
+                            - cell "200 OK" [ref=e818]:
+                              - paragraph [ref=e819]: 200 OK
+                            - cell "Returns a successful worker demographic." [ref=e820]:
+                              - paragraph [ref=e821]: Returns a successful worker demographic.
+                            - cell "NA" [ref=e822]:
+                              - paragraph [ref=e823]: NA
+                            - cell "NA" [ref=e824]:
+                              - paragraph [ref=e825]: NA
+                          - row "200 OK Returns meta information for worker demographics. NA NA" [ref=e826]:
+                            - cell "200 OK" [ref=e827]:
+                              - paragraph [ref=e828]: 200 OK
+                            - cell "Returns meta information for worker demographics." [ref=e829]:
+                              - paragraph [ref=e830]: Returns meta information for worker demographics.
+                            - cell "NA" [ref=e831]:
+                              - paragraph [ref=e832]: NA
+                            - cell "NA" [ref=e833]:
+                              - paragraph [ref=e834]: NA
+                          - row "204 No Content When pagination reaches to the end of the page. empty body NA" [ref=e835]:
+                            - cell "204 No Content" [ref=e836]
+                            - cell "When pagination reaches to the end of the page." [ref=e837]
+                            - cell "empty body" [ref=e838]
+                            - cell "NA" [ref=e839]
+                  - generic [ref=e840]:
+                    - generic [ref=e841]: CHAPTER 4
+                    - generic [ref=e842]:
+                      - heading "Data Dictionary" [level=2] [ref=e843]
+                      - button [ref=e846]:
+                        - img [ref=e848] [cursor=pointer]
+                    - generic [ref=e852]:
+                      - heading "Summary" [level=3] [ref=e853]
+                      - paragraph [ref=e854]: The Data Dictionary provides the schema resource to application user interface field mapping. Resources listed in the following table can be accessed through workers.
+                      - heading "People > Personnel Actions > Change Job/Position Information > Change Job/Position" [level=4] [ref=e855]:
+                        - strong [ref=e856]: People > Personnel Actions > Change Job/Position Information > Change Job/Position
+                      - paragraph [ref=e857]:
+                        - strong [ref=e858]: People > Personal Information > Change Employee Demographics > Personal Information
+                      - paragraph [ref=e859]
+                      - table [ref=e861]:
+                        - rowgroup [ref=e862]:
+                          - row "Schema Location Field Name Remarks" [ref=e863]:
+                            - cell "Schema Location" [ref=e864]:
+                              - strong [ref=e865]: Schema Location
+                            - cell "Field Name" [ref=e866]:
+                              - strong [ref=e867]: Field Name
+                            - cell "Remarks" [ref=e868]
+                          - row "/workers/associateOID Employee OID" [ref=e869]:
+                            - cell "/workers/associateOID" [ref=e870]
+                            - cell "Employee OID" [ref=e871]
+                            - cell [ref=e872]
+                          - row "/workers/workerID/idValue Employee ID" [ref=e873]:
+                            - cell "/workers/workerID/idValue" [ref=e874]
+                            - cell "Employee ID" [ref=e875]
+                            - cell [ref=e876]
+                          - row "/workers/person/governmentIDs/idValue Social Security Number" [ref=e877]:
+                            - cell "/workers/person/governmentIDs/idValue" [ref=e878]
+                            - cell "Social Security Number" [ref=e879]
+                            - cell [ref=e880]
+                          - 'row "/workers/person/governmentIDs/idValue Social Insurance #" [ref=e881]':
+                            - cell "/workers/person/governmentIDs/idValue" [ref=e882]
+                            - 'cell "Social Insurance #" [ref=e883]'
+                            - cell [ref=e884]
+                          - row "/workers/person/legalName/givenName First Name" [ref=e885]:
+                            - cell "/workers/person/legalName/givenName" [ref=e886]
+                            - cell "First Name" [ref=e887]
+                            - cell [ref=e888]
+                          - row "/workers/person/legalName/middleName Middle Name" [ref=e889]:
+                            - cell "/workers/person/legalName/middleName" [ref=e890]
+                            - cell "Middle Name" [ref=e891]
+                            - cell [ref=e892]
+                          - row "/workers/person/legalName/familyName1 Last Name" [ref=e893]:
+                            - cell "/workers/person/legalName/familyName1" [ref=e894]
+                            - cell "Last Name" [ref=e895]
+                            - cell [ref=e896]
+                          - row "/workers/person/legalName/formattedName Name" [ref=e897]:
+                            - cell "/workers/person/legalName/formattedName" [ref=e898]
+                            - cell "Name" [ref=e899]
+                            - cell [ref=e900]
+                          - row "/workers/person/legalName/nickName Alternate Name" [ref=e901]:
+                            - cell "/workers/person/legalName/nickName" [ref=e902]
+                            - cell "Alternate Name" [ref=e903]
+                            - cell [ref=e904]
+                          - row "/workers/person/legalName/preferredSalutations/salutationCode/longName Name Prefix" [ref=e905]:
+                            - cell "/workers/person/legalName/preferredSalutations/salutationCode/longName" [ref=e906]
+                            - cell "Name Prefix" [ref=e907]
+                            - cell [ref=e908]
+                          - row "/workers/person/legalName/generationAffixCode/longName Name Suffix" [ref=e909]:
+                            - cell "/workers/person/legalName/generationAffixCode/longName" [ref=e910]
+                            - cell "Name Suffix" [ref=e911]
+                            - cell [ref=e912]
+                          - row "/workers/person/legalName/titleAffixCodes/affixCode/longName Formal Title" [ref=e913]:
+                            - cell "/workers/person/legalName/titleAffixCodes/affixCode/longName" [ref=e914]
+                            - cell "Formal Title" [ref=e915]
+                            - cell [ref=e916]
+                          - row "/workers/person/legalAddress/lineOne Address (Line 1)" [ref=e917]:
+                            - cell "/workers/person/legalAddress/lineOne" [ref=e918]
+                            - cell "Address (Line 1)" [ref=e919]
+                            - cell [ref=e920]
+                          - row "/workers/person/legalAddress/lineTwo Address (Line 2)" [ref=e921]:
+                            - cell "/workers/person/legalAddress/lineTwo" [ref=e922]
+                            - cell "Address (Line 2)" [ref=e923]
+                            - cell [ref=e924]
+                          - row "/workers/person/legalAddress/lineThree Address (Line 3)" [ref=e925]:
+                            - cell "/workers/person/legalAddress/lineThree" [ref=e926]
+                            - cell "Address (Line 3)" [ref=e927]
+                            - cell [ref=e928]
+                          - row "/workers/person/legalAddress/cityName City" [ref=e929]:
+                            - cell "/workers/person/legalAddress/cityName" [ref=e930]
+                            - cell "City" [ref=e931]
+                            - cell [ref=e932]
+                          - row "/workers/person/legalAddress/countrySubdivisionLevel1/codeValue State" [ref=e933]:
+                            - cell "/workers/person/legalAddress/countrySubdivisionLevel1/codeValue" [ref=e934]
+                            - cell "State" [ref=e935]
+                            - cell [ref=e936]
+                          - row "/workers/person/legalAddress/countrySubdivisionLevel1/longName Description" [ref=e937]:
+                            - cell "/workers/person/legalAddress/countrySubdivisionLevel1/longName" [ref=e938]
+                            - cell "Description" [ref=e939]
+                            - cell [ref=e940]
+                          - row "/workers/person/legalAddress/countrySubdivisionLevel1/subdivisionType State or Province" [ref=e941]:
+                            - cell "/workers/person/legalAddress/countrySubdivisionLevel1/subdivisionType" [ref=e942]
+                            - cell "State or Province" [ref=e943]
+                            - cell [ref=e944]
+                          - row "/workers/person/legalAddress/countryCode ISO Standard Country Code" [ref=e945]:
+                            - cell "/workers/person/legalAddress/countryCode" [ref=e946]
+                            - cell "ISO Standard Country Code" [ref=e947]
+                            - cell [ref=e948]
+                          - row "/workers/person/legalAddress/postalCode Postal/Zip" [ref=e949]:
+                            - cell "/workers/person/legalAddress/postalCode" [ref=e950]
+                            - cell "Postal/Zip" [ref=e951]
+                            - cell [ref=e952]
+                          - row "/workers/person/legalAddress/countrySubdivisionLevel2/longName County" [ref=e953]:
+                            - cell "/workers/person/legalAddress/countrySubdivisionLevel2/longName" [ref=e954]
+                            - cell "County" [ref=e955]
+                            - cell [ref=e956]
+                          - row "/workers/person/legalAddress/countrySubdivisionLevel2/subdivisionType Description" [ref=e957]:
+                            - cell "/workers/person/legalAddress/countrySubdivisionLevel2/subdivisionType" [ref=e958]
+                            - cell "Description" [ref=e959]
+                            - cell [ref=e960]
+                          - row "/workers/person/communication/landlines/nameCode/codeValue Phone Number Type" [ref=e961]:
+                            - cell "/workers/person/communication/landlines/nameCode/codeValue" [ref=e962]
+                            - cell "Phone Number Type" [ref=e963]
+                            - cell [ref=e964]
+                          - row "/workers/person/communication/landlines/nameCode/longName Description" [ref=e965]:
+                            - cell "/workers/person/communication/landlines/nameCode/longName" [ref=e966]
+                            - cell "Description" [ref=e967]
+                            - cell [ref=e968]
+                          - row "/workers/person/communication/landlines/countryDialing Int'l Direct Dial Country Code" [ref=e969]:
+                            - cell "/workers/person/communication/landlines/countryDialing" [ref=e970]
+                            - cell "Int'l Direct Dial Country Code" [ref=e971]
+                            - cell [ref=e972]
+                          - row "/workers/person/communication/landlines/formattedNumber Telephone" [ref=e973]:
+                            - cell "/workers/person/communication/landlines/formattedNumber" [ref=e974]
+                            - cell "Telephone" [ref=e975]
+                            - cell [ref=e976]
+                          - row "/workers/person/communication/landlines/itemID Phone Number Type" [ref=e977]:
+                            - cell "/workers/person/communication/landlines/itemID" [ref=e978]
+                            - cell "Phone Number Type" [ref=e979]
+                            - cell [ref=e980]
+                          - row "/workers/person/communication/mobiles/nameCode/codeValue Phone Number Type" [ref=e981]:
+                            - cell "/workers/person/communication/mobiles/nameCode/codeValue" [ref=e982]
+                            - cell "Phone Number Type" [ref=e983]
+                            - cell [ref=e984]
+                          - row "/workers/person/communication/mobiles/nameCode/longName Description" [ref=e985]:
+                            - cell "/workers/person/communication/mobiles/nameCode/longName" [ref=e986]
+                            - cell "Description" [ref=e987]
+                            - cell [ref=e988]
+                          - row "/workers/person/communication/mobiles/countryDialing Int'l Direct Dial Country Code" [ref=e989]:
+                            - cell "/workers/person/communication/mobiles/countryDialing" [ref=e990]
+                            - cell "Int'l Direct Dial Country Code" [ref=e991]
+                            - cell [ref=e992]
+                          - row "/workers/person/communication/mobiles/formattedNumber Telephone" [ref=e993]:
+                            - cell "/workers/person/communication/mobiles/formattedNumber" [ref=e994]
+                            - cell "Telephone" [ref=e995]
+                            - cell [ref=e996]
+                          - row "/workers/person/communication/mobiles/itemID Phone Number Type" [ref=e997]:
+                            - cell "/workers/person/communication/mobiles/itemID" [ref=e998]
+                            - cell "Phone Number Type" [ref=e999]
+                            - cell [ref=e1000]
+                          - row "/workers/person/communication/emails/emailUri Electronic Mail Address 2" [ref=e1001]:
+                            - cell "/workers/person/communication/emails/emailUri" [ref=e1002]
+                            - cell "Electronic Mail Address 2" [ref=e1003]
+                            - cell [ref=e1004]
+                          - row "/workers/person/communication/faxes/nameCode/codeValue Phone Number Type" [ref=e1005]:
+                            - cell "/workers/person/communication/faxes/nameCode/codeValue" [ref=e1006]
+                            - cell "Phone Number Type" [ref=e1007]
+                            - cell [ref=e1008]
+                          - row "/workers/person/communication/faxes/nameCode/longName Description" [ref=e1009]:
+                            - cell "/workers/person/communication/faxes/nameCode/longName" [ref=e1010]
+                            - cell "Description" [ref=e1011]
+                            - cell [ref=e1012]
+                          - row "/workers/person/communication/faxes/countryDialing Int'l Direct Dial Country Code" [ref=e1013]:
+                            - cell "/workers/person/communication/faxes/countryDialing" [ref=e1014]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1015]
+                            - cell [ref=e1016]
+                          - row "/workers/person/communication/faxes/formattedNumber Telephone" [ref=e1017]:
+                            - cell "/workers/person/communication/faxes/formattedNumber" [ref=e1018]
+                            - cell "Telephone" [ref=e1019]
+                            - cell [ref=e1020]
+                          - row "/workers/person/communication/faxes/itemID Phone Number Type" [ref=e1021]:
+                            - cell "/workers/person/communication/faxes/itemID" [ref=e1022]
+                            - cell "Phone Number Type" [ref=e1023]
+                            - cell [ref=e1024]
+                          - row "/workers/person/communication/pagers/nameCode/codeValue Phone Number Type" [ref=e1025]:
+                            - cell "/workers/person/communication/pagers/nameCode/codeValue" [ref=e1026]
+                            - cell "Phone Number Type" [ref=e1027]
+                            - cell [ref=e1028]
+                          - row "/workers/person/communication/pagers/nameCode/longName Description" [ref=e1029]:
+                            - cell "/workers/person/communication/pagers/nameCode/longName" [ref=e1030]
+                            - cell "Description" [ref=e1031]
+                            - cell [ref=e1032]
+                          - row "/workers/person/communication/pagers/countryDialing Int'l Direct Dial Country Code" [ref=e1033]:
+                            - cell "/workers/person/communication/pagers/countryDialing" [ref=e1034]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1035]
+                            - cell [ref=e1036]
+                          - row "/workers/person/communication/pagers/extension Phone Extension/Pager PIN" [ref=e1037]:
+                            - cell "/workers/person/communication/pagers/extension" [ref=e1038]
+                            - cell "Phone Extension/Pager PIN" [ref=e1039]
+                            - cell [ref=e1040]
+                          - row "/workers/person/communication/pagers/formattedNumber Telephone" [ref=e1041]:
+                            - cell "/workers/person/communication/pagers/formattedNumber" [ref=e1042]
+                            - cell "Telephone" [ref=e1043]
+                            - cell [ref=e1044]
+                          - row "/workers/person/communication/pagers/itemID Phone Number Type" [ref=e1045]:
+                            - cell "/workers/person/communication/pagers/itemID" [ref=e1046]
+                            - cell "Phone Number Type" [ref=e1047]
+                            - cell [ref=e1048]
+                          - row "/workers/person/birthDate Birthdate" [ref=e1049]:
+                            - cell "/workers/person/birthDate" [ref=e1050]
+                            - cell "Birthdate" [ref=e1051]
+                            - cell [ref=e1052]
+                          - row "/workers/person/deathDate Date of Death" [ref=e1053]:
+                            - cell "/workers/person/deathDate" [ref=e1054]
+                            - cell "Date of Death" [ref=e1055]
+                            - cell [ref=e1056]
+                          - row "/workers/person/genderCode/codeValue Gender for Ins/Compliance" [ref=e1057]:
+                            - cell "/workers/person/genderCode/codeValue" [ref=e1058]
+                            - cell "Gender for Ins/Compliance" [ref=e1059]
+                            - cell [ref=e1060]
+                          - row "/workers/person/genderCode/longName Gender for Ins/Compliance" [ref=e1061]:
+                            - cell "/workers/person/genderCode/longName" [ref=e1062]
+                            - cell "Gender for Ins/Compliance" [ref=e1063]
+                            - cell [ref=e1064]
+                          - row "/workers/person/genderSelfIdentityCode/codeValue Gender" [ref=e1065]:
+                            - cell "/workers/person/genderSelfIdentityCode/codeValue" [ref=e1066]
+                            - cell "Gender" [ref=e1067]
+                            - cell [ref=e1068]
+                          - row "/workers/person/genderSelfIdentityCode/shortName Gender" [ref=e1069]:
+                            - cell "/workers/person/genderSelfIdentityCode/shortName" [ref=e1070]
+                            - cell "Gender" [ref=e1071]
+                            - cell [ref=e1072]
+                          - row "/workers/person/genderSelfIdentityCode/longName Gender" [ref=e1073]:
+                            - cell "/workers/person/genderSelfIdentityCode/longName" [ref=e1074]
+                            - cell "Gender" [ref=e1075]
+                            - cell [ref=e1076]
+                          - row "/workers/person/preferredGenderPronounCode/codeValue Emp Pronouns" [ref=e1077]:
+                            - cell "/workers/person/preferredGenderPronounCode/codeValue" [ref=e1078]
+                            - cell "Emp Pronouns" [ref=e1079]
+                            - cell [ref=e1080]
+                          - row "/workers/person/preferredGenderPronounCode/shortName Emp Pronouns" [ref=e1081]:
+                            - cell "/workers/person/preferredGenderPronounCode/shortName" [ref=e1082]
+                            - cell "Emp Pronouns" [ref=e1083]
+                            - cell [ref=e1084]
+                          - row "/workers/person/preferredGenderPronounCode/longName Emp Pronouns" [ref=e1085]:
+                            - cell "/workers/person/preferredGenderPronounCode/longName" [ref=e1086]
+                            - cell "Emp Pronouns" [ref=e1087]
+                            - cell [ref=e1088]
+                          - row "/workers/person/transgenderIdentificationCode/codeValue Gender Identity" [ref=e1089]:
+                            - cell "/workers/person/transgenderIdentificationCode/codeValue" [ref=e1090]
+                            - cell "Gender Identity" [ref=e1091]
+                            - cell [ref=e1092]
+                          - row "/workers/person/lgbqIdentificationCode/codeValue Sexual Orientation" [ref=e1093]:
+                            - cell "/workers/person/lgbqIdentificationCode/codeValue" [ref=e1094]
+                            - cell "Sexual Orientation" [ref=e1095]
+                            - cell [ref=e1096]
+                          - row "/workers/person/maritalStatusCode/codeValue Marital Status" [ref=e1097]:
+                            - cell "/workers/person/maritalStatusCode/codeValue" [ref=e1098]
+                            - cell "Marital Status" [ref=e1099]
+                            - cell [ref=e1100]
+                          - row "/workers/person/maritalStatusCode/longName Marital Status" [ref=e1101]:
+                            - cell "/workers/person/maritalStatusCode/longName" [ref=e1102]
+                            - cell "Marital Status" [ref=e1103]
+                            - cell [ref=e1104]
+                          - row "/workers/person/maritalStatusCode/effectiveDate Marital Status Date" [ref=e1105]:
+                            - cell "/workers/person/maritalStatusCode/effectiveDate" [ref=e1106]
+                            - cell "Marital Status Date" [ref=e1107]
+                            - cell [ref=e1108]
+                          - row "/workers/person/tobaccoUserIndicator Smoker" [ref=e1109]:
+                            - cell "/workers/person/tobaccoUserIndicator" [ref=e1110]
+                            - cell "Smoker" [ref=e1111]
+                            - cell [ref=e1112]
+                          - row "/workers/person/disabilityIdentificationDeclinedIndicator Disability Ident Declined Ind" [ref=e1113]:
+                            - cell "/workers/person/disabilityIdentificationDeclinedIndicator" [ref=e1114]
+                            - cell "Disability Ident Declined Ind" [ref=e1115]
+                            - cell [ref=e1116]
+                          - row "/workers/person/disabledIndicator Disabled" [ref=e1117]:
+                            - cell "/workers/person/disabledIndicator" [ref=e1118]
+                            - cell "Disabled" [ref=e1119]
+                            - cell [ref=e1120]
+                          - row "/workers/person/studentIndicator Full-Time Student" [ref=e1121]:
+                            - cell "/workers/person/studentIndicator" [ref=e1122]
+                            - cell "Full-Time Student" [ref=e1123]
+                            - cell [ref=e1124]
+                          - 'row "/workers/person/immigrationDocuments/documentID Visa #" [ref=e1125]':
+                            - cell "/workers/person/immigrationDocuments/documentID" [ref=e1126]
+                            - 'cell "Visa #" [ref=e1127]'
+                            - cell [ref=e1128]
+                          - row "/workers/person/immigrationDocuments/typeCode/codeValue Visa Type" [ref=e1129]:
+                            - cell "/workers/person/immigrationDocuments/typeCode/codeValue" [ref=e1130]
+                            - cell "Visa Type" [ref=e1131]
+                            - cell [ref=e1132]
+                          - row "/workers/person/immigrationDocuments/typeCode/longName Visa Type" [ref=e1133]:
+                            - cell "/workers/person/immigrationDocuments/typeCode/longName" [ref=e1134]
+                            - cell "Visa Type" [ref=e1135]
+                            - cell [ref=e1136]
+                          - row "/workers/person/immigrationDocuments/expirationDate Visa Expiration Date" [ref=e1137]:
+                            - cell "/workers/person/immigrationDocuments/expirationDate" [ref=e1138]
+                            - cell "Visa Expiration Date" [ref=e1139]
+                            - cell [ref=e1140]
+                          - 'row "/workers/person/passports/documentID Passport #" [ref=e1141]':
+                            - cell "/workers/person/passports/documentID" [ref=e1142]
+                            - 'cell "Passport #" [ref=e1143]'
+                            - cell [ref=e1144]
+                          - row "/workers/person/passports/countryCode Passport Country ISO" [ref=e1145]:
+                            - cell "/workers/person/passports/countryCode" [ref=e1146]
+                            - cell "Passport Country ISO" [ref=e1147]
+                            - cell [ref=e1148]
+                          - row "/workers/person/passports/expirationDate Passport Expiration Date" [ref=e1149]:
+                            - cell "/workers/person/passports/expirationDate" [ref=e1150]
+                            - cell "Passport Expiration Date" [ref=e1151]
+                            - cell [ref=e1152]
+                          - row "/workers/person/preferredName/givenName Preferred/Chosen First Name" [ref=e1153]:
+                            - cell "/workers/person/preferredName/givenName" [ref=e1154]
+                            - cell "Preferred/Chosen First Name" [ref=e1155]
+                            - cell [ref=e1156]
+                          - row "/workers/person/preferredName/middleName Preferred/Chosen Middle Name" [ref=e1157]:
+                            - cell "/workers/person/preferredName/middleName" [ref=e1158]
+                            - cell "Preferred/Chosen Middle Name" [ref=e1159]
+                            - cell [ref=e1160]
+                          - row "/workers/person/preferredName/familyName1 Preferred/Chosen Last Name" [ref=e1161]:
+                            - cell "/workers/person/preferredName/familyName1" [ref=e1162]
+                            - cell "Preferred/Chosen Last Name" [ref=e1163]
+                            - cell [ref=e1164]
+                          - row "/workers/person/preferredName/formattedName Preferred/Chosen Name" [ref=e1165]:
+                            - cell "/workers/person/preferredName/formattedName" [ref=e1166]
+                            - cell "Preferred/Chosen Name" [ref=e1167]
+                            - cell [ref=e1168]
+                          - row "/workers/person/formerNames/formattedName Former Name" [ref=e1169]:
+                            - cell "/workers/person/formerNames/formattedName" [ref=e1170]
+                            - cell "Former Name" [ref=e1171]
+                            - cell [ref=e1172]
+                          - row "/workers/person/otherPersonalAddresses/lineOne Address - Other (Line 1)" [ref=e1173]:
+                            - cell "/workers/person/otherPersonalAddresses/lineOne" [ref=e1174]
+                            - cell "Address - Other (Line 1)" [ref=e1175]
+                            - cell [ref=e1176]
+                          - row "/workers/person/otherPersonalAddresses/lineTwo Address - Other (Line 2)" [ref=e1177]:
+                            - cell "/workers/person/otherPersonalAddresses/lineTwo" [ref=e1178]
+                            - cell "Address - Other (Line 2)" [ref=e1179]
+                            - cell [ref=e1180]
+                          - row "/workers/person/otherPersonalAddresses/lineThree Address - Other (Line 3)" [ref=e1181]:
+                            - cell "/workers/person/otherPersonalAddresses/lineThree" [ref=e1182]
+                            - cell "Address - Other (Line 3)" [ref=e1183]
+                            - cell [ref=e1184]
+                          - row "/workers/person/otherPersonalAddresses/cityName City - Other" [ref=e1185]:
+                            - cell "/workers/person/otherPersonalAddresses/cityName" [ref=e1186]
+                            - cell "City - Other" [ref=e1187]
+                            - cell [ref=e1188]
+                          - row "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/codeValue State - Other" [ref=e1189]:
+                            - cell "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/codeValue" [ref=e1190]
+                            - cell "State - Other" [ref=e1191]
+                            - cell [ref=e1192]
+                          - row "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/longName Description" [ref=e1193]:
+                            - cell "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/longName" [ref=e1194]
+                            - cell "Description" [ref=e1195]
+                            - cell [ref=e1196]
+                          - row "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/subdivisionType State or Province Other" [ref=e1197]:
+                            - cell "/workers/person/otherPersonalAddresses/countrySubdivisionLevel1/subdivisionType" [ref=e1198]
+                            - cell "State or Province Other" [ref=e1199]
+                            - cell [ref=e1200]
+                          - row "/workers/person/otherPersonalAddresses/countryCode Country Other ISO" [ref=e1201]:
+                            - cell "/workers/person/otherPersonalAddresses/countryCode" [ref=e1202]
+                            - cell "Country Other ISO" [ref=e1203]
+                            - cell [ref=e1204]
+                          - row "/workers/person/otherPersonalAddresses/postalCode Postal/Zip - Other" [ref=e1205]:
+                            - cell "/workers/person/otherPersonalAddresses/postalCode" [ref=e1206]
+                            - cell "Postal/Zip - Other" [ref=e1207]
+                            - cell [ref=e1208]
+                          - row "/workers/person/raceCode/codeValue Race/Ethnicity" [ref=e1209]:
+                            - cell "/workers/person/raceCode/codeValue" [ref=e1210]
+                            - cell "Race/Ethnicity" [ref=e1211]
+                            - cell [ref=e1212]
+                          - row "/workers/person/raceCode/longName Race/Ethnicity" [ref=e1213]:
+                            - cell "/workers/person/raceCode/longName" [ref=e1214]
+                            - cell "Race/Ethnicity" [ref=e1215]
+                            - cell [ref=e1216]
+                          - row "/workers/person/citizenshipCountryCodes/codeValue Citizenship Country ISO" [ref=e1217]:
+                            - cell "/workers/person/citizenshipCountryCodes/codeValue" [ref=e1218]
+                            - cell "Citizenship Country ISO" [ref=e1219]
+                            - cell [ref=e1220]
+                          - row "/workers/person/citizenshipCountryCodes/codeValue Citizenship Country2 ISO" [ref=e1221]:
+                            - cell "/workers/person/citizenshipCountryCodes/codeValue" [ref=e1222]
+                            - cell "Citizenship Country2 ISO" [ref=e1223]
+                            - cell [ref=e1224]
+                          - row "/workers/person/citizenshipCountryCodes/codeValue Citizen Country3 ISO" [ref=e1225]:
+                            - cell "/workers/person/citizenshipCountryCodes/codeValue" [ref=e1226]
+                            - cell "Citizen Country3 ISO" [ref=e1227]
+                            - cell [ref=e1228]
+                          - row "/workers/person/highestEducationLevelCode/codeValue Highest Education Level" [ref=e1229]:
+                            - cell "/workers/person/highestEducationLevelCode/codeValue" [ref=e1230]
+                            - cell "Highest Education Level" [ref=e1231]
+                            - cell [ref=e1232]
+                          - row "/workers/person/highestEducationLevelCode/longName Highest Education Level" [ref=e1233]:
+                            - cell "/workers/person/highestEducationLevelCode/longName" [ref=e1234]
+                            - cell "Highest Education Level" [ref=e1235]
+                            - cell [ref=e1236]
+                          - row "/workers/person/militaryStatusCode/codeValue Military Status" [ref=e1237]:
+                            - cell "/workers/person/militaryStatusCode/codeValue" [ref=e1238]
+                            - cell "Military Status" [ref=e1239]
+                            - cell [ref=e1240]
+                          - row "/workers/person/militaryStatusCode/longName Military Status" [ref=e1241]:
+                            - cell "/workers/person/militaryStatusCode/longName" [ref=e1242]
+                            - cell "Military Status" [ref=e1243]
+                            - cell [ref=e1244]
+                          - row "/workers/person/militaryDischargeDate Military Discharge Date" [ref=e1245]:
+                            - cell "/workers/person/militaryDischargeDate" [ref=e1246]
+                            - cell "Military Discharge Date" [ref=e1247]
+                            - cell [ref=e1248]
+                          - row "/workers/person/militaryClassificationCodes/codeValue Military Status Vets 4212" [ref=e1249]:
+                            - cell "/workers/person/militaryClassificationCodes/codeValue" [ref=e1250]
+                            - cell "Military Status Vets 4212" [ref=e1251]
+                            - cell [ref=e1252]
+                          - row "/workers/person/militaryClassificationCodes/longName Military Status Vets 4212" [ref=e1253]:
+                            - cell "/workers/person/militaryClassificationCodes/longName" [ref=e1254]
+                            - cell "Military Status Vets 4212" [ref=e1255]
+                            - cell [ref=e1256]
+                          - row "/workers/workerDates/originalHireDate Original Hire Date" [ref=e1257]:
+                            - cell "/workers/workerDates/originalHireDate" [ref=e1258]
+                            - cell "Original Hire Date" [ref=e1259]
+                            - cell [ref=e1260]
+                          - row "/workers/workerDates/rehireDate Rehire Date" [ref=e1261]:
+                            - cell "/workers/workerDates/rehireDate" [ref=e1262]
+                            - cell "Rehire Date" [ref=e1263]
+                            - cell [ref=e1264]
+                          - row "/workers/workerDates/adjustedServiceDate Service Date" [ref=e1265]:
+                            - cell "/workers/workerDates/adjustedServiceDate" [ref=e1266]
+                            - cell "Service Date" [ref=e1267]
+                            - cell [ref=e1268]
+                          - row "/workers/workerDates/acquisitionDate Acquisition Date" [ref=e1269]:
+                            - cell "/workers/workerDates/acquisitionDate" [ref=e1270]
+                            - cell "Acquisition Date" [ref=e1271]
+                            - cell [ref=e1272]
+                          - row "/workers/workerDates/retirementDate Retire Date" [ref=e1273]:
+                            - cell "/workers/workerDates/retirementDate" [ref=e1274]
+                            - cell "Retire Date" [ref=e1275]
+                            - cell [ref=e1276]
+                          - row "/workers/workerDates/terminationDate Termination Date" [ref=e1277]:
+                            - cell "/workers/workerDates/terminationDate" [ref=e1278]
+                            - cell "Termination Date" [ref=e1279]
+                            - cell [ref=e1280]
+                          - row "/workers/workerStatus/statusCode/codeValue Employee Status" [ref=e1281]:
+                            - cell "/workers/workerStatus/statusCode/codeValue" [ref=e1282]
+                            - cell "Employee Status" [ref=e1283]
+                            - cell [ref=e1284]
+                          - row "/workers/workerStatus/statusCode/longName Employee Status" [ref=e1285]:
+                            - cell "/workers/workerStatus/statusCode/longName" [ref=e1286]
+                            - cell "Employee Status" [ref=e1287]
+                            - cell [ref=e1288]
+                          - row "/workers/businessCommunication/landlines/nameCode/codeValue Phone Number Type" [ref=e1289]:
+                            - cell "/workers/businessCommunication/landlines/nameCode/codeValue" [ref=e1290]
+                            - cell "Phone Number Type" [ref=e1291]
+                            - cell [ref=e1292]
+                          - row "/workers/businessCommunication/landlines/nameCode/longName Description" [ref=e1293]:
+                            - cell "/workers/businessCommunication/landlines/nameCode/longName" [ref=e1294]
+                            - cell "Description" [ref=e1295]
+                            - cell [ref=e1296]
+                          - row "/workers/businessCommunication/landlines/countryDialing Int'l Direct Dial Country Code" [ref=e1297]:
+                            - cell "/workers/businessCommunication/landlines/countryDialing" [ref=e1298]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1299]
+                            - cell [ref=e1300]
+                          - row "/workers/businessCommunication/landlines/extension Phone Extension/Pager PIN" [ref=e1301]:
+                            - cell "/workers/businessCommunication/landlines/extension" [ref=e1302]
+                            - cell "Phone Extension/Pager PIN" [ref=e1303]
+                            - cell [ref=e1304]
+                          - row "/workers/businessCommunication/landlines/formattedNumber Telephone" [ref=e1305]:
+                            - cell "/workers/businessCommunication/landlines/formattedNumber" [ref=e1306]
+                            - cell "Telephone" [ref=e1307]
+                            - cell [ref=e1308]
+                          - row "/workers/businessCommunication/landlines/itemID Phone Number Type" [ref=e1309]:
+                            - cell "/workers/businessCommunication/landlines/itemID" [ref=e1310]
+                            - cell "Phone Number Type" [ref=e1311]
+                            - cell [ref=e1312]
+                          - row "/workers/businessCommunication/mobiles/nameCode/codeValue Phone Number Type" [ref=e1313]:
+                            - cell "/workers/businessCommunication/mobiles/nameCode/codeValue" [ref=e1314]
+                            - cell "Phone Number Type" [ref=e1315]
+                            - cell [ref=e1316]
+                          - row "/workers/businessCommunication/mobiles/nameCode/longName Description" [ref=e1317]:
+                            - cell "/workers/businessCommunication/mobiles/nameCode/longName" [ref=e1318]
+                            - cell "Description" [ref=e1319]
+                            - cell [ref=e1320]
+                          - row "/workers/businessCommunication/mobiles/countryDialing Int'l Direct Dial Country Code" [ref=e1321]:
+                            - cell "/workers/businessCommunication/mobiles/countryDialing" [ref=e1322]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1323]
+                            - cell [ref=e1324]
+                          - row "/workers/businessCommunication/mobiles/formattedNumber Telephone" [ref=e1325]:
+                            - cell "/workers/businessCommunication/mobiles/formattedNumber" [ref=e1326]
+                            - cell "Telephone" [ref=e1327]
+                            - cell [ref=e1328]
+                          - row "/workers/businessCommunication/mobiles/itemID Phone Number Type" [ref=e1329]:
+                            - cell "/workers/businessCommunication/mobiles/itemID" [ref=e1330]
+                            - cell "Phone Number Type" [ref=e1331]
+                            - cell [ref=e1332]
+                          - row "/workers/businessCommunication/emails/emailUri Electronic Mail Address" [ref=e1333]:
+                            - cell "/workers/businessCommunication/emails/emailUri" [ref=e1334]
+                            - cell "Electronic Mail Address" [ref=e1335]
+                            - cell [ref=e1336]
+                          - row "/workers/businessCommunication/faxes/nameCode/codeValue Phone Number Type" [ref=e1337]:
+                            - cell "/workers/businessCommunication/faxes/nameCode/codeValue" [ref=e1338]
+                            - cell "Phone Number Type" [ref=e1339]
+                            - cell [ref=e1340]
+                          - row "/workers/businessCommunication/faxes/nameCode/longName Description" [ref=e1341]:
+                            - cell "/workers/businessCommunication/faxes/nameCode/longName" [ref=e1342]
+                            - cell "Description" [ref=e1343]
+                            - cell [ref=e1344]
+                          - row "/workers/businessCommunication/faxes/countryDialing Int'l Direct Dial Country Code" [ref=e1345]:
+                            - cell "/workers/businessCommunication/faxes/countryDialing" [ref=e1346]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1347]
+                            - cell [ref=e1348]
+                          - row "/workers/businessCommunication/faxes/formattedNumber Telephone" [ref=e1349]:
+                            - cell "/workers/businessCommunication/faxes/formattedNumber" [ref=e1350]
+                            - cell "Telephone" [ref=e1351]
+                            - cell [ref=e1352]
+                          - row "/workers/businessCommunication/faxes/itemID Phone Number Type" [ref=e1353]:
+                            - cell "/workers/businessCommunication/faxes/itemID" [ref=e1354]
+                            - cell "Phone Number Type" [ref=e1355]
+                            - cell [ref=e1356]
+                          - row "/workers/businessCommunication/pagers/nameCode/codeValue Phone Number Type" [ref=e1357]:
+                            - cell "/workers/businessCommunication/pagers/nameCode/codeValue" [ref=e1358]
+                            - cell "Phone Number Type" [ref=e1359]
+                            - cell [ref=e1360]
+                          - row "/workers/businessCommunication/pagers/nameCode/longName Description" [ref=e1361]:
+                            - cell "/workers/businessCommunication/pagers/nameCode/longName" [ref=e1362]
+                            - cell "Description" [ref=e1363]
+                            - cell [ref=e1364]
+                          - row "/workers/businessCommunication/pagers/countryDialing Int'l Direct Dial Country Code" [ref=e1365]:
+                            - cell "/workers/businessCommunication/pagers/countryDialing" [ref=e1366]
+                            - cell "Int'l Direct Dial Country Code" [ref=e1367]
+                            - cell [ref=e1368]
+                          - row "/workers/businessCommunication/pagers/extension Phone Extension/Pager PIN" [ref=e1369]:
+                            - cell "/workers/businessCommunication/pagers/extension" [ref=e1370]
+                            - cell "Phone Extension/Pager PIN" [ref=e1371]
+                            - cell [ref=e1372]
+                          - row "/workers/businessCommunication/pagers/formattedNumber Telephone" [ref=e1373]:
+                            - cell "/workers/businessCommunication/pagers/formattedNumber" [ref=e1374]
+                            - cell "Telephone" [ref=e1375]
+                            - cell [ref=e1376]
+                          - row "/workers/businessCommunication/pagers/itemID Phone Number Type" [ref=e1377]:
+                            - cell "/workers/businessCommunication/pagers/itemID" [ref=e1378]
+                            - cell "Phone Number Type" [ref=e1379]
+                            - cell [ref=e1380]
+                          - row "/workers/workAssignments/primaryIndicator Primary Job" [ref=e1381]:
+                            - cell "/workers/workAssignments/primaryIndicator" [ref=e1382]
+                            - cell "Primary Job" [ref=e1383]
+                            - cell [ref=e1384]
+                          - row "/workers/workAssignments/hireDate Hire Date" [ref=e1385]:
+                            - cell "/workers/workAssignments/hireDate" [ref=e1386]
+                            - cell "Hire Date" [ref=e1387]
+                            - cell [ref=e1388]
+                          - row "/workers/workAssignments/seniorityDate Company Seniority Date" [ref=e1389]:
+                            - cell "/workers/workAssignments/seniorityDate" [ref=e1390]
+                            - cell "Company Seniority Date" [ref=e1391]
+                            - cell [ref=e1392]
+                          - row "/workers/workAssignments/assignmentStatus/statusCode/codeValue Employee Status" [ref=e1393]:
+                            - cell "/workers/workAssignments/assignmentStatus/statusCode/codeValue" [ref=e1394]
+                            - cell "Employee Status" [ref=e1395]
+                            - cell [ref=e1396]
+                          - row "/workers/workAssignments/assignmentStatus/statusCode/longName Employee Status" [ref=e1397]:
+                            - cell "/workers/workAssignments/assignmentStatus/statusCode/longName" [ref=e1398]
+                            - cell "Employee Status" [ref=e1399]
+                            - cell [ref=e1400]
+                          - row "/workers/workAssignments/assignmentStatus/reasonCode/codeValue Reason Code" [ref=e1401]:
+                            - cell "/workers/workAssignments/assignmentStatus/reasonCode/codeValue" [ref=e1402]
+                            - cell "Reason Code" [ref=e1403]
+                            - cell [ref=e1404]
+                          - row "/workers/workAssignments/assignmentStatus/reasonCode/longName Description" [ref=e1405]:
+                            - cell "/workers/workAssignments/assignmentStatus/reasonCode/longName" [ref=e1406]
+                            - cell "Description" [ref=e1407]
+                            - cell [ref=e1408]
+                          - row "/workers/workAssignments/assignmentStatus/effectiveDate Effective Date" [ref=e1409]:
+                            - cell "/workers/workAssignments/assignmentStatus/effectiveDate" [ref=e1410]
+                            - cell "Effective Date" [ref=e1411]
+                            - cell [ref=e1412]
+                          - row "/workers/workAssignments/workerTypeCode/codeValue Employee Classification" [ref=e1413]:
+                            - cell "/workers/workAssignments/workerTypeCode/codeValue" [ref=e1414]
+                            - cell "Employee Classification" [ref=e1415]
+                            - cell [ref=e1416]
+                          - row "/workers/workAssignments/workerTypeCode/longName Employee Classification" [ref=e1417]:
+                            - cell "/workers/workAssignments/workerTypeCode/longName" [ref=e1418]
+                            - cell "Employee Classification" [ref=e1419]
+                            - cell [ref=e1420]
+                          - row "/workers/workAssignments/assignmentTermCode/codeValue Regular/Temporary" [ref=e1421]:
+                            - cell "/workers/workAssignments/assignmentTermCode/codeValue" [ref=e1422]
+                            - cell "Regular/Temporary" [ref=e1423]
+                            - cell [ref=e1424]
+                          - row "/workers/workAssignments/assignmentTermCode/longName Regular/Temporary" [ref=e1425]:
+                            - cell "/workers/workAssignments/assignmentTermCode/longName" [ref=e1426]
+                            - cell "Regular/Temporary" [ref=e1427]
+                            - cell [ref=e1428]
+                          - row "/workers/workAssignments/workLevelCode/codeValue Full/Part Time" [ref=e1429]:
+                            - cell "/workers/workAssignments/workLevelCode/codeValue" [ref=e1430]
+                            - cell "Full/Part Time" [ref=e1431]
+                            - cell [ref=e1432]
+                          - row "/workers/workAssignments/workLevelCode/longName Full/Part Time" [ref=e1433]:
+                            - cell "/workers/workAssignments/workLevelCode/longName" [ref=e1434]
+                            - cell "Full/Part Time" [ref=e1435]
+                            - cell [ref=e1436]
+                          - row "/workers/workAssignments/officerTypeCode/codeValue Officer Code" [ref=e1437]:
+                            - cell "/workers/workAssignments/officerTypeCode/codeValue" [ref=e1438]
+                            - cell "Officer Code" [ref=e1439]
+                            - cell [ref=e1440]
+                          - row "/workers/workAssignments/officerTypeCode/longName Officer Code" [ref=e1441]:
+                            - cell "/workers/workAssignments/officerTypeCode/longName" [ref=e1442]
+                            - cell "Officer Code" [ref=e1443]
+                            - cell [ref=e1444]
+                          - row "/workers/workAssignments/managementPositionIndicator Manager Yes/No" [ref=e1445]:
+                            - cell "/workers/workAssignments/managementPositionIndicator" [ref=e1446]
+                            - cell "Manager Yes/No" [ref=e1447]
+                            - cell [ref=e1448]
+                          - row "/workers/workAssignments/legalEntityID Company" [ref=e1449]:
+                            - cell "/workers/workAssignments/legalEntityID" [ref=e1450]
+                            - cell "Company" [ref=e1451]
+                            - cell [ref=e1452]
+                          - row "/workers/workAssignments/stockOwnerIndicator Owns 5% (or More) of Company" [ref=e1453]:
+                            - cell "/workers/workAssignments/stockOwnerIndicator" [ref=e1454]
+                            - cell "Owns 5% (or More) of Company" [ref=e1455]
+                            - cell [ref=e1456]
+                          - row "/workers/workAssignments/jobCode/codeValue Job Code" [ref=e1457]:
+                            - cell "/workers/workAssignments/jobCode/codeValue" [ref=e1458]
+                            - cell "Job Code" [ref=e1459]
+                            - cell [ref=e1460]
+                          - row "/workers/workAssignments/jobCode/longName Description" [ref=e1461]:
+                            - cell "/workers/workAssignments/jobCode/longName" [ref=e1462]
+                            - cell "Description" [ref=e1463]
+                            - cell [ref=e1464]
+                          - row "/workers/workAssignments/jobTitle Business Title" [ref=e1465]:
+                            - cell "/workers/workAssignments/jobTitle" [ref=e1466]
+                            - cell "Business Title" [ref=e1467]
+                            - cell [ref=e1468]
+                          - row "/workers/workAssignments/occupationalClassifications/classificationCode/codeValue Workers' Compensation Code" [ref=e1469]:
+                            - cell "/workers/workAssignments/occupationalClassifications/classificationCode/codeValue" [ref=e1470]
+                            - cell "Workers' Compensation Code" [ref=e1471]
+                            - cell [ref=e1472]
+                          - row "/workers/workAssignments/occupationalClassifications/classificationCode/longName Description" [ref=e1473]:
+                            - cell "/workers/workAssignments/occupationalClassifications/classificationCode/longName" [ref=e1474]
+                            - cell "Description" [ref=e1475]
+                            - cell [ref=e1476]
+                          - row "/workers/workAssignments/occupationalClassifications/classificationCode/codeValue EEO Exclusion" [ref=e1477]:
+                            - cell "/workers/workAssignments/occupationalClassifications/classificationCode/codeValue" [ref=e1478]
+                            - cell "EEO Exclusion" [ref=e1479]
+                            - cell [ref=e1480]
+                          - row "/workers/workAssignments/occupationalClassifications/classificationCode/longName EEO Exclusion" [ref=e1481]:
+                            - cell "/workers/workAssignments/occupationalClassifications/classificationCode/longName" [ref=e1482]
+                            - cell "EEO Exclusion" [ref=e1483]
+                            - cell [ref=e1484]
+                          - row "/workers/workAssignments/wageLawCoverage/coverageCode/codeValue FLSA Status" [ref=e1485]:
+                            - cell "/workers/workAssignments/wageLawCoverage/coverageCode/codeValue" [ref=e1486]
+                            - cell "FLSA Status" [ref=e1487]
+                            - cell [ref=e1488]
+                          - row "/workers/workAssignments/wageLawCoverage/coverageCode/longName FLSA Status" [ref=e1489]:
+                            - cell "/workers/workAssignments/wageLawCoverage/coverageCode/longName" [ref=e1490]
+                            - cell "FLSA Status" [ref=e1491]
+                            - cell [ref=e1492]
+                          - row "/workers/workAssignments/positionID Position Number" [ref=e1493]:
+                            - cell "/workers/workAssignments/positionID" [ref=e1494]
+                            - cell "Position Number" [ref=e1495]
+                            - cell [ref=e1496]
+                          - row "/workers/workAssignments/positionTitle Description" [ref=e1497]:
+                            - cell "/workers/workAssignments/positionTitle" [ref=e1498]
+                            - cell "Description" [ref=e1499]
+                            - cell [ref=e1500]
+                          - row "/workers/workAssignments/laborUnion/laborUnionCode/codeValue Union Code" [ref=e1501]:
+                            - cell "/workers/workAssignments/laborUnion/laborUnionCode/codeValue" [ref=e1502]
+                            - cell "Union Code" [ref=e1503]
+                            - cell [ref=e1504]
+                          - row "/workers/workAssignments/laborUnion/laborUnionCode/longName Description" [ref=e1505]:
+                            - cell "/workers/workAssignments/laborUnion/laborUnionCode/longName" [ref=e1506]
+                            - cell "Description" [ref=e1507]
+                            - cell [ref=e1508]
+                          - row "/workers/workAssignments/laborUnion/seniorityDate Union Seniority Date" [ref=e1509]:
+                            - cell "/workers/workAssignments/laborUnion/seniorityDate" [ref=e1510]
+                            - cell "Union Seniority Date" [ref=e1511]
+                            - cell [ref=e1512]
+                          - row "/workers/workAssignments/bargainingUnit/bargainingUnitCode/codeValue Bargaining Unit" [ref=e1513]:
+                            - cell "/workers/workAssignments/bargainingUnit/bargainingUnitCode/codeValue" [ref=e1514]
+                            - cell "Bargaining Unit" [ref=e1515]
+                            - cell [ref=e1516]
+                          - row "/workers/workAssignments/bargainingUnit/bargainingUnitCode/longName Description" [ref=e1517]:
+                            - cell "/workers/workAssignments/bargainingUnit/bargainingUnitCode/longName" [ref=e1518]
+                            - cell "Description" [ref=e1519]
+                            - cell [ref=e1520]
+                          - row "/workers/workAssignments/bargainingUnit/seniorityDate Bargaining Unit Seniority Date" [ref=e1521]:
+                            - cell "/workers/workAssignments/bargainingUnit/seniorityDate" [ref=e1522]
+                            - cell "Bargaining Unit Seniority Date" [ref=e1523]
+                            - cell [ref=e1524]
+                          - row "/workers/workAssignments/workShiftCode/codeValue Shift" [ref=e1525]:
+                            - cell "/workers/workAssignments/workShiftCode/codeValue" [ref=e1526]
+                            - cell "Shift" [ref=e1527]
+                            - cell [ref=e1528]
+                          - row "/workers/workAssignments/workShiftCode/longName Description" [ref=e1529]:
+                            - cell "/workers/workAssignments/workShiftCode/longName" [ref=e1530]
+                            - cell "Description" [ref=e1531]
+                            - cell [ref=e1532]
+                          - row "/workers/workAssignments/standardHours/hoursQuantity Standard Hours" [ref=e1533]:
+                            - cell "/workers/workAssignments/standardHours/hoursQuantity" [ref=e1534]
+                            - cell "Standard Hours" [ref=e1535]
+                            - cell [ref=e1536]
+                          - row "/workers/workAssignments/fullTimeEquivalenceRatio FTE" [ref=e1537]:
+                            - cell "/workers/workAssignments/fullTimeEquivalenceRatio" [ref=e1538]
+                            - cell "FTE" [ref=e1539]
+                            - cell [ref=e1540]
+                          - row "/workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue Company" [ref=e1541]:
+                            - cell "/workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue" [ref=e1542]
+                            - cell "Company" [ref=e1543]
+                            - cell [ref=e1544]
+                          - row "/workers/workAssignments/homeOrganizationalUnits/nameCode/longName Description" [ref=e1545]:
+                            - cell "/workers/workAssignments/homeOrganizationalUnits/nameCode/longName" [ref=e1546]
+                            - cell "Description" [ref=e1547]
+                            - cell [ref=e1548]
+                          - row "/workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue Cost Number" [ref=e1549]:
+                            - cell "/workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue" [ref=e1550]
+                            - cell "Cost Number" [ref=e1551]
+                            - cell [ref=e1552]
+                          - row "/workers/workAssignments/homeOrganizationalUnits/nameCode/longName Description" [ref=e1553]:
+                            - cell "/workers/workAssignments/homeOrganizationalUnits/nameCode/longName" [ref=e1554]
+                            - cell "Description" [ref=e1555]
+                            - cell [ref=e1556]
+                          - row "/workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue Department ID" [ref=e1557]:
+                            - cell "/workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue" [ref=e1558]
+                            - cell "Department ID" [ref=e1559]
+                            - cell [ref=e1560]
+                          - row "/workers/workAssignments/assignedOrganizationalUnits/nameCode/shortName Short Description" [ref=e1561]:
+                            - cell "/workers/workAssignments/assignedOrganizationalUnits/nameCode/shortName" [ref=e1562]
+                            - cell "Short Description" [ref=e1563]
+                            - cell [ref=e1564]
+                          - row "/workers/workAssignments/assignedOrganizationalUnits/nameCode/longName Description" [ref=e1565]:
+                            - cell "/workers/workAssignments/assignedOrganizationalUnits/nameCode/longName" [ref=e1566]
+                            - cell "Description" [ref=e1567]
+                            - cell [ref=e1568]
+                          - row "/workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue Payroll Department Number" [ref=e1569]:
+                            - cell "/workers/workAssignments/assignedOrganizationalUnits/nameCode/codeValue" [ref=e1570]
+                            - cell "Payroll Department Number" [ref=e1571]
+                            - cell [ref=e1572]
+                          - row "/workers/workAssignments/assignedOrganizationalUnits/nameCode/longName Description" [ref=e1573]:
+                            - cell "/workers/workAssignments/assignedOrganizationalUnits/nameCode/longName" [ref=e1574]
+                            - cell "Description" [ref=e1575]
+                            - cell [ref=e1576]
+                          - row "/workers/workAssignments/homeWorkLocation/nameCode/codeValue Reporting Location" [ref=e1577]:
+                            - cell "/workers/workAssignments/homeWorkLocation/nameCode/codeValue" [ref=e1578]
+                            - cell "Reporting Location" [ref=e1579]
+                            - cell [ref=e1580]
+                          - row "/workers/workAssignments/homeWorkLocation/nameCode/longName Description" [ref=e1581]:
+                            - cell "/workers/workAssignments/homeWorkLocation/nameCode/longName" [ref=e1582]
+                            - cell "Description" [ref=e1583]
+                            - cell [ref=e1584]
+                          - row "/workers/workAssignments/assignedWorkLocations/nameCode/codeValue Location Code" [ref=e1585]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/nameCode/codeValue" [ref=e1586]
+                            - cell "Location Code" [ref=e1587]
+                            - cell [ref=e1588]
+                          - row "/workers/workAssignments/assignedWorkLocations/nameCode/longName Key Data Feild 1" [ref=e1589]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/nameCode/longName" [ref=e1590]
+                            - cell "Key Data Feild 1" [ref=e1591]
+                            - cell [ref=e1592]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/lineOne Address - Other (Line 1)" [ref=e1593]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/lineOne" [ref=e1594]
+                            - cell "Address - Other (Line 1)" [ref=e1595]
+                            - cell [ref=e1596]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/lineTwo Address - Other (Line 2)" [ref=e1597]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/lineTwo" [ref=e1598]
+                            - cell "Address - Other (Line 2)" [ref=e1599]
+                            - cell [ref=e1600]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/lineThree Address - Other (Line 3)" [ref=e1601]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/lineThree" [ref=e1602]
+                            - cell "Address - Other (Line 3)" [ref=e1603]
+                            - cell [ref=e1604]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/cityName City - Other" [ref=e1605]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/cityName" [ref=e1606]
+                            - cell "City - Other" [ref=e1607]
+                            - cell [ref=e1608]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/codeValue State - Other" [ref=e1609]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/codeValue" [ref=e1610]
+                            - cell "State - Other" [ref=e1611]
+                            - cell [ref=e1612]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/longName State Description" [ref=e1613]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/longName" [ref=e1614]
+                            - cell "State Description" [ref=e1615]
+                            - cell [ref=e1616]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/subdivisionType State or Province" [ref=e1617]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/countrySubdivisionLevel1/subdivisionType" [ref=e1618]
+                            - cell "State or Province" [ref=e1619]
+                            - cell [ref=e1620]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/countryCode Country Other ISO" [ref=e1621]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/countryCode" [ref=e1622]
+                            - cell "Country Other ISO" [ref=e1623]
+                            - cell [ref=e1624]
+                          - row "/workers/workAssignments/assignedWorkLocations/address/postalCode Postal/Zip - Other" [ref=e1625]:
+                            - cell "/workers/workAssignments/assignedWorkLocations/address/postalCode" [ref=e1626]
+                            - cell "Postal/Zip - Other" [ref=e1627]
+                            - cell [ref=e1628]
+                          - row "/workers/workAssignments/remunerationBasisCode/codeValue Employee Type" [ref=e1629]:
+                            - cell "/workers/workAssignments/remunerationBasisCode/codeValue" [ref=e1630]
+                            - cell "Employee Type" [ref=e1631]
+                            - cell [ref=e1632]
+                          - row "/workers/workAssignments/remunerationBasisCode/longName Employee Type Description" [ref=e1633]:
+                            - cell "/workers/workAssignments/remunerationBasisCode/longName" [ref=e1634]
+                            - cell "Employee Type Description" [ref=e1635]
+                            - cell [ref=e1636]
+                          - row "/workers/workAssignments/payCycleCode/codeValue Autolink Pay Frequency" [ref=e1637]:
+                            - cell "/workers/workAssignments/payCycleCode/codeValue" [ref=e1638]
+                            - cell "Autolink Pay Frequency" [ref=e1639]
+                            - cell [ref=e1640]
+                          - row "/workers/workAssignments/payCycleCode/longName Autolink Pay Frequency" [ref=e1641]:
+                            - cell "/workers/workAssignments/payCycleCode/longName" [ref=e1642]
+                            - cell "Autolink Pay Frequency" [ref=e1643]
+                            - cell [ref=e1644]
+                          - row "/workers/workAssignments/standardPayPeriodHours/hoursQuantity Autolink Standard Hours" [ref=e1645]:
+                            - cell "/workers/workAssignments/standardPayPeriodHours/hoursQuantity" [ref=e1646]
+                            - cell "Autolink Standard Hours" [ref=e1647]
+                            - cell [ref=e1648]
+                          - row "/workers/workAssignments/baseRemuneration/hourlyRateAmount/amountValue Hourly Rate" [ref=e1649]:
+                            - cell "/workers/workAssignments/baseRemuneration/hourlyRateAmount/amountValue" [ref=e1650]
+                            - cell "Hourly Rate" [ref=e1651]
+                            - cell [ref=e1652]
+                          - row "/workers/workAssignments/baseRemuneration/hourlyRateAmount/currencyCode Currency Code" [ref=e1653]:
+                            - cell "/workers/workAssignments/baseRemuneration/hourlyRateAmount/currencyCode" [ref=e1654]
+                            - cell "Currency Code" [ref=e1655]
+                            - cell [ref=e1656]
+                          - row "/workers/workAssignments/baseRemuneration/dailyRateAmount/amountValue Daily Compensation rate" [ref=e1657]:
+                            - cell "/workers/workAssignments/baseRemuneration/dailyRateAmount/amountValue" [ref=e1658]
+                            - cell "Daily Compensation rate" [ref=e1659]
+                            - cell [ref=e1660]
+                          - row "/workers/workAssignments/baseRemuneration/dailyRateAmount/currencyCode Currency Code" [ref=e1661]:
+                            - cell "/workers/workAssignments/baseRemuneration/dailyRateAmount/currencyCode" [ref=e1662]
+                            - cell "Currency Code" [ref=e1663]
+                            - cell [ref=e1664]
+                          - row "/workers/workAssignments/baseRemuneration/weeklyRateAmount/amountValue Weekly Compensation Rate" [ref=e1665]:
+                            - cell "/workers/workAssignments/baseRemuneration/weeklyRateAmount/amountValue" [ref=e1666]
+                            - cell "Weekly Compensation Rate" [ref=e1667]
+                            - cell [ref=e1668]
+                          - row "/workers/workAssignments/baseRemuneration/weeklyRateAmount/currencyCode Currency Code" [ref=e1669]:
+                            - cell "/workers/workAssignments/baseRemuneration/weeklyRateAmount/currencyCode" [ref=e1670]
+                            - cell "Currency Code" [ref=e1671]
+                            - cell [ref=e1672]
+                          - row "/workers/workAssignments/baseRemuneration/monthlyRateAmount/amountValue Monthly Rate" [ref=e1673]:
+                            - cell "/workers/workAssignments/baseRemuneration/monthlyRateAmount/amountValue" [ref=e1674]
+                            - cell "Monthly Rate" [ref=e1675]
+                            - cell [ref=e1676]
+                          - row "/workers/workAssignments/baseRemuneration/monthlyRateAmount/currencyCode Currency Code" [ref=e1677]:
+                            - cell "/workers/workAssignments/baseRemuneration/monthlyRateAmount/currencyCode" [ref=e1678]
+                            - cell "Currency Code" [ref=e1679]
+                            - cell [ref=e1680]
+                          - row "/workers/workAssignments/baseRemuneration/annualRateAmount/amountValue Annual Rate" [ref=e1681]:
+                            - cell "/workers/workAssignments/baseRemuneration/annualRateAmount/amountValue" [ref=e1682]
+                            - cell "Annual Rate" [ref=e1683]
+                            - cell [ref=e1684]
+                          - row "/workers/workAssignments/baseRemuneration/annualRateAmount/currencyCode Currency Code" [ref=e1685]:
+                            - cell "/workers/workAssignments/baseRemuneration/annualRateAmount/currencyCode" [ref=e1686]
+                            - cell "Currency Code" [ref=e1687]
+                            - cell [ref=e1688]
+                          - row "/workers/workAssignments/baseRemuneration/recordingBasisCode/codeValue Compensation Frequency" [ref=e1689]:
+                            - cell "/workers/workAssignments/baseRemuneration/recordingBasisCode/codeValue" [ref=e1690]
+                            - cell "Compensation Frequency" [ref=e1691]
+                            - cell [ref=e1692]
+                          - row "/workers/workAssignments/baseRemuneration/recordingBasisCode/longName Compensation Frequency" [ref=e1693]:
+                            - cell "/workers/workAssignments/baseRemuneration/recordingBasisCode/longName" [ref=e1694]
+                            - cell "Compensation Frequency" [ref=e1695]
+                            - cell [ref=e1696]
+                          - row "/workers/workAssignments/baseRemuneration/biweeklyRateAmount/amountValue Bi-weekly Compensation Rate" [ref=e1697]:
+                            - cell "/workers/workAssignments/baseRemuneration/biweeklyRateAmount/amountValue" [ref=e1698]
+                            - cell "Bi-weekly Compensation Rate" [ref=e1699]
+                            - cell [ref=e1700]
+                          - row "/workers/workAssignments/baseRemuneration/biweeklyRateAmount/currencyCode Currency Code" [ref=e1701]:
+                            - cell "/workers/workAssignments/baseRemuneration/biweeklyRateAmount/currencyCode" [ref=e1702]
+                            - cell "Currency Code" [ref=e1703]
+                            - cell [ref=e1704]
+                          - row "/workers/workAssignments/baseRemuneration/semiMonthlyRateAmount/amountValue Semi-monthly Compensation Rate" [ref=e1705]:
+                            - cell "/workers/workAssignments/baseRemuneration/semiMonthlyRateAmount/amountValue" [ref=e1706]
+                            - cell "Semi-monthly Compensation Rate" [ref=e1707]
+                            - cell [ref=e1708]
+                          - row "/workers/workAssignments/baseRemuneration/semiMonthlyRateAmount/currencyCode Currency Code" [ref=e1709]:
+                            - cell "/workers/workAssignments/baseRemuneration/semiMonthlyRateAmount/currencyCode" [ref=e1710]
+                            - cell "Currency Code" [ref=e1711]
+                            - cell [ref=e1712]
+                          - row "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/nameCode/codeValue Rate Type" [ref=e1713]:
+                            - cell "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/nameCode/codeValue" [ref=e1714]
+                            - cell "Rate Type" [ref=e1715]
+                            - cell [ref=e1716]
+                          - row "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/nameCode/longName Rate Type" [ref=e1717]:
+                            - cell "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/nameCode/longName" [ref=e1718]
+                            - cell "Rate Type" [ref=e1719]
+                            - cell [ref=e1720]
+                          - row "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/amountValue Autolink Rate 1" [ref=e1721]:
+                            - cell "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/amountValue" [ref=e1722]
+                            - cell "Autolink Rate 1" [ref=e1723]
+                            - cell [ref=e1724]
+                          - row "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/currencyCode Currency Code" [ref=e1725]:
+                            - cell "/workers/workAssignments/baseRemuneration/payPeriodRateAmount/currencyCode" [ref=e1726]
+                            - cell "Currency Code" [ref=e1727]
+                            - cell [ref=e1728]
+                          - row "/workers/workAssignments/additionalRemunerations/typeCode/codeValue Additional Rate Number" [ref=e1729]:
+                            - cell "/workers/workAssignments/additionalRemunerations/typeCode/codeValue" [ref=e1730]
+                            - cell "Additional Rate Number" [ref=e1731]
+                            - cell [ref=e1732]
+                          - row "/workers/workAssignments/additionalRemunerations/typeCode/longName Description" [ref=e1733]:
+                            - cell "/workers/workAssignments/additionalRemunerations/typeCode/longName" [ref=e1734]
+                            - cell "Description" [ref=e1735]
+                            - cell [ref=e1736]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/amountValue Additional Hourly Rate" [ref=e1737]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/amountValue" [ref=e1738]
+                            - cell "Additional Hourly Rate" [ref=e1739]
+                            - cell [ref=e1740]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/currencyCode Currency Code" [ref=e1741]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/currencyCode" [ref=e1742]
+                            - cell "Currency Code" [ref=e1743]
+                            - cell [ref=e1744]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/unitCode/codeValue Duration Type" [ref=e1745]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/unitCode/codeValue" [ref=e1746]
+                            - cell "Duration Type" [ref=e1747]
+                            - cell [ref=e1748]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/unitCode/longName Duration Type" [ref=e1749]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/unitCode/longName" [ref=e1750]
+                            - cell "Duration Type" [ref=e1751]
+                            - cell [ref=e1752]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/baseUnitCode/codeValue Duration Type" [ref=e1753]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/baseUnitCode/codeValue" [ref=e1754]
+                            - cell "Duration Type" [ref=e1755]
+                            - cell [ref=e1756]
+                          - row "/workers/workAssignments/additionalRemunerations/rate/baseUnitCode/longName Duration Type" [ref=e1757]:
+                            - cell "/workers/workAssignments/additionalRemunerations/rate/baseUnitCode/longName" [ref=e1758]
+                            - cell "Duration Type" [ref=e1759]
+                            - cell [ref=e1760]
+                          - row "/workers/workAssignments/additionalRemunerations/itemID Additional Rate Number" [ref=e1761]:
+                            - cell "/workers/workAssignments/additionalRemunerations/itemID" [ref=e1762]
+                            - cell "Additional Rate Number" [ref=e1763]
+                            - cell [ref=e1764]
+                          - row "/workers/workAssignments/reportsTo/associateOID Employee OID" [ref=e1765]:
+                            - cell "/workers/workAssignments/reportsTo/associateOID" [ref=e1766]
+                            - cell "Employee OID" [ref=e1767]
+                            - cell [ref=e1768]
+                          - row "/workers/workAssignments/reportsTo/workerID/idValue Reports To Manager ID" [ref=e1769]:
+                            - cell "/workers/workAssignments/reportsTo/workerID/idValue" [ref=e1770]
+                            - cell "Reports To Manager ID" [ref=e1771]
+                            - cell [ref=e1772]
+                          - row "/workers/workAssignments/reportsTo/reportsToWorkerName/formattedName Name" [ref=e1773]:
+                            - cell "/workers/workAssignments/reportsTo/reportsToWorkerName/formattedName" [ref=e1774]
+                            - cell "Name" [ref=e1775]
+                            - cell [ref=e1776]
+                          - row "/workers/workAssignments/reportsTo/itemID Employee OID" [ref=e1777]:
+                            - cell "/workers/workAssignments/reportsTo/itemID" [ref=e1778]
+                            - cell "Employee OID" [ref=e1779]
+                            - cell [ref=e1780]
+                          - row "/workers/workAssignments/reportsTo/associateOID Supervisor AOID" [ref=e1781]:
+                            - cell "/workers/workAssignments/reportsTo/associateOID" [ref=e1782]
+                            - cell "Supervisor AOID" [ref=e1783]
+                            - cell [ref=e1784]
+                          - row "/workers/workAssignments/reportsTo/workerID/idValue Supervisor ID" [ref=e1785]:
+                            - cell "/workers/workAssignments/reportsTo/workerID/idValue" [ref=e1786]
+                            - cell "Supervisor ID" [ref=e1787]
+                            - cell [ref=e1788]
+                          - row "/workers/workAssignments/reportsTo/reportsToWorkerName/formattedName Supervisor Name" [ref=e1789]:
+                            - cell "/workers/workAssignments/reportsTo/reportsToWorkerName/formattedName" [ref=e1790]
+                            - cell "Supervisor Name" [ref=e1791]
+                            - cell [ref=e1792]
+                          - row "/workers/workAssignments/reportsTo/itemID Supervisor AOID" [ref=e1793]:
+                            - cell "/workers/workAssignments/reportsTo/itemID" [ref=e1794]
+                            - cell "Supervisor AOID" [ref=e1795]
+                            - cell [ref=e1796]
+                          - row "/workers/workAssignments/payrollProcessingStatusCode/codeValue Autolink Employee Status" [ref=e1797]:
+                            - cell "/workers/workAssignments/payrollProcessingStatusCode/codeValue" [ref=e1798]
+                            - cell "Autolink Employee Status" [ref=e1799]
+                            - cell [ref=e1800]
+                          - row "/workers/workAssignments/payrollProcessingStatusCode/longName Autolink Employee Status" [ref=e1801]:
+                            - cell "/workers/workAssignments/payrollProcessingStatusCode/longName" [ref=e1802]
+                            - cell "Autolink Employee Status" [ref=e1803]
+                            - cell [ref=e1804]
+                          - row "/workers/workAssignments/payrollGroupCode Pay Group" [ref=e1805]:
+                            - cell "/workers/workAssignments/payrollGroupCode" [ref=e1806]
+                            - cell "Pay Group" [ref=e1807]
+                            - cell [ref=e1808]
+                          - row "/workers/workAssignments/annualBenefitBaseRate/amountValue Annual Benefits Base Rate" [ref=e1809]:
+                            - cell "/workers/workAssignments/annualBenefitBaseRate/amountValue" [ref=e1810]
+                            - cell "Annual Benefits Base Rate" [ref=e1811]
+                            - cell [ref=e1812]
+                          - row "/workers/workAssignments/payrollFileNumber File Number" [ref=e1813]:
+                            - cell "/workers/workAssignments/payrollFileNumber" [ref=e1814]
+                            - cell "File Number" [ref=e1815]
+                            - cell [ref=e1816]
+                          - row "/workers/workAssignments/payrollRegionCode Region Center" [ref=e1817]:
+                            - cell "/workers/workAssignments/payrollRegionCode" [ref=e1818]
+                            - cell "Region Center" [ref=e1819]
+                            - cell [ref=e1820]
+                          - row "/workers/workAssignments/payScaleCode/codeValue Salary Administration Plan" [ref=e1821]:
+                            - cell "/workers/workAssignments/payScaleCode/codeValue" [ref=e1822]
+                            - cell "Salary Administration Plan" [ref=e1823]
+                            - cell [ref=e1824]
+                          - row "/workers/workAssignments/payScaleCode/longName Description" [ref=e1825]:
+                            - cell "/workers/workAssignments/payScaleCode/longName" [ref=e1826]
+                            - cell "Description" [ref=e1827]
+                            - cell [ref=e1828]
+                          - row "/workers/workAssignments/payGradeCode/codeValue Salary Grade" [ref=e1829]:
+                            - cell "/workers/workAssignments/payGradeCode/codeValue" [ref=e1830]
+                            - cell "Salary Grade" [ref=e1831]
+                            - cell [ref=e1832]
+                          - row "/workers/workAssignments/payGradeCode/longName Description" [ref=e1833]:
+                            - cell "/workers/workAssignments/payGradeCode/longName" [ref=e1834]
+                            - cell "Description" [ref=e1835]
+                            - cell [ref=e1836]
+                          - row "/workers/workAssignments/payGradePayRange/minimumRate/amountValue Minimum Grade Rate" [ref=e1837]:
+                            - cell "/workers/workAssignments/payGradePayRange/minimumRate/amountValue" [ref=e1838]
+                            - cell "Minimum Grade Rate" [ref=e1839]
+                            - cell [ref=e1840]
+                          - row "/workers/workAssignments/payGradePayRange/minimumRate/currencyCode Currency Code" [ref=e1841]:
+                            - cell "/workers/workAssignments/payGradePayRange/minimumRate/currencyCode" [ref=e1842]
+                            - cell "Currency Code" [ref=e1843]
+                            - cell [ref=e1844]
+                          - row "/workers/workAssignments/payGradePayRange/minimumRate/baseUnitCode/codeValue Compensation Frequency" [ref=e1845]:
+                            - cell "/workers/workAssignments/payGradePayRange/minimumRate/baseUnitCode/codeValue" [ref=e1846]
+                            - cell "Compensation Frequency" [ref=e1847]
+                            - cell [ref=e1848]
+                          - row "/workers/workAssignments/payGradePayRange/minimumRate/baseUnitCode/longName Compensation Frequency Descr" [ref=e1849]:
+                            - cell "/workers/workAssignments/payGradePayRange/minimumRate/baseUnitCode/longName" [ref=e1850]
+                            - cell "Compensation Frequency Descr" [ref=e1851]
+                            - cell [ref=e1852]
+                          - row "/workers/workAssignments/payGradePayRange/medianRate/amountValue Median Grade Rate" [ref=e1853]:
+                            - cell "/workers/workAssignments/payGradePayRange/medianRate/amountValue" [ref=e1854]
+                            - cell "Median Grade Rate" [ref=e1855]
+                            - cell [ref=e1856]
+                          - row "/workers/workAssignments/payGradePayRange/medianRate/currencyCode Currency Code" [ref=e1857]:
+                            - cell "/workers/workAssignments/payGradePayRange/medianRate/currencyCode" [ref=e1858]
+                            - cell "Currency Code" [ref=e1859]
+                            - cell [ref=e1860]
+                          - row "/workers/workAssignments/payGradePayRange/medianRate/baseUnitCode/codeValue Compensation Frequency" [ref=e1861]:
+                            - cell "/workers/workAssignments/payGradePayRange/medianRate/baseUnitCode/codeValue" [ref=e1862]
+                            - cell "Compensation Frequency" [ref=e1863]
+                            - cell [ref=e1864]
+                          - row "/workers/workAssignments/payGradePayRange/medianRate/baseUnitCode/longName Compensation Frequency Descr" [ref=e1865]:
+                            - cell "/workers/workAssignments/payGradePayRange/medianRate/baseUnitCode/longName" [ref=e1866]
+                            - cell "Compensation Frequency Descr" [ref=e1867]
+                            - cell [ref=e1868]
+                          - row "/workers/workAssignments/payGradePayRange/maximumRate/amountValue Maximum Grade Rate" [ref=e1869]:
+                            - cell "/workers/workAssignments/payGradePayRange/maximumRate/amountValue" [ref=e1870]
+                            - cell "Maximum Grade Rate" [ref=e1871]
+                            - cell [ref=e1872]
+                          - row "/workers/workAssignments/payGradePayRange/maximumRate/currencyCode Currency Code" [ref=e1873]:
+                            - cell "/workers/workAssignments/payGradePayRange/maximumRate/currencyCode" [ref=e1874]
+                            - cell "Currency Code" [ref=e1875]
+                            - cell [ref=e1876]
+                          - row "/workers/workAssignments/payGradePayRange/maximumRate/baseUnitCode/codeValue Compensation Frequency" [ref=e1877]:
+                            - cell "/workers/workAssignments/payGradePayRange/maximumRate/baseUnitCode/codeValue" [ref=e1878]
+                            - cell "Compensation Frequency" [ref=e1879]
+                            - cell [ref=e1880]
+                          - row "/workers/workAssignments/payGradePayRange/maximumRate/baseUnitCode/longName Compensation Frequency Descr" [ref=e1881]:
+                            - cell "/workers/workAssignments/payGradePayRange/maximumRate/baseUnitCode/longName" [ref=e1882]
+                            - cell "Compensation Frequency Descr" [ref=e1883]
+                            - cell [ref=e1884]
+                          - row "/workers/workAssignments/compaRatio Compa-Ratio" [ref=e1885]:
+                            - cell "/workers/workAssignments/compaRatio" [ref=e1886]
+                            - cell "Compa-Ratio" [ref=e1887]
+                            - cell [ref=e1888]
+                          - row "/workers/workAssignments/payGradeStepCode/codeValue Step" [ref=e1889]:
+                            - cell "/workers/workAssignments/payGradeStepCode/codeValue" [ref=e1890]
+                            - cell "Step" [ref=e1891]
+                            - cell [ref=e1892]
+                          - row "/workers/workAssignments/nextPayGradeStepDate Next Step Date" [ref=e1893]:
+                            - cell "/workers/workAssignments/nextPayGradeStepDate" [ref=e1894]
+                            - cell "Next Step Date" [ref=e1895]
+                            - cell [ref=e1896]
+                          - row "/workers/workAssignments/geographicPayDifferentialCode/codeValue Geographic Differential ID" [ref=e1897]:
+                            - cell "/workers/workAssignments/geographicPayDifferentialCode/codeValue" [ref=e1898]
+                            - cell "Geographic Differential ID" [ref=e1899]
+                            - cell [ref=e1900]
+                          - row "/workers/workAssignments/geographicPayDifferentialCode/longName Description" [ref=e1901]:
+                            - cell "/workers/workAssignments/geographicPayDifferentialCode/longName" [ref=e1902]
+                            - cell "Description" [ref=e1903]
+                            - cell [ref=e1904]
+                          - row "/workers/workAssignments/geographicPayDifferentialPercentage Change Percent" [ref=e1905]:
+                            - cell "/workers/workAssignments/geographicPayDifferentialPercentage" [ref=e1906]
+                            - cell "Change Percent" [ref=e1907]
+                            - cell [ref=e1908]
+                          - row "/workers/workAssignments/assignmentRehireDate Rehire Date" [ref=e1909]:
+                            - cell "/workers/workAssignments/assignmentRehireDate" [ref=e1910]
+                            - cell "Rehire Date" [ref=e1911]
+                            - cell [ref=e1912]
+                          - row "/workers/workAssignments/assignmentServiceDate Service Date" [ref=e1913]:
+                            - cell "/workers/workAssignments/assignmentServiceDate" [ref=e1914]
+                            - cell "Service Date" [ref=e1915]
+                            - cell [ref=e1916]
+                          - row "/workers/workAssignments/itemID Employment Record Number" [ref=e1917]:
+                            - cell "/workers/workAssignments/itemID" [ref=e1918]
+                            - cell "Employment Record Number" [ref=e1919]
+                            - cell [ref=e1920]
+                          - row "/workers/workAssignments/lastChangeEvent/changeEventDate Action Date (Added May 2026)" [ref=e1921]:
+                            - cell "/workers/workAssignments/lastChangeEvent/changeEventDate" [ref=e1922]
+                            - cell "Action Date" [ref=e1923]
+                            - cell "(Added May 2026)" [ref=e1924]:
+                              - strong [ref=e1925]: (Added May 2026)
+                          - row "/workers/workAssignments/lastChangeEvent/eventNameCode/codeValue Action (Added May 2026)" [ref=e1926]:
+                            - cell "/workers/workAssignments/lastChangeEvent/eventNameCode/codeValue" [ref=e1927]
+                            - cell "Action" [ref=e1928]
+                            - cell "(Added May 2026)" [ref=e1929]:
+                              - strong [ref=e1930]: (Added May 2026)
+                          - row "/workers/workAssignments/lastChangeEvent/eventNameCode/longName Action Description (Added May 2026)" [ref=e1931]:
+                            - cell "/workers/workAssignments/lastChangeEvent/eventNameCode/longName" [ref=e1932]
+                            - cell "Action Description" [ref=e1933]
+                            - cell "(Added May 2026)" [ref=e1934]:
+                              - strong [ref=e1935]: (Added May 2026)
+                          - row "/workers/workAssignments/lastChangeEvent/eventReasonCode/codeValue Reason Code (Added May 2026)" [ref=e1936]:
+                            - cell "/workers/workAssignments/lastChangeEvent/eventReasonCode/codeValue" [ref=e1937]
+                            - cell "Reason Code" [ref=e1938]
+                            - cell "(Added May 2026)" [ref=e1939]:
+                              - strong [ref=e1940]: (Added May 2026)
+                          - row "/workers/workAssignments/lastChangeEvent/eventReasonCode/longName Reason Code Description (Added May 2026)" [ref=e1941]:
+                            - cell "/workers/workAssignments/lastChangeEvent/eventReasonCode/longName" [ref=e1942]
+                            - cell "Reason Code Description" [ref=e1943]
+                            - cell "(Added May 2026)" [ref=e1944]:
+                              - strong [ref=e1945]: (Added May 2026)
+                          - row "/workers/workAssignments/overtimeEligibilityIndicator FLSA Overtime (Added May 2026)" [ref=e1946]:
+                            - cell "/workers/workAssignments/overtimeEligibilityIndicator" [ref=e1947]
+                            - cell "FLSA Overtime" [ref=e1948]
+                            - cell "(Added May 2026)" [ref=e1949]:
+                              - strong [ref=e1950]: (Added May 2026)
+                          - row "/workers/workAssignments/payrollScheduleGroupID Autolink Pay Group 2 (Added May 2026)" [ref=e1951]:
+                            - cell "/workers/workAssignments/payrollScheduleGroupID" [ref=e1952]
+                            - cell "Autolink Pay Group 2" [ref=e1953]
+                            - cell "(Added May 2026)" [ref=e1954]:
+                              - strong [ref=e1955]: (Added May 2026)
+                          - row "/workers/links/href WorkerLinks" [ref=e1956]:
+                            - cell "/workers/links/href" [ref=e1957]
+                            - cell "WorkerLinks" [ref=e1958]
+                            - cell [ref=e1959]
+                          - row "/workers/links/href CntxtWrkrLinks" [ref=e1960]:
+                            - cell "/workers/links/href" [ref=e1961]
+                            - cell "CntxtWrkrLinks" [ref=e1962]
+                            - cell [ref=e1963]
+                          - row "Employment User Defined Fields - Date Type" [ref=e1964]:
+                            - cell "Employment User Defined Fields - Date Type" [ref=e1965]:
+                              - strong [ref=e1966]: Employment User Defined Fields - Date Type
+                            - cell [ref=e1967]
+                            - cell [ref=e1968]
+                          - row "/workers/workAssignments/customFieldGroup /dateFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /dateFields/dateValue Date A Date B Date C Date D" [ref=e1969]:
+                            - cell "/workers/workAssignments/customFieldGroup /dateFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /dateFields/dateValue" [ref=e1970]:
+                              - paragraph [ref=e1971]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /dateFields/nameCode/codeValue
+                              - paragraph [ref=e1972]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /dateFields/dateValue
+                            - cell "Date A Date B Date C Date D" [ref=e1973]:
+                              - text: Date A
+                              - text: Date B
+                              - text: Date C
+                              - text: Date D
+                            - cell [ref=e1974]
+                          - row "Employment User Defined Fields - String Type" [ref=e1975]:
+                            - cell "Employment User Defined Fields - String Type" [ref=e1976]:
+                              - strong [ref=e1977]: Employment User Defined Fields - String Type
+                            - cell [ref=e1978]
+                            - cell [ref=e1979]
+                          - row "/workers/workAssignments/customFieldGroup /stringFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /stringFields/stringValue Custom Area 1 Custom Area 2 Custom Area 3 Custom Area 4" [ref=e1980]:
+                            - cell "/workers/workAssignments/customFieldGroup /stringFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /stringFields/stringValue" [ref=e1981]:
+                              - paragraph [ref=e1982]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /stringFields/nameCode/codeValue
+                              - paragraph [ref=e1983]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /stringFields/stringValue
+                            - cell "Custom Area 1 Custom Area 2 Custom Area 3 Custom Area 4" [ref=e1984]:
+                              - text: Custom Area 1
+                              - text: Custom Area 2
+                              - text: Custom Area 3
+                              - text: Custom Area 4
+                            - cell [ref=e1985]
+                          - row "Employment Defined Fields - Flag Type" [ref=e1986]:
+                            - cell "Employment Defined Fields - Flag Type" [ref=e1987]:
+                              - strong [ref=e1988]: Employment Defined Fields - Flag Type
+                            - cell [ref=e1989]
+                            - cell [ref=e1990]
+                          - row "/workers/workAssignments/customFieldGroup /codeFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /codeFields/codeValue Flag 1 Flag 2 Flag 3 Flag 4 Flag 5 Flag 6 Flag 7" [ref=e1991]:
+                            - cell "/workers/workAssignments/customFieldGroup /codeFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /codeFields/codeValue" [ref=e1992]:
+                              - paragraph [ref=e1993]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /codeFields/nameCode/codeValue
+                              - paragraph [ref=e1994]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /codeFields/codeValue
+                            - cell "Flag 1 Flag 2 Flag 3 Flag 4 Flag 5 Flag 6 Flag 7" [ref=e1995]:
+                              - text: Flag 1
+                              - text: Flag 2
+                              - text: Flag 3
+                              - text: Flag 4
+                              - text: Flag 5
+                              - text: Flag 6
+                              - text: Flag 7
+                            - cell [ref=e1996]
+                          - row "HR User Fields - Number Type" [ref=e1997]:
+                            - cell "HR User Fields - Number Type" [ref=e1998]:
+                              - strong [ref=e1999]: HR User Fields - Number Type
+                            - cell [ref=e2000]
+                            - cell [ref=e2001]
+                          - row "/workers/workAssignments/customFieldGroup /numberFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /numberFields/numberValue User1 Nbr User2 Nbr User3 Nbr User4 Nbr User5 Nbr User6 Nbr User7 Nbr" [ref=e2002]:
+                            - cell "/workers/workAssignments/customFieldGroup /numberFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /numberFields/numberValue" [ref=e2003]:
+                              - paragraph [ref=e2004]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /numberFields/nameCode/codeValue
+                              - paragraph [ref=e2005]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /numberFields/numberValue
+                            - cell "User1 Nbr User2 Nbr User3 Nbr User4 Nbr User5 Nbr User6 Nbr User7 Nbr" [ref=e2006]:
+                              - text: User1 Nbr
+                              - text: User2 Nbr
+                              - text: User3 Nbr
+                              - text: User4 Nbr
+                              - text: User5 Nbr
+                              - text: User6 Nbr
+                              - text: User7 Nbr
+                            - cell [ref=e2007]
+                          - row "HR User Defined Fields - Date Type" [ref=e2008]:
+                            - cell "HR User Defined Fields - Date Type" [ref=e2009]:
+                              - strong [ref=e2010]: HR User Defined Fields - Date Type
+                            - cell [ref=e2011]
+                            - cell [ref=e2012]
+                          - row "/workers/workAssignments/customFieldGroup /dateFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /dateFields/dateValue User1 Date User2 Date User3 Date User4 Date User5 Date User6 Date User7 Date User8 Date" [ref=e2013]:
+                            - cell "/workers/workAssignments/customFieldGroup /dateFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /dateFields/dateValue" [ref=e2014]:
+                              - paragraph [ref=e2015]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /dateFields/nameCode/codeValue
+                              - paragraph [ref=e2016]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /dateFields/dateValue
+                            - cell "User1 Date User2 Date User3 Date User4 Date User5 Date User6 Date User7 Date User8 Date" [ref=e2017]:
+                              - text: User1 Date
+                              - text: User2 Date
+                              - text: User3 Date
+                              - text: User4 Date
+                              - text: User5 Date
+                              - text: User6 Date
+                              - text: User7 Date
+                              - text: User8 Date
+                            - cell [ref=e2018]
+                          - row "HR User Defined Fields - String Type" [ref=e2019]:
+                            - cell "HR User Defined Fields - String Type" [ref=e2020]:
+                              - strong [ref=e2021]: HR User Defined Fields - String Type
+                            - cell [ref=e2022]
+                            - cell [ref=e2023]
+                          - row "/workers/workAssignments/customFieldGroup /stringFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /stringFields/stringValue User1 Character User2 Character User3 Character User4 Character" [ref=e2024]:
+                            - cell "/workers/workAssignments/customFieldGroup /stringFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /stringFields/stringValue" [ref=e2025]:
+                              - paragraph [ref=e2026]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /stringFields/nameCode/codeValue
+                              - paragraph [ref=e2027]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /stringFields/stringValue
+                            - cell "User1 Character User2 Character User3 Character User4 Character" [ref=e2028]:
+                              - text: User1 Character
+                              - text: User2 Character
+                              - text: User3 Character
+                              - text: User4 Character
+                            - cell [ref=e2029]
+                          - row "HR User Defined Fields - Flag Type" [ref=e2030]:
+                            - cell "HR User Defined Fields - Flag Type" [ref=e2031]:
+                              - strong [ref=e2032]: HR User Defined Fields - Flag Type
+                            - cell [ref=e2033]
+                            - cell [ref=e2034]
+                          - row "/workers/workAssignments/customFieldGroup /codeFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /codeFields/codeValue User1 User2 User3 User4 User5 User6 User7 User8 User9 User10 User11 User12 User13 User14 User15 User16 User17 User18 User19 User20 User21 User22" [ref=e2035]:
+                            - cell "/workers/workAssignments/customFieldGroup /codeFields/nameCode/codeValue /workers/workAssignments/customFieldGroup /codeFields/codeValue" [ref=e2036]:
+                              - paragraph [ref=e2037]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /codeFields/nameCode/codeValue
+                              - paragraph [ref=e2038]:
+                                - text: /workers/workAssignments/customFieldGroup
+                                - text: /codeFields/codeValue
+                            - cell "User1 User2 User3 User4 User5 User6 User7 User8 User9 User10 User11 User12 User13 User14 User15 User16 User17 User18 User19 User20 User21 User22" [ref=e2039]:
+                              - paragraph [ref=e2040]: User1
+                              - paragraph [ref=e2041]: User2
+                              - paragraph [ref=e2042]: User3
+                              - paragraph [ref=e2043]: User4
+                              - paragraph [ref=e2044]: User5
+                              - paragraph [ref=e2045]: User6
+                              - paragraph [ref=e2046]: User7
+                              - paragraph [ref=e2047]: User8
+                              - paragraph [ref=e2048]: User9
+                              - paragraph [ref=e2049]: User10
+                              - paragraph [ref=e2050]: User11
+                              - paragraph [ref=e2051]: User12
+                              - paragraph [ref=e2052]: User13
+                              - paragraph [ref=e2053]: User14
+                              - paragraph [ref=e2054]: User15
+                              - paragraph [ref=e2055]: User16
+                              - paragraph [ref=e2056]: User17
+                              - paragraph [ref=e2057]: User18
+                              - paragraph [ref=e2058]: User19
+                              - paragraph [ref=e2059]: User20
+                              - paragraph [ref=e2060]: User21
+                              - paragraph [ref=e2061]: User22
+                            - cell [ref=e2062]
+                          - row [ref=e2063]:
+                            - cell [ref=e2064]
+                            - cell [ref=e2065]
+                            - cell [ref=e2066]
+                      - paragraph [ref=e2067]
+              - complementary [ref=e2070]:
+                - link "Download Guide" [ref=e2072] [cursor=pointer]:
+                  - /url: https://marketplace-cdn.adp.com/dev-portal/pdf/Workers_Data_Collection
+                  - generic [ref=e2073]:
+                    - generic: Download Guide
+                - generic [ref=e2075]:
+                  - generic [ref=e2076]: Contents
+                  - generic [ref=e2077]:
+                    - link "About this API" [ref=e2079] [cursor=pointer]:
+                      - generic [ref=e2080]:
+                        - generic: About this API
+                    - link "Request information of employees with Worker API" [ref=e2082] [cursor=pointer]:
+                      - generic [ref=e2083]:
+                        - generic: Request information of employees with Worker API
+                    - link "Worker Demographics" [ref=e2085] [cursor=pointer]:
+                      - generic [ref=e2086]:
+                        - generic: Worker Demographics
+                    - link "Data Dictionary" [ref=e2088] [cursor=pointer]:
+                      - generic [ref=e2089]:
+                        - generic: Data Dictionary
+        - contentinfo [ref=e2090]:
+          - generic [ref=e2091]:
+            - generic [ref=e2092]:
+              - link "Privacy" [ref=e2094] [cursor=pointer]:
+                - /url: https://adp.com/privacy.aspx
+                - generic [ref=e2095]:
+                  - generic:
+                    - img [ref=e2097]
+                    - text: Privacy
+              - link "Terms" [ref=e2101] [cursor=pointer]:
+                - /url: https://adp.com/legal.aspx
+                - generic [ref=e2102]:
+                  - generic:
+                    - img [ref=e2104]
+                    - text: Terms
+              - link "Apps" [ref=e2108] [cursor=pointer]:
+                - /url: https://apps.adp.com
+                - generic [ref=e2109]:
+                  - generic:
+                    - img [ref=e2111]
+                    - text: Apps
+              - link "Partner" [ref=e2115] [cursor=pointer]:
+                - /url: https://partners.adp.com
+                - generic [ref=e2116]:
+                  - generic:
+                    - img [ref=e2118]
+                    - text: Partner
+              - link "Help Center" [ref=e2123] [cursor=pointer]:
+                - generic [ref=e2124]:
+                  - generic: Help Center
+            - 'generic "Application Version: 1.1.43" [ref=e2125]': Copyright © 2026 ADP, Inc.
+    - button "Close menu"
+  - region
+  - button "To manage your preferences, click here" [ref=e6] [cursor=pointer]

@@ -1,0 +1,68 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation "Skip to main content":
+      - link "Skip to main content" [ref=e4] [cursor=pointer]:
+        - /url: "javascript: void(0)"
+    - banner [ref=e5] [cursor=pointer]:
+      - img "ADP Logo" [ref=e7]:
+        - img [ref=e8]
+      - generic [ref=e14]: Developer Resources
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - img [ref=e19]
+          - combobox "App Bar Search" [ref=e22]
+        - dialog "App Bar Search"
+      - list [ref=e23]:
+        - generic [ref=e24]:
+          - generic:
+            - listitem [ref=e25]:
+              - button "Feedback" [ref=e26]:
+                - img [ref=e29]
+                - generic [ref=e32]: Feedback
+            - listitem [ref=e33]:
+              - button "Help" [ref=e34]:
+                - img [ref=e37]
+                - generic [ref=e40]: Help
+            - listitem [ref=e41]:
+              - link "Sign in" [ref=e42]:
+                - /url: "#"
+                - generic [ref=e43]:
+                  - generic: Sign in
+        - listitem
+    - generic [ref=e44]:
+      - generic:
+        - main [ref=e45]
+        - contentinfo [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - link "Privacy" [ref=e51] [cursor=pointer]:
+                - /url: https://adp.com/privacy.aspx
+                - generic [ref=e52]:
+                  - generic:
+                    - img [ref=e54]
+                    - text: Privacy
+              - link "Terms" [ref=e58] [cursor=pointer]:
+                - /url: https://adp.com/legal.aspx
+                - generic [ref=e59]:
+                  - generic:
+                    - img [ref=e61]
+                    - text: Terms
+              - link "Apps" [ref=e65] [cursor=pointer]:
+                - /url: https://apps.adp.com
+                - generic [ref=e66]:
+                  - generic:
+                    - img [ref=e68]
+                    - text: Apps
+              - link "Partner" [ref=e72] [cursor=pointer]:
+                - /url: https://partners.adp.com
+                - generic [ref=e73]:
+                  - generic:
+                    - img [ref=e75]
+                    - text: Partner
+              - link "Help Center" [ref=e80] [cursor=pointer]:
+                - generic [ref=e81]:
+                  - generic: Help Center
+            - 'generic "Application Version: 1.1.43" [ref=e82]': Copyright © 2026 ADP, Inc.
+    - button "Close menu"
+  - region
+  - button "To manage your preferences, click here" [ref=e83] [cursor=pointer]

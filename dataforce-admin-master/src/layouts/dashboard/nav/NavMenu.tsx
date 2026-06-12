@@ -183,6 +183,48 @@ const NavMenuCompany = () => {
           }}
         />
       </Box>
+      <Box>
+        <NavMenuButton
+          icon={<AnalyticsIcon />}
+          text="ADP"
+          selected={open === 4}
+          chevron
+          onClick={(e) => {
+            setAnchorEl(e.currentTarget);
+            setOpen(4);
+          }}
+        />
+        <Popover
+          open={open === 4}
+          anchorEl={anchorEl}
+          onClose={() => setOpen(0)}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+        >
+          <Typography sx={{ p: 2 }}>
+            <Box
+              sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+              onClick={() => {
+                setOpen(0);
+                setAnchorEl(null);
+              }}
+            >
+              <NavMenuButtonLink
+                to={PATHS.dashboard.adp.sync}
+                text="Sync"
+                icon={<UserIcon />}
+              />
+              <NavMenuButtonLink
+                to={PATHS.dashboard.adp.settings}
+                text="Settings"
+                icon={<FileIcon />}
+              />
+            </Box>
+          </Typography>
+        </Popover>
+      </Box>
     </Box>
   );
 };

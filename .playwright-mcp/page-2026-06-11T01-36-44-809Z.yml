@@ -1,0 +1,355 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation "Skip to main content":
+      - link "Skip to main content" [ref=e4] [cursor=pointer]:
+        - /url: "javascript: void(0)"
+    - banner [ref=e5] [cursor=pointer]:
+      - img "ADP Logo" [ref=e7]:
+        - img [ref=e8]
+      - generic [ref=e14]: Developer Resources
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - img [ref=e19]
+          - combobox "App Bar Search" [ref=e22]
+        - dialog "App Bar Search"
+      - list [ref=e23]:
+        - generic [ref=e24]:
+          - generic:
+            - listitem [ref=e25]:
+              - button "Feedback" [ref=e26]:
+                - img [ref=e29]
+                - generic [ref=e32]: Feedback
+            - listitem [ref=e33]:
+              - button "Help" [ref=e34]:
+                - img [ref=e37]
+                - generic [ref=e40]: Help
+            - listitem [ref=e41]:
+              - link "Sign in" [ref=e42]:
+                - /url: "#"
+                - generic [ref=e43]:
+                  - generic: Sign in
+        - listitem
+    - navigation [ref=e84]:
+      - list [ref=e85]:
+        - listitem [ref=e86]:
+          - link "Home" [ref=e87] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e89]:
+          - button "Getting started" [ref=e90] [cursor=pointer]:
+            - text: Getting started
+            - img [ref=e92]
+        - listitem [ref=e96]:
+          - button "APIs" [ref=e97] [cursor=pointer]:
+            - text: APIs
+            - img [ref=e99]
+        - listitem [ref=e103]:
+          - button "Guides" [ref=e104] [cursor=pointer]:
+            - text: Guides
+            - img [ref=e106]
+        - listitem [ref=e110]:
+          - button "Solutions" [ref=e111] [cursor=pointer]:
+            - text: Solutions
+            - img [ref=e113]
+        - listitem [ref=e117]:
+          - link "Support" [ref=e118] [cursor=pointer]:
+            - /url: /support/help-center
+    - generic [ref=e44]:
+      - generic:
+        - main [ref=e45]:
+          - generic [ref=e120]:
+            - generic: Note
+            - generic [ref=e121]:
+              - img [ref=e125]
+              - generic [ref=e128]:
+                - heading "Worker Management API Guide for ADP Workforce Now" [level=1] [ref=e129]
+                - generic [ref=e130]:
+                  - generic [ref=e132]: Jump to chapter
+                  - 'button "Jump to chapter Ch. 3: Use Case: Retrieving Basic Worker Demographic Information" [ref=e134]':
+                    - generic [ref=e135]: "Ch. 3: Use Case: Retrieving Basic Worker Demographic Information"
+                    - img [ref=e137]
+              - generic [ref=e141]: CHAPTER 3
+              - generic [ref=e142]: "Use Case: Retrieving Basic Worker Demographic Information"
+              - generic [ref=e145]:
+                - heading "Before You Begin" [level=3] [ref=e146]
+                - paragraph [ref=e147]: "Commonly requested worker demographic information includes the following:"
+                - list [ref=e148]:
+                  - listitem [ref=e149]: Name
+                  - listitem [ref=e150]: Address
+                  - listitem [ref=e151]: Communication profile
+                  - listitem [ref=e152]: Hire date
+                  - listitem [ref=e153]: Work status
+                  - listitem [ref=e154]:
+                    - text: "Work assignment information, such as the following:"
+                    - list [ref=e155]:
+                      - listitem [ref=e156]: Job title
+                      - listitem [ref=e157]: Manager/reports to information
+                      - listitem [ref=e158]: Custom fields
+                - heading "Use Case Description" [level=3] [ref=e159]
+                - paragraph [ref=e160]: This use case retrieves a single worker or a collection of workers without PII or SPI data.
+                - heading "API Usage" [level=3] [ref=e161]
+                - table [ref=e164]:
+                  - rowgroup [ref=e165]:
+                    - row "Method URI Description GitHub Sample Response Payload" [ref=e166]:
+                      - columnheader "Method" [ref=e167]:
+                        - paragraph [ref=e168]:
+                          - strong [ref=e169]: Method
+                      - columnheader "URI" [ref=e170]:
+                        - paragraph [ref=e171]:
+                          - strong [ref=e172]: URI
+                      - columnheader "Description" [ref=e173]:
+                        - paragraph [ref=e174]:
+                          - strong [ref=e175]: Description
+                      - columnheader "GitHub Sample Response Payload" [ref=e176]:
+                        - paragraph [ref=e177]:
+                          - strong [ref=e178]: GitHub Sample Response Payload
+                  - rowgroup [ref=e179]:
+                    - row "GET /hr/v2/worker-demographics Requests the list of all available worker demographics that the requester is authorized to view. workers-v2-demographics-all-workers-http-200-response.json" [ref=e180]:
+                      - cell "GET" [ref=e181]:
+                        - paragraph [ref=e182]: GET
+                      - cell "/hr/v2/worker-demographics" [ref=e183]:
+                        - paragraph [ref=e184]:
+                          - link "/hr/v2/worker-demographics" [ref=e185] [cursor=pointer]:
+                            - /url: https://developers.adp.com/articles/api/worker-demographics-v2-api
+                      - cell "Requests the list of all available worker demographics that the requester is authorized to view." [ref=e186]:
+                        - paragraph [ref=e187]: Requests the list of all available worker demographics that the requester is authorized to view.
+                      - cell "workers-v2-demographics-all-workers-http-200-response.json" [ref=e188]:
+                        - paragraph [ref=e189]:
+                          - link "workers-v2-demographics-all-workers-http-200-response.json" [ref=e190] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-all-workers-http-200-response.json
+                    - 'row "GET /hr/v2/worker-demographics/{aoid} Returns a worker demographic. workers-v2-demographics-single-worker-http-200-response.json" [ref=e191]':
+                      - cell "GET" [ref=e192]:
+                        - paragraph [ref=e193]: GET
+                      - 'cell "/hr/v2/worker-demographics/{aoid}" [ref=e194]':
+                        - paragraph [ref=e195]:
+                          - 'link "/hr/v2/worker-demographics/{aoid}" [ref=e196] [cursor=pointer]':
+                            - /url: https://developers.adp.com/articles/api/worker-demographics-v2-api
+                      - cell "Returns a worker demographic." [ref=e197]:
+                        - paragraph [ref=e198]: Returns a worker demographic.
+                      - cell "workers-v2-demographics-single-worker-http-200-response.json" [ref=e199]:
+                        - paragraph [ref=e200]:
+                          - link "workers-v2-demographics-single-worker-http-200-response.json" [ref=e201] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-single-worker-http-200-response.json
+                    - row "GET /hr/v2/worker-demographics/meta Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using $filter. workers-v2-demographics-meta-http-200-response.json" [ref=e202]:
+                      - cell "GET" [ref=e203]:
+                        - paragraph [ref=e204]: GET
+                      - cell "/hr/v2/worker-demographics/meta" [ref=e205]:
+                        - paragraph [ref=e206]:
+                          - link "/hr/v2/worker-demographics/meta" [ref=e207] [cursor=pointer]:
+                            - /url: https://developers.adp.com/articles/api/worker-demographics-v2-api
+                      - cell "Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using $filter." [ref=e208]:
+                        - paragraph [ref=e209]:
+                          - text: Returns a meta-response for worker demographics. For example, you can find details on the properties available for a query using
+                          - strong [ref=e210]: $filter
+                          - text: .
+                      - cell "workers-v2-demographics-meta-http-200-response.json" [ref=e211]:
+                        - paragraph [ref=e212]:
+                          - link "workers-v2-demographics-meta-http-200-response.json" [ref=e213] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-meta-http-200-response.json
+                - heading "Application Scope" [level=3] [ref=e214]
+                - paragraph [ref=e215]: "The following canonical need to be added to your application scope to enable this use case:"
+                - paragraph [ref=e216]:
+                  - strong [ref=e217]: /hr/workerInformationManagement/workerManagement/workerProfileManagement
+                  - strong [ref=e218]:
+                    - text: /
+                    - text: workerDemographic.read
+                - heading "Supported Actors" [level=3] [ref=e219]
+                - table [ref=e222]:
+                  - rowgroup [ref=e223]:
+                    - row "Request Parameter roleCode Value Usage" [ref=e224]:
+                      - columnheader "Request Parameter roleCode Value" [ref=e225]:
+                        - paragraph [ref=e226]:
+                          - strong [ref=e227]: Request Parameter roleCode Value
+                      - columnheader "Usage" [ref=e228]:
+                        - paragraph [ref=e229]: Usage
+                  - rowgroup [ref=e230]:
+                    - row "Practitioner Retrieves a list of all available worker demographics as a practitioner. A system user is considered a practitioner." [ref=e231]:
+                      - cell "Practitioner" [ref=e232]
+                      - cell "Retrieves a list of all available worker demographics as a practitioner. A system user is considered a practitioner." [ref=e233]
+                - heading "Request Header Parameters" [level=3] [ref=e234]
+                - paragraph [ref=e235]: There are no request header parameters.
+                - heading "Supported OData Query Options" [level=3] [ref=e236]
+                - paragraph [ref=e237]:
+                  - text: This use case supports Query String Options as defined by Open Data Protocol (OData). For more information about OData, see the
+                  - link "Introduction to ADP API Open Data Protocol (OData)" [ref=e238] [cursor=pointer]:
+                    - /url: https://developers.adp.com/articles/general/introduction-to-adp-api-open-data-protocol-odata
+                  - text: .
+                - table [ref=e241]:
+                  - rowgroup [ref=e242]:
+                    - row "Query String Option Description Example" [ref=e243]:
+                      - columnheader "Query String Option" [ref=e244]:
+                        - paragraph [ref=e245]:
+                          - strong [ref=e246]: Query String Option
+                      - columnheader "Description" [ref=e247]:
+                        - paragraph [ref=e248]:
+                          - strong [ref=e249]: Description
+                      - columnheader "Example" [ref=e250]:
+                        - paragraph [ref=e251]:
+                          - strong [ref=e252]: Example
+                  - rowgroup [ref=e253]:
+                    - row "$top Requests the number of items in the queried collection to be included in the result. hr/v2/worker-demographics?$top=100" [ref=e254]:
+                      - cell "$top" [ref=e255]:
+                        - paragraph [ref=e256]:
+                          - strong [ref=e257]: $top
+                      - cell "Requests the number of items in the queried collection to be included in the result." [ref=e258]:
+                        - paragraph [ref=e259]: Requests the number of items in the queried collection to be included in the result.
+                      - cell "hr/v2/worker-demographics?$top=100" [ref=e260]:
+                        - paragraph [ref=e261]:
+                          - strong [ref=e262]: hr/v2/worker-demographics?$top=100
+                    - row "$skip Specifies the number of items in the queried collection to be skipped and not included in the result. /hr/v2/worker-demographics?$top=100&$skip=100" [ref=e263]:
+                      - cell "$skip" [ref=e264]:
+                        - paragraph [ref=e265]:
+                          - strong [ref=e266]: $skip
+                      - cell "Specifies the number of items in the queried collection to be skipped and not included in the result." [ref=e267]:
+                        - paragraph [ref=e268]: Specifies the number of items in the queried collection to be skipped and not included in the result.
+                      - cell "/hr/v2/worker-demographics?$top=100&$skip=100" [ref=e269]:
+                        - paragraph [ref=e270]:
+                          - strong [ref=e271]: /hr/v2/worker-demographics?$top=100&$skip=100
+                    - row "$select Selects a subset of properties to include in the response. /hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress" [ref=e272]:
+                      - cell "$select" [ref=e273]:
+                        - paragraph [ref=e274]:
+                          - strong [ref=e275]: $select
+                      - cell "Selects a subset of properties to include in the response." [ref=e276]:
+                        - paragraph [ref=e277]: Selects a subset of properties to include in the response.
+                      - cell "/hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress" [ref=e278]:
+                        - paragraph [ref=e279]:
+                          - strong [ref=e280]: /hr/v2/worker-demographics?$select=workers/person/legalName,workers/person/legalAddress
+                    - row "$filter Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response. /hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'" [ref=e281]:
+                      - cell "$filter" [ref=e282]:
+                        - paragraph [ref=e283]:
+                          - strong [ref=e284]: $filter
+                      - cell "Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response." [ref=e285]:
+                        - paragraph [ref=e286]: Filters a collection of resources addressed by a request Uniform Resource Locator (URL). Only items for which the expression evaluates to true are included in the response.
+                      - cell "/hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'" [ref=e287]:
+                        - paragraph [ref=e288]:
+                          - strong [ref=e289]: /hr/v2/worker-demographics?$filter=workers/workAssignments/reportsTo/positionID eq '93V000061'
+                - heading "Sequence of Interactions" [level=3] [ref=e290]
+                - paragraph [ref=e291]: "The following are the sequence of interactions to retrieve worker demographic information for a collection of workers:"
+                - list [ref=e292]:
+                  - listitem [ref=e293]: Your consumer application makes a request for an initial collection of workers to the ADP API endpoint.
+                  - listitem [ref=e294]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                  - listitem [ref=e295]: Your consumer application makes a request for a subsequent collection of workers to the ADP API endpoint.
+                  - listitem [ref=e296]: The ADP API endpoint responds to your consumer application with a collection of workers.
+                - paragraph [ref=e297]: Your consumer application repeats steps 3 and 4 until a 204 No Content HTTP response status code is returned.
+                - heading "Data Dictionary" [level=3] [ref=e298]
+                - paragraph [ref=e299]:
+                  - text: See
+                  - 'link "Appendix A: Data Dictionary" [ref=e300] [cursor=pointer]':
+                    - /url: https://developers.adp.com/articles/guides/worker-management-api-guide-for-adp-workforce-now?chapter=11
+                  - text: for data retrieval.
+                - generic [ref=e301]:
+                  - text: Note
+                  - paragraph [ref=e302]: All listed fields, except the ones containing PII and SPI data, are supported for this use case.
+                - heading "Responses" [level=3] [ref=e303]
+                - paragraph [ref=e304]: You may encounter exceptions outside your common success scenarios. You must account for these exceptions during your initial development.
+                - paragraph [ref=e305]:
+                  - text: For more information, see
+                  - link "API Common Exceptions and Tips for Handling" [ref=e306] [cursor=pointer]:
+                    - /url: https://developers.adp.com/articles/general/api-common-exceptions-and-tips-for-handling?query=API%20Common%20Exceptions%20and
+                  - text: .
+                - table [ref=e309]:
+                  - rowgroup [ref=e310]:
+                    - row "Response Code Condition messageTxt GitHub Sample Request Payload GitHub Sample Payload" [ref=e311]:
+                      - columnheader "Response Code" [ref=e312]:
+                        - paragraph [ref=e313]:
+                          - strong [ref=e314]: Response Code
+                      - columnheader "Condition" [ref=e315]:
+                        - paragraph [ref=e316]:
+                          - strong [ref=e317]: Condition
+                      - columnheader "messageTxt" [ref=e318]:
+                        - paragraph [ref=e319]:
+                          - strong [ref=e320]: messageTxt
+                      - columnheader "GitHub Sample Request Payload" [ref=e321]:
+                        - paragraph [ref=e322]:
+                          - strong [ref=e323]: GitHub Sample
+                          - strong [ref=e324]: Request Payload
+                      - columnheader "GitHub Sample Payload" [ref=e325]:
+                        - paragraph [ref=e326]:
+                          - strong [ref=e327]: GitHub Sample
+                          - strong [ref=e328]: Payload
+                  - rowgroup [ref=e329]:
+                    - row "200 OK Returns a successful all available worker demographics. NA NA workers-v2-demographics-all-workers-http-200-response.json" [ref=e330]:
+                      - cell "200 OK" [ref=e331]:
+                        - paragraph [ref=e332]: 200 OK
+                      - cell "Returns a successful all available worker demographics." [ref=e333]:
+                        - paragraph [ref=e334]: Returns a successful all available worker demographics.
+                      - cell "NA" [ref=e335]:
+                        - paragraph [ref=e336]: NA
+                      - cell "NA" [ref=e337]:
+                        - paragraph [ref=e338]: NA
+                      - cell "workers-v2-demographics-all-workers-http-200-response.json" [ref=e339]:
+                        - paragraph [ref=e340]:
+                          - link "workers-v2-demographics-all-workers-http-200-response.json" [ref=e341] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-all-workers-http-200-response.json
+                    - row "200 OK Returns a successful worker demographic. NA NA workers-v2-demographics-single-worker-http-200-response.json" [ref=e342]:
+                      - cell "200 OK" [ref=e343]:
+                        - paragraph [ref=e344]: 200 OK
+                      - cell "Returns a successful worker demographic." [ref=e345]:
+                        - paragraph [ref=e346]: Returns a successful worker demographic.
+                      - cell "NA" [ref=e347]:
+                        - paragraph [ref=e348]: NA
+                      - cell "NA" [ref=e349]:
+                        - paragraph [ref=e350]: NA
+                      - cell "workers-v2-demographics-single-worker-http-200-response.json" [ref=e351]:
+                        - paragraph [ref=e352]:
+                          - link "workers-v2-demographics-single-worker-http-200-response.json" [ref=e353] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-single-worker-http-200-response.json
+                    - row "200 OK Returns meta information for worker demographics. NA NA workers-v2-demographics-meta-http-200-response.json" [ref=e354]:
+                      - cell "200 OK" [ref=e355]:
+                        - paragraph [ref=e356]: 200 OK
+                      - cell "Returns meta information for worker demographics." [ref=e357]:
+                        - paragraph [ref=e358]: Returns meta information for worker demographics.
+                      - cell "NA" [ref=e359]:
+                        - paragraph [ref=e360]: NA
+                      - cell "NA" [ref=e361]:
+                        - paragraph [ref=e362]: NA
+                      - cell "workers-v2-demographics-meta-http-200-response.json" [ref=e363]:
+                        - paragraph [ref=e364]:
+                          - link "workers-v2-demographics-meta-http-200-response.json" [ref=e365] [cursor=pointer]:
+                            - /url: https://github.com/adpllc/marketplace-sample-payloads/blob/master/wfn/hr/workers-v2-demographics/success/workers-v2-demographics-meta-http-200-response.json
+                    - row "204 No Content When pagination reaches to the end of the page. empty body NA" [ref=e366]:
+                      - cell "204 No Content" [ref=e367]
+                      - cell "When pagination reaches to the end of the page." [ref=e368]
+                      - cell "empty body" [ref=e369]
+                      - cell "NA" [ref=e370]
+                      - cell [ref=e371]
+              - generic [ref=e372]:
+                - generic [ref=e374] [cursor=pointer]:
+                  - img [ref=e376]
+                  - text: "Prev Chapter: Use Case: Retrieving Full Worker Information"
+                - generic [ref=e379] [cursor=pointer]:
+                  - generic [ref=e380]: "Next Chapter: Use Case: Updating Data for a Worker"
+                  - img [ref=e382]
+        - contentinfo [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - link "Privacy" [ref=e51] [cursor=pointer]:
+                - /url: https://adp.com/privacy.aspx
+                - generic [ref=e52]:
+                  - generic:
+                    - img [ref=e54]
+                    - text: Privacy
+              - link "Terms" [ref=e58] [cursor=pointer]:
+                - /url: https://adp.com/legal.aspx
+                - generic [ref=e59]:
+                  - generic:
+                    - img [ref=e61]
+                    - text: Terms
+              - link "Apps" [ref=e65] [cursor=pointer]:
+                - /url: https://apps.adp.com
+                - generic [ref=e66]:
+                  - generic:
+                    - img [ref=e68]
+                    - text: Apps
+              - link "Partner" [ref=e72] [cursor=pointer]:
+                - /url: https://partners.adp.com
+                - generic [ref=e73]:
+                  - generic:
+                    - img [ref=e75]
+                    - text: Partner
+              - link "Help Center" [ref=e80] [cursor=pointer]:
+                - generic [ref=e81]:
+                  - generic: Help Center
+            - 'generic "Application Version: 1.1.43" [ref=e82]': Copyright © 2026 ADP, Inc.
+    - button "Close menu"
+  - region
+  - button "To manage your preferences, click here" [ref=e83] [cursor=pointer]

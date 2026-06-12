@@ -41,6 +41,10 @@ export interface IRecievedUser {
   positions_id: number[];
   positions: { id: number; name: string }[];
   roles: string[];
+  adp_linked?: boolean;
+  // Enriquecido en el cliente con las horas semanales de ADP (no viene del backend de users).
+  weekly_hours?: number | null;
+  hours_status?: 'normal' | 'orange' | 'red';
 }
 
 export interface IJobsitesForUser {

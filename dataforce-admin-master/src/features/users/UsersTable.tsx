@@ -94,6 +94,22 @@ export const UsersTable: React.FC<Props> = ({
           type: 'string',
         },
         {
+          field: 'weekly_hours',
+          headerName: 'Hours this week',
+          type: 'number',
+          minWidth: 150,
+          renderCell: (params) => {
+            const value = (params.row as any).weekly_hours;
+            if (value === null || value === undefined) {
+              return <span style={{ color: '#919EAB' }}>—</span>;
+            }
+            const status = (params.row as any).hours_status;
+            const color =
+              status === 'red' ? '#B71D18' : status === 'orange' ? '#B76E00' : '#212B36';
+            return <span style={{ color, fontWeight: 600 }}>{value}h</span>;
+          },
+        },
+        {
           field: 'action',
           headerName: 'Actions',
           type: 'actions',
@@ -150,6 +166,19 @@ export const UsersTable: React.FC<Props> = ({
         onRowSelectionModelChange={(model) => onSelectedModels(model)}
         rowSelectionModel={selectedRowIds || []}
         checkboxSelection={location.pathname === locationWhereCheckboxShouldntShow ? false : true}
+        getRowClassName={(params) =>
+          (params.row as any).hours_status === 'red'
+            ? 'adp-row-red'
+            : (params.row as any).hours_status === 'orange'
+            ? 'adp-row-orange'
+            : ''
+        }
+        sx={{
+          '& .adp-row-orange': { backgroundColor: 'rgba(255, 171, 0, 0.16)' },
+          '& .adp-row-orange:hover': { backgroundColor: 'rgba(255, 171, 0, 0.28)' },
+          '& .adp-row-red': { backgroundColor: 'rgba(255, 86, 48, 0.16)' },
+          '& .adp-row-red:hover': { backgroundColor: 'rgba(255, 86, 48, 0.28)' },
+        }}
       />
 
       <MenuPopover

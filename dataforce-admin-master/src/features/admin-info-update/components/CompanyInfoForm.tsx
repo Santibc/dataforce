@@ -23,6 +23,7 @@ export interface CompanyInfoFormFields {
   driver_amount: string;
   fleat_size: string;
   payroll: string;
+  overtime_threshold: string;
 }
 
 const defaultValues: CompanyInfoFormFields = {
@@ -31,6 +32,7 @@ const defaultValues: CompanyInfoFormFields = {
   driver_amount: '',
   fleat_size: '',
   payroll: '',
+  overtime_threshold: '40',
 };
 
 const CompanyInfoFormFieldsSchema = Yup.object().shape({
@@ -39,6 +41,9 @@ const CompanyInfoFormFieldsSchema = Yup.object().shape({
   driver_amount: Yup.string().required('Driver amount is required'),
   fleat_size: Yup.string().required('Fleat size is required'),
   payroll: Yup.string().required('Payroll is required'),
+  overtime_threshold: Yup.string()
+    .required('Overtime threshold is required')
+    .matches(/^\d+$/, 'Must be a whole number of hours'),
 });
 
 export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSubmit, title }) => {
@@ -127,7 +132,7 @@ export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSub
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <Controller
                 name="payroll"
                 control={hf.control}
@@ -137,6 +142,21 @@ export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSub
                     {...field}
                     label="Payroll service *"
                     placeholder="ADP"
+                    floatingLabel={false}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Controller
+                name="overtime_threshold"
+                control={hf.control}
+                rules={{ required: true }}
+                render={(field) => (
+                  <HitNumberField
+                    {...field}
+                    label="Weekly overtime limit (hours) *"
+                    placeholder="40"
                     floatingLabel={false}
                     sx={{ marginBottom: '20px' }}
                   />

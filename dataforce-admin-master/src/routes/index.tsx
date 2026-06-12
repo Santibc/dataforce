@@ -103,6 +103,12 @@ const LazyAdminUsersCreatePage = withLoadingSpinner(
 const LazyAdminUsersEditPage = withLoadingSpinner(
   lazy(() => import('src/features/admin-user-crud/AdminUserEditPage'))
 );
+const LazyAdpSyncPage = withLoadingSpinner(
+  lazy(() => import('src/features/adp/AdpSyncPage'))
+);
+const LazyAdpSettingsPage = withLoadingSpinner(
+  lazy(() => import('src/features/adp/AdpSettingsPage'))
+);
 
 const ROUTES: RouteObject[] = [
   {
@@ -244,6 +250,14 @@ const ROUTES: RouteObject[] = [
           {
             path: 'daily-log',
             element: <LazyDailyLogPage />,
+          },
+          {
+            path: 'adp',
+            children: [
+              { element: <Navigate to="/dashboard/adp/sync" replace />, index: true },
+              { path: 'sync', element: <LazyAdpSyncPage /> },
+              { path: 'settings', element: <LazyAdpSettingsPage /> },
+            ],
           },
         ],
       },

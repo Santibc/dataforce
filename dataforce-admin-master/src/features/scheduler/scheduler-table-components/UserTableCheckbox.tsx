@@ -20,6 +20,7 @@ interface UserTableCheckboxProps {
     totalHours?: number;
     hoursWorked?: number;
   };
+  adpHours?: { hours: number; status: 'normal' | 'orange' | 'red' } | null;
   onClick: () => void;
 }
 
@@ -27,11 +28,12 @@ export const UserTableCheckbox: FC<UserTableCheckboxProps> = ({
   checked, 
   userName, 
   time, 
-  onClick, 
-  onCopy, 
-  onDelete, 
+  onClick,
+  onCopy,
+  onDelete,
   idUser,
-  confirmedWeek 
+  confirmedWeek,
+  adpHours,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
@@ -66,6 +68,21 @@ export const UserTableCheckbox: FC<UserTableCheckboxProps> = ({
             )
           }
         </Box>
+        {adpHours && adpHours.hours != null && (
+          <Typography
+            fontSize={'11px'}
+            fontWeight={600}
+            color={
+              adpHours.status === 'red'
+                ? '#B71D18'
+                : adpHours.status === 'orange'
+                ? '#B76E00'
+                : '#1B806A'
+            }
+          >
+            ADP: {adpHours.hours}h
+          </Typography>
+        )}
       </Box>
       <Box
         onClick={(e) => {

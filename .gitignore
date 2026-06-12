@@ -1,0 +1,6 @@
+# Backups y volcados grandes de base de datos (superan el límite de GitHub)
+backup_data_force_pre_prod.sql
+u212498749_bos (2).sql
+*.sql.gz
+*.dump
+backup_*.sql

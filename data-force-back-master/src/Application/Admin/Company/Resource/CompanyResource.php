@@ -13,5 +13,7 @@ class CompanyResource extends Data
         public int $driver_amount,
         public int $fleat_size,
         public string $payroll,
-    ) {}
+        public ?int $overtime_threshold = null,
+    ) {
+    }
 }

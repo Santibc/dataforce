@@ -1,0 +1,5 @@
+- generic [active]:
+  - progressbar "Loading... Please wait" [ref=e1]:
+    - img [ref=e2]
+  - region
+  - button "To manage your preferences, click here" [ref=e6] [cursor=pointer]

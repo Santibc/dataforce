@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Chip, CircularProgress, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaCloudDownloadAlt, FaCloudUploadAlt } from 'react-icons/fa';
@@ -8,6 +8,7 @@ import {
   useDeleteUserMutation,
   useImportExcelMutation,
 } from 'src/api/usersRepository';
+import { useAdpWeeklyHoursQuery, useRefreshAdpWeeklyMutation } from 'src/api/adpRepository';
 import templateUsers from 'src/assets/excel/template_users.xlsx';
 import { IslandModal } from 'src/components/island-modal/IslandModal';
 import { ModalTitleHeader } from 'src/components/modal-header-with-close-button/ModalTitleHeader';
@@ -45,9 +46,35 @@ const handleDownload = () => {
 export const UsersPage: FC<UsersPageProps> = (props) => {
   const [importOpen, setImportOpen] = React.useState(false);
   const { data: usersData } = useAllUsersQuery();
+  // Horas de ADP de la semana: se leen al instante de lo guardado, y se refrescan
+  // desde ADP en segundo plano al cargar (solo la semana actual, throttle 5 min).
+  const { data: weekly } = useAdpWeeklyHoursQuery();
+  const { mutate: refreshWeekly, isLoading: refreshingHours } = useRefreshAdpWeeklyMutation();
+  React.useEffect(() => {
+    refreshWeekly(undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { mutateAsync: deleteUser } = useDeleteUserMutation();
   const { mutateAsync: importExcel } = useImportExcelMutation();
   const navigate = useNavigate();
+
+  const hoursByUser = React.useMemo(() => {
+    const map: Record<number, { hours: number; status: 'normal' | 'orange' | 'red' }> = {};
+    weekly?.drivers.forEach((d) => {
+      map[d.user_id] = { hours: d.hours, status: d.status };
+    });
+    return map;
+  }, [weekly]);
+
+  const rows = React.useMemo(
+    () =>
+      (usersData || []).map((u) => ({
+        ...u,
+        weekly_hours: hoursByUser[u.id]?.hours ?? null,
+        hours_status: hoursByUser[u.id]?.status ?? ('normal' as const),
+      })),
+    [usersData, hoursByUser]
+  );
   return (
     <Box
       sx={{
@@ -65,7 +92,17 @@ export const UsersPage: FC<UsersPageProps> = (props) => {
           pb: '2.5rem',
         }}
       >
-        <Typography variant="h3">Users</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="h3">Users</Typography>
+          {refreshingHours && (
+            <Chip
+              size="small"
+              color="info"
+              icon={<CircularProgress size={14} color="inherit" />}
+              label="Updating ADP hours…"
+            />
+          )}
+        </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Button variant="contained" onClick={() => navigate('/dashboard/users/create')}>
             Create New User
@@ -77,7 +114,7 @@ export const UsersPage: FC<UsersPageProps> = (props) => {
         </Box>
       </Box>
       <UsersTable
-        data={usersData || []}
+        data={rows}
         isLoading={false}
         onDelete={(id) => deleteUser(id)}
         onEdit={(id) => {

@@ -46,6 +46,7 @@ class CompanyController
                     'driver_amount' => $data->driver_amount,
                     'fleat_size' => $data->fleat_size,
                     'payroll' => $data->payroll,
+                    'overtime_threshold' => $data->overtime_threshold ?? $company->overtime_threshold ?? 40,
                 ]
             );
         });

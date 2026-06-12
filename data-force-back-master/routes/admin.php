@@ -96,6 +96,24 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin|admin|owner|man
     Route::post('chat-groups/{id}/messages', [\Src\Application\Admin\Chat\Controllers\ChatMessageController::class, 'store']);
     Route::put('chat-groups/{id}/messages/read', [\Src\Application\Admin\Chat\Controllers\ChatMessageController::class, 'markAsRead']);
 
+    // ------------------------------ ADP (Workforce Now) -----------------------------
+    Route::middleware('role:super_admin|admin|owner')->group(function (): void {
+        Route::get('adp/connection', [\Src\Application\Admin\Adp\Controllers\AdpConnectionController::class, 'show']);
+        Route::put('adp/connection', [\Src\Application\Admin\Adp\Controllers\AdpConnectionController::class, 'update']);
+        Route::get('adp/test-connection', [\Src\Application\Admin\Adp\Controllers\AdpSyncController::class, 'testConnection']);
+        Route::post('adp/sync/preview', [\Src\Application\Admin\Adp\Controllers\AdpSyncController::class, 'preview']);
+        Route::get('adp/sync/candidates', [\Src\Application\Admin\Adp\Controllers\AdpSyncController::class, 'candidates']);
+        Route::post('adp/sync/confirm', [\Src\Application\Admin\Adp\Controllers\AdpSyncController::class, 'confirm']);
+        Route::post('adp/sync/bulk-create-active', [\Src\Application\Admin\Adp\Controllers\AdpSyncController::class, 'bulkCreateActive']);
+
+        // Horas trabajadas (Time & Attendance)
+        Route::post('adp/time-cards/sync', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'sync']);
+        Route::get('adp/time-cards/weekly', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'weekly']);
+        Route::post('adp/time-cards/weekly/refresh', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'refreshWeekly']);
+        Route::get('adp/users/{userId}/time-cards', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'history']);
+        Route::post('adp/users/{userId}/time-cards/refresh', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'historyRefresh']);
+    });
+
     Route::get('companies/me/subscription', [\Src\Application\Admin\Subscription\Controller\SubscriptionController::class, 'getSuscriptionInformation']);
 
     Route::get('companies/me/stripe-checkout-url', [

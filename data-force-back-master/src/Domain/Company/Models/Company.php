@@ -4,7 +4,9 @@ namespace Src\Domain\Company\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Cashier\Billable;
+use Src\Domain\Adp\Models\AdpConnection;
 use Src\Domain\Jobsite\Models\Jobsite;
 use Src\Domain\Position\Models\Position;
 use Src\Domain\User\Models\User;
@@ -21,6 +23,7 @@ class Company extends Model
         'driver_amount',
         'fleat_size',
         'payroll',
+        'overtime_threshold',
     ];
 
     public function users()
@@ -36,5 +39,10 @@ class Company extends Model
     public function positions()
     {
         return $this->hasMany(Position::class);
+    }
+
+    public function adpConnection(): HasOne
+    {
+        return $this->hasOne(AdpConnection::class);
     }
 }

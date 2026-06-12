@@ -38,6 +38,7 @@ import {
   useAllScheduleJobsitesQuery,
   useCleancheduleJobsiteMutation,
 } from 'src/api/scheduleJobsiteRepository';
+import { useAdpWeeklyHoursQuery, useRefreshAdpWeeklyMutation } from 'src/api/adpRepository';
 import { Overlay } from 'src/components/overlay/Overlay';
 import useFormHandle from 'src/hooks/useFormHandle';
 import { CopyPrevWeekOptions } from './scheduler-table-components/CopyPrevWeekOptions';
@@ -228,6 +229,18 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
     users_id: filtersUsers === '0' || filtersUsers === null
       ? undefined
       : filtersUsers!,
+  });
+
+  // Horas de ADP de la semana: lectura instantanea + refresco en segundo plano al cargar.
+  const { data: adpWeekly } = useAdpWeeklyHoursQuery();
+  const { mutate: refreshAdpWeekly } = useRefreshAdpWeeklyMutation();
+  useEffect(() => {
+    refreshAdpWeekly(undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const adpHoursByUser: Record<number, { hours: number; status: 'normal' | 'orange' | 'red' }> = {};
+  adpWeekly?.drivers.forEach((d) => {
+    adpHoursByUser[d.user_id] = { hours: d.hours, status: d.status };
   });
 
   const timelineHeaders = getTimelineHeaders(
@@ -626,7 +639,17 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                 data.map((row) => (
                   row !== null &&
                   selectedDriversRowFilter(row) &&
-                  <TableRow key={row.id}>
+                  <TableRow
+                    key={row.id}
+                    sx={{
+                      backgroundColor:
+                        adpHoursByUser[row.id]?.status === 'red'
+                          ? 'rgba(255, 86, 48, 0.16)'
+                          : adpHoursByUser[row.id]?.status === 'orange'
+                            ? 'rgba(255, 171, 0, 0.16)'
+                            : undefined,
+                    }}
+                  >
                     <TableCell
                       component="th"
                       scope="row"
@@ -684,6 +707,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                         }}
                         userName={row.firstname + ' ' + row.lastname}
                         time={{ hoursWorked: row.cantidad_horas, totalHours: HOURS_WORKED[searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) as keyof typeof daysInTimeframe] }}
+                        adpHours={adpHoursByUser[row.id] || null}
                       />
                     </TableCell>
                     <>

@@ -22,6 +22,7 @@ import Iconify from 'src/components/iconify';
 import Label from 'src/components/label';
 import { APP_NAME } from 'src/config';
 import { DailyLogDashboard } from 'src/features/daily-log/DailyLogDashboard';
+import { AdpUserHoursSection } from 'src/features/adp/AdpUserHoursSection';
 import {
   SEVERITY_COLOR_MAP,
   SEVERITY_LABEL_MAP,
@@ -275,6 +276,7 @@ export const UserProfilePage: FC = () => {
 
               <Grid item xs={12} md={8} lg={9}>
                 <Stack spacing={3}>
+                  <AdpUserHoursSection userId={userId} />
                   <Box>
                     <Typography variant="h5" fontWeight={700} gutterBottom>
                       Daily Log Metrics

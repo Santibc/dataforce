@@ -13,14 +13,24 @@ export interface IAdpConnectionStatus {
   base_url: string | null;
   token_url: string | null;
   token_expires_at: string | null;
+  /** Certificado guardado (parte publica, se devuelve completo). */
+  certificate_pem: string | null;
   has_certificate: boolean;
+  has_client_secret: boolean;
+  /** Client secret enmascarado (solo los ultimos 4 caracteres). */
+  client_secret_preview: string | null;
+  has_private_key: boolean;
+  /** Cabecera del PEM de la clave privada, sin el contenido. */
+  private_key_preview: string | null;
+  updated_at: string | null;
 }
 
 export interface IAdpConnectionInput {
   client_id: string;
-  client_secret: string;
-  certificate_pem: string;
-  private_key: string;
+  /** Vacio = conservar el secreto ya guardado en la base de datos. */
+  client_secret?: string;
+  certificate_pem?: string;
+  private_key?: string;
   base_url?: string;
   token_url?: string;
   active?: boolean;
@@ -222,6 +232,21 @@ const repo = new AdpRepository();
 // Hooks
 // ----------------------------------------------------------------------
 
+/**
+ * Mensaje de error que devuelve el backend. Los endpoints de ADP responden 422 con
+ * `{ error: '...' }` (p. ej. cuando la compania no tiene conexion configurada), asi
+ * que hay que leerlo del body y no quedarse con el "Request failed with status code".
+ */
+export const adpErrorMessage = (error: any, fallback = 'Unexpected error connecting to ADP') =>
+  error?.response?.data?.error ||
+  error?.response?.data?.message ||
+  error?.message ||
+  fallback;
+
+/** Muestra el error del backend en un snackbar. */
+const notifyAdpError = (error: any) =>
+  enqueueSnackbar(adpErrorMessage(error), { variant: 'error' } as any);
+
 export const useAdpConnectionQuery = () =>
   useQuery({ queryKey: repo.keys.connection(), queryFn: repo.getConnection });
 
@@ -229,6 +254,7 @@ export const useSaveAdpConnectionMutation = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: repo.saveConnection,
+    onError: notifyAdpError,
     onSuccess: () => {
       qc.invalidateQueries(repo.keys.connection());
       enqueueSnackbar('ADP connection saved', { variant: 'success' } as any);
@@ -237,14 +263,16 @@ export const useSaveAdpConnectionMutation = () => {
 };
 
 export const useTestAdpConnectionMutation = () =>
-  useMutation({ mutationFn: repo.testConnection });
+  useMutation({ mutationFn: repo.testConnection, onError: notifyAdpError });
 
-export const useAdpSyncPreviewMutation = () => useMutation({ mutationFn: repo.syncPreview });
+export const useAdpSyncPreviewMutation = () =>
+  useMutation({ mutationFn: repo.syncPreview, onError: notifyAdpError });
 
 export const useConfirmAdpSyncMutation = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: repo.confirmSync,
+    onError: notifyAdpError,
     onSuccess: () => {
       qc.invalidateQueries(repo.keys.candidates());
       enqueueSnackbar('Sync applied', { variant: 'success' } as any);
@@ -256,6 +284,7 @@ export const useBulkCreateActiveMutation = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: () => repo.bulkCreateActive(),
+    onError: notifyAdpError,
     onSuccess: (data) => {
       qc.invalidateQueries(repo.keys.candidates());
       enqueueSnackbar(`${data.created} drivers created`, { variant: 'success' } as any);
@@ -267,6 +296,7 @@ export const useSyncAdpHoursMutation = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: repo.syncHours,
+    onError: notifyAdpError,
     onSuccess: () => {
       qc.invalidateQueries(['adp', 'weekly']);
       enqueueSnackbar('Hours synced', { variant: 'success' } as any);

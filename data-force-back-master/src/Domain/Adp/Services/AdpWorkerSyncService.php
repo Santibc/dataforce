@@ -427,7 +427,7 @@ class AdpWorkerSyncService
         $connection = $company->adpConnection;
 
         if (! $connection || ! $connection->active || ! $connection->isConfigured()) {
-            throw new AdpException('The company has no active ADP connection configured.');
+            throw new AdpException('This company has no active ADP connection configured. Set it up in ADP Settings.');
         }
 
         return $connection;

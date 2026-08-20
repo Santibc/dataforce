@@ -115,16 +115,17 @@ class AdpClient
      * Acelera mucho cuando hay que consultar muchos drivers uno por uno.
      *
      * @param  string[]  $paths
+     * @param  array<string, mixed>  $query  parametros aplicados a todas las peticiones
      * @return array<string, Response|null> [path => Response] (null si la peticion fallo)
      */
-    public function getMany(AdpConnection $connection, array $paths, int $concurrency = 8): array
+    public function getMany(AdpConnection $connection, array $paths, int $concurrency = 8, array $query = []): array
     {
         if (empty($paths)) {
             return [];
         }
         @set_time_limit(0);
 
-        return $this->withCertificates($connection, function (string $certPath, string $keyPath) use ($connection, $paths, $concurrency) {
+        return $this->withCertificates($connection, function (string $certPath, string $keyPath) use ($connection, $paths, $concurrency, $query) {
             $token = $this->getAccessToken($connection);
             $base = rtrim($connection->base_url, '/');
             $results = [];
@@ -136,7 +137,7 @@ class AdpClient
                         ->withOptions(['cert' => $certPath, 'ssl_key' => $keyPath])
                         ->withHeaders(['Accept' => 'application/json'])
                         ->timeout(60)
-                        ->get($base.$path),
+                        ->get($base.$path, $query),
                     $chunk
                 ));
 

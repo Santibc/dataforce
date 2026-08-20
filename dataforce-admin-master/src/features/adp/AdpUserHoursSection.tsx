@@ -16,6 +16,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import moment from 'moment';
@@ -33,6 +34,16 @@ const fmt = (min: number) => {
   return m ? `${h}h ${m}m` : `${h}h`;
 };
 const fmtDecimal = (min: number) => (min / 60).toFixed(2);
+
+/**
+ * Estado del periodo de nomina en ADP: "Open" = todavia se pueden registrar horas,
+ * "Locked" = ADP ya cerro el periodo (no es un error, solo significa que no cambia).
+ */
+const periodStatus = (status: string | null) => {
+  if (status === 'Open') return { label: 'In progress', color: 'warning' as const };
+  if (status === 'Locked') return { label: 'Closed', color: 'default' as const };
+  return { label: status || '—', color: 'default' as const };
+};
 
 function PeriodRow({ tc, maxMinutes }: { tc: IAdpTimeCard; maxMinutes: number }) {
   const [open, setOpen] = useState(false);
@@ -61,11 +72,15 @@ function PeriodRow({ tc, maxMinutes }: { tc: IAdpTimeCard; maxMinutes: number })
           )}
         </TableCell>
         <TableCell>
-          <Chip
-            size="small"
-            label={tc.period_status || '—'}
-            color={tc.period_status === 'Open' ? 'warning' : 'default'}
-          />
+          <Tooltip
+            title={
+              tc.period_status === 'Locked'
+                ? 'ADP closed this pay period: the hours are final.'
+                : 'Pay period still open in ADP: the hours can still change.'
+            }
+          >
+            <Chip size="small" {...periodStatus(tc.period_status)} />
+          </Tooltip>
         </TableCell>
         <TableCell sx={{ minWidth: 220 }}>
           <Stack direction="row" alignItems="center" spacing={1.5}>

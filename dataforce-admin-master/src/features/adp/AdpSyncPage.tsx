@@ -21,7 +21,9 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
+  adpErrorMessage,
   IAdpCandidate,
   IAdpSyncDecision,
   IAdpSyncPreview,
@@ -31,6 +33,7 @@ import {
   useConfirmAdpSyncMutation,
   useSyncAdpHoursMutation,
 } from 'src/api/adpRepository';
+import { PATHS } from 'src/routes/paths';
 
 type DecisionMap = Record<string, IAdpSyncDecision>;
 
@@ -47,11 +50,20 @@ export default function AdpSyncPage() {
   const [decisions, setDecisions] = useState<DecisionMap>({});
   const [tab, setTab] = useState(0);
   const [hoursResult, setHoursResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const activeNewCount = preview?.new.filter((c) => c.worker.status === 'Active').length ?? 0;
 
   const loadPreview = async () => {
-    const data = await runPreview();
+    setError(null);
+    let data: IAdpSyncPreview;
+    try {
+      data = await runPreview();
+    } catch (e) {
+      // El backend responde 422 con el motivo (p. ej. compania sin conexion ADP).
+      setError(adpErrorMessage(e));
+      return;
+    }
     const init: DecisionMap = {};
     data.matched.forEach((c) => {
       init[c.worker.aoid] = {
@@ -84,7 +96,11 @@ export default function AdpSyncPage() {
   const onConfirm = async () => {
     const list = Object.values(decisions).filter((d) => d.action !== 'ignore');
     if (!list.length) return;
-    await confirm(list);
+    try {
+      await confirm(list);
+    } catch {
+      return; // el snackbar del repositorio ya muestra el motivo
+    }
     await loadPreview();
   };
 
@@ -107,18 +123,43 @@ export default function AdpSyncPage() {
             variant="outlined"
             disabled={syncingHours}
             onClick={async () => {
-              const r: any = await syncHours();
-              setHoursResult(
-                `Hours synced: ${r?.time_cards ?? 0} time cards (managers queried: ${
-                  r?.managers ?? 0
-                }).`
-              );
+              setError(null);
+              try {
+                const r: any = await syncHours();
+                setHoursResult(
+                  `Hours synced: ${r?.time_cards ?? 0} time cards (managers queried: ${
+                    r?.managers ?? 0
+                  }).`
+                );
+              } catch (e) {
+                setError(adpErrorMessage(e));
+              }
             }}
           >
             {syncingHours ? <CircularProgress size={20} /> : 'Sync hours'}
           </Button>
         </Stack>
       </Stack>
+
+      {error && (
+        <Alert
+          severity="error"
+          sx={{ mb: 2 }}
+          onClose={() => setError(null)}
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              component={RouterLink}
+              to={PATHS.dashboard.adp.settings}
+            >
+              ADP settings
+            </Button>
+          }
+        >
+          {error}
+        </Alert>
+      )}
 
       {syncingHours && (
         <Alert severity="info" sx={{ mb: 2 }}>
@@ -177,7 +218,11 @@ export default function AdpSyncPage() {
                   color="success"
                   disabled={bulkCreating || activeNewCount === 0}
                   onClick={async () => {
-                    await bulkCreate();
+                    try {
+                      await bulkCreate();
+                    } catch {
+                      return; // el snackbar del repositorio ya muestra el motivo
+                    }
                     await loadPreview();
                   }}
                 >

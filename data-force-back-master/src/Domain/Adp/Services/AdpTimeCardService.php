@@ -25,6 +25,17 @@ class AdpTimeCardService
     /** Minutos de throttle por defecto para el refresco incremental. */
     public const DEFAULT_THROTTLE_MINUTES = 5;
 
+    /**
+     * Dias hacia atras que se piden en el refresco incremental.
+     *
+     * OJO: ADP llama 'current' al periodo de nomina que esta EN PROCESO (el que
+     * ya cerro y falta pagar), no al que contiene la fecha de hoy; el periodo en
+     * curso lo devuelve como 'next'. Por eso el refresco NO puede depender del
+     * periodCode: se filtra por fecha de inicio (>= hoy - 21 dias), lo que cubre
+     * el periodo actual y el anterior aunque la nomina sea quincenal.
+     */
+    public const CURRENT_WINDOW_DAYS = 21;
+
     public function __construct(
         private readonly AdpClient $client,
     ) {
@@ -58,13 +69,21 @@ class AdpTimeCardService
     }
 
     /**
-     * Time cards del periodo actual de TODO el equipo de un manager (una sola llamada).
+     * Time cards de TODO el equipo de un manager (una sola llamada).
+     *
+     * $startDateFrom ('YYYY-MM-DD') acota los periodos por fecha de inicio; sin el,
+     * ADP devuelve solo el periodo 'current' (que puede ser uno ya cerrado).
+     * El filtro se prefija con 'timeCards/' (con 'teamTimeCards/' ADP responde 400).
      *
      * @return array<string, array<int, AdpTimeCardData>> [associateOID => AdpTimeCardData[]]
      */
-    public function fetchTeamTimeCards(AdpConnection $connection, string $managerAoid): array
+    public function fetchTeamTimeCards(AdpConnection $connection, string $managerAoid, ?string $startDateFrom = null): array
     {
-        $response = $this->client->get($connection, "/time/v2/workers/{$managerAoid}/team-time-cards");
+        $query = $startDateFrom
+            ? ['$filter' => "timeCards/timePeriod/startDate ge '{$startDateFrom}'"]
+            : [];
+
+        $response = $this->client->get($connection, "/time/v2/workers/{$managerAoid}/team-time-cards", $query);
 
         if ($response->status() === 204) {
             return [];
@@ -118,10 +137,14 @@ class AdpTimeCardService
         $result = ['skipped' => false, 'drivers' => $drivers->count(), 'managers' => $managers->count(), 'time_cards' => 0, 'errors' => []];
         $covered = [];
 
+        // Ventana de fechas: incluye el periodo en curso (que ADP marca 'next').
+        $from = now()->subDays(self::CURRENT_WINDOW_DAYS)->toDateString();
+        $result['from'] = $from;
+
         // 1) Por manager (eficiente): trae a todo el equipo de una.
         foreach ($managers as $managerAoid) {
             try {
-                foreach ($this->fetchTeamTimeCards($connection, $managerAoid) as $aoid => $cards) {
+                foreach ($this->fetchTeamTimeCards($connection, $managerAoid, $from) as $aoid => $cards) {
                     $user = $byAoid->get($aoid);
                     if (! $user) {
                         continue; // miembro del equipo que no es driver vinculado: ignorar
@@ -145,7 +168,9 @@ class AdpTimeCardService
                 $byPath["/time/v2/workers/{$driver->adp_aoid}/time-cards"] = $driver;
             }
 
-            foreach ($this->client->getMany($connection, array_keys($byPath)) as $path => $response) {
+            $query = ['$filter' => "timeCards/timePeriod/startDate ge '{$from}'"];
+
+            foreach ($this->client->getMany($connection, array_keys($byPath), query: $query) as $path => $response) {
                 $driver = $byPath[$path] ?? null;
                 if (! $driver) {
                     continue;
@@ -315,7 +340,7 @@ class AdpTimeCardService
         $connection = $company->adpConnection;
 
         if (! $connection || ! $connection->active || ! $connection->isConfigured()) {
-            throw new AdpException('The company has no active ADP connection configured.');
+            throw new AdpException('This company has no active ADP connection configured. Set it up in ADP Settings.');
         }
 
         return $connection;

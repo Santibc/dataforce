@@ -79,6 +79,39 @@ class AdpTimeCardServiceTest extends TestCase
     }
 
     /** @test */
+    public function it_asks_the_team_period_by_date_because_adp_current_is_the_closed_one(): void
+    {
+        // ADP llama 'current' al periodo de nomina ya cerrado y 'next' al que
+        // contiene hoy: si se pide sin filtro, la semana en curso llega vacia.
+        // Por eso el refresco debe filtrar por fecha de inicio del periodo.
+        $company = Company::factory()->create();
+        $m = 'MGR-9';
+        User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_active' => true, 'adp_aoid' => 'AOID-9', 'adp_manager_aoid' => $m]);
+        $this->makeConnection($company);
+
+        Http::fake(function ($request) use ($m) {
+            if (str_contains($request->url(), '/auth/oauth/v2/token')) {
+                return Http::response(['access_token' => 'fake', 'expires_in' => 3600], 200);
+            }
+            if (str_contains(urldecode($request->url()), "/workers/{$m}/team-time-cards")) {
+                return Http::response(['teamTimeCards' => [$this->teamMember('AOID-9')]], 200);
+            }
+
+            return Http::response('', 404);
+        });
+
+        app(AdpTimeCardService::class)->syncCurrentByManagers($company, force: true);
+
+        $expected = now()->subDays(AdpTimeCardService::CURRENT_WINDOW_DAYS)->toDateString();
+        Http::assertSent(function ($request) use ($m, $expected) {
+            $url = urldecode($request->url());
+
+            return str_contains($url, "/workers/{$m}/team-time-cards")
+                && str_contains($url, "timeCards/timePeriod/startDate ge '{$expected}'");
+        });
+    }
+
+    /** @test */
     public function weekly_hours_apply_overtime_semaphore(): void
     {
         $company = Company::factory()->create(['overtime_threshold' => 40]);

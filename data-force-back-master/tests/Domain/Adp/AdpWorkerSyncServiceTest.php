@@ -121,6 +121,65 @@ class AdpWorkerSyncServiceTest extends TestCase
     }
 
     /** @test */
+    public function the_same_adp_worker_can_be_created_in_two_companies_sharing_the_adp_account(): void
+    {
+        // RGM Logistics y Galo Logistics usan la MISMA cuenta de ADP, asi que el
+        // mismo trabajador aparece como candidato en las dos. El AOID solo tiene
+        // que ser unico dentro de cada compania.
+        Notification::fake();
+        Role::firstOrCreate(['name' => Roles::USER, 'guard_name' => 'web']);
+        $rgm = Company::factory()->create();
+        $galo = Company::factory()->create();
+
+        User::factory()->create([
+            'company_id' => $rgm->id, 'email' => 'luis.rgm@example.com',
+            'adp_aoid' => 'AOID-SHARED', 'adp_linked' => true,
+        ]);
+
+        $this->makeConnection($galo);
+        $this->fakeAdp([$this->adpWorker('AOID-SHARED', 'Luis', 'Alvarez', 'luis.galo@example.com', '5617880086')]);
+
+        $service = app(AdpWorkerSyncService::class);
+        $service->buildPreview($galo);
+        $result = $service->confirm($galo, [['aoid' => 'AOID-SHARED', 'action' => 'create']]);
+
+        $this->assertSame(1, $result['created']);
+        $this->assertEmpty($result['errors']);
+
+        $creado = User::where('email', 'luis.galo@example.com')->first();
+        $this->assertNotNull($creado);
+        $this->assertSame($galo->id, $creado->company_id);
+        $this->assertSame('AOID-SHARED', $creado->adp_aoid);
+
+        // El de la otra compania sigue intacto: son dos usuarios distintos.
+        $this->assertSame(2, User::where('adp_aoid', 'AOID-SHARED')->count());
+    }
+
+    /** @test */
+    public function creating_a_worker_already_linked_in_the_same_company_reports_a_readable_error(): void
+    {
+        Notification::fake();
+        Role::firstOrCreate(['name' => Roles::USER, 'guard_name' => 'web']);
+        $company = Company::factory()->create();
+
+        User::factory()->create([
+            'company_id' => $company->id, 'firstname' => 'Luis', 'lastname' => 'Alvarez',
+            'email' => 'luis@example.com', 'adp_aoid' => 'AOID-DUP', 'adp_linked' => true,
+        ]);
+
+        $this->makeConnection($company);
+        $this->fakeAdp([$this->adpWorker('AOID-DUP', 'Luis', 'Alvarez', 'otro@example.com', '5617880086')]);
+
+        $service = app(AdpWorkerSyncService::class);
+        $service->buildPreview($company);
+        $result = $service->confirm($company, [['aoid' => 'AOID-DUP', 'action' => 'create']]);
+
+        $this->assertSame(0, $result['created']);
+        $this->assertNotEmpty($result['errors']);
+        $this->assertStringContainsString('already linked', implode(' ', $result['errors']));
+    }
+
+    /** @test */
     public function bulk_create_active_creates_only_new_active_drivers(): void
     {
         Role::firstOrCreate(['name' => Roles::USER, 'guard_name' => 'web']);

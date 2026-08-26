@@ -2,6 +2,7 @@
 
 namespace Src\Application\Admin\Adp\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Src\Application\Admin\Adp\Data\ConfirmAdpSyncData;
 use Src\Domain\Adp\Exceptions\AdpException;
@@ -88,6 +89,26 @@ class AdpSyncController
             return response()->json($this->service->bulkCreateActive(auth()->user()->company));
         } catch (AdpException $e) {
             return response()->json(['error' => $e->getMessage()], 422);
+        } catch (QueryException $e) {
+            // Nunca devolver el SQL crudo a la pantalla: solo el motivo.
+            return response()->json(['error' => $this->databaseReason($e)], 422);
         }
+    }
+
+    /**
+     * Traduce un choque de restriccion de la BD a un mensaje entendible.
+     */
+    private function databaseReason(QueryException $e): string
+    {
+        $message = $e->getMessage();
+
+        if (str_contains($message, 'users_email_unique')) {
+            return 'One of the drivers has an email that already belongs to another user. Fix the email and try again.';
+        }
+        if (str_contains($message, 'adp_aoid')) {
+            return 'One of the ADP workers is already linked to a driver in this company.';
+        }
+
+        return 'The drivers could not be created because of a database constraint. Check for repeated emails or ADP IDs.';
     }
 }

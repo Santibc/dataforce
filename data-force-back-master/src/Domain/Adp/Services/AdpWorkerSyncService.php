@@ -310,6 +310,13 @@ class AdpWorkerSyncService
             ->map(fn ($e) => mb_strtolower($e))
             ->all();
 
+        // AOIDs ya vinculados EN ESTA COMPANIA: el mismo trabajador puede existir en
+        // otra compania (cuenta de ADP compartida), pero no dos veces en la misma.
+        $linkedAoids = $company->users()
+            ->whereNotNull('adp_aoid')
+            ->pluck('adp_aoid')
+            ->all();
+
         $password = Hash::make(Str::random(40)); // placeholder compartido (todos deben resetear)
         $now = now();
         $rows = [];
@@ -319,12 +326,13 @@ class AdpWorkerSyncService
         foreach ($candidates as $candidate) {
             $email = data_get($candidate->payload, 'emails.0');
             $key = mb_strtolower((string) $email);
-            if (blank($email) || in_array($key, $taken, true)) {
+            if (blank($email) || in_array($key, $taken, true) || in_array($candidate->adp_aoid, $linkedAoids, true)) {
                 $skipped++;
 
                 continue;
             }
             $taken[] = $key; // evita duplicados dentro del mismo lote
+            $linkedAoids[] = $candidate->adp_aoid;
 
             $rows[] = [
                 'firstname' => data_get($candidate->payload, 'firstname'),
@@ -575,6 +583,24 @@ class AdpWorkerSyncService
         $email = data_get($decision, 'email') ?: data_get($worker, 'emails.0');
         if (blank($email)) {
             throw new AdpException('The worker has no email in ADP; an email is required to create the driver.');
+        }
+
+        // El AOID solo puede repetirse entre companias distintas (cuenta de ADP
+        // compartida), nunca dentro de la misma: ahi ya existe ese driver.
+        $sameCompany = $company->users()->where('adp_aoid', $candidate->adp_aoid)->first();
+        if ($sameCompany) {
+            throw new AdpException(
+                "The ADP worker {$candidate->adp_aoid} is already linked to {$sameCompany->firstname} {$sameCompany->lastname} in this company."
+            );
+        }
+
+        // El email es el usuario de acceso: tiene que ser unico en todo el sistema.
+        if ($owner = User::where('email', $email)->first()) {
+            throw new AdpException(
+                "The email {$email} is already used by another user ({$owner->firstname} {$owner->lastname}"
+                .($owner->company_id === $company->id ? '' : ' in company '.($owner->company?->name ?: $owner->company_id))
+                .'). Change the email to create this driver.'
+            );
         }
 
         $user = User::create([

@@ -24,6 +24,8 @@ class Company extends Model
         'fleat_size',
         'payroll',
         'overtime_threshold',
+        'daily_hours_limit',
+        'daily_hours_warning',
     ];
 
     public function users()

@@ -33,6 +33,9 @@ class CompanyControllerTest extends TestCase
                     'driver_amount' => $this->user->company->driver_amount,
                     'fleat_size' => $this->user->company->fleat_size,
                     'payroll' => $this->user->company->payroll,
+                    'overtime_threshold' => $this->user->company->overtime_threshold,
+                    'daily_hours_limit' => $this->user->company->daily_hours_limit,
+                    'daily_hours_warning' => $this->user->company->daily_hours_warning,
                 ],
                 [
                     'id' => $companies->id,
@@ -41,6 +44,9 @@ class CompanyControllerTest extends TestCase
                     'driver_amount' => $companies->driver_amount,
                     'fleat_size' => $companies->fleat_size,
                     'payroll' => $companies->payroll,
+                    'overtime_threshold' => $companies->overtime_threshold,
+                    'daily_hours_limit' => $companies->daily_hours_limit,
+                    'daily_hours_warning' => $companies->daily_hours_warning,
                 ],
             ]);
 

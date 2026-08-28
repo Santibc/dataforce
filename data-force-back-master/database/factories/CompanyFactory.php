@@ -17,6 +17,11 @@ class CompanyFactory extends Factory
             'driver_amount' => $this->faker->randomFloat(0, 0, 100),
             'fleat_size' => $this->faker->randomFloat(0, 0, 100),
             'payroll' => 'ADP',
+            // Mismos defaults que la BD, para que el modelo en memoria coincida con lo
+            // que devuelve la API en los tests que comparan el JSON campo a campo.
+            'overtime_threshold' => 40,
+            'daily_hours_limit' => 12,
+            'daily_hours_warning' => 10,
         ];
     }
 }

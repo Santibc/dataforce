@@ -142,6 +142,99 @@ class AdpTimeCardServiceTest extends TestCase
         $this->assertSame('orange', $row['status']);
     }
 
+    /** @test */
+    public function daily_hours_sum_every_pay_code_of_the_same_day(): void
+    {
+        // Caso real de produccion: un dia llega partido en REGULAR + OVERTIME. Si no se
+        // suman los dos, la alerta diaria subestima las horas y nunca dispara.
+        $company = Company::factory()->create(['daily_hours_limit' => 12, 'daily_hours_warning' => 10]);
+        $driver = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-D']);
+
+        AdpTimeCard::create([
+            'company_id' => $company->id,
+            'user_id' => $driver->id,
+            'adp_aoid' => 'AOID-D',
+            'period_start' => '2026-08-02',
+            'period_end' => '2026-08-15',
+            'total_minutes' => 0,
+            'daily_totals' => [
+                ['date' => '2026-08-06', 'pay_code' => 'REGULAR', 'minutes' => 478],
+                ['date' => '2026-08-06', 'pay_code' => 'OVERTIME', 'minutes' => 146],
+                ['date' => '2026-08-07', 'pay_code' => 'REGULAR', 'minutes' => 750],
+                ['date' => '2026-08-08', 'pay_code' => 'REGULAR', 'minutes' => 300],
+                // Sin fecha: ADP lo manda asi en periodos vacios, hay que ignorarlo.
+                ['date' => null, 'pay_code' => 'REGULAR', 'minutes' => 999],
+            ],
+        ]);
+
+        $result = app(AdpTimeCardService::class)->dailyHours(
+            $company,
+            Carbon::parse('2026-08-02'),
+            Carbon::parse('2026-08-15')
+        );
+
+        $this->assertSame(12, $result['limit']);
+        $this->assertSame(10, $result['warning']);
+
+        $days = (array) collect($result['drivers'])->firstWhere('user_id', $driver->id)['days'];
+
+        // 478 + 146 = 624 min = 10.4 h -> aviso.
+        $this->assertSame(624, $days['2026-08-06']['minutes']);
+        $this->assertSame(10.4, $days['2026-08-06']['hours']);
+        $this->assertSame('orange', $days['2026-08-06']['status']);
+
+        // 750 min = 12.5 h -> pasado el limite.
+        $this->assertSame(12.5, $days['2026-08-07']['hours']);
+        $this->assertSame('red', $days['2026-08-07']['status']);
+
+        // 300 min = 5 h -> normal.
+        $this->assertSame('normal', $days['2026-08-08']['status']);
+
+        // La entrada sin fecha no genera ningun dia.
+        $this->assertCount(3, $days);
+    }
+
+    /** @test */
+    public function daily_hours_only_cover_the_requested_range_and_list_drivers_without_hours(): void
+    {
+        $company = Company::factory()->create(['daily_hours_limit' => 12, 'daily_hours_warning' => 10]);
+        $withHours = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-A']);
+        // Vinculado pero sin horas: debe venir igual, con days vacio, para que el
+        // calendario sepa que es driver de ADP y le pinte 0h.
+        $withoutHours = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-B']);
+        // No vinculado: no debe aparecer.
+        $notLinked = User::factory()->create(['company_id' => $company->id, 'adp_linked' => false]);
+
+        AdpTimeCard::create([
+            'company_id' => $company->id,
+            'user_id' => $withHours->id,
+            'adp_aoid' => 'AOID-A',
+            'period_start' => '2026-08-02',
+            'period_end' => '2026-08-15',
+            'total_minutes' => 0,
+            'daily_totals' => [
+                ['date' => '2026-08-05', 'pay_code' => 'REGULAR', 'minutes' => 600], // fuera del rango
+                ['date' => '2026-08-09', 'pay_code' => 'REGULAR', 'minutes' => 660], // dentro
+            ],
+        ]);
+
+        $result = app(AdpTimeCardService::class)->dailyHours(
+            $company,
+            Carbon::parse('2026-08-09'),
+            Carbon::parse('2026-08-15')
+        );
+
+        $userIds = collect($result['drivers'])->pluck('user_id')->all();
+        $this->assertContains($withHours->id, $userIds);
+        $this->assertContains($withoutHours->id, $userIds);
+        $this->assertNotContains($notLinked->id, $userIds);
+
+        $days = (array) collect($result['drivers'])->firstWhere('user_id', $withHours->id)['days'];
+        $this->assertSame(['2026-08-09'], array_keys($days));
+        $this->assertSame(11.0, $days['2026-08-09']['hours']);
+
+        $this->assertSame([], (array) collect($result['drivers'])->firstWhere('user_id', $withoutHours->id)['days']);
+    }
     private function teamMember(string $aoid): array
     {
         return [

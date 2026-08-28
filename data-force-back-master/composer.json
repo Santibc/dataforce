@@ -28,6 +28,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
+        "doctrine/dbal": "^3.10",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.10",
         "laravel/sail": "^1.0.1",

@@ -36,6 +36,8 @@ export const SuperAdminInfoUpdatePage: FC<SuperAdminInfoUpdatePageProps> = (prop
                             fleat_size: data?.fleat_size || '',
                             payroll: data?.payroll || '',
                             overtime_threshold: data?.overtime_threshold ? String(data.overtime_threshold) : '40',
+                            daily_hours_limit: data?.daily_hours_limit ? String(data.daily_hours_limit) : '12',
+                            daily_hours_warning: data?.daily_hours_warning ? String(data.daily_hours_warning) : '10',
                         }
                     }
                     title={`${company_name}'s Company information`}

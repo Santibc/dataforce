@@ -122,6 +122,26 @@ export interface IAdpWeeklyHours {
   drivers: IAdpWeeklyHoursRow[];
 }
 
+export interface IAdpDailyHoursDay {
+  minutes: number;
+  hours: number;
+  status: 'normal' | 'orange' | 'red';
+}
+
+/** Horas por dia de un driver: { 'YYYY-MM-DD': { minutes, hours, status } }. */
+export interface IAdpDailyHoursRow {
+  user_id: number;
+  days: Record<string, IAdpDailyHoursDay>;
+}
+
+export interface IAdpDailyHours {
+  from: string;
+  to: string;
+  limit: number;
+  warning: number;
+  drivers: IAdpDailyHoursRow[];
+}
+
 export interface IAdpTimeCard {
   id: number;
   user_id: number | null;
@@ -145,11 +165,21 @@ export interface IAdpUserHistory {
 // Repository
 // ----------------------------------------------------------------------
 
+/** `?from=...&to=...` para los endpoints de horas por dia; vacio si no hay rango. */
+const dailyRangeQuery = (from?: string, to?: string) => {
+  const params = new URLSearchParams();
+  if (from) params.append('from', from);
+  if (to) params.append('to', to);
+  const qs = params.toString();
+  return qs ? `?${qs}` : '';
+};
+
 export class AdpRepository {
   keys = {
     connection: () => ['adp', 'connection'],
     candidates: () => ['adp', 'candidates'],
     weekly: (week?: string) => ['adp', 'weekly', week ?? 'current'],
+    daily: (from?: string, to?: string) => ['adp', 'daily', from ?? 'current', to ?? 'current'],
     history: (userId: number, from?: string, to?: string) => ['adp', 'history', userId, from, to],
   };
 
@@ -203,6 +233,20 @@ export class AdpRepository {
   refreshWeeklyHours = async (week?: string) => {
     const { data } = await httpClient.post<IAdpWeeklyHours>(
       `admin/adp/time-cards/weekly/refresh${week ? `?week=${week}` : ''}`
+    );
+    return data;
+  };
+
+  getDailyHours = async (from?: string, to?: string) => {
+    const { data } = await httpClient.get<IAdpDailyHours>(
+      `admin/adp/time-cards/daily${dailyRangeQuery(from, to)}`
+    );
+    return data;
+  };
+
+  refreshDailyHours = async (from?: string, to?: string) => {
+    const { data } = await httpClient.post<IAdpDailyHours>(
+      `admin/adp/time-cards/daily/refresh${dailyRangeQuery(from, to)}`
     );
     return data;
   };
@@ -317,6 +361,28 @@ export const useRefreshAdpWeeklyMutation = () => {
     mutationFn: (week?: string) => repo.refreshWeeklyHours(week),
     onSuccess: (data, week) => {
       qc.setQueryData(repo.keys.weekly(week), data);
+    },
+  });
+};
+
+/** Horas por dia del rango visible del calendario. Lectura instantanea de BD. */
+export const useAdpDailyHoursQuery = (from?: string, to?: string, enabled = true) =>
+  useQuery({
+    queryKey: repo.keys.daily(from, to),
+    queryFn: () => repo.getDailyHours(from, to),
+    enabled,
+  });
+
+/**
+ * Dispara el refresco desde ADP (en segundo plano) y, al terminar, actualiza la
+ * cache de las horas por dia sin recargar la pagina.
+ */
+export const useRefreshAdpDailyMutation = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ from, to }: { from?: string; to?: string }) => repo.refreshDailyHours(from, to),
+    onSuccess: (data, { from, to }) => {
+      qc.setQueryData(repo.keys.daily(from, to), data);
     },
   });
 };

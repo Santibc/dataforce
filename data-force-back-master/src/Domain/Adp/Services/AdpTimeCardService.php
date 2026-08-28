@@ -311,6 +311,74 @@ class AdpTimeCardService
         ];
     }
 
+    /**
+     * Horas trabajadas por DIA de cada driver vinculado, en el rango pedido, con
+     * semaforo diario: 'red' si >= limite de la compania, 'orange' si >= aviso.
+     *
+     * Lo usa el calendario para pintar cada celda (dia x driver) y mostrar las horas
+     * que lleva ese dia. A diferencia de weeklyHours(), aqui NO se agrega por semana:
+     * cada fecha va por separado. Un mismo dia puede traer varias entradas en
+     * daily_totals (una por pay code: REGULAR, OVERTIME, ...); se suman todas.
+     */
+    public function dailyHours(Company $company, Carbon $from, Carbon $to): array
+    {
+        $fromStr = $from->copy()->startOfDay()->toDateString();
+        $toStr = $to->copy()->startOfDay()->toDateString();
+
+        $limit = (int) ($company->daily_hours_limit ?: 12);
+        $warning = (int) ($company->daily_hours_warning ?: 10);
+
+        $drivers = $company->users()->where('adp_linked', true)->get();
+
+        // Time cards cuyo periodo solapa el rango visible.
+        $cards = AdpTimeCard::where('company_id', $company->id)
+            ->whereNotNull('user_id')
+            ->whereDate('period_start', '<=', $toStr)
+            ->whereDate('period_end', '>=', $fromStr)
+            ->get();
+
+        // [user_id][fecha] => minutos, sumando todos los pay codes de ese dia.
+        $minutesByUserDate = [];
+        foreach ($cards as $card) {
+            foreach (($card->daily_totals ?? []) as $day) {
+                $date = $day['date'] ?? null;
+                if (! $date || $date < $fromStr || $date > $toStr) {
+                    continue;
+                }
+                $minutesByUserDate[$card->user_id][$date] = ($minutesByUserDate[$card->user_id][$date] ?? 0)
+                    + (int) ($day['minutes'] ?? 0);
+            }
+        }
+
+        $rows = $drivers->map(function (User $user) use ($minutesByUserDate, $limit, $warning) {
+            $days = [];
+            foreach ($minutesByUserDate[$user->id] ?? [] as $date => $minutes) {
+                $hours = round($minutes / 60, 2);
+                $days[$date] = [
+                    'minutes' => $minutes,
+                    'hours' => $hours,
+                    'status' => $hours >= $limit ? 'red' : ($hours >= $warning ? 'orange' : 'normal'),
+                ];
+            }
+            ksort($days);
+
+            // Los dias sin horas no se envian: el driver aparece igual (con days vacio)
+            // para que el calendario sepa que es un driver de ADP y le pinte "0h".
+            return [
+                'user_id' => $user->id,
+                'days' => (object) $days,
+            ];
+        })->values()->all();
+
+        return [
+            'from' => $fromStr,
+            'to' => $toStr,
+            'limit' => $limit,
+            'warning' => $warning,
+            'drivers' => $rows,
+        ];
+    }
+
     public function persist(Company $company, AdpTimeCardData $card, ?User $user = null): AdpTimeCard
     {
         return AdpTimeCard::updateOrCreate(

@@ -95,6 +95,7 @@ const NavMenuCompany = () => {
           </Typography>
         </Popover>
       </Box>
+      {/* Menu "Performance" oculto temporalmente
       <Box>
         <NavMenuButton
           icon={<AnalyticsIcon />}
@@ -147,6 +148,7 @@ const NavMenuCompany = () => {
           </Typography>
         </Popover>
       </Box>
+      */}
       <Box>
         <NavMenuButton
           icon={<UserIcon />}

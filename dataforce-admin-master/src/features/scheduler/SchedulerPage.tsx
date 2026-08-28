@@ -38,7 +38,13 @@ import {
   useAllScheduleJobsitesQuery,
   useCleancheduleJobsiteMutation,
 } from 'src/api/scheduleJobsiteRepository';
-import { useAdpWeeklyHoursQuery, useRefreshAdpWeeklyMutation } from 'src/api/adpRepository';
+import {
+  IAdpDailyHoursDay,
+  useAdpDailyHoursQuery,
+  useAdpWeeklyHoursQuery,
+  useRefreshAdpDailyMutation,
+  useRefreshAdpWeeklyMutation,
+} from 'src/api/adpRepository';
 import { Overlay } from 'src/components/overlay/Overlay';
 import useFormHandle from 'src/hooks/useFormHandle';
 import { CopyPrevWeekOptions } from './scheduler-table-components/CopyPrevWeekOptions';
@@ -101,6 +107,27 @@ const HOURS_WORKED = {
   [SCHEDULE_TIMEFRAME.DAY]: 8,
   [SCHEDULE_TIMEFRAME.WEEK]: 40,
   [SCHEDULE_TIMEFRAME.TWO_WEEKS]: 80,
+} as const;
+
+/** Formato de fecha con el que se indexan las horas por dia que devuelve ADP. */
+const ADP_DATE_FORMAT = 'YYYY-MM-DD';
+
+/**
+ * Colores de la alerta de horas DIARIAS, que pinta el recuadro de fondo de la celda.
+ * Van un punto mas intensos y en otro tono que los de la alerta semanal (que pinta la
+ * fila entera con error.main y warning.main al 16%) para que se distingan cuando
+ * coinciden en la misma celda.
+ */
+const ADP_DAILY_CELL_BG = {
+  red: 'rgba(183, 29, 24, 0.24)', // error.dark
+  orange: 'rgba(255, 214, 102, 0.55)', // warning.light
+} as const;
+
+/** Color del contador de horas de la esquina inferior derecha de cada celda. */
+const ADP_DAILY_TEXT_COLOR = {
+  red: '#7A0916', // error.darker
+  orange: '#7A4100', // warning.darker
+  normal: '#637381', // grey.600
 } as const;
 
 function getTimelineHeaders(date: string, days: number): string[] {
@@ -231,6 +258,17 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
       : filtersUsers!,
   });
 
+  const timelineHeaders = getTimelineHeaders(
+    searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === SCHEDULE_TIMEFRAME.DAY
+      ? getToday(moment(searchParams.get(PARAM_KEYS.DATE)).set({ hour: 0, minute: 0, second: 0 }))
+      : getStartOfWeek(moment(searchParams.get(PARAM_KEYS.DATE)).set({ hour: 0, minute: 0, second: 0 })) || '',
+    currentTimeframe
+  );
+
+  // Fechas de la primera y ultima columna visibles: el rango de horas que se pide a ADP.
+  const adpFrom = moment(timelineHeaders[0]).format(ADP_DATE_FORMAT);
+  const adpTo = moment(timelineHeaders[timelineHeaders.length - 1]).format(ADP_DATE_FORMAT);
+
   // Horas de ADP de la semana: lectura instantanea + refresco en segundo plano al cargar.
   const { data: adpWeekly } = useAdpWeeklyHoursQuery();
   const { mutate: refreshAdpWeekly } = useRefreshAdpWeeklyMutation();
@@ -243,12 +281,27 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
     adpHoursByUser[d.user_id] = { hours: d.hours, status: d.status };
   });
 
-  const timelineHeaders = getTimelineHeaders(
-    searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) === SCHEDULE_TIMEFRAME.DAY
-      ? getToday(moment(searchParams.get(PARAM_KEYS.DATE)).set({ hour: 0, minute: 0, second: 0 }))
-      : getStartOfWeek(moment(searchParams.get(PARAM_KEYS.DATE)).set({ hour: 0, minute: 0, second: 0 })) || '',
-    currentTimeframe
-  );
+  // Horas de ADP por DIA (limite diario): mismo patron, pero acotado al rango visible,
+  // asi que se vuelve a pedir al navegar de semana. El throttle del backend evita
+  // martillar la API de ADP.
+  const { data: adpDaily } = useAdpDailyHoursQuery(adpFrom, adpTo);
+  const { mutate: refreshAdpDaily } = useRefreshAdpDailyMutation();
+  useEffect(() => {
+    refreshAdpDaily({ from: adpFrom, to: adpTo });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adpFrom, adpTo]);
+  // Solo los drivers vinculados a ADP entran aqui; a ellos se les muestra 0h en los
+  // dias sin horas, y a los no vinculados no se les muestra nada.
+  const adpDailyByUser: Record<number, Record<string, IAdpDailyHoursDay>> = {};
+  adpDaily?.drivers.forEach((d) => {
+    adpDailyByUser[d.user_id] = d.days ?? {};
+  });
+  /** Fecha de cada columna, en el formato con el que vienen las horas de ADP. */
+  const columnDates = timelineHeaders.map((header) => moment(header).format(ADP_DATE_FORMAT));
+  /** Horas que ADP reporta de ese driver ese dia; undefined si no reporto nada. */
+  const adpDay = (userId: number, index: number) => adpDailyByUser[userId]?.[columnDates[index]];
+  /** true si el driver esta vinculado a ADP: solo a esos se les muestra el contador. */
+  const isAdpDriver = (userId: number) => adpDailyByUser[userId] !== undefined;
 
   const deleteUsersShiftMutation = useDeleteUserShiftMutation();
 
@@ -715,8 +768,22 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                         <TableCell
                           align="left"
                           padding="none"
-                          sx={{ border: '1px solid #e5e8eb', position: 'relative' }}
-                          key={shift?.id ?? Math.random()}
+                          sx={{
+                            border: '1px solid #e5e8eb',
+                            position: 'relative',
+                            // Espacio reservado abajo para el contador de horas de ADP.
+                            pb: '14px',
+                            // Alerta de horas DIARIAS: pinta el recuadro de fondo. La celda
+                            // va encima de la fila, asi que en su columna gana sobre la
+                            // alerta semanal, que sigue pintando el resto de la fila.
+                            backgroundColor:
+                              adpDay(row.id, index)?.status === 'red'
+                                ? ADP_DAILY_CELL_BG.red
+                                : adpDay(row.id, index)?.status === 'orange'
+                                  ? ADP_DAILY_CELL_BG.orange
+                                  : undefined,
+                          }}
+                          key={`${row.id}-${columnDates[index]}`}
                         >
                           {!shift ? (
                             <>
@@ -816,6 +883,25 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                                 )
                               }
                             </Box>
+                          )}
+                          {isAdpDriver(row.id) && (
+                            <Typography
+                              sx={{
+                                position: 'absolute',
+                                bottom: '2px',
+                                right: '5px',
+                                fontSize: '10px',
+                                fontWeight: 700,
+                                lineHeight: 1,
+                                // El Overlay de hover va por debajo y debe seguir clickeable.
+                                zIndex: 11,
+                                pointerEvents: 'none',
+                                color:
+                                  ADP_DAILY_TEXT_COLOR[adpDay(row.id, index)?.status ?? 'normal'],
+                              }}
+                            >
+                              {adpDay(row.id, index)?.hours ?? 0}h
+                            </Typography>
                           )}
                         </TableCell>
                       ))}

@@ -13,5 +13,8 @@ class UpdateCompanyData extends Data
         public int $driver_amount,
         public int $fleat_size,
         public string $payroll,
+        public ?int $overtime_threshold = null,
+        public ?int $daily_hours_limit = null,
+        public ?int $daily_hours_warning = null,
     ) {}
 }

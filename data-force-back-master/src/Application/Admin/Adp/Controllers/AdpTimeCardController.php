@@ -13,6 +13,9 @@ use Src\Domain\User\Models\User;
 
 class AdpTimeCardController
 {
+    /** Tope de dias que puede pedir el calendario de una sola vez. */
+    private const MAX_DAILY_RANGE_DAYS = 31;
+
     public function __construct(
         private readonly AdpTimeCardService $service,
     ) {
@@ -63,6 +66,63 @@ class AdpTimeCardController
         $week = $request->input('week') ? Carbon::parse($request->input('week')) : null;
 
         return response()->json($this->service->weeklyHours($company, $week));
+    }
+
+    /**
+     * Horas por DIA de cada driver en el rango pedido, con semaforo diario.
+     * Lo llama el calendario para pintar cada celda. Solo lee de BD.
+     */
+    public function daily(Request $request): JsonResponse
+    {
+        [$from, $to] = $this->dailyRange($request);
+
+        return response()->json($this->service->dailyHours(auth()->user()->company, $from, $to));
+    }
+
+    /**
+     * Refresca desde ADP (throttle de 5 min) y devuelve las horas por dia ya
+     * recalculadas. Lo llama el calendario en segundo plano al cargar y al cambiar
+     * de semana, para no bloquear la vista.
+     */
+    public function refreshDaily(Request $request): JsonResponse
+    {
+        $company = auth()->user()->company;
+
+        try {
+            $this->service->syncCurrentByManagers($company);
+        } catch (AdpException $e) {
+            // Si el refresco falla, devolvemos igual lo que haya en BD.
+        }
+
+        [$from, $to] = $this->dailyRange($request);
+
+        return response()->json($this->service->dailyHours($company, $from, $to));
+    }
+
+    /**
+     * Rango del calendario. Sin parametros cae a la semana actual (domingo-sabado);
+     * se acota a 31 dias para no traer periodos enormes de una.
+     *
+     * @return array{0: Carbon, 1: Carbon}
+     */
+    private function dailyRange(Request $request): array
+    {
+        $from = $request->input('from')
+            ? Carbon::parse($request->input('from'))->startOfDay()
+            : now()->startOfWeek(Carbon::SUNDAY);
+
+        $to = $request->input('to')
+            ? Carbon::parse($request->input('to'))->startOfDay()
+            : $from->copy()->addDays(6);
+
+        if ($to->lt($from)) {
+            $to = $from->copy();
+        }
+        if ($from->diffInDays($to) > self::MAX_DAILY_RANGE_DAYS) {
+            $to = $from->copy()->addDays(self::MAX_DAILY_RANGE_DAYS);
+        }
+
+        return [$from, $to];
     }
 
     /**

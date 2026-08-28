@@ -86,6 +86,9 @@ class CompanyControllerTest extends TestCase
                 'driver_amount' => $company->driver_amount,
                 'fleat_size' => $company->fleat_size,
                 'payroll' => $company->payroll,
+                'overtime_threshold' => $company->overtime_threshold,
+                'daily_hours_limit' => $company->daily_hours_limit,
+                'daily_hours_warning' => $company->daily_hours_warning,
             ]);
 
     }
@@ -146,6 +149,9 @@ class CompanyControllerTest extends TestCase
                     'driver_amount' => $this->user_2->company->driver_amount,
                     'fleat_size' => $this->user_2->company->fleat_size,
                     'payroll' => $this->user_2->company->payroll,
+                    'overtime_threshold' => $this->user_2->company->overtime_threshold,
+                    'daily_hours_limit' => $this->user_2->company->daily_hours_limit,
+                    'daily_hours_warning' => $this->user_2->company->daily_hours_warning,
                 ],
                 [
                     'id' => $company_1->id,
@@ -154,6 +160,9 @@ class CompanyControllerTest extends TestCase
                     'driver_amount' => $company_1->driver_amount,
                     'fleat_size' => $company_1->fleat_size,
                     'payroll' => $company_1->payroll,
+                    'overtime_threshold' => $company_1->overtime_threshold,
+                    'daily_hours_limit' => $company_1->daily_hours_limit,
+                    'daily_hours_warning' => $company_1->daily_hours_warning,
                 ],
                 [
                     'id' => $company_2->id,
@@ -162,6 +171,9 @@ class CompanyControllerTest extends TestCase
                     'driver_amount' => $company_2->driver_amount,
                     'fleat_size' => $company_2->fleat_size,
                     'payroll' => $company_2->payroll,
+                    'overtime_threshold' => $company_2->overtime_threshold,
+                    'daily_hours_limit' => $company_2->daily_hours_limit,
+                    'daily_hours_warning' => $company_2->daily_hours_warning,
                 ],
             ]);
     }

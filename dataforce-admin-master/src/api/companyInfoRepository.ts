@@ -10,6 +10,8 @@ export interface IUpdateCompanyInfo {
   fleat_size: string;
   payroll: string;
   overtime_threshold?: string;
+  daily_hours_limit?: string;
+  daily_hours_warning?: string;
 }
 
 export interface IRecievedCompanyInfo {
@@ -20,6 +22,8 @@ export interface IRecievedCompanyInfo {
   fleat_size: string;
   payroll: string;
   overtime_threshold?: string;
+  daily_hours_limit?: string;
+  daily_hours_warning?: string;
 }
 
 export const recievedCompanyInfoMapper = (x: any): IRecievedCompanyInfo => x;

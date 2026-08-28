@@ -24,6 +24,8 @@ export interface CompanyInfoFormFields {
   fleat_size: string;
   payroll: string;
   overtime_threshold: string;
+  daily_hours_limit: string;
+  daily_hours_warning: string;
 }
 
 const defaultValues: CompanyInfoFormFields = {
@@ -33,6 +35,8 @@ const defaultValues: CompanyInfoFormFields = {
   fleat_size: '',
   payroll: '',
   overtime_threshold: '40',
+  daily_hours_limit: '12',
+  daily_hours_warning: '10',
 };
 
 const CompanyInfoFormFieldsSchema = Yup.object().shape({
@@ -44,6 +48,18 @@ const CompanyInfoFormFieldsSchema = Yup.object().shape({
   overtime_threshold: Yup.string()
     .required('Overtime threshold is required')
     .matches(/^\d+$/, 'Must be a whole number of hours'),
+  daily_hours_limit: Yup.string()
+    .required('Daily hours limit is required')
+    .matches(/^\d+$/, 'Must be a whole number of hours'),
+  daily_hours_warning: Yup.string()
+    .required('Daily hours warning is required')
+    .matches(/^\d+$/, 'Must be a whole number of hours')
+    .test(
+      'below-daily-limit',
+      'The warning must be lower than the daily limit',
+      (value, ctx) =>
+        !value || !ctx.parent.daily_hours_limit || Number(value) < Number(ctx.parent.daily_hours_limit)
+    ),
 });
 
 export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSubmit, title }) => {
@@ -157,6 +173,36 @@ export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSub
                     {...field}
                     label="Weekly overtime limit (hours) *"
                     placeholder="40"
+                    floatingLabel={false}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Controller
+                name="daily_hours_limit"
+                control={hf.control}
+                rules={{ required: true }}
+                render={(field) => (
+                  <HitNumberField
+                    {...field}
+                    label="Daily hours limit (hours) *"
+                    placeholder="12"
+                    floatingLabel={false}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Controller
+                name="daily_hours_warning"
+                control={hf.control}
+                rules={{ required: true }}
+                render={(field) => (
+                  <HitNumberField
+                    {...field}
+                    label="Daily hours warning (hours) *"
+                    placeholder="10"
                     floatingLabel={false}
                     sx={{ marginBottom: '20px' }}
                   />

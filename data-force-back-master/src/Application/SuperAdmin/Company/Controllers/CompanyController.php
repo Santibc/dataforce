@@ -51,6 +51,9 @@ class CompanyController
                     'driver_amount' => $data->driver_amount,
                     'fleat_size' => $data->fleat_size,
                     'payroll' => $data->payroll,
+                    'overtime_threshold' => $data->overtime_threshold ?? $company->overtime_threshold ?? 40,
+                    'daily_hours_limit' => $data->daily_hours_limit ?? $company->daily_hours_limit ?? 12,
+                    'daily_hours_warning' => $data->daily_hours_warning ?? $company->daily_hours_warning ?? 10,
                 ]
             );
         });

@@ -110,6 +110,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:super_admin|admin|owner|man
         Route::post('adp/time-cards/sync', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'sync']);
         Route::get('adp/time-cards/weekly', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'weekly']);
         Route::post('adp/time-cards/weekly/refresh', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'refreshWeekly']);
+        Route::get('adp/time-cards/daily', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'daily']);
+        Route::post('adp/time-cards/daily/refresh', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'refreshDaily']);
         Route::get('adp/users/{userId}/time-cards', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'history']);
         Route::post('adp/users/{userId}/time-cards/refresh', [\Src\Application\Admin\Adp\Controllers\AdpTimeCardController::class, 'historyRefresh']);
     });

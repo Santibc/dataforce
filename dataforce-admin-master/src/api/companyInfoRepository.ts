@@ -12,6 +12,8 @@ export interface IUpdateCompanyInfo {
   overtime_threshold?: string;
   daily_hours_limit?: string;
   daily_hours_warning?: string;
+  rolling_hours_days?: string;
+  rolling_hours_limit?: string;
 }
 
 export interface IRecievedCompanyInfo {
@@ -24,6 +26,8 @@ export interface IRecievedCompanyInfo {
   overtime_threshold?: string;
   daily_hours_limit?: string;
   daily_hours_warning?: string;
+  rolling_hours_days?: string;
+  rolling_hours_limit?: string;
 }
 
 export const recievedCompanyInfoMapper = (x: any): IRecievedCompanyInfo => x;

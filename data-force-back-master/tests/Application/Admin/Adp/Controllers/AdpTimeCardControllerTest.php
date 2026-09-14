@@ -61,6 +61,49 @@ class AdpTimeCardControllerTest extends TestCase
     }
 
     /** @test */
+    public function rolling_endpoint_returns_the_moving_window_totals(): void
+    {
+        $admin = User::factory()->withRole(Roles::ADMIN)->create();
+        $company = $admin->company;
+        $company->update(['rolling_hours_days' => 7, 'rolling_hours_limit' => 60]);
+
+        $driver = User::factory()->create([
+            'company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-RC',
+        ]);
+
+        $today = now()->startOfDay();
+
+        AdpTimeCard::create([
+            'company_id' => $company->id,
+            'user_id' => $driver->id,
+            'adp_aoid' => 'AOID-RC',
+            'period_start' => $today->copy()->subDays(10)->toDateString(),
+            'period_end' => $today->copy()->addDays(3)->toDateString(),
+            'total_minutes' => 0,
+            'daily_totals' => [
+                ['date' => $today->copy()->subDays(3)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 1830],
+                ['date' => $today->copy()->subDays(1)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 1830],
+                // Fuera de la ventana de 7 dias: no debe sumar.
+                ['date' => $today->copy()->subDays(9)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 600],
+            ],
+        ]);
+
+        $this->actingAs($admin)
+            ->getJson(self::BASE.'/api/admin/adp/time-cards/rolling')
+            ->assertOk()
+            ->assertJson([
+                'from' => $today->copy()->subDays(6)->toDateString(),
+                'to' => $today->toDateString(),
+                'days' => 7,
+                'limit' => 60,
+                'warning' => 51,
+                'drivers' => [
+                    ['user_id' => $driver->id, 'minutes' => 3660, 'hours' => 61, 'status' => 'red'],
+                ],
+            ]);
+    }
+
+    /** @test */
     public function daily_endpoint_caps_the_requested_range(): void
     {
         $admin = User::factory()->withRole(Roles::ADMIN)->create();

@@ -22,6 +22,8 @@ class CompanyFactory extends Factory
             'overtime_threshold' => 40,
             'daily_hours_limit' => 12,
             'daily_hours_warning' => 10,
+            'rolling_hours_days' => 7,
+            'rolling_hours_limit' => 60,
         ];
     }
 }

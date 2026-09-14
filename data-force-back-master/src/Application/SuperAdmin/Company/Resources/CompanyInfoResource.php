@@ -16,5 +16,8 @@ class CompanyInfoResource extends Data
         public ?int $overtime_threshold = null,
         public ?int $daily_hours_limit = null,
         public ?int $daily_hours_warning = null,
-    ) {}
+        public ?int $rolling_hours_days = null,
+        public ?int $rolling_hours_limit = null,
+    ) {
+    }
 }

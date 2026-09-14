@@ -38,6 +38,8 @@ export const AdminInfoUpdatePage: FC<AdminInfoUpdatePageProps> = (props) => {
                             overtime_threshold: data?.overtime_threshold ? String(data.overtime_threshold) : '40',
                             daily_hours_limit: data?.daily_hours_limit ? String(data.daily_hours_limit) : '12',
                             daily_hours_warning: data?.daily_hours_warning ? String(data.daily_hours_warning) : '10',
+                            rolling_hours_days: data?.rolling_hours_days ? String(data.rolling_hours_days) : '7',
+                            rolling_hours_limit: data?.rolling_hours_limit ? String(data.rolling_hours_limit) : '60',
                         }
                     }
                     onSubmit={async (values) => {

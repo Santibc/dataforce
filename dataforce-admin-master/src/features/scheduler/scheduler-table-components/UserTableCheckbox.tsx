@@ -21,6 +21,13 @@ interface UserTableCheckboxProps {
     hoursWorked?: number;
   };
   adpHours?: { hours: number; status: 'normal' | 'orange' | 'red' } | null;
+  /** Horas de la ventana movil de ADP: "7d: 51/60" (los dias los configura la empresa). */
+  adpRolling?: {
+    hours: number;
+    limit: number;
+    days: number;
+    status: 'normal' | 'orange' | 'red';
+  } | null;
   onClick: () => void;
 }
 
@@ -34,6 +41,7 @@ export const UserTableCheckbox: FC<UserTableCheckboxProps> = ({
   idUser,
   confirmedWeek,
   adpHours,
+  adpRolling,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
@@ -81,6 +89,21 @@ export const UserTableCheckbox: FC<UserTableCheckboxProps> = ({
             }
           >
             ADP: {adpHours.hours}h
+          </Typography>
+        )}
+        {adpRolling && adpRolling.hours != null && (
+          <Typography
+            fontSize={'11px'}
+            fontWeight={600}
+            color={
+              adpRolling.status === 'red'
+                ? '#212B36'
+                : adpRolling.status === 'orange'
+                ? '#B76E00'
+                : '#637381'
+            }
+          >
+            {adpRolling.days}d: {adpRolling.hours}/{adpRolling.limit}
           </Typography>
         )}
       </Box>

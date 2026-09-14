@@ -41,6 +41,7 @@ import {
 import {
   IAdpDailyHoursDay,
   useAdpDailyHoursQuery,
+  useAdpRollingHoursQuery,
   useAdpWeeklyHoursQuery,
   useRefreshAdpDailyMutation,
   useRefreshAdpWeeklyMutation,
@@ -121,6 +122,22 @@ const ADP_DATE_FORMAT = 'YYYY-MM-DD';
 const ADP_DAILY_CELL_BG = {
   red: 'rgba(183, 29, 24, 0.24)', // error.dark
   orange: 'rgba(255, 214, 102, 0.55)', // warning.light
+} as const;
+
+/**
+ * Colores de las dos alertas que pintan la FILA del driver. Para que no compitan por
+ * el mismo fondo, la semanal ocupa la mitad de arriba y la de ventana movil la mitad
+ * de abajo (ver el linear-gradient de la fila), asi que cuando saltan las dos se ven
+ * ambas. Los tonos de la ventana movil son de otra familia a proposito.
+ */
+const ADP_WEEKLY_ROW_BG = {
+  red: 'rgba(255, 86, 48, 0.16)', // error.main
+  orange: 'rgba(255, 171, 0, 0.16)', // warning.main
+} as const;
+
+const ADP_ROLLING_ROW_BG = {
+  red: 'rgba(33, 43, 54, 0.45)', // grey.800 translucido: oscurece sin volver ilegible el texto
+  orange: 'rgba(255, 193, 7, 0.38)', // amarillo, para no confundirlo con el naranja semanal
 } as const;
 
 /** Color del contador de horas de la esquina inferior derecha de cada celda. */
@@ -302,6 +319,40 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
   const adpDay = (userId: number, index: number) => adpDailyByUser[userId]?.[columnDates[index]];
   /** true si el driver esta vinculado a ADP: solo a esos se les muestra el contador. */
   const isAdpDriver = (userId: number) => adpDailyByUser[userId] !== undefined;
+
+  // Horas de ADP de la ventana MOVIL (ultimos N dias hasta hoy). No depende de la
+  // semana visible: al navegar el calendario la alerta no cambia, por eso no lleva
+  // rango ni refresco propio (lo cubren los dos refrescos de arriba).
+  const { data: adpRolling } = useAdpRollingHoursQuery();
+  const adpRollingByUser: Record<
+    number,
+    { hours: number; limit: number; days: number; status: 'normal' | 'orange' | 'red' }
+  > = {};
+  adpRolling?.drivers.forEach((d) => {
+    adpRollingByUser[d.user_id] = {
+      hours: d.hours,
+      limit: adpRolling.limit,
+      days: adpRolling.days,
+      status: d.status,
+    };
+  });
+
+  /**
+   * Fondo de la fila: mitad superior para la alerta semanal, mitad inferior para la
+   * de la ventana movil. Si una de las dos esta en normal su mitad queda transparente,
+   * y si lo estan las dos el degradado es invisible.
+   */
+  const adpRowBackground = (userId: number) => {
+    const weekly = adpHoursByUser[userId]?.status;
+    const rolling = adpRollingByUser[userId]?.status;
+    const top = weekly === 'red' || weekly === 'orange' ? ADP_WEEKLY_ROW_BG[weekly] : 'transparent';
+    const bottom =
+      rolling === 'red' || rolling === 'orange' ? ADP_ROLLING_ROW_BG[rolling] : 'transparent';
+
+    if (top === 'transparent' && bottom === 'transparent') return undefined;
+
+    return `linear-gradient(to bottom, ${top} 0 50%, ${bottom} 50% 100%)`;
+  };
 
   const deleteUsersShiftMutation = useDeleteUserShiftMutation();
 
@@ -694,14 +745,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                   selectedDriversRowFilter(row) &&
                   <TableRow
                     key={row.id}
-                    sx={{
-                      backgroundColor:
-                        adpHoursByUser[row.id]?.status === 'red'
-                          ? 'rgba(255, 86, 48, 0.16)'
-                          : adpHoursByUser[row.id]?.status === 'orange'
-                            ? 'rgba(255, 171, 0, 0.16)'
-                            : undefined,
-                    }}
+                    sx={{ backgroundImage: adpRowBackground(row.id) }}
                   >
                     <TableCell
                       component="th"
@@ -761,6 +805,7 @@ export const SchedulerPage: FC<SchedulerPageProps> = ({
                         userName={row.firstname + ' ' + row.lastname}
                         time={{ hoursWorked: row.cantidad_horas, totalHours: HOURS_WORKED[searchParams.get(PARAM_KEYS.SCHEDULE_TIMEFRAME) as keyof typeof daysInTimeframe] }}
                         adpHours={adpHoursByUser[row.id] || null}
+                        adpRolling={adpRollingByUser[row.id] || null}
                       />
                     </TableCell>
                     <>

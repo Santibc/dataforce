@@ -126,6 +126,19 @@ class AdpTimeCardController
     }
 
     /**
+     * Horas acumuladas en la ventana movil (por defecto los ultimos 7 dias) de cada
+     * driver, con su semaforo. Solo lee de BD: el refresco desde ADP ya lo disparan
+     * weekly/refresh y daily/refresh, que comparten el mismo sync con throttle.
+     *
+     * No recibe parametros: la ventana siempre termina hoy, aunque el calendario
+     * este mostrando otra semana.
+     */
+    public function rolling(): JsonResponse
+    {
+        return response()->json($this->service->rollingHours(auth()->user()->company));
+    }
+
+    /**
      * Historico de horas de un driver (perfil). Trae de ADP bajo demanda y devuelve
      * las time cards guardadas, filtrables por fecha.
      */

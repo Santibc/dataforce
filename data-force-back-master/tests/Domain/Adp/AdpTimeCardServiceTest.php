@@ -143,6 +143,131 @@ class AdpTimeCardServiceTest extends TestCase
     }
 
     /** @test */
+    public function rolling_hours_count_a_moving_window_that_ends_today(): void
+    {
+        // La ventana movil cuenta desde HOY hacia atras, no desde el domingo: por eso
+        // detecta al driver que encadena el final de una semana con el inicio de la otra.
+        $company = Company::factory()->create(['rolling_hours_days' => 7, 'rolling_hours_limit' => 60]);
+        $driver = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-R']);
+
+        $today = now()->startOfDay();
+        $daily = [];
+        // 6 dias x 8h40m dentro de la ventana = 52 h -> aviso (>= 51 y < 60).
+        for ($i = 0; $i < 6; $i++) {
+            $daily[] = ['date' => $today->copy()->subDays($i)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 520];
+        }
+        // Fuera de la ventana (hace 10 dias): no debe sumar.
+        $daily[] = ['date' => $today->copy()->subDays(10)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 600];
+
+        AdpTimeCard::create([
+            'company_id' => $company->id,
+            'user_id' => $driver->id,
+            'adp_aoid' => 'AOID-R',
+            'period_start' => $today->copy()->subDays(20)->toDateString(),
+            'period_end' => $today->copy()->addDays(5)->toDateString(),
+            'total_minutes' => 0,
+            'daily_totals' => $daily,
+        ]);
+
+        $result = app(AdpTimeCardService::class)->rollingHours($company);
+
+        $this->assertSame(7, $result['days']);
+        $this->assertSame(60, $result['limit']);
+        $this->assertSame(51, $result['warning']);   // 15% por debajo de 60
+        $this->assertSame($today->copy()->subDays(6)->toDateString(), $result['from']);
+        $this->assertSame($today->toDateString(), $result['to']);
+
+        $row = collect($result['drivers'])->firstWhere('user_id', $driver->id);
+        $this->assertSame(52.0, $row['hours']);      // las 10 h de hace 10 dias quedan fuera
+        $this->assertSame('orange', $row['status']);
+    }
+
+    /** @test */
+    public function rolling_window_days_and_limit_are_configurable(): void
+    {
+        // El usuario puede pedir 8 dias en vez de 7 y el calculo debe ajustarse solo.
+        $company = Company::factory()->create(['rolling_hours_days' => 8, 'rolling_hours_limit' => 60]);
+        $driver = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-R8']);
+
+        $today = now()->startOfDay();
+
+        AdpTimeCard::create([
+            'company_id' => $company->id,
+            'user_id' => $driver->id,
+            'adp_aoid' => 'AOID-R8',
+            'period_start' => $today->copy()->subDays(20)->toDateString(),
+            'period_end' => $today->copy()->addDays(5)->toDateString(),
+            'total_minutes' => 0,
+            'daily_totals' => [
+                // El dia -7 solo entra si la ventana es de 8 dias.
+                ['date' => $today->copy()->subDays(7)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 600],
+                ['date' => $today->copy()->subDays(1)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 3060],
+            ],
+        ]);
+
+        $result = app(AdpTimeCardService::class)->rollingHours($company);
+
+        $this->assertSame(8, $result['days']);
+        $this->assertSame($today->copy()->subDays(7)->toDateString(), $result['from']);
+
+        // 600 + 3060 = 3660 min = 61 h -> pasado el limite.
+        $row = collect($result['drivers'])->firstWhere('user_id', $driver->id);
+        $this->assertSame(61.0, $row['hours']);
+        $this->assertSame('red', $row['status']);
+
+        // Con la ventana por defecto de 7 dias, ese primer dia ya no cuenta.
+        $company->update(['rolling_hours_days' => 7]);
+        $row = collect(app(AdpTimeCardService::class)->rollingHours($company->fresh())['drivers'])
+            ->firstWhere('user_id', $driver->id);
+        $this->assertSame(51.0, $row['hours']);
+        $this->assertSame('orange', $row['status']);
+    }
+
+    /** @test */
+    public function rolling_hours_add_up_time_cards_of_two_adp_periods(): void
+    {
+        // La ventana movil casi siempre cae entre dos periodos quincenales de ADP:
+        // las horas de ambas time cards tienen que sumarse en el mismo driver.
+        $company = Company::factory()->create(['rolling_hours_days' => 7, 'rolling_hours_limit' => 60]);
+        $driver = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-R2']);
+        $other = User::factory()->create(['company_id' => $company->id, 'adp_linked' => true, 'adp_aoid' => 'AOID-R3']);
+
+        $today = now()->startOfDay();
+
+        AdpTimeCard::create([
+            'company_id' => $company->id, 'user_id' => $driver->id, 'adp_aoid' => 'AOID-R2',
+            'period_start' => $today->copy()->subDays(20)->toDateString(),
+            'period_end' => $today->copy()->subDays(4)->toDateString(),
+            'total_minutes' => 0,
+            'daily_totals' => [
+                ['date' => $today->copy()->subDays(5)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 1800],
+            ],
+        ]);
+        AdpTimeCard::create([
+            'company_id' => $company->id, 'user_id' => $driver->id, 'adp_aoid' => 'AOID-R2',
+            'period_start' => $today->copy()->subDays(3)->toDateString(),
+            'period_end' => $today->copy()->addDays(10)->toDateString(),
+            'total_minutes' => 0,
+            'daily_totals' => [
+                ['date' => $today->copy()->subDays(2)->toDateString(), 'pay_code' => 'REGULAR', 'minutes' => 1200],
+                ['date' => $today->copy()->subDays(2)->toDateString(), 'pay_code' => 'OVERTIME', 'minutes' => 660],
+            ],
+        ]);
+
+        $result = app(AdpTimeCardService::class)->rollingHours($company);
+
+        // 1800 + 1200 + 660 = 3660 min = 61 h, sumando las dos time cards.
+        $row = collect($result['drivers'])->firstWhere('user_id', $driver->id);
+        $this->assertSame(61.0, $row['hours']);
+        $this->assertSame('red', $row['status']);
+
+        // El driver vinculado sin horas aparece igual, en 0.
+        $empty = collect($result['drivers'])->firstWhere('user_id', $other->id);
+        $this->assertSame(0.0, $empty['hours']);
+        $this->assertSame('normal', $empty['status']);
+    }
+
+    /** @test */
     public function daily_hours_sum_every_pay_code_of_the_same_day(): void
     {
         // Caso real de produccion: un dia llega partido en REGULAR + OVERTIME. Si no se
@@ -235,6 +360,7 @@ class AdpTimeCardServiceTest extends TestCase
 
         $this->assertSame([], (array) collect($result['drivers'])->firstWhere('user_id', $withoutHours->id)['days']);
     }
+
     private function teamMember(string $aoid): array
     {
         return [

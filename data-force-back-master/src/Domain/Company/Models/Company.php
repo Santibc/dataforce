@@ -26,6 +26,8 @@ class Company extends Model
         'overtime_threshold',
         'daily_hours_limit',
         'daily_hours_warning',
+        'rolling_hours_days',
+        'rolling_hours_limit',
     ];
 
     public function users()

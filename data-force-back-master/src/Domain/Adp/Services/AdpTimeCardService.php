@@ -36,6 +36,12 @@ class AdpTimeCardService
      */
     public const CURRENT_WINDOW_DAYS = 21;
 
+    /**
+     * El aviso de la ventana movil no se configura: es un 15% por debajo del tope
+     * (con 60 h de limite, avisa desde 51 h).
+     */
+    public const ROLLING_WARNING_RATIO = 0.85;
+
     public function __construct(
         private readonly AdpClient $client,
     ) {
@@ -373,6 +379,74 @@ class AdpTimeCardService
         return [
             'from' => $fromStr,
             'to' => $toStr,
+            'limit' => $limit,
+            'warning' => $warning,
+            'drivers' => $rows,
+        ];
+    }
+
+    /**
+     * Horas acumuladas por driver en una ventana MOVIL que termina hoy: por defecto
+     * los ultimos 7 dias (hoy incluido), con tope de 60 h. Los dias y el tope se
+     * configuran por compania; el aviso se deriva (15% por debajo del tope).
+     *
+     * Es un control distinto al semanal: weeklyHours() se reinicia cada domingo, asi
+     * que un driver puede encadenar dos fines de semana cargados sin que ninguna
+     * semana calendario dispare la alerta.
+     *
+     * Los estados se llaman igual que en los otros dos semaforos ('normal'/'orange'/
+     * 'red') para no romper el contrato del front, que es quien decide el color (aqui
+     * 'red' se pinta gris oscuro, no rojo).
+     */
+    public function rollingHours(Company $company): array
+    {
+        $days = max(1, (int) ($company->rolling_hours_days ?: 7));
+        // startOfDay() muta la instancia: copiar antes de restar los dias.
+        $to = now()->startOfDay();
+        $from = $to->copy()->subDays($days - 1);
+        $fromStr = $from->toDateString();
+        $toStr = $to->toDateString();
+
+        $limit = (int) ($company->rolling_hours_limit ?: 60);
+        $warning = (int) round($limit * self::ROLLING_WARNING_RATIO);
+
+        $drivers = $company->users()->where('adp_linked', true)->get();
+
+        // Time cards cuyo periodo solapa la ventana: si esta cae entre dos periodos
+        // quincenales de ADP, vienen las dos y las horas se suman igual.
+        $cards = AdpTimeCard::where('company_id', $company->id)
+            ->whereNotNull('user_id')
+            ->whereDate('period_start', '<=', $toStr)
+            ->whereDate('period_end', '>=', $fromStr)
+            ->get();
+
+        $minutesByUser = [];
+        foreach ($cards as $card) {
+            foreach (($card->daily_totals ?? []) as $day) {
+                $date = $day['date'] ?? null;
+                if (! $date || $date < $fromStr || $date > $toStr) {
+                    continue;
+                }
+                $minutesByUser[$card->user_id] = ($minutesByUser[$card->user_id] ?? 0) + (int) ($day['minutes'] ?? 0);
+            }
+        }
+
+        $rows = $drivers->map(function (User $user) use ($minutesByUser, $limit, $warning) {
+            $minutes = $minutesByUser[$user->id] ?? 0;
+            $hours = round($minutes / 60, 2);
+
+            return [
+                'user_id' => $user->id,
+                'minutes' => $minutes,
+                'hours' => $hours,
+                'status' => $hours >= $limit ? 'red' : ($hours >= $warning ? 'orange' : 'normal'),
+            ];
+        })->values()->all();
+
+        return [
+            'from' => $fromStr,
+            'to' => $toStr,
+            'days' => $days,
             'limit' => $limit,
             'warning' => $warning,
             'drivers' => $rows,

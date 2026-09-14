@@ -142,6 +142,27 @@ export interface IAdpDailyHours {
   drivers: IAdpDailyHoursRow[];
 }
 
+export interface IAdpRollingHoursRow {
+  user_id: number;
+  minutes: number;
+  hours: number;
+  status: 'normal' | 'orange' | 'red';
+}
+
+/**
+ * Horas acumuladas en la ventana movil que termina hoy (por defecto los ultimos
+ * 7 dias). `days` viene del backend para poder rotular "7d:" / "8d:" segun lo que
+ * tenga configurado la compania.
+ */
+export interface IAdpRollingHours {
+  from: string;
+  to: string;
+  days: number;
+  limit: number;
+  warning: number;
+  drivers: IAdpRollingHoursRow[];
+}
+
 export interface IAdpTimeCard {
   id: number;
   user_id: number | null;
@@ -180,6 +201,7 @@ export class AdpRepository {
     candidates: () => ['adp', 'candidates'],
     weekly: (week?: string) => ['adp', 'weekly', week ?? 'current'],
     daily: (from?: string, to?: string) => ['adp', 'daily', from ?? 'current', to ?? 'current'],
+    rolling: () => ['adp', 'rolling'],
     history: (userId: number, from?: string, to?: string) => ['adp', 'history', userId, from, to],
   };
 
@@ -241,6 +263,11 @@ export class AdpRepository {
     const { data } = await httpClient.get<IAdpDailyHours>(
       `admin/adp/time-cards/daily${dailyRangeQuery(from, to)}`
     );
+    return data;
+  };
+
+  getRollingHours = async () => {
+    const { data } = await httpClient.get<IAdpRollingHours>('admin/adp/time-cards/rolling');
     return data;
   };
 
@@ -386,6 +413,18 @@ export const useRefreshAdpDailyMutation = () => {
     },
   });
 };
+
+/**
+ * Horas de la ventana movil (ultimos N dias hasta hoy). No depende de la semana
+ * visible en el calendario, por eso no recibe rango. Lectura instantanea de BD: el
+ * refresco desde ADP ya lo disparan las horas semanales y las diarias.
+ */
+export const useAdpRollingHoursQuery = (enabled = true) =>
+  useQuery({
+    queryKey: repo.keys.rolling(),
+    queryFn: () => repo.getRollingHours(),
+    enabled,
+  });
 
 export const useAdpUserHistoryQuery = (userId: number, from?: string, to?: string, enabled = true) =>
   useQuery({

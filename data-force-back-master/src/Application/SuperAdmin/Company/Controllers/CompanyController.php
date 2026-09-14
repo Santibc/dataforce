@@ -54,6 +54,8 @@ class CompanyController
                     'overtime_threshold' => $data->overtime_threshold ?? $company->overtime_threshold ?? 40,
                     'daily_hours_limit' => $data->daily_hours_limit ?? $company->daily_hours_limit ?? 12,
                     'daily_hours_warning' => $data->daily_hours_warning ?? $company->daily_hours_warning ?? 10,
+                    'rolling_hours_days' => $data->rolling_hours_days ?? $company->rolling_hours_days ?? 7,
+                    'rolling_hours_limit' => $data->rolling_hours_limit ?? $company->rolling_hours_limit ?? 60,
                 ]
             );
         });

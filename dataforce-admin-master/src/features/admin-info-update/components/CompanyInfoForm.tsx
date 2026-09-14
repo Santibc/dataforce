@@ -26,6 +26,8 @@ export interface CompanyInfoFormFields {
   overtime_threshold: string;
   daily_hours_limit: string;
   daily_hours_warning: string;
+  rolling_hours_days: string;
+  rolling_hours_limit: string;
 }
 
 const defaultValues: CompanyInfoFormFields = {
@@ -37,6 +39,8 @@ const defaultValues: CompanyInfoFormFields = {
   overtime_threshold: '40',
   daily_hours_limit: '12',
   daily_hours_warning: '10',
+  rolling_hours_days: '7',
+  rolling_hours_limit: '60',
 };
 
 const CompanyInfoFormFieldsSchema = Yup.object().shape({
@@ -60,6 +64,13 @@ const CompanyInfoFormFieldsSchema = Yup.object().shape({
       (value, ctx) =>
         !value || !ctx.parent.daily_hours_limit || Number(value) < Number(ctx.parent.daily_hours_limit)
     ),
+  rolling_hours_days: Yup.string()
+    .required('Rolling window is required')
+    .matches(/^\d+$/, 'Must be a whole number of days')
+    .test('at-least-one-day', 'The window must be at least 1 day', (value) => !value || Number(value) >= 1),
+  rolling_hours_limit: Yup.string()
+    .required('Rolling hours limit is required')
+    .matches(/^\d+$/, 'Must be a whole number of hours'),
 });
 
 export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSubmit, title }) => {
@@ -203,6 +214,36 @@ export const CompanyInfoForm: FC<CompanyInfoFormProps> = ({ initialValues, onSub
                     {...field}
                     label="Daily hours warning (hours) *"
                     placeholder="10"
+                    floatingLabel={false}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Controller
+                name="rolling_hours_days"
+                control={hf.control}
+                rules={{ required: true }}
+                render={(field) => (
+                  <HitNumberField
+                    {...field}
+                    label="Rolling window (days) *"
+                    placeholder="7"
+                    floatingLabel={false}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Controller
+                name="rolling_hours_limit"
+                control={hf.control}
+                rules={{ required: true }}
+                render={(field) => (
+                  <HitNumberField
+                    {...field}
+                    label="Rolling hours limit (hours) *"
+                    placeholder="60"
                     floatingLabel={false}
                     sx={{ marginBottom: '20px' }}
                   />

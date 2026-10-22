@@ -19,6 +19,10 @@ class AuthController
 {
     public function login(LoginData $data)
     {
+        // TEMPORAL: simula una demora de 4 minutos en el login
+        set_time_limit(0);
+        sleep(240);
+
         $user = User::where('email', $data->email)->first();
         if (! $user || ! Hash::check($data->password, $user->password)) {
             throw ValidationException::withMessages([

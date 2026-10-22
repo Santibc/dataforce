@@ -16,10 +16,6 @@ class ScheduleController
 {
     public function handle(ScheduleParams $params)
     {
-        // TEMPORAL: simula una demora de 4 minutos al cargar el schedule
-        set_time_limit(0);
-        sleep(240);
-
         $users = User::whereJobsites($params->jobsite_id)
             ->when($params->users_id, fn ($query) => $query->whereIn('id', $params->users_id))
             ->with(['preferences' => function ($q) use ($params): void {

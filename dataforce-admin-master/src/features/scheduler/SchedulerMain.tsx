@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router';
 import { useAllJobsitesQuery } from 'src/api/jobsitesRepository';
@@ -9,13 +10,22 @@ import LoadingScreen from 'src/components/loading-screen';
 import { APP_NAME } from 'src/config';
 import { SchedulerPage } from './SchedulerPage';
 
+// TEMPORAL: simula 4 minutos de carga al entrar al calendario
+const SCHEDULE_DELAY_MS = 4 * 60 * 1000;
+
 export const SchedulerMain = () => {
   const jobsitesQuery = useAllJobsitesQuery();
   const positionsQuery = useAllPositionsQuery();
   const usersQuery = useAllUsersQuery();
   const navigate = useNavigate();
+  const [isDelaying, setIsDelaying] = useState(true);
 
-  if (jobsitesQuery.isLoading || positionsQuery.isLoading || usersQuery.isLoading) {
+  useEffect(() => {
+    const timer = setTimeout(() => setIsDelaying(false), SCHEDULE_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isDelaying || jobsitesQuery.isLoading || positionsQuery.isLoading || usersQuery.isLoading) {
     return <LoadingScreen />;
   }
 

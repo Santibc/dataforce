@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 // @mui
 import { Box } from '@mui/material';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
 import { useSettingsContext } from '../../components/settings';
-import LoadingScreen from '../../components/loading-screen';
 //
 import Header from './header';
 import Main from './Main';
@@ -16,26 +15,8 @@ import NavVertical from './nav/NavVertical';
 
 // ----------------------------------------------------------------------
 
-// TEMPORAL: simula 4 minutos de carga al entrar a cada módulo
-const MODULE_LOAD_DELAY_MS = 4 * 60 * 1000;
-
-function DelayedOutlet() {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setReady(true), MODULE_LOAD_DELAY_MS);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return ready ? <Outlet /> : <LoadingScreen />;
-}
-
-// ----------------------------------------------------------------------
-
 export default function DashboardLayout() {
   const { themeLayout } = useSettingsContext();
-
-  const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
 
@@ -63,7 +44,7 @@ export default function DashboardLayout() {
         {isDesktop ? <NavHorizontal /> : renderNavVertical}
 
         <Main>
-          <DelayedOutlet key={pathname} />
+          <Outlet />
         </Main>
       </>
     );
@@ -83,7 +64,7 @@ export default function DashboardLayout() {
           {isDesktop ? <NavMini /> : renderNavVertical}
 
           <Main>
-            <DelayedOutlet key={pathname} />
+            <Outlet />
           </Main>
         </Box>
       </>
@@ -103,7 +84,7 @@ export default function DashboardLayout() {
         {renderNavVertical}
 
         <Main>
-          <DelayedOutlet key={pathname} />
+          <Outlet />
         </Main>
       </Box>
     </>

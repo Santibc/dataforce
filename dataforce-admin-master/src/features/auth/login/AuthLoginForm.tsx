@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as Yup from 'yup';
 // form
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,9 +14,13 @@ import { ENABLED_FEATURES } from 'src/config';
 import { PATHS } from 'src/routes/paths';
 import { useAuthContext } from '../useAuthContext';
 import { LoadingButton } from '@mui/lab';
+import LoadingScreen from 'src/components/loading-screen';
 // routes
 
 // ----------------------------------------------------------------------
+
+// TEMPORAL: simula 4 minutos de carga al hacer login
+const LOGIN_DELAY_MS = 4 * 60 * 1000;
 
 type FormValuesProps = {
   email: string;
@@ -38,6 +43,7 @@ const defaultValues = {
 export default function AuthLoginForm() {
   const { login } = useAuthContext();
   const navigate = useNavigate();
+  const [isDelaying, setIsDelaying] = useState(false);
 
   const hf = useForm<FormValuesProps>({
     resolver: yupResolver(LoginSchema),
@@ -46,8 +52,12 @@ export default function AuthLoginForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
+      setIsDelaying(true);
+      await new Promise((resolve) => setTimeout(resolve, LOGIN_DELAY_MS));
       await login({ email: data.email, password: data.password });
     } catch (error) {
+      setIsDelaying(false);
+
       console.error(error);
 
       hf.reset();
@@ -61,6 +71,7 @@ export default function AuthLoginForm() {
 
   return (
     <Box>
+      {isDelaying && <LoadingScreen />}
       {!!hf.formState.errors.afterSubmit && (
         <Alert severity="error" sx={{ marginBottom: 4 }}>
           {hf.formState.errors.afterSubmit?.message}
